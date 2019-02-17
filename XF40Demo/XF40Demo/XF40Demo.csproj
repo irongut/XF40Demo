@@ -10,13 +10,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\empire.blue.svg" />
+    <None Remove="Resources\engineer.white.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\empire.blue.svg" />
+    <EmbeddedResource Include="Resources\engineer.white.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.5.867-pre" />
     <PackageReference Include="Xamarin.Forms" Version="4.0.0.135214-pre4" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Convertors\" />
-    <Folder Include="Resources\" />
     <Folder Include="Services\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
@@ -29,6 +39,9 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Shell\AppShell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Shell\MenuHeader.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

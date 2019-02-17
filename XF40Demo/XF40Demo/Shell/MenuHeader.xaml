@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffs="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="XF40Demo.Shell.MenuHeader">
+
+    <Grid HeightRequest="250">
+        <BoxView HeightRequest="250" BackgroundColor="#2F3136"/>
+        <ffs:SvgCachedImage Source="resource://XF40Demo.Resources.empire.blue.svg" WidthRequest="250" HorizontalOptions="Center" VerticalOptions="Center"/>
+        <Label Text="XF 4.0 Demo" TextColor="AntiqueWhite" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+    </Grid>
+
+</ContentView>

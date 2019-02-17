@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:ffs="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+       xmlns:s="clr-namespace:XF40Demo.Shell"
        xmlns:v="clr-namespace:XF40Demo.Views"
        x:Class="XF40Demo.Shell.AppShell"
        Route="xf40demo"
@@ -8,14 +10,23 @@
        RouteScheme="app"
        FlyoutHeaderBehavior="CollapseOnScroll"
        Title="XF4.0 Demo"
+       FlyoutBackgroundColor="#484B51"
        x:Name="self">
 
     <Shell.FlyoutHeader>
-        <Grid HeightRequest="300">
-            <BoxView HeightRequest="300" BackgroundColor="DarkBlue"/>
-            <Label Text="XF 4.0 Demo" TextColor="AntiqueWhite" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
-        </Grid>
+        <s:MenuHeader/>
     </Shell.FlyoutHeader>
+
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <ContentView BackgroundColor="#484B51" Padding="50, 5, 20, 5">
+                <StackLayout Orientation="Horizontal" Spacing="10">
+                    <ffs:SvgCachedImage Source="resource://XF40Demo.Resources.engineer.white.svg" HeightRequest="20" VerticalOptions="Center"/>
+                    <Label Text="{Binding Title}" TextColor="AntiqueWhite" FontSize="Medium" VerticalOptions="Center"/>
+                </StackLayout>
+            </ContentView>
+        </DataTemplate>
+    </Shell.ItemTemplate>
 
     <ShellItem Title="Home">
         <ShellSection>

@@ -1,6 +1,8 @@
 ﻿using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using FFImageLoading.Forms.Platform;
+using Xamarin.Forms;
 
 namespace XF40Demo.Droid
 {
@@ -9,12 +11,15 @@ namespace XF40Demo.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            global::Xamarin.Forms.Forms.SetFlags("Shell_Experimental");
+            Forms.SetFlags("Shell_Experimental");
+            Forms.SetFlags("FastRenderers_Experimental");
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+
+            CachedImageRenderer.Init(true);
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
