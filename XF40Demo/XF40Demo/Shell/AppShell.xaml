@@ -2,6 +2,7 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:ffs="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+       xmlns:c="clr-namespace:XF40Demo.Convertors"
        xmlns:s="clr-namespace:XF40Demo.Shell"
        xmlns:v="clr-namespace:XF40Demo.Views"
        x:Class="XF40Demo.Shell.AppShell"
@@ -13,16 +14,20 @@
        FlyoutBackgroundColor="#484B51"
        x:Name="self">
 
+    <Shell.Resources>
+        <c:MenuItemToIcon x:Key="menuIcon"/>
+    </Shell.Resources>
+
     <Shell.FlyoutHeader>
         <s:MenuHeader/>
     </Shell.FlyoutHeader>
 
     <Shell.ItemTemplate>
         <DataTemplate>
-            <ContentView BackgroundColor="#484B51" Padding="50, 5, 20, 5">
+            <ContentView BackgroundColor="#484B51" Padding="50, 10, 20, 10">
                 <StackLayout Orientation="Horizontal" Spacing="10">
-                    <ffs:SvgCachedImage Source="resource://XF40Demo.Resources.engineer.white.svg" HeightRequest="20" VerticalOptions="Center"/>
-                    <Label Text="{Binding Title}" TextColor="AntiqueWhite" FontSize="Medium" VerticalOptions="Center"/>
+                    <ffs:SvgCachedImage Source="{Binding Path=Title, Converter={StaticResource menuIcon}, Mode=OneWay}" WidthRequest="20" VerticalOptions="Center"/>
+                    <Label Text="{Binding Title, Mode=OneWay}" TextColor="AntiqueWhite" FontSize="Medium" VerticalOptions="Center"/>
                 </StackLayout>
             </ContentView>
         </DataTemplate>
