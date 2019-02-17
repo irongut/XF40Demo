@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:v="clr-namespace:XF40Demo.Views"
+       x:Class="XF40Demo.Shell.AppShell"
+       Route="xf40demo"
+       RouteHost="tranissoftware.com"
+       RouteScheme="app"
+       FlyoutHeaderBehavior="CollapseOnScroll"
+       Title="XF4.0 Demo"
+       x:Name="self">
+
+    <Shell.FlyoutHeader>
+        <Grid HeightRequest="300">
+            <BoxView HeightRequest="300" BackgroundColor="DarkBlue"/>
+            <Label Text="XF 4.0 Demo" TextColor="AntiqueWhite" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <ShellItem Title="Home">
+        <ShellSection>
+            <ShellContent Route="home">
+                <v:MainPage/>
+            </ShellContent>
+        </ShellSection>
+    </ShellItem>
+
+</Shell>

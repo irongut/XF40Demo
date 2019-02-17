@@ -9,7 +9,7 @@ namespace XF40Demo
         public App()
         {
             InitializeComponent();
-            MainPage = new Views.MainPage();
+            MainPage = new Shell.AppShell();
         }
 
         protected override void OnStart()

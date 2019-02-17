@@ -4,11 +4,12 @@
              xmlns:local="clr-namespace:XF40Demo"
              x:Class="XF40Demo.Views.MainPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+    <StackLayout VerticalOptions="Center">
+        <Label Text="Welcome to Xamarin.Forms 4.0!" 
+               HorizontalOptions="Center"/>
+        <Label Text="Home Page" 
+               FontSize="Large"
+               HorizontalOptions="Center"/>
     </StackLayout>
 
 </ContentPage>
