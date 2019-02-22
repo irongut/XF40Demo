@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -10,13 +10,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\bottom-left.svg" />
     <None Remove="Resources\empire.blue.svg" />
     <None Remove="Resources\engineer.white.svg" />
+    <None Remove="Resources\first.svg" />
+    <None Remove="Resources\gear.svg" />
+    <None Remove="Resources\home.svg" />
+    <None Remove="Resources\second.svg" />
+    <None Remove="Resources\third.svg" />
+    <None Remove="Resources\top-right.svg" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\bottom-left.svg" />
     <EmbeddedResource Include="Resources\empire.blue.svg" />
     <EmbeddedResource Include="Resources\engineer.white.svg" />
+    <EmbeddedResource Include="Resources\first.svg" />
+    <EmbeddedResource Include="Resources\gear.svg" />
+    <EmbeddedResource Include="Resources\home.svg" />
+    <EmbeddedResource Include="Resources\second.svg" />
+    <EmbeddedResource Include="Resources\third.svg" />
+    <EmbeddedResource Include="Resources\top-right.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,6 +58,15 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Tab1Page.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Tab2Page.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Tab3Page.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffs="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="XF40Demo.Views.Tab1Page">
+
+    <StackLayout VerticalOptions="Center">
+        <ffs:SvgCachedImage Source="resource://XF40Demo.Resources.first.svg" WidthRequest="100" HorizontalOptions="Center"/>
+        <Label Text="Will pay cash for app content!" HorizontalOptions="Center"/>
+        <Label Text="Tab 1 Page" FontSize="Large" HorizontalOptions="Center"/>
+    </StackLayout>
+
+</ContentPage>

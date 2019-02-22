@@ -22,6 +22,10 @@
         <s:MenuHeader/>
     </Shell.FlyoutHeader>
 
+    <Shell.ShellTabBarBackgroundColor>#0a8bd6</Shell.ShellTabBarBackgroundColor>
+    <Shell.ShellTabBarTitleColor>White</Shell.ShellTabBarTitleColor>
+    <Shell.ShellTabBarUnselectedColor>DarkGray</Shell.ShellTabBarUnselectedColor>
+
     <Shell.ItemTemplate>
         <DataTemplate>
             <ContentView BackgroundColor="#484B51" Padding="50, 10, 20, 10">
@@ -38,6 +42,26 @@
             <ShellContent Route="home">
                 <v:MainPage/>
             </ShellContent>
+        </ShellSection>
+    </ShellItem>
+
+    <ShellItem Title="Bottom Tabs" Route="bottom">
+        <ShellSection Title="Tab 1" Icon="first.png">
+            <ShellContent Route="tab1" ContentTemplate="{DataTemplate v:Tab1Page}"/>
+        </ShellSection>
+        <ShellSection Title="Tab 2" Icon="second.png">
+            <ShellContent Route="tab2" ContentTemplate="{DataTemplate v:Tab2Page}"/>
+        </ShellSection>
+        <ShellSection Title="Tab 3" Icon="third.png">
+            <ShellContent Route="tab3" ContentTemplate="{DataTemplate v:Tab3Page}"/>
+        </ShellSection>
+    </ShellItem>
+
+    <ShellItem Title="Top Tabs">
+        <ShellSection Route="top">
+            <ShellContent Title="Tab 1" Route="tab1" ContentTemplate="{DataTemplate v:Tab1Page}"/>
+            <ShellContent Title="Tab 2" Route="tab2" ContentTemplate="{DataTemplate v:Tab2Page}"/>
+            <ShellContent Title="Tab 3" Route="tab3" ContentTemplate="{DataTemplate v:Tab3Page}"/>
         </ShellSection>
     </ShellItem>
 

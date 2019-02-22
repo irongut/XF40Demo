@@ -15,9 +15,13 @@ namespace XF40Demo.Convertors
             switch (((string)value).Trim().ToLower())
             {
                 case "home":
-                    return "resource://XF40Demo.Resources.empire.blue.svg";
+                    return "resource://XF40Demo.Resources.home.svg";
+                case "bottom tabs":
+                    return "resource://XF40Demo.Resources.bottom-left.svg";
+                case "top tabs":
+                    return "resource://XF40Demo.Resources.top-right.svg";
                 case "settings":
-                    return "resource://XF40Demo.Resources.engineer.white.svg";
+                    return "resource://XF40Demo.Resources.gear.svg";
                 default:
                     return String.Empty;
             }
