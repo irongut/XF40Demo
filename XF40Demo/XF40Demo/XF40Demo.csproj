@@ -35,7 +35,7 @@
 
   <ItemGroup>
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.5.867-pre" />
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.135214-pre4" />
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.304370-pre8" />
   </ItemGroup>
 
   <ItemGroup>
