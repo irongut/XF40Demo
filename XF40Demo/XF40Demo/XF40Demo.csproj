@@ -10,32 +10,86 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\aisling.headshot.png" />
+    <None Remove="Resources\aisling.logo.svg" />
+    <None Remove="Resources\ald.headshot.png" />
+    <None Remove="Resources\ald.logo.svg" />
+    <None Remove="Resources\antal.headshot.png" />
+    <None Remove="Resources\antal.logo.svg" />
     <None Remove="Resources\bottom-left.svg" />
+    <None Remove="Resources\delaine.headshot.png" />
+    <None Remove="Resources\delaine.logo.svg" />
     <None Remove="Resources\empire.blue.svg" />
     <None Remove="Resources\engineer.white.svg" />
     <None Remove="Resources\first.svg" />
     <None Remove="Resources\gear.svg" />
+    <None Remove="Resources\grom.headshot.png" />
+    <None Remove="Resources\grom.logo.svg" />
     <None Remove="Resources\home.svg" />
+    <None Remove="Resources\hudson.headshot.png" />
+    <None Remove="Resources\hudson.logo.svg" />
+    <None Remove="Resources\lyr.headshot.png" />
+    <None Remove="Resources\lyr.logo.svg" />
+    <None Remove="Resources\mahon.headshot.png" />
+    <None Remove="Resources\mahon.logo.svg" />
+    <None Remove="Resources\patreus.headshot.png" />
+    <None Remove="Resources\patreus.logo.svg" />
+    <None Remove="Resources\pedestal.svg" />
+    <None Remove="Resources\powerplay.standings.svg" />
     <None Remove="Resources\second.svg" />
     <None Remove="Resources\third.svg" />
     <None Remove="Resources\top-right.svg" />
+    <None Remove="Resources\torval.headshot.png" />
+    <None Remove="Resources\torval.logo.svg" />
+    <None Remove="Resources\winters.headshot.png" />
+    <None Remove="Resources\winters.logo.svg" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\aisling.headshot.png" />
+    <EmbeddedResource Include="Resources\aisling.logo.svg" />
+    <EmbeddedResource Include="Resources\ald.headshot.png" />
+    <EmbeddedResource Include="Resources\ald.logo.svg" />
+    <EmbeddedResource Include="Resources\antal.headshot.png" />
+    <EmbeddedResource Include="Resources\antal.logo.svg" />
     <EmbeddedResource Include="Resources\bottom-left.svg" />
+    <EmbeddedResource Include="Resources\delaine.headshot.png" />
+    <EmbeddedResource Include="Resources\delaine.logo.svg" />
     <EmbeddedResource Include="Resources\empire.blue.svg" />
     <EmbeddedResource Include="Resources\engineer.white.svg" />
     <EmbeddedResource Include="Resources\first.svg" />
     <EmbeddedResource Include="Resources\gear.svg" />
+    <EmbeddedResource Include="Resources\grom.headshot.png" />
+    <EmbeddedResource Include="Resources\grom.logo.svg" />
     <EmbeddedResource Include="Resources\home.svg" />
+    <EmbeddedResource Include="Resources\hudson.headshot.png" />
+    <EmbeddedResource Include="Resources\hudson.logo.svg" />
+    <EmbeddedResource Include="Resources\lyr.headshot.png" />
+    <EmbeddedResource Include="Resources\lyr.logo.svg" />
+    <EmbeddedResource Include="Resources\mahon.headshot.png" />
+    <EmbeddedResource Include="Resources\mahon.logo.svg" />
+    <EmbeddedResource Include="Resources\patreus.headshot.png" />
+    <EmbeddedResource Include="Resources\patreus.logo.svg" />
+    <EmbeddedResource Include="Resources\pedestal.svg" />
+    <EmbeddedResource Include="Resources\powerplay.standings.svg" />
     <EmbeddedResource Include="Resources\second.svg" />
     <EmbeddedResource Include="Resources\third.svg" />
     <EmbeddedResource Include="Resources\top-right.svg" />
+    <EmbeddedResource Include="Resources\torval.headshot.png" />
+    <EmbeddedResource Include="Resources\torval.logo.svg" />
+    <EmbeddedResource Include="Resources\winters.headshot.png" />
+    <EmbeddedResource Include="Resources\winters.logo.svg" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs" Version="7.0.4" />
+    <PackageReference Include="CsvHelper" Version="12.1.2" />
+    <PackageReference Include="MonkeyCache.FileStore" Version="1.2.0-beta" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.5.870-pre" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.5.867-pre" />
     <PackageReference Include="Xamarin.Forms" Version="4.0.0.304370-pre8" />
+    <PackageReference Include="XamEffects" Version="1.5.6" />
   </ItemGroup>
 
   <ItemGroup>

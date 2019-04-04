@@ -65,6 +65,12 @@
         </ShellSection>
     </ShellItem>
 
+    <ShellItem Title="Standings">
+        <ShellSection>
+            <ShellContent Route="standings" ContentTemplate="{DataTemplate v:StandingsPage}"/>
+        </ShellSection>
+    </ShellItem>
+
     <ShellItem Title="Settings">
         <ShellSection>
             <ShellContent Route="settings" ContentTemplate="{DataTemplate v:SettingsPage}"/>

@@ -8,6 +8,7 @@ namespace XF40Demo
     {
         public App()
         {
+            XamEffects.Effects.Init();
             InitializeComponent();
             MainPage = new Shell.AppShell();
         }
@@ -25,6 +26,7 @@ namespace XF40Demo
         protected override void OnResume()
         {
             // Handle when your app resumes
+            MessagingCenter.Send<App>(this, "AppOnResume");
         }
     }
 }

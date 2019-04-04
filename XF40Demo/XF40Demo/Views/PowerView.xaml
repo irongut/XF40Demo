@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
+             xmlns:c="clr-namespace:XF40Demo.Converters"
+             xmlns:v="clr-namespace:XF40Demo.Views"
+             x:Name="this"
+             x:Class="XF40Demo.Views.PowerView"
+             x:DataType="v:PowerView"
+             Navigation="{Binding Source={x:Reference this}, Path=MyNavigation}"
+             xe:TouchEffect.Color="{StaticResource brandColor}"
+             xe:Commands.Tap="{Binding Source={x:Reference this}, Path=TappedCommand, Mode=OneWay}">
+
+    <ContentView.Resources>
+
+        <ResourceDictionary>
+
+            <c:FactionToColour x:Key="factionColour"/>
+            <c:PowerToLogo x:Key="powerLogo"/>
+            <c:PowerToPortrait x:Key="powerPortrait"/>
+            <c:StandingChangeToColour x:Key="changeColour"/>
+            <c:StandingChangeToIcon x:Key="changeIcon"/>
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Frame BackgroundColor="Transparent" BorderColor="{StaticResource brandColor}" Padding="3" Margin="2, 5">
+        <Grid RowSpacing="5" ColumnSpacing="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="135"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="35"/>
+                <ColumnDefinition Width="95"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- portrait -->
+            <ff:CachedImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" 
+                            Source="{Binding Source={x:Reference this}, Path=Power.ShortName, Converter={StaticResource powerPortrait}, Mode=OneWay}"
+                            DownsampleToViewSize="true" 
+                            HeightRequest="170" WidthRequest="170" 
+                            HorizontalOptions="Start" VerticalOptions="Start"/>
+            <BoxView Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" Color="#33000000" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+
+            <!-- standing, movement + turmoil -->
+            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Source={x:Reference this}, Path=Power.Position, StringFormat='{0:00}', Mode=OneWay}" FontSize="Large" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Source={x:Reference this}, Path=Power.Change, Converter={StaticResource changeIcon}, Mode=OneWay}" Style="{StaticResource FA-Solid}" TextColor="{Binding Source={x:Reference this}, Path=Power.Change, Converter={StaticResource changeColour}, Mode=OneWay}" FontSize="30" HorizontalOptions="Start" VerticalOptions="Center"/>
+            <Label Grid.Row="0" Grid.Column="2" Text="&#xf071;" Style="{StaticResource FA-Solid}" IsVisible="{Binding Source={x:Reference this}, Path=Power.Turmoil, Mode=OneWay}" TextColor="Red" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+            <!-- icon -->
+            <ffsvg:SvgCachedImage Grid.Row="2" Grid.Column="0" 
+                                  Source="{Binding Source={x:Reference this}, Path=Power.ShortName, Converter={StaticResource powerLogo}, Mode=OneWay}" 
+                                  HeightRequest="35" WidthRequest="35" HorizontalOptions="Center" VerticalOptions="Center"/>
+            
+            <!-- name + allegiance -->
+            <StackLayout Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical" Spacing="0" VerticalOptions="Center">
+                <Label Text="{Binding Source={x:Reference this}, Path=Power.Allegiance, Mode=OneWay}" TextColor="{Binding Source={x:Reference this}, Path=Power.Allegiance, Converter={StaticResource factionColour}, Mode=OneWay}" LineBreakMode="NoWrap" HorizontalOptions="Start"/>
+                <Label Text="{Binding Source={x:Reference this}, Path=Power.Name, Mode=OneWay}" TextColor="{DynamicResource textColor}" LineBreakMode="NoWrap" HorizontalOptions="Start"/>
+            </StackLayout>
+
+        </Grid>
+    </Frame>
+
+</ContentView>

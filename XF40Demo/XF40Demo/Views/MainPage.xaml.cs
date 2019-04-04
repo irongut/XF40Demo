@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonkeyCache.FileStore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace XF40Demo.Views
         public MainPage()
         {
             InitializeComponent();
+            Barrel.ApplicationId = "com.taranissoftware.XF40Demo";
         }
     }
 }

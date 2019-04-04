@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:c="clr-namespace:XF40Demo.Converters"
+             xmlns:models="clr-namespace:XF40Demo.Models"
+             xmlns:v="clr-namespace:XF40Demo.Views"
+             xmlns:vm="clr-namespace:XF40Demo.ViewModels"
+             x:Class="XF40Demo.Views.StandingsPage"
+             x:DataType="vm:StandingsViewModel"
+             Navigation="{Binding MyNavigation}"
+             Title="Galactic Standings"
+             BackgroundColor="{DynamicResource backgroundColor}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <c:BoolToInverse x:Key="inverseBool"/>
+            <c:CycleImminentToColour x:Key="imminentColour"/>
+
+            <DataTemplate x:Key="powerTemplate" x:DataType="models:PowerStanding">
+                <v:PowerView Power="{Binding , Mode=OneWay}"/>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+
+        <ContentView BackgroundColor="{Binding Path=CycleImminent, Converter={StaticResource imminentColour}, Mode=OneWay}"
+                     IsVisible="{Binding ShowTimeRemaining, Mode=OneWay}"
+                     Padding="0, 0, 0, 2">
+            <Label Text="{Binding Path=TimeRemaining, StringFormat='Next Cycle: {0}', Mode=OneWay}" HorizontalOptions="End" TextColor="{StaticResource altTextColor}" Margin="10, 0"/>
+        </ContentView>
+
+        <ScrollView VerticalOptions="FillAndExpand" IsVisible="{Binding ShowMessage, Converter={StaticResource inverseBool}, Mode=OneWay}">
+
+            <FlexLayout BindableLayout.ItemTemplate="{StaticResource powerTemplate}" 
+                        BindableLayout.ItemsSource="{Binding Standings, Mode=OneWay}"
+                        Direction="Row" 
+                        Wrap="Wrap" 
+                        JustifyContent="SpaceEvenly"/>
+
+        </ScrollView>
+
+        <v:MessagePanelView IsVisible="{Binding ShowMessage, Mode=OneWay}"
+                            ImageSource="resource://XF40Demo.Resources.powerplay.standings.svg"
+                            ImageHeightRequest="180"
+                            Message="{Binding Message, Mode=OneWay}"
+                            ButtonText="Retry"
+                            ButtonCommand="{Binding RetryDownloadCommand, Mode=OneWay}"
+                            ButtonBackgroundColour="{StaticResource brandColor}"
+                            ButtonTextColour="{StaticResource altTextColor}"
+                            ButtonIsVisible="{Binding IsErrorMessage, Mode=OneWay}"/>
+
+        <StackLayout Orientation="Horizontal" Spacing="10" BackgroundColor="{StaticResource brandColor}">
+            <Label Text="{Binding Cycle, Mode=OneWay}" HorizontalOptions="Start" TextColor="{StaticResource altTextColor}" Margin="10, 0"/>
+            <Label Text="{Binding Path=LastUpdated, StringFormat='Updated: {0}', Mode=OneWay}" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="{StaticResource altTextColor}" Margin="10, 0"/>
+        </StackLayout>
+
+    </StackLayout>
+    
+</ContentPage>
