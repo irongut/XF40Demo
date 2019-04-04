@@ -2,14 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XF40Demo.Views.MainPage"
-             Title="XF 4.0 Demo">
+             Title="XF 4.0 Demo"
+             Padding="10, 20, 10, 10">
 
-    <StackLayout VerticalOptions="Center">
+    <StackLayout>
         <Label Text="Welcome to Xamarin.Forms 4.0!" 
                HorizontalOptions="Center"/>
         <Label Text="Home Page" 
                FontSize="Large"
-               HorizontalOptions="Center"/>
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand"/>
+        <Label Text="This app contains icons made by Freepik from www.flaticon.com"
+               LineBreakMode="WordWrap"
+               VerticalOptions="Center"
+               HorizontalTextAlignment="Center"/>
     </StackLayout>
 
 </ContentPage>
