@@ -12,8 +12,7 @@ namespace XF40Demo.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            Forms.SetFlags("Shell_Experimental");
-            Forms.SetFlags("FastRenderers_Experimental");
+            Forms.SetFlags("Shell_Experimental", "FastRenderers_Experimental", "CollectionView_Experimental");
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;

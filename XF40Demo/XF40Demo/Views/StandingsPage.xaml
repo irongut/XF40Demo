@@ -32,15 +32,15 @@
             <Label Text="{Binding Path=TimeRemaining, StringFormat='Next Cycle: {0}', Mode=OneWay}" HorizontalOptions="End" TextColor="{StaticResource altTextColor}" Margin="10, 0"/>
         </ContentView>
 
-        <ScrollView VerticalOptions="FillAndExpand" IsVisible="{Binding ShowMessage, Converter={StaticResource inverseBool}, Mode=OneWay}">
-
-            <FlexLayout BindableLayout.ItemTemplate="{StaticResource powerTemplate}" 
-                        BindableLayout.ItemsSource="{Binding Standings, Mode=OneWay}"
-                        Direction="Row" 
-                        Wrap="Wrap" 
-                        JustifyContent="SpaceEvenly"/>
-
-        </ScrollView>
+        <CollectionView ItemsSource="{Binding Standings, Mode=OneWay}" 
+                        ItemTemplate="{StaticResource powerTemplate}" 
+                        IsVisible="{Binding ShowMessage, Converter={StaticResource inverseBool}, Mode=OneWay}" 
+                        ItemSizingStrategy="MeasureFirstItem"
+                        VerticalOptions="FillAndExpand">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="2" />
+            </CollectionView.ItemsLayout>
+        </CollectionView>
 
         <v:MessagePanelView IsVisible="{Binding ShowMessage, Mode=OneWay}"
                             ImageSource="resource://XF40Demo.Resources.powerplay.standings.svg"
