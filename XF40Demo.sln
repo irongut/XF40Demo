@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.329
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XF40Demo.Android", "XF40Demo\XF40Demo.Android\XF40Demo.Android.csproj", "{ED04E2D8-265A-487B-B72E-5140C833AAAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XF40Demo", "XF40Demo\XF40Demo\XF40Demo.csproj", "{CF52515E-60AD-49DA-B476-87DE62CA20CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XF40Demo", "XF40Demo\XF40Demo\XF40Demo.csproj", "{CF52515E-60AD-49DA-B476-87DE62CA20CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "XF40Demo\UnitTests\UnitTests.csproj", "{961A3B44-B7FB-4663-9B08-73726C11F51C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{CF52515E-60AD-49DA-B476-87DE62CA20CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF52515E-60AD-49DA-B476-87DE62CA20CC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CF52515E-60AD-49DA-B476-87DE62CA20CC}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{961A3B44-B7FB-4663-9B08-73726C11F51C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{961A3B44-B7FB-4663-9B08-73726C11F51C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{961A3B44-B7FB-4663-9B08-73726C11F51C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{961A3B44-B7FB-4663-9B08-73726C11F51C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
