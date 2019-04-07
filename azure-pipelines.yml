@@ -25,3 +25,11 @@ steps:
     projectFile: '**/*droid*.csproj'
     outputDirectory: '$(outputDirectory)'
     configuration: '$(buildConfiguration)'
+
+# run unit tests
+- task: DotNetCoreCLI@2
+  inputs:
+    command: test
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+    
