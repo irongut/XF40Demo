@@ -87,7 +87,7 @@
     <PackageReference Include="MonkeyCache.FileStore" Version="1.2.0-beta" />
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.5.870-pre" />
-    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.5.867-pre" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.5.870-pre" />
     <PackageReference Include="Xamarin.Forms" Version="4.0.0.304370-pre8" />
     <PackageReference Include="XamEffects" Version="1.5.6" />
   </ItemGroup>
