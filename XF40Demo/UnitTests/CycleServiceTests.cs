@@ -8,6 +8,22 @@ namespace UnitTests
     public class CycleServiceTests
     {
         [TestMethod]
+        public void TimeRemainingTest()
+        {
+            string timeRemaining = CycleService.TimeRemaining();
+            TimeSpan time = CycleService.TimeTillTick();
+            Assert.IsTrue(timeRemaining.IndexOf("hour") > 0);
+            if (time.Days == 0)
+            {
+                Assert.IsTrue(timeRemaining.IndexOf("minute") > 0);
+            }
+            else
+            {
+                Assert.IsTrue(timeRemaining.IndexOf("day") > 0);
+            }
+        }
+
+        [TestMethod]
         public void CycleImminentTest()
         {
             int day = (int)(DateTime.UtcNow.DayOfWeek);
