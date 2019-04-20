@@ -78,7 +78,7 @@ namespace XF40Demo.Services
                 case 6:
                     return TimeSpan.FromDays(5) + timeDiff;
                 default:
-                    return TimeSpan.FromMinutes(5);
+                    return TimeSpan.MaxValue;
             }
         }
 
