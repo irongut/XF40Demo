@@ -24,5 +24,13 @@ namespace UnitTests
             Assert.IsTrue(time > TimeSpan.Zero);
             Assert.IsTrue(time.Days < 7);
         }
+
+        [TestMethod]
+        public void CurrentCycleTest()
+        {
+            int cycle = CycleService.CurrentCycle();
+            Assert.IsTrue(cycle > 200);
+            Assert.IsTrue(cycle < 500);
+        }
     }
 }
