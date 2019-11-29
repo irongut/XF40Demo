@@ -4,12 +4,12 @@
 # https://github.com/peter-evans/link-checker
 # https://github.com/peter-evans/create-issue-from-file
 
-# Schedule: Every Friday
+# Schedule: Daily at 12:00
 
 name: LinkChecker
 on:
   schedule:
-  - cron: 0 1 * * *
+  - cron: 0 12 * * *
 jobs:
   linkChecker:
     runs-on: ubuntu-latest
