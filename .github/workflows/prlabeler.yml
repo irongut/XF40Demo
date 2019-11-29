@@ -1,0 +1,19 @@
+# This workflow will triage pull requests and apply a label based on the
+# paths that are modified in the pull request.
+#
+# This file sets up the workflow (action).
+# Create a .github/labeler.yml file with a list of labels and files or 
+# folders as minimatch globs to match to the labels.
+# For more information, see:
+# https://github.com/actions/labeler/blob/master/README.md
+
+name: PRLabeler
+on: [pull_request]
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/labeler@v2
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"

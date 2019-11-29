@@ -1,0 +1,22 @@
+# Configuration for GitHub PR Labeller Action
+# See: https://github.com/actions/labeler/blob/master/README.md
+
+# Examples
+# Add 'label1' to any changes within 'example' folder or any subfolders
+# label1:
+#   - example/**/*
+
+# Add 'label2' to any file changes within 'example2' folder
+# label2: example2/*
+
+DevOps:
+  - .github/**/*
+
+Shell:
+  - XF40Demo/XF40Demo/Shell/**/*
+
+UI:
+  - XF40Demo/XF40Demo/Converters/**/*
+  - XF40Demo/XF40Demo/Resources/*.png
+  - XF40Demo/XF40Demo/Resources/*.svg
+  - XF40Demo/XF40Demo/Views/**/*
