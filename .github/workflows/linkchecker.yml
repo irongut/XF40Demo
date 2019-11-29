@@ -1,0 +1,28 @@
+# Link Checker + Create Issue From File
+# A GitHub action for link checking repository Markdown and HTML files.
+# Creates an issue when broken links are found.
+# https://github.com/peter-evans/link-checker
+# https://github.com/peter-evans/create-issue-from-file
+
+# Schedule: Every Friday
+
+name: LinkChecker
+on:
+  schedule:
+  - cron: 0 1 * * *
+jobs:
+  linkChecker:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Link Checker
+      uses: peter-evans/link-checker@v1.0.0
+      with:
+        args: -v -r *
+    - name: Create Issue From File
+      uses: peter-evans/create-issue-from-file@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ISSUE_TITLE: Link Checker Report
+        ISSUE_CONTENT_FILEPATH: ./link-checker/out.md
+        ISSUE_LABELS: report, automated issue
