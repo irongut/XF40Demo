@@ -24,23 +24,28 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout>
+    <StackLayout CompressedLayout.IsHeadless="True">
 
         <ContentView BackgroundColor="{Binding Path=CycleImminent, Converter={StaticResource imminentColour}, Mode=OneWay}"
                      IsVisible="{Binding ShowTimeRemaining, Mode=OneWay}"
                      Padding="0, 0, 0, 2">
-            <Label Text="{Binding Path=TimeRemaining, StringFormat='Next Cycle: {0}', Mode=OneWay}" HorizontalOptions="End" TextColor="{StaticResource altTextColor}" Margin="10, 0"/>
+            <Label Text="{Binding Path=TimeRemaining, StringFormat='Next Cycle: {0}', Mode=OneWay}" 
+                   HorizontalOptions="End" 
+                   TextColor="{StaticResource altTextColor}" 
+                   Margin="10, 0"/>
         </ContentView>
 
-        <CollectionView ItemsSource="{Binding Standings, Mode=OneWay}" 
-                        ItemTemplate="{StaticResource powerTemplate}" 
-                        IsVisible="{Binding ShowMessage, Converter={StaticResource inverseBool}, Mode=OneWay}" 
-                        ItemSizingStrategy="MeasureFirstItem"
-                        VerticalOptions="FillAndExpand">
-            <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Vertical" Span="2" />
-            </CollectionView.ItemsLayout>
-        </CollectionView>
+        <ScrollView VerticalOptions="FillAndExpand" 
+                    IsVisible="{Binding ShowMessage, Converter={StaticResource inverseBool}, Mode=OneWay}">
+
+            <FlexLayout BindableLayout.ItemsSource="{Binding Standings, Mode=OneWay}"
+                        BindableLayout.ItemTemplate="{StaticResource powerTemplate}"
+                        Direction="Row" 
+                        Wrap="Wrap" 
+                        JustifyContent="SpaceEvenly" 
+                        CompressedLayout.IsHeadless="True"/>
+
+        </ScrollView>
 
         <v:MessagePanelView IsVisible="{Binding ShowMessage, Mode=OneWay}"
                             ImageSource="resource://XF40Demo.Resources.powerplay.standings.svg"
@@ -53,8 +58,15 @@
                             ButtonIsVisible="{Binding IsErrorMessage, Mode=OneWay}"/>
 
         <StackLayout Orientation="Horizontal" Spacing="10" BackgroundColor="{StaticResource brandColor}">
-            <Label Text="{Binding Cycle, Mode=OneWay}" HorizontalOptions="Start" TextColor="{StaticResource altTextColor}" Margin="10, 0"/>
-            <Label Text="{Binding Path=LastUpdated, StringFormat='Updated: {0}', Mode=OneWay}" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="{StaticResource altTextColor}" Margin="10, 0"/>
+            <Label Text="{Binding Cycle, Mode=OneWay}" 
+                   HorizontalOptions="Start" 
+                   TextColor="{StaticResource altTextColor}" 
+                   Margin="10, 0"/>
+            <Label Text="{Binding Path=LastUpdated, StringFormat='Updated: {0}', Mode=OneWay}" 
+                   HorizontalOptions="EndAndExpand" 
+                   HorizontalTextAlignment="End" 
+                   TextColor="{StaticResource altTextColor}" 
+                   Margin="10, 0"/>
         </StackLayout>
 
     </StackLayout>
