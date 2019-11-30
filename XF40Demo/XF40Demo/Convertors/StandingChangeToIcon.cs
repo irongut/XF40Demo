@@ -2,6 +2,7 @@
 using System;
 using System.Globalization;
 using Xamarin.Forms;
+using XF40Demo.Helpers;
 
 namespace XF40Demo.Converters
 {
@@ -17,9 +18,9 @@ namespace XF40Demo.Converters
             switch (change)
             {
                 case StandingChange.up:
-                    return "\uf0d8";
+                    return FA5FreeSolid.CaretUp;
                 case StandingChange.down:
-                    return "\uf0d7";
+                    return FA5FreeSolid.CaretDown;
                 default:
                     return String.Empty;
             }

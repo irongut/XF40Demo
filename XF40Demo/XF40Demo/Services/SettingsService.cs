@@ -7,6 +7,7 @@ namespace XF40Demo.Services
 {
     public class SettingsService
     {
+        private static readonly SettingsService instance = new SettingsService();
         private const string sharedName = "com.taranissoftware.XF40Demo.settings";
 
         #region Properties
@@ -41,22 +42,6 @@ namespace XF40Demo.Services
             }
         }
 
-        public List<CacheTime> PrioritiesCacheTimes;
-
-        private int _prioritiesCacheTime;
-        public int PrioritiesCacheTime
-        {
-            get { return _prioritiesCacheTime; }
-            set
-            {
-                if (_prioritiesCacheTime != value)
-                {
-                    _prioritiesCacheTime = value;
-                    Preferences.Set("prioritiesCacheTime", value, sharedName);
-                }
-            }
-        }
-
         private bool _darkTheme;
         public bool DarkTheme
         {
@@ -85,48 +70,6 @@ namespace XF40Demo.Services
             }
         }
 
-        private bool _showEliteStatusOnMenu;
-        public bool ShowEliteStatusOnMenu
-        {
-            get { return _showEliteStatusOnMenu; }
-            set
-            {
-                if (_showEliteStatusOnMenu != value)
-                {
-                    _showEliteStatusOnMenu = value;
-                    Preferences.Set("showEliteStatusOnMenu", value, sharedName);
-                }
-            }
-        }
-
-        private bool _copySystemName;
-        public bool CopySystemName
-        {
-            get { return _copySystemName; }
-            set
-            {
-                if (_copySystemName != value)
-                {
-                    _copySystemName = value;
-                    Preferences.Set("copySystemName", value, sharedName);
-                }
-            }
-        }
-
-        private bool _sendCrashReports;
-        public bool SendCrashReports
-        {
-            get { return _sendCrashReports; }
-            set
-            {
-                if (_sendCrashReports != value)
-                {
-                    _sendCrashReports = value;
-                    Preferences.Set("sendCrashReports", value, sharedName);
-                }
-            }
-        }
-
         #endregion
 
         public SettingsService()
@@ -139,26 +82,20 @@ namespace XF40Demo.Services
                 new CacheTime("9 hours", 9),
                 new CacheTime("12 hours", 12)
             };
-            PrioritiesCacheTimes = new List<CacheTime>
-            {
-                new CacheTime("5 minutes", 5),
-                new CacheTime("10 minutes", 10),
-                new CacheTime("15 minutes", 15),
-                new CacheTime("30 minutes", 30)
-            };
             LoadAll();
+        }
+
+        public static SettingsService Instance()
+        {
+            return instance;
         }
 
         public void LoadAll()
         {
             _wifiOnly = Preferences.Get("wifiOnly", DefaultSettings.WifiOnly(), sharedName);
             _newsCacheTime = Preferences.Get("newsCacheTime", DefaultSettings.NewsCacheTime(), sharedName);
-            _prioritiesCacheTime = Preferences.Get("prioritiesCacheTime", DefaultSettings.PrioritiesCacheTime(), sharedName);
             _darkTheme = Preferences.Get("darkTheme", DefaultSettings.DarkTheme(), sharedName);
             _onlyShowNextCycleWhenImminent = Preferences.Get("onlyShowNextCycleWhenImminent", DefaultSettings.OnlyShowNextCycleWhenImminent(), sharedName);
-            _showEliteStatusOnMenu = Preferences.Get("showEliteStatusOnMenu", DefaultSettings.ShowEliteStatusOnMenu(), sharedName);
-            _copySystemName = Preferences.Get("copySystemName", DefaultSettings.CopySystemName(), sharedName);
-            _sendCrashReports = Preferences.Get("sendCrashReports", DefaultSettings.SendCrashReports(), sharedName);
             SetTheme();
         }
 
@@ -174,16 +111,18 @@ namespace XF40Demo.Services
             {
                 if (_darkTheme)
                 {
-                    App.Current.Resources["backgroundColor"] = Color.FromHex("#2F3136");
-                    App.Current.Resources["textColor"] = Color.LightGray;
-                    App.Current.Resources["messageBackgroundColor"] = Color.FromHex("#484B51");
-                    App.Current.Resources["messageTextColor"] = Color.LightGray;
+                    App.Current.Resources["backgroundColor"] = Color.FromHex("202125");
+                    App.Current.Resources["textColor"] = Color.FromHex("9BA0A6");
+                    App.Current.Resources["boldTextColor"] = Color.FromHex("E9EAEE");
+                    App.Current.Resources["messageBackgroundColor"] = Color.FromHex("2A2B2F");
+                    App.Current.Resources["messageTextColor"] = Color.FromHex("9BA0A6");
                 }
                 else
                 {
-                    App.Current.Resources["backgroundColor"] = Color.White;
+                    App.Current.Resources["backgroundColor"] = Color.GhostWhite;
                     App.Current.Resources["textColor"] = Color.Default;
-                    App.Current.Resources["messageBackgroundColor"] = Color.LightGray;
+                    App.Current.Resources["boldTextColor"] = Color.FromHex("202125");
+                    App.Current.Resources["messageBackgroundColor"] = Color.FromHex("9BA0A6");
                     App.Current.Resources["messageTextColor"] = Color.Default;
                 }
             }

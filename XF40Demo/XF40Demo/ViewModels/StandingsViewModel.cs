@@ -3,6 +3,8 @@ using MonkeyCache.FileStore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net.Http;
+using System.Threading;
 using System.Windows.Input;
 using Xamarin.Forms;
 using XF40Demo.Models;
@@ -143,20 +145,20 @@ namespace XF40Demo.ViewModels
         private async void GetStandingsAsync(bool ignoreCache = false)
         {
             ShowMessage = false;
-            using (UserDialogs.Instance.Loading("Loading", null, null, true, MaskType.Black))
+            CancellationTokenSource cancelToken = new CancellationTokenSource();
+
+            using (UserDialogs.Instance.Loading("Loading", () => cancelToken.Cancel(), null, true, MaskType.Clear))
             {
                 try
                 {
                     // get the standings
                     List<PowerStanding> standingsList = new List<PowerStanding>();
                     StandingsService standingsService = new StandingsService();
-                    (standingsList, Cycle, LastUpdated) = await standingsService.GetData(ignoreCache).ConfigureAwait(false);
+                    (standingsList, Cycle, LastUpdated) = await standingsService.GetData(cancelToken, ignoreCache).ConfigureAwait(false);
 
                     if (standingsList.Count < 1)
                     {
-                        Message = "Unable to display Powerplay Standings due to parsing error.";
-                        ShowMessage = true;
-                        IsErrorMessage = true;
+                        SetMessages("Unable to display Powerplay Standings due to parsing error.", true);
                     }
                     else
                     {
@@ -179,12 +181,36 @@ namespace XF40Demo.ViewModels
                         }
                     }
                 }
+                catch (OperationCanceledException)
+                {
+                    SetMessages("Powerplay Standings download was cancelled or timed out.", true);
+                }
+                catch (HttpRequestException ex)
+                {
+                    string err = ex.Message;
+                    int start = err.IndexOf("OPENSSL_internal:", StringComparison.OrdinalIgnoreCase);
+                    if (start > 0)
+                    {
+                        start += 17;
+                        int end = err.IndexOf(" ", start, StringComparison.OrdinalIgnoreCase);
+                        err = String.Format("SSL Error ({0})", err.Substring(start, end - start).Trim());
+                    }
+                    else if (err.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) > 0)
+                    {
+                        err = err.Substring(err.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) + 6).Trim();
+                    }
+                    SetMessages(String.Format("Network Error: {0}", err), true);
+                }
                 catch (Exception ex)
                 {
-                    Message = String.Format("Error downloading Powerplay Standings: {0}", ex.Message);
-                    ShowMessage = true;
-                    IsErrorMessage = true;
-                    return;
+                    if (ex.Message.Contains("unexpected end of stream"))
+                    {
+                        SetMessages("Powerplay Standings download was cancelled.", true);
+                    }
+                    else
+                    {
+                        SetMessages(String.Format("Error: {0}", ex.Message), true);
+                    }
                 }
             }
         }
@@ -202,6 +228,13 @@ namespace XF40Demo.ViewModels
                     return false;
                 });
             }
+        }
+
+        private void SetMessages(string message, Boolean isError)
+        {
+            Message = message;
+            ShowMessage = true;
+            IsErrorMessage = isError;
         }
 
         protected override void RefreshView()

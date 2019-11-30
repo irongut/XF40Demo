@@ -37,7 +37,7 @@
             return true;
         }
 
-        public static bool SendCrashReports()
+        public static bool EnableDiagnostics()
         {
             return true;
         }

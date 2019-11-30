@@ -5,6 +5,7 @@
              xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
              xmlns:c="clr-namespace:XF40Demo.Converters"
+             xmlns:h="clr-namespace:XF40Demo.Helpers"
              xmlns:v="clr-namespace:XF40Demo.Views"
              x:Name="this"
              x:Class="XF40Demo.Views.PowerView"
@@ -26,12 +27,14 @@
         </ResourceDictionary>
     </ContentView.Resources>
 
-    <Frame BackgroundColor="Transparent" BorderColor="{StaticResource brandColor}" Padding="3" Margin="2, 5">
-        <Grid RowSpacing="5" ColumnSpacing="5">
+    <Frame BackgroundColor="Transparent" BorderColor="{StaticResource brandColor}" CornerRadius="5" Padding="3" Margin="2, 5">
+        <Grid RowSpacing="0" ColumnSpacing="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="135"/>
-                <RowDefinition Height="35"/>
+                <RowDefinition Height="140"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="35"/>
@@ -43,25 +46,61 @@
             <ff:CachedImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" 
                             Source="{Binding Source={x:Reference this}, Path=Power.ShortName, Converter={StaticResource powerPortrait}, Mode=OneWay}"
                             DownsampleToViewSize="true" 
-                            HeightRequest="170" WidthRequest="170" 
-                            HorizontalOptions="Start" VerticalOptions="Start"/>
-            <BoxView Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" Color="#33000000" HorizontalOptions="Fill" VerticalOptions="Fill"/>
+                            HeightRequest="170" 
+                            WidthRequest="170" 
+                            HorizontalOptions="Start" 
+                            VerticalOptions="Start"/>
+            
+            <BoxView Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" 
+                     Color="#33000000" 
+                     HorizontalOptions="Fill" 
+                     VerticalOptions="Fill"/>
 
             <!-- standing, movement + turmoil -->
-            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Source={x:Reference this}, Path=Power.Position, StringFormat='{0:00}', Mode=OneWay}" FontSize="Large" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
-            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Source={x:Reference this}, Path=Power.Change, Converter={StaticResource changeIcon}, Mode=OneWay}" Style="{StaticResource FA-Solid}" TextColor="{Binding Source={x:Reference this}, Path=Power.Change, Converter={StaticResource changeColour}, Mode=OneWay}" FontSize="30" HorizontalOptions="Start" VerticalOptions="Center"/>
-            <Label Grid.Row="0" Grid.Column="2" Text="&#xf071;" Style="{StaticResource FA-Solid}" IsVisible="{Binding Source={x:Reference this}, Path=Power.Turmoil, Mode=OneWay}" TextColor="Red" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Label Grid.Row="0" Grid.Column="0" 
+                   Text="{Binding Source={x:Reference this}, Path=Power.Position, StringFormat='{0:00}', Mode=OneWay}" 
+                   FontSize="Large" 
+                   TextColor="White" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Center"/>
+            
+            <Label Grid.Row="0" Grid.Column="1" 
+                   Text="{Binding Source={x:Reference this}, Path=Power.Change, Converter={StaticResource changeIcon}, Mode=OneWay}" 
+                   Style="{StaticResource FA-Solid}" 
+                   TextColor="{Binding Source={x:Reference this}, Path=Power.Change, Converter={StaticResource changeColour}, Mode=OneWay}" 
+                   FontSize="30" 
+                   HorizontalOptions="Start" 
+                   VerticalOptions="Center"/>
+            
+            <Label Grid.Row="0" Grid.Column="2" 
+                   Text="{x:Static h:FA5FreeSolid.ExclamationTriangle}" 
+                   Style="{StaticResource FA-Solid}" 
+                   IsVisible="{Binding Source={x:Reference this}, Path=Power.Turmoil, Mode=OneWay}" 
+                   TextColor="Red" 
+                   FontSize="Large" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Center"/>
 
             <!-- icon -->
-            <ffsvg:SvgCachedImage Grid.Row="2" Grid.Column="0" 
+            <ffsvg:SvgCachedImage Grid.Row="3" Grid.Column="0" Grid.RowSpan="2"
                                   Source="{Binding Source={x:Reference this}, Path=Power.ShortName, Converter={StaticResource powerLogo}, Mode=OneWay}" 
-                                  HeightRequest="35" WidthRequest="35" HorizontalOptions="Center" VerticalOptions="Center"/>
-            
+                                  HeightRequest="35" 
+                                  WidthRequest="35" 
+                                  HorizontalOptions="Center" 
+                                  VerticalOptions="Center"/>
+
             <!-- name + allegiance -->
-            <StackLayout Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Vertical" Spacing="0" VerticalOptions="Center">
-                <Label Text="{Binding Source={x:Reference this}, Path=Power.Allegiance, Mode=OneWay}" TextColor="{Binding Source={x:Reference this}, Path=Power.Allegiance, Converter={StaticResource factionColour}, Mode=OneWay}" LineBreakMode="NoWrap" HorizontalOptions="Start"/>
-                <Label Text="{Binding Source={x:Reference this}, Path=Power.Name, Mode=OneWay}" TextColor="{DynamicResource textColor}" LineBreakMode="NoWrap" HorizontalOptions="Start"/>
-            </StackLayout>
+            <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+                   Text="{Binding Source={x:Reference this}, Path=Power.Allegiance, Mode=OneWay}" 
+                   TextColor="{Binding Source={x:Reference this}, Path=Power.Allegiance, Converter={StaticResource factionColour}, Mode=OneWay}" 
+                   LineBreakMode="NoWrap" 
+                   HorizontalOptions="Start"/>
+
+            <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
+                   Text="{Binding Source={x:Reference this}, Path=Power.Name, Mode=OneWay}" 
+                   TextColor="{DynamicResource boldTextColor}" 
+                   LineBreakMode="NoWrap"
+                   HorizontalOptions="Start"/>
 
         </Grid>
     </Frame>

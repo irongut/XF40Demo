@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace XF40Demo.Services
 {
@@ -29,7 +30,7 @@ namespace XF40Demo.Services
 
         #endregion
 
-        public async Task<(List<PowerStanding> standings, string cycle, DateTime updated)> GetData(bool ignoreCache = false)
+        public async Task<(List<PowerStanding> standings, string cycle, DateTime updated)> GetData(CancellationTokenSource cancelToken, bool ignoreCache = false)
         {
             DateTime lastUpdated = DateTime.Now;
             string csvText = String.Empty;
@@ -37,8 +38,8 @@ namespace XF40Demo.Services
             TimeSpan expiry = TimeSpan.FromMinutes(5);
 
             // download the csv
-            DownloadService downloadService = new DownloadService();
-            (csvText, lastUpdated) = await downloadService.GetData(URL, dataKey, lastUpdatedKey, expiry, ignoreCache).ConfigureAwait(false);
+            DownloadService downloadService = DownloadService.Instance();
+            (csvText, lastUpdated) = await downloadService.GetData(URL, dataKey, lastUpdatedKey, expiry, cancelToken, ignoreCache).ConfigureAwait(false);
 
             // parse the csv
             List<PowerStanding> standingList = new List<PowerStanding>();
