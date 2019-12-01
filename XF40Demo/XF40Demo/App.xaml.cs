@@ -8,7 +8,6 @@ namespace XF40Demo
     {
         public App()
         {
-            XamEffects.Effects.Init();
             InitializeComponent();
             MainPage = new Shell.AppShell();
         }
