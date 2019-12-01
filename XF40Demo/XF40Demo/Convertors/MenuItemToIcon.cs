@@ -20,7 +20,7 @@ namespace XF40Demo.Convertors
                     return "resource://XF40Demo.Resources.bottom-left.svg";
                 case "top tabs":
                     return "resource://XF40Demo.Resources.top-right.svg";
-                case "standings":
+                case "galactic standings":
                     return "resource://XF40Demo.Resources.pedestal.svg";
                 case "settings":
                     return "resource://XF40Demo.Resources.gear.svg";
