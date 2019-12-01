@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using XF40Demo.Models;
 
@@ -245,7 +246,7 @@ namespace XF40Demo.ViewModels
             }
             if (!string.IsNullOrEmpty(URL))
             {
-                Device.OpenUri(new Uri(URL));
+                Browser.OpenAsync(new Uri(URL), BrowserLaunchMode.External);
             }
         }
 
@@ -293,7 +294,7 @@ namespace XF40Demo.ViewModels
             }
             if (!string.IsNullOrEmpty(URL))
             {
-                Device.OpenUri(new Uri(URL));
+                Browser.OpenAsync(new Uri(URL), BrowserLaunchMode.External);
             }
         }
 

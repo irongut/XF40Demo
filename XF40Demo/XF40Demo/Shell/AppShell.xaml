@@ -6,9 +6,6 @@
        xmlns:s="clr-namespace:XF40Demo.Shell"
        xmlns:v="clr-namespace:XF40Demo.Views"
        x:Class="XF40Demo.Shell.AppShell"
-       Route="xf40demo"
-       RouteHost="tranissoftware.com"
-       RouteScheme="app"
        FlyoutHeaderBehavior="CollapseOnScroll"
        Title="XF4.0 Demo"
        FlyoutBackgroundColor="#484B51"
@@ -22,59 +19,69 @@
         <s:MenuHeader/>
     </Shell.FlyoutHeader>
 
-    <Shell.ShellTabBarBackgroundColor>#0a8bd6</Shell.ShellTabBarBackgroundColor>
-    <Shell.ShellTabBarTitleColor>White</Shell.ShellTabBarTitleColor>
-    <Shell.ShellTabBarUnselectedColor>DarkGray</Shell.ShellTabBarUnselectedColor>
+    <Shell.TabBarBackgroundColor>#0a8bd6</Shell.TabBarBackgroundColor>
+    <Shell.TabBarTitleColor>White</Shell.TabBarTitleColor>
+    <Shell.TabBarUnselectedColor>DarkGray</Shell.TabBarUnselectedColor>
 
     <Shell.ItemTemplate>
         <DataTemplate>
-            <ContentView BackgroundColor="#484B51" Padding="50, 10, 20, 10">
-                <StackLayout Orientation="Horizontal" Spacing="10">
-                    <ffs:SvgCachedImage Source="{Binding Path=Title, Converter={StaticResource menuIcon}, Mode=OneWay}" WidthRequest="20" VerticalOptions="Center"/>
-                    <Label Text="{Binding Title, Mode=OneWay}" TextColor="AntiqueWhite" FontSize="Medium" VerticalOptions="Center"/>
+            <ContentView BackgroundColor="#484B51" 
+                         Padding="50, 10, 20, 10">
+                <StackLayout Orientation="Horizontal" 
+                             Spacing="10">
+                    <ffs:SvgCachedImage Source="{Binding Path=Title, Converter={StaticResource menuIcon}, Mode=OneWay}" 
+                                        WidthRequest="20" 
+                                        VerticalOptions="Center"/>
+                    <Label Text="{Binding Title, Mode=OneWay}" 
+                           TextColor="AntiqueWhite" 
+                           FontSize="Medium" 
+                           VerticalOptions="Center"/>
                 </StackLayout>
             </ContentView>
         </DataTemplate>
     </Shell.ItemTemplate>
 
-    <ShellItem Title="Home">
+    <ShellContent Route="home"
+                  Title="Home"
+                  ContentTemplate="{DataTemplate v:MainPage}" />
+    
+    <ShellItem Title="Bottom Tabs" 
+               Route="bottom">
+        <ShellContent Route="tab1" 
+                      Title="Tab 1" 
+                      Icon="first.png"
+                      ContentTemplate="{DataTemplate v:Tab1Page}"/>
+        <ShellContent Route="tab2" 
+                      Title="Tab 2" 
+                      Icon="second.png"
+                      ContentTemplate="{DataTemplate v:Tab2Page}"/>
+        <ShellContent Route="tab3" 
+                      Title="Tab 3" 
+                      Icon="third.png"
+                      ContentTemplate="{DataTemplate v:Tab3Page}"/>
+    </ShellItem>
+
+    <ShellItem Title="Top Tabs"
+               Route="top">
         <ShellSection>
-            <ShellContent Route="home">
-                <v:MainPage/>
-            </ShellContent>
+            <ShellContent Title="Tab 1" 
+                          Route="tab1" 
+                          ContentTemplate="{DataTemplate v:Tab1Page}"/>
+            <ShellContent Title="Tab 2" 
+                          Route="tab2" 
+                          ContentTemplate="{DataTemplate v:Tab2Page}"/>
+            <ShellContent Title="Tab 3" 
+                          Route="tab3" 
+                          ContentTemplate="{DataTemplate v:Tab3Page}"/>
         </ShellSection>
     </ShellItem>
 
-    <ShellItem Title="Bottom Tabs" Route="bottom">
-        <ShellSection Title="Tab 1" Icon="first.png">
-            <ShellContent Route="tab1" ContentTemplate="{DataTemplate v:Tab1Page}"/>
-        </ShellSection>
-        <ShellSection Title="Tab 2" Icon="second.png">
-            <ShellContent Route="tab2" ContentTemplate="{DataTemplate v:Tab2Page}"/>
-        </ShellSection>
-        <ShellSection Title="Tab 3" Icon="third.png">
-            <ShellContent Route="tab3" ContentTemplate="{DataTemplate v:Tab3Page}"/>
-        </ShellSection>
-    </ShellItem>
+    <ShellContent Route="standings" 
+                  Title="Galactic Standings" 
+                  ContentTemplate="{DataTemplate v:StandingsPage}"/>
 
-    <ShellItem Title="Top Tabs">
-        <ShellSection Route="top">
-            <ShellContent Title="Tab 1" Route="tab1" ContentTemplate="{DataTemplate v:Tab1Page}"/>
-            <ShellContent Title="Tab 2" Route="tab2" ContentTemplate="{DataTemplate v:Tab2Page}"/>
-            <ShellContent Title="Tab 3" Route="tab3" ContentTemplate="{DataTemplate v:Tab3Page}"/>
-        </ShellSection>
-    </ShellItem>
-
-    <ShellItem Title="Standings">
-        <ShellSection>
-            <ShellContent Route="standings" ContentTemplate="{DataTemplate v:StandingsPage}"/>
-        </ShellSection>
-    </ShellItem>
-
-    <ShellItem Title="Settings">
-        <ShellSection>
-            <ShellContent Route="settings" ContentTemplate="{DataTemplate v:SettingsPage}"/>
-        </ShellSection>
-    </ShellItem>
+    <ShellContent Route="settings" 
+                  Title="Settings" 
+                  ContentTemplate="{DataTemplate v:SettingsPage}"/>
 
 </Shell>
