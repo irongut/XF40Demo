@@ -39,7 +39,7 @@ namespace XF40Demo.Views
 
         private async Task PowerDetailsAsync()
         {
-            //await MyNavigation.PushAsync(new PowerDetailPage(Power)).ConfigureAwait(false);
+            await MyNavigation.PushAsync(new PowerDetailPage(Power)).ConfigureAwait(false);
         }
     }
 }

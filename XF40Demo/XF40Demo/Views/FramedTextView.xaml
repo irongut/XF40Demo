@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<StackLayout xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:v="clr-namespace:XF40Demo.Views"
+             x:Name="this"
+             x:Class="XF40Demo.Views.FramedTextView"
+             x:DataType="v:FramedTextView"
+             Orientation="Vertical" 
+             Spacing="1" 
+             CompressedLayout.IsHeadless="True">
+
+    
+    <Label Text="{Binding Source={x:Reference this}, Path=Title, Mode=OneWay}" 
+           TextColor="{Binding Source={x:Reference this}, Path=TitleColour, Mode=OneWay}" 
+           FontAttributes="{Binding Source={x:Reference this}, Path=TitleAttributes, Mode=OneWay}" 
+           LineBreakMode="NoWrap" 
+           HorizontalOptions="Start"/>
+
+    <Frame BackgroundColor="Transparent"
+           BorderColor="{Binding Source={x:Reference this}, Path=BorderColour, Mode=OneWay}"
+           CornerRadius="{Binding Source={x:Reference this}, Path=BorderRadius, Mode=OneWay}"
+           Padding="10, 10">
+
+        <Label Text="{Binding Source={x:Reference this}, Path=Text, Mode=OneWay}" 
+               TextColor="{Binding Source={x:Reference this}, Path=TextColour, Mode=OneWay}" 
+               FontAttributes="{Binding Source={x:Reference this}, Path=TextAttributes, Mode=OneWay}" 
+               LineBreakMode="WordWrap" 
+               HorizontalOptions="Fill"/>
+
+</Frame>
+
+</StackLayout>

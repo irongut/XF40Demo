@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:c="clr-namespace:XF40Demo.Converters"
+             xmlns:h="clr-namespace:XF40Demo.Helpers"
+             xmlns:v="clr-namespace:XF40Demo.Views"
+             xmlns:vm="clr-namespace:XF40Demo.ViewModels"
+             x:Class="XF40Demo.Views.PowerDetailPage"
+             x:DataType="vm:PowerDetailViewModel"
+             Title="{Binding PowerStanding.Name, Mode=OneWay}"
+             BackgroundColor="{DynamicResource backgroundColor}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <c:FactionToColour x:Key="factionColour"/>
+            <c:FactionToLogo x:Key="factionLogo"/>
+            <c:PowerToColour x:Key="powerColour"/>
+            <c:PowerToLogo x:Key="powerLogo"/>
+            <c:PowerToPortrait x:Key="powerPortrait"/>
+            <c:StandingChangeToColour x:Key="changeColour"/>
+            <c:StandingChangeToIcon x:Key="changeIcon"/>
+            <c:BoolToInverse x:Key="inverseBool"/>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Orientation="Vertical" CompressedLayout.IsHeadless="True">
+
+        <!--  ethos tab -->
+
+        <ScrollView VerticalOptions="FillAndExpand" Padding="0, 5">
+
+            <StackLayout Orientation="Vertical" Spacing="10">
+
+                <FlexLayout Direction="Row" Wrap="NoWrap" JustifyContent="SpaceEvenly" HorizontalOptions="FillAndExpand" CompressedLayout.IsHeadless="True">
+
+                    <Grid RowSpacing="5" ColumnSpacing="5" CompressedLayout.IsHeadless="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="135"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="35"/>
+                            <ColumnDefinition Width="95"/>
+                            <ColumnDefinition Width="30"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- portrait -->
+                        <ff:CachedImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" 
+                                        Source="{Binding PowerStanding.ShortName, Converter={StaticResource powerPortrait}, Mode=OneWay}"
+                                        DownsampleToViewSize="true" 
+                                        HeightRequest="170" 
+                                        WidthRequest="170" 
+                                        HorizontalOptions="Start" 
+                                        VerticalOptions="Start">
+                        </ff:CachedImage>
+                        <BoxView Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" 
+                                 Color="#33000000" 
+                                 CornerRadius="5" 
+                                 HorizontalOptions="Fill" 
+                                 VerticalOptions="Fill"/>
+
+                        <!-- standing, movement + turmoil -->
+                        <Label Grid.Row="0" Grid.Column="0" 
+                               Text="{Binding PowerStanding.Position, StringFormat='{0:00}', Mode=OneWay}" 
+                               FontSize="Large" 
+                               TextColor="{StaticResource altTextColor}" 
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
+                        <Label Grid.Row="0" Grid.Column="1" 
+                               Text="{Binding PowerStanding.Change, Converter={StaticResource changeIcon}, Mode=OneWay}" 
+                               Style="{StaticResource FA-Solid}" 
+                               TextColor="{Binding PowerStanding.Change, Converter={StaticResource changeColour}, Mode=OneWay}" 
+                               FontSize="30" 
+                               HorizontalOptions="Start" 
+                               VerticalOptions="Center"/>
+                        <Label Grid.Row="0" Grid.Column="2" 
+                               Text="{x:Static h:FA5FreeSolid.ExclamationTriangle}" 
+                               Style="{StaticResource FA-Solid}" 
+                               IsVisible="{Binding PowerStanding.Turmoil, Mode=OneWay}" 
+                               TextColor="Red" 
+                               FontSize="Large" 
+                               HorizontalOptions="Center" 
+                               VerticalOptions="Center"/>
+                    </Grid>
+
+                    <!-- power logo -->
+                    <ffsvg:SvgCachedImage Source="{Binding PowerStanding.ShortName, Converter={StaticResource powerLogo}, Mode=OneWay}" 
+                                          WidthRequest="170" 
+                                          HeightRequest="170" 
+                                          HorizontalOptions="Center" 
+                                          VerticalOptions="Center"/>
+
+                </FlexLayout>
+
+                <Grid ColumnSpacing="30" RowSpacing="0" Padding="15, 0" HorizontalOptions="Center" CompressedLayout.IsHeadless="True">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- faction logo -->
+                    <ffsvg:SvgCachedImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="4"
+                                          Source="{Binding PowerDetails.Allegiance, Converter={StaticResource factionLogo}, Mode=OneWay}" 
+                                          HeightRequest="80"/>
+
+                    <!-- age, hq & allegiance -->
+                    <Label Grid.Row="1" Grid.Column="1"
+                           Text="{Binding PowerDetails.YearOfBirth, StringFormat='Year of Birth: {0}', Mode=OneWay}" 
+                           TextColor="{DynamicResource boldTextColor}"/>
+
+                    <Label Grid.Row="2" Grid.Column="1" 
+                           Text="{Binding PowerDetails.HQ, StringFormat='Headquarters: {0}', Mode=OneWay}" 
+                           TextColor="{DynamicResource boldTextColor}"/>
+
+                    <Label Grid.Row="3" Grid.Column="1" 
+                           Text="{Binding PowerDetails.Allegiance, StringFormat='Allegiance: {0}', Mode=OneWay}" 
+                           TextColor="{DynamicResource boldTextColor}"/>
+                
+                </Grid>
+
+                <!-- comms -->
+                <StackLayout Orientation="Horizontal" Spacing="45" Padding="30, 0" CompressedLayout.IsHeadless="True">
+                    <Button Text="{x:Static h:FA5BrandsRegular.Discord}" 
+                            Style="{StaticResource FA-Brands}" 
+                            FontSize="Large" 
+                            Command="{Binding JoinDiscordCommand}" 
+                            BackgroundColor="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}" 
+                            TextColor="{StaticResource altTextColor}" 
+                            CornerRadius="5"
+                            HorizontalOptions="FillAndExpand"/>
+                    <Button Text="{x:Static h:FA5BrandsRegular.RedditSquare}" 
+                            Style="{StaticResource FA-Brands}" 
+                            FontSize="Large" 
+                            Command="{Binding OpenRedditCommand}" 
+                            BackgroundColor="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}" 
+                            TextColor="{StaticResource altTextColor}" 
+                            CornerRadius="5"
+                            HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                            
+                <!-- ethos -->
+                <ContentView BackgroundColor="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}">
+                    <Label Text="Ethos" 
+                           FontSize="Medium" 
+                           HorizontalOptions="Fill" 
+                           HorizontalTextAlignment="Start" 
+                           TextColor="{StaticResource altTextColor}" 
+                           Margin="15, 0"/>
+                </ContentView>
+
+                <StackLayout Orientation="Vertical" Spacing="10" Padding="15, 0" CompressedLayout.IsHeadless="True">
+
+                    <v:FramedTextView Title="{Binding PowerDetails.PreparationEthos, StringFormat='Preparation: {0}', Mode=OneWay}" 
+                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      TitleAttributes="Bold"
+                                      Text="{Binding PowerDetails.PreparationText, Mode=OneWay}"
+                                      TextColour="{DynamicResource textColor}"
+                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      BorderRadius="5"/>
+
+                    <v:FramedTextView Title="{Binding PowerDetails.ExpansionEthos, StringFormat='Expansion: {0}', Mode=OneWay}" 
+                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      TitleAttributes="Bold"
+                                      Text="{Binding ExpandText, Mode=OneWay}"
+                                      TextColour="{DynamicResource textColor}"
+                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      BorderRadius="5"/>
+
+                    <v:FramedTextView Title="{Binding PowerDetails.ControlEthos, StringFormat='Control: {0}', Mode=OneWay}" 
+                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      TitleAttributes="Bold"
+                                      Text="{Binding ControlText, Mode=OneWay}"
+                                      TextColour="{DynamicResource textColor}"
+                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      BorderRadius="5"/>
+
+                </StackLayout>
+
+                <!--  benefits tab -->
+                <ContentView BackgroundColor="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}">
+                    <Label Text="Benefits" 
+                           FontSize="Medium" 
+                           HorizontalOptions="Fill" 
+                           HorizontalTextAlignment="Start" 
+                           TextColor="{StaticResource altTextColor}" 
+                           Margin="15, 0"/>
+                </ContentView>
+
+                <StackLayout Orientation="Vertical" Spacing="10" Padding="15, 0" CompressedLayout.IsHeadless="True">
+
+                    <v:FramedTextView Title="Headquarters" 
+                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      TitleAttributes="Bold"
+                                      Text="{Binding PowerDetails.HQSystemEffect, Mode=OneWay}"
+                                      TextColour="{DynamicResource textColor}"
+                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      BorderRadius="5"
+                                      IsVisible="{Binding HasHQEffect, Mode=OneWay}"/>
+
+                    <v:FramedTextView Title="Control Systems" 
+                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      TitleAttributes="Bold"
+                                      Text="{Binding PowerDetails.ControlSystemEffect, Mode=OneWay}"
+                                      TextColour="{DynamicResource textColor}"
+                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      BorderRadius="5"/>
+
+                    <v:FramedTextView Title="Alliance Exploited Systems" 
+                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      TitleAttributes="Bold"
+                                      Text="{Binding PowerDetails.AllianceExploitedEffect, Mode=OneWay}"
+                                      TextColour="{DynamicResource textColor}"
+                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      BorderRadius="5"/>
+
+                    <v:FramedTextView Title="Empire Exploited Systems" 
+                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      TitleAttributes="Bold"
+                                      Text="{Binding PowerDetails.EmpireExploitedEffect, Mode=OneWay}"
+                                      TextColour="{DynamicResource textColor}"
+                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      BorderRadius="5"/>
+
+                    <v:FramedTextView Title="Federation Exploited Systems" 
+                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      TitleAttributes="Bold"
+                                      Text="{Binding PowerDetails.FederationExploitedEffect, Mode=OneWay}"
+                                      TextColour="{DynamicResource textColor}"
+                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      BorderRadius="5"/>
+
+                    <v:FramedTextView Title="Independent Exploited Systems" 
+                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      TitleAttributes="Bold"
+                                      Text="{Binding PowerDetails.IndependentExploitedEffect, Mode=OneWay}"
+                                      TextColour="{DynamicResource textColor}"
+                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      BorderRadius="5"/>
+
+                    <v:FramedTextView Title="Rating 1" 
+                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      TitleAttributes="Bold"
+                                      Text="{Binding PowerDetails.Rating1, Mode=OneWay}"
+                                      TextColour="{DynamicResource textColor}"
+                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      BorderRadius="5"/>
+
+                    <v:FramedTextView Title="Rating 2" 
+                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      TitleAttributes="Bold"
+                                      Text="{Binding PowerDetails.Rating2, Mode=OneWay}"
+                                      TextColour="{DynamicResource textColor}"
+                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      BorderRadius="5"/>
+
+                    <v:FramedTextView Title="Rating 3" 
+                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      TitleAttributes="Bold"
+                                      Text="{Binding PowerDetails.Rating3, Mode=OneWay}"
+                                      TextColour="{DynamicResource textColor}"
+                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      BorderRadius="5"/>
+
+                    <v:FramedTextView Title="Rating 4" 
+                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      TitleAttributes="Bold"
+                                      Text="{Binding PowerDetails.Rating4, Mode=OneWay}"
+                                      TextColour="{DynamicResource textColor}"
+                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      BorderRadius="5"/>
+
+                    <v:FramedTextView Title="Rating 5" 
+                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      TitleAttributes="Bold"
+                                      Text="{Binding PowerDetails.Rating5, Mode=OneWay}"
+                                      TextColour="{DynamicResource textColor}"
+                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
+                                      BorderRadius="5"/>
+                
+                </StackLayout>
+
+            </StackLayout>
+
+        </ScrollView>
+
+        <StackLayout Orientation="Horizontal" Spacing="10" BackgroundColor="{StaticResource brandColor}">
+            <Label Text="{Binding Cycle, Mode=OneWay}" 
+                   HorizontalOptions="Start" 
+                   TextColor="{StaticResource altTextColor}" 
+                   Margin="10, 0, 0, 0"/>
+            <Label Text="{Binding LastUpdated, StringFormat='Updated: {0}', Mode=OneWay}" 
+                   HorizontalOptions="EndAndExpand" 
+                   HorizontalTextAlignment="End" 
+                   TextColor="{StaticResource altTextColor}" 
+                   Margin="0, 0, 10, 0"/>
+        </StackLayout>
+
+    </StackLayout>
+
+</ContentPage>
