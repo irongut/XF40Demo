@@ -2,8 +2,11 @@
 using CsvHelper;
 using CsvHelper.Configuration;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -11,8 +14,10 @@ using XF40Demo.Models;
 
 namespace XF40Demo.ViewModels
 {
-    public class PowerDetailViewModel : BaseViewModel
+    public sealed class PowerDetailViewModel : BaseViewModel
     {
+        private static readonly PowerDetailViewModel instance = new PowerDetailViewModel();
+
         public ICommand JoinDiscordCommand { get; }
         public ICommand OpenRedditCommand { get; }
 
@@ -119,17 +124,35 @@ namespace XF40Demo.ViewModels
 
         #endregion
 
-        public PowerDetailViewModel(PowerStanding standing)
+        private readonly List<PowerDetails> powerList;
+
+        private PowerDetailViewModel()
         {
-            PowerStanding = standing;
-            Cycle = standing.Cycle;
-            LastUpdated = standing.LastUpdated;
-            GetPowerDetails(standing.ShortName);
+            powerList = new List<PowerDetails>();
             JoinDiscordCommand = new Command(JoinDiscord);
             OpenRedditCommand = new Command(OpenReddit);
         }
 
-        private async void GetPowerDetails(string shortName)
+        public static PowerDetailViewModel Instance()
+        {
+            return instance;
+        }
+
+        public async Task GetPowerDetails(PowerStanding standing)
+        {
+            PowerStanding = standing;
+            Cycle = standing.Cycle;
+            LastUpdated = standing.LastUpdated;
+            if (powerList?.Any() == false)
+            {
+                await GetPowerList().ConfigureAwait(false);
+            }
+            PowerDetails = powerList.Find(x => x.ShortName.Equals(standing.ShortName));
+            ExpandText = String.Format("{0} \n\nStrong Against: {1} \nWeak Against: {2}", _powerDetails.ExpansionText, _powerDetails.ExpansionStrongGovernment, _powerDetails.ExpansionWeakGovernment);
+            ControlText = String.Format("{0} \n\nStrong Against: {1} \nWeak Against: {2}", _powerDetails.ControlText, _powerDetails.ControlStrongGovernment, _powerDetails.ControlWeakGovernment);
+        }
+
+        private async Task GetPowerList()
         {
             const string fileName = "XF40Demo.Resources.PowerDetails.csv";
 
@@ -148,47 +171,41 @@ namespace XF40Demo.ViewModels
                             };
                             using (CsvReader csv = new CsvReader(reader, csvConfig))
                             {
+                                csv.Read(); // ignore header row
                                 while (csv.Read())
                                 {
-                                    string name = csv.GetField<string>(1);
-                                    if (name == shortName)
-                                    {
-                                        PowerDetails = new PowerDetails(
-                                            csv.GetField<int>(0),
-                                            name,
-                                            csv.GetField<string>(2),
-                                            csv.GetField<int>(3),
-                                            csv.GetField<string>(4),
-                                            csv.GetField<string>(5),
-                                            csv.GetField<string>(6),
-                                            csv.GetField<string>(7),
-                                            csv.GetField<string>(8),
-                                            csv.GetField<string>(9),
-                                            csv.GetField<string>(10),
-                                            csv.GetField<string>(11),
-                                            csv.GetField<string>(12),
-                                            csv.GetField<string>(13),
-                                            csv.GetField<string>(14),
-                                            Desanitise(csv.GetField<string>(15)),
-                                            Desanitise(csv.GetField<string>(16)),
-                                            Desanitise(csv.GetField<string>(17)),
-                                            Desanitise(csv.GetField<string>(18)),
-                                            Desanitise(csv.GetField<string>(19)),
-                                            Desanitise(csv.GetField<string>(20)),
-                                            Desanitise(csv.GetField<string>(21)),
-                                            Desanitise(csv.GetField<string>(22)),
-                                            Desanitise(csv.GetField<string>(23)),
-                                            Desanitise(csv.GetField<string>(24)),
-                                            Desanitise(csv.GetField<string>(25))
-                                            );
-                                        break;
-                                    }
+                                    powerList.Add(new PowerDetails(
+                                        csv.GetField<int>(0),
+                                        csv.GetField<string>(1),
+                                        csv.GetField<string>(2),
+                                        csv.GetField<int>(3),
+                                        csv.GetField<string>(4),
+                                        csv.GetField<string>(5),
+                                        csv.GetField<string>(6),
+                                        csv.GetField<string>(7),
+                                        csv.GetField<string>(8),
+                                        csv.GetField<string>(9),
+                                        csv.GetField<string>(10),
+                                        csv.GetField<string>(11),
+                                        csv.GetField<string>(12),
+                                        csv.GetField<string>(13),
+                                        csv.GetField<string>(14),
+                                        Desanitise(csv.GetField<string>(15)),
+                                        Desanitise(csv.GetField<string>(16)),
+                                        Desanitise(csv.GetField<string>(17)),
+                                        Desanitise(csv.GetField<string>(18)),
+                                        Desanitise(csv.GetField<string>(19)),
+                                        Desanitise(csv.GetField<string>(20)),
+                                        Desanitise(csv.GetField<string>(21)),
+                                        Desanitise(csv.GetField<string>(22)),
+                                        Desanitise(csv.GetField<string>(23)),
+                                        Desanitise(csv.GetField<string>(24)),
+                                        Desanitise(csv.GetField<string>(25))
+                                        ));
                                 }
                             }
                         }
                     }
-                    ExpandText = String.Format("{0} \n\nStrong Against: {1} \nWeak Against: {2}", _powerDetails.ExpansionText, _powerDetails.ExpansionStrongGovernment, _powerDetails.ExpansionWeakGovernment);
-                    ControlText = String.Format("{0} \n\nStrong Against: {1} \nWeak Against: {2}", _powerDetails.ControlText, _powerDetails.ControlStrongGovernment, _powerDetails.ControlWeakGovernment);
                 }
                 catch (Exception ex)
                 {
@@ -205,8 +222,7 @@ namespace XF40Demo.ViewModels
         private void JoinDiscord()
         {
             string URL = String.Empty;
-            string power = _powerStanding.ShortName.Trim().ToLower();
-            switch (power)
+            switch (_powerStanding.ShortName.Trim().ToLower())
             {
                 case "aisling":
                     URL = "https://dinusty.typeform.com/to/ewQU8A";
@@ -253,8 +269,7 @@ namespace XF40Demo.ViewModels
         private void OpenReddit()
         {
             string URL = String.Empty;
-            string power = _powerStanding.ShortName.Trim().ToLower();
-            switch (power)
+            switch (_powerStanding.ShortName.Trim().ToLower())
             {
                 case "aisling":
                     URL = "https://www.reddit.com/r/aislingduval";

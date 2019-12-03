@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XF40Demo.ViewModels;
 
 namespace XF40Demo.Views
 {
@@ -39,7 +40,9 @@ namespace XF40Demo.Views
 
         private async Task PowerDetailsAsync()
         {
-            await MyNavigation.PushAsync(new PowerDetailPage(Power)).ConfigureAwait(false);
+            PowerDetailViewModel powerDetailViewModel = PowerDetailViewModel.Instance();
+            await powerDetailViewModel.GetPowerDetails(Power).ConfigureAwait(false);
+            await MyNavigation.PushAsync(new PowerDetailPage(powerDetailViewModel)).ConfigureAwait(false);
         }
     }
 }
