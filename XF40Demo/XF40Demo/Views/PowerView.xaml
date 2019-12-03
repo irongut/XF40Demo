@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:fft="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
              xmlns:c="clr-namespace:XF40Demo.Converters"
              xmlns:h="clr-namespace:XF40Demo.Helpers"
@@ -49,7 +50,15 @@
                             HeightRequest="170" 
                             WidthRequest="170" 
                             HorizontalOptions="Start" 
-                            VerticalOptions="Start"/>
+                            VerticalOptions="Start">
+                <ff:CachedImage.Transformations>
+                    <fft:CornersTransformation CornersTransformType="AllRounded"
+                                               TopLeftCornerSize="5"
+                                               TopRightCornerSize="5"
+                                               BottomLeftCornerSize="5"
+                                               BottomRightCornerSize="5"/>
+                </ff:CachedImage.Transformations>
+            </ff:CachedImage>
             
             <BoxView Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" 
                      Color="#33000000" 
