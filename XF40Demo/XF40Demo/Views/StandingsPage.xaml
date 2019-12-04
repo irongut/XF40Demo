@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
              xmlns:c="clr-namespace:XF40Demo.Converters"
              xmlns:models="clr-namespace:XF40Demo.Models"
              xmlns:v="clr-namespace:XF40Demo.Views"
@@ -18,7 +19,10 @@
             <c:CycleImminentToColour x:Key="imminentColour"/>
 
             <DataTemplate x:Key="powerTemplate" x:DataType="models:PowerStanding">
-                <v:PowerView Power="{Binding , Mode=OneWay}"/>
+                <v:PowerView Power="{Binding , Mode=OneWay}"
+                             xe:TouchEffect.Color="{StaticResource brandColor}"
+                             xe:Commands.Tap="{Binding Source={RelativeSource AncestorType={x:Type vm:StandingsViewModel}}, Path=PowerTappedCommand, Mode=OneWay}"
+                             xe:Commands.TapParameter="{Binding , Mode=OneWay}"/>
             </DataTemplate>
 
         </ResourceDictionary>

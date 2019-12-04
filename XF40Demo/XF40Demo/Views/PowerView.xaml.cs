@@ -1,9 +1,6 @@
-﻿using XF40Demo.Models;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using XF40Demo.ViewModels;
+using XF40Demo.Models;
 
 namespace XF40Demo.Views
 {
@@ -11,8 +8,6 @@ namespace XF40Demo.Views
     public partial class PowerView : ContentView
     {
         #region Properties
-
-        public INavigation MyNavigation { get; set; }
 
         public static BindableProperty PowerProperty = BindableProperty.Create(nameof(Power), typeof(PowerStanding), typeof(PowerView));
 
@@ -22,27 +17,11 @@ namespace XF40Demo.Views
             set { SetValue(PowerProperty, value); }
         }
 
-        public static BindableProperty TappedCommandProperty = BindableProperty.Create(nameof(TappedCommand), typeof(ICommand), typeof(PowerView));
-
-        public ICommand TappedCommand
-        {
-            get { return (ICommand)GetValue(TappedCommandProperty); }
-            private set { SetValue(TappedCommandProperty, value); }
-        }
-
         #endregion
 
         public PowerView ()
         {
             InitializeComponent();
-            TappedCommand = new Command(async () => await PowerDetailsAsync().ConfigureAwait(false));
-        }
-
-        private async Task PowerDetailsAsync()
-        {
-            PowerDetailViewModel powerDetailViewModel = PowerDetailViewModel.Instance();
-            await powerDetailViewModel.GetPowerDetails(Power).ConfigureAwait(false);
-            await MyNavigation.PushAsync(new PowerDetailPage(powerDetailViewModel)).ConfigureAwait(false);
         }
     }
 }

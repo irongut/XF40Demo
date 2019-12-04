@@ -4,16 +4,12 @@
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              xmlns:fft="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
              xmlns:c="clr-namespace:XF40Demo.Converters"
              xmlns:h="clr-namespace:XF40Demo.Helpers"
              xmlns:v="clr-namespace:XF40Demo.Views"
              x:Name="this"
              x:Class="XF40Demo.Views.PowerView"
-             x:DataType="v:PowerView"
-             Navigation="{Binding Source={x:Reference this}, Path=MyNavigation}"
-             xe:TouchEffect.Color="{StaticResource brandColor}"
-             xe:Commands.Tap="{Binding Source={x:Reference this}, Path=TappedCommand, Mode=OneWay}">
+             x:DataType="v:PowerView">
 
     <ContentView.Resources>
 

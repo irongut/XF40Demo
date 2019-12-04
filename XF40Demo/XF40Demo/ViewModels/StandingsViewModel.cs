@@ -5,10 +5,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using XF40Demo.Models;
 using XF40Demo.Services;
+using XF40Demo.Views;
 
 namespace XF40Demo.ViewModels
 {
@@ -17,6 +19,8 @@ namespace XF40Demo.ViewModels
         private bool pageVisible = false;
 
         #region Properties
+
+        public ICommand PowerTappedCommand { get; }
 
         public ICommand RetryDownloadCommand { get; }
 
@@ -138,6 +142,7 @@ namespace XF40Demo.ViewModels
 
         public StandingsViewModel()
         {
+            PowerTappedCommand = new Command<PowerStanding>(async (x) => await PowerDetailsAsync(x).ConfigureAwait(false));
             RetryDownloadCommand = new Command(() => GetStandingsAsync(true));
             Standings = new ObservableCollection<PowerStanding>();
         }
@@ -213,6 +218,13 @@ namespace XF40Demo.ViewModels
                     }
                 }
             }
+        }
+
+        private async Task PowerDetailsAsync(PowerStanding power)
+        {
+            PowerDetailViewModel powerDetailViewModel = PowerDetailViewModel.Instance();
+            await powerDetailViewModel.GetPowerDetails(power).ConfigureAwait(false);
+            await MyNavigation.PushAsync(new PowerDetailPage(powerDetailViewModel)).ConfigureAwait(false);
         }
 
         private void UpdateTimeRemaining()
