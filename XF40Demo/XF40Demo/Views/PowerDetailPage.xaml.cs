@@ -7,10 +7,10 @@ namespace XF40Demo.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PowerDetailPage : ContentPage
     {
-        public PowerDetailPage(PowerDetailViewModel viewModel)
+        public PowerDetailPage()
         {
             InitializeComponent();
-            BindingContext = viewModel;
+            BindingContext = PowerDetailViewModel.Instance();
         }
     }
 }

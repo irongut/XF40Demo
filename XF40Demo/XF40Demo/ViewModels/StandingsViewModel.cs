@@ -142,7 +142,7 @@ namespace XF40Demo.ViewModels
 
         public StandingsViewModel()
         {
-            PowerTappedCommand = new Command<PowerStanding>(async (x) => await PowerDetailsAsync(x).ConfigureAwait(false));
+            PowerTappedCommand = new Command<PowerStanding>(async (x) => await OpenPowerDetailsAsync(x).ConfigureAwait(false));
             RetryDownloadCommand = new Command(() => GetStandingsAsync(true));
             Standings = new ObservableCollection<PowerStanding>();
         }
@@ -220,11 +220,11 @@ namespace XF40Demo.ViewModels
             }
         }
 
-        private async Task PowerDetailsAsync(PowerStanding power)
+        private async Task OpenPowerDetailsAsync(PowerStanding power)
         {
             PowerDetailViewModel powerDetailViewModel = PowerDetailViewModel.Instance();
             await powerDetailViewModel.GetPowerDetails(power).ConfigureAwait(false);
-            await MyNavigation.PushAsync(new PowerDetailPage(powerDetailViewModel)).ConfigureAwait(false);
+            await MyNavigation.PushAsync(new PowerDetailPage()).ConfigureAwait(false);
         }
 
         private void UpdateTimeRemaining()
