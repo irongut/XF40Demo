@@ -10,8 +10,6 @@ namespace XF40Demo.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public INavigation MyNavigation { get; set; }
-
         protected virtual void OnPropertyChanged(string propertyName)
         {
             var changed = PropertyChanged;

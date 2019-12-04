@@ -10,7 +10,6 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using XF40Demo.Models;
 using XF40Demo.Services;
-using XF40Demo.Views;
 
 namespace XF40Demo.ViewModels
 {
@@ -224,7 +223,7 @@ namespace XF40Demo.ViewModels
         {
             PowerDetailViewModel powerDetailViewModel = PowerDetailViewModel.Instance();
             await powerDetailViewModel.GetPowerDetails(power).ConfigureAwait(false);
-            await MyNavigation.PushAsync(new PowerDetailPage()).ConfigureAwait(false);
+            await Xamarin.Forms.Shell.Current.GoToAsync("standings/details").ConfigureAwait(false);
         }
 
         private void UpdateTimeRemaining()
