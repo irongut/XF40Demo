@@ -19,7 +19,7 @@
         <s:MenuHeader/>
     </Shell.FlyoutHeader>
 
-    <Shell.TabBarBackgroundColor>#0a8bd6</Shell.TabBarBackgroundColor>
+    <Shell.TabBarBackgroundColor>#7F00FF</Shell.TabBarBackgroundColor>
     <Shell.TabBarTitleColor>White</Shell.TabBarTitleColor>
     <Shell.TabBarUnselectedColor>DarkGray</Shell.TabBarUnselectedColor>
 
@@ -76,12 +76,24 @@
         </ShellSection>
     </ShellItem>
 
-    <ShellContent Route="standings" 
-                  Title="Galactic Standings" 
+    <ShellContent Title="Galactic Standings" 
+                  Route="galacticStandings" 
                   ContentTemplate="{DataTemplate v:StandingsPage}"/>
 
     <ShellContent Route="settings" 
                   Title="Settings" 
                   ContentTemplate="{DataTemplate v:SettingsPage}"/>
+
+    <ShellItem Route="powerDetails"
+               IsEnabled="False">
+        <ShellContent Route="overview" 
+                      Title="Overview" 
+                      Icon="first.png"
+                      ContentTemplate="{DataTemplate v:PowerOverviewPage}"/>
+        <ShellContent Route="benefits" 
+                      Title="Benefits" 
+                      Icon="second.png"
+                      ContentTemplate="{DataTemplate v:PowerBenefitsPage}"/>
+    </ShellItem>
 
 </Shell>

@@ -1,6 +1,4 @@
-﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using XF40Demo.Views;
+﻿using Xamarin.Forms.Xaml;
 
 namespace XF40Demo.Shell
 {
@@ -11,7 +9,6 @@ namespace XF40Demo.Shell
 		{
 			InitializeComponent();
             BindingContext = this;
-            Routing.RegisterRoute("standings/details", typeof(PowerDetailPage));
         }
 	}
 }

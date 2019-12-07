@@ -8,7 +8,7 @@
              xmlns:h="clr-namespace:XF40Demo.Helpers"
              xmlns:v="clr-namespace:XF40Demo.Views"
              xmlns:vm="clr-namespace:XF40Demo.ViewModels"
-             x:Class="XF40Demo.Views.PowerDetailPage"
+             x:Class="XF40Demo.Views.PowerOverviewPage"
              x:DataType="vm:PowerDetailViewModel"
              Title="{Binding PowerStanding.Name, Mode=OneWay}"
              BackgroundColor="{DynamicResource backgroundColor}">
@@ -28,17 +28,23 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout Orientation="Vertical" CompressedLayout.IsHeadless="True">
+    <StackLayout Orientation="Vertical" 
+                 CompressedLayout.IsHeadless="True">
 
-        <!--  ethos tab -->
+        <ScrollView VerticalOptions="FillAndExpand" 
+                    Padding="0, 10">
 
-        <ScrollView VerticalOptions="FillAndExpand" Padding="0, 5">
+            <StackLayout Orientation="Vertical" 
+                         Spacing="10">
 
-            <StackLayout Orientation="Vertical" Spacing="10">
+                <FlexLayout Direction="Row" 
+                            Wrap="NoWrap" 
+                            JustifyContent="SpaceEvenly" 
+                            HorizontalOptions="FillAndExpand" 
+                            CompressedLayout.IsHeadless="True">
 
-                <FlexLayout Direction="Row" Wrap="NoWrap" JustifyContent="SpaceEvenly" HorizontalOptions="FillAndExpand" CompressedLayout.IsHeadless="True">
-
-                    <Grid RowSpacing="5" ColumnSpacing="5" CompressedLayout.IsHeadless="True">
+                    <Grid RowSpacing="5" ColumnSpacing="5" 
+                          CompressedLayout.IsHeadless="True">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"/>
                             <RowDefinition Height="135"/>
@@ -101,10 +107,12 @@
                                           HeightRequest="170" 
                                           HorizontalOptions="Center" 
                                           VerticalOptions="Center"/>
-
                 </FlexLayout>
 
-                <Grid ColumnSpacing="30" RowSpacing="0" Padding="15, 0" HorizontalOptions="Center" CompressedLayout.IsHeadless="True">
+                <Grid ColumnSpacing="30" RowSpacing="0" 
+                      Padding="15, 0" 
+                      HorizontalOptions="Center" 
+                      CompressedLayout.IsHeadless="True">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="15"/>
                         <RowDefinition Height="Auto"/>
@@ -133,11 +141,13 @@
                     <Label Grid.Row="3" Grid.Column="1" 
                            Text="{Binding PowerDetails.Allegiance, StringFormat='Allegiance: {0}', Mode=OneWay}" 
                            TextColor="{DynamicResource boldTextColor}"/>
-                
                 </Grid>
 
                 <!-- comms -->
-                <StackLayout Orientation="Horizontal" Spacing="45" Padding="30, 0" CompressedLayout.IsHeadless="True">
+                <StackLayout Orientation="Horizontal" 
+                             Spacing="45" 
+                             Padding="30, 0" 
+                             CompressedLayout.IsHeadless="True">
                     <Button Text="{x:Static h:FA5BrandsRegular.Discord}" 
                             Style="{StaticResource FA-Brands}" 
                             FontSize="Large" 
@@ -155,7 +165,7 @@
                             CornerRadius="5"
                             HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
-                            
+
                 <!-- ethos -->
                 <ContentView BackgroundColor="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}">
                     <Label Text="Ethos" 
@@ -166,7 +176,10 @@
                            Margin="15, 0"/>
                 </ContentView>
 
-                <StackLayout Orientation="Vertical" Spacing="10" Padding="15, 0" CompressedLayout.IsHeadless="True">
+                <StackLayout Orientation="Vertical" 
+                             Spacing="10" 
+                             Padding="15, 0" 
+                             CompressedLayout.IsHeadless="True">
 
                     <v:FramedTextView Title="{Binding PowerDetails.PreparationEthos, StringFormat='Preparation: {0}', Mode=OneWay}" 
                                       TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
@@ -194,114 +207,13 @@
 
                 </StackLayout>
 
-                <!--  benefits tab -->
-                <ContentView BackgroundColor="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}">
-                    <Label Text="Benefits" 
-                           FontSize="Medium" 
-                           HorizontalOptions="Fill" 
-                           HorizontalTextAlignment="Start" 
-                           TextColor="{StaticResource altTextColor}" 
-                           Margin="15, 0"/>
-                </ContentView>
-
-                <StackLayout Orientation="Vertical" Spacing="10" Padding="15, 0" CompressedLayout.IsHeadless="True">
-
-                    <v:FramedTextView Title="Headquarters" 
-                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      TitleAttributes="Bold"
-                                      Text="{Binding PowerDetails.HQSystemEffect, Mode=OneWay}"
-                                      TextColour="{DynamicResource textColor}"
-                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      BorderRadius="5"
-                                      IsVisible="{Binding HasHQEffect, Mode=OneWay}"/>
-
-                    <v:FramedTextView Title="Control Systems" 
-                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      TitleAttributes="Bold"
-                                      Text="{Binding PowerDetails.ControlSystemEffect, Mode=OneWay}"
-                                      TextColour="{DynamicResource textColor}"
-                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      BorderRadius="5"/>
-
-                    <v:FramedTextView Title="Alliance Exploited Systems" 
-                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      TitleAttributes="Bold"
-                                      Text="{Binding PowerDetails.AllianceExploitedEffect, Mode=OneWay}"
-                                      TextColour="{DynamicResource textColor}"
-                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      BorderRadius="5"/>
-
-                    <v:FramedTextView Title="Empire Exploited Systems" 
-                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      TitleAttributes="Bold"
-                                      Text="{Binding PowerDetails.EmpireExploitedEffect, Mode=OneWay}"
-                                      TextColour="{DynamicResource textColor}"
-                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      BorderRadius="5"/>
-
-                    <v:FramedTextView Title="Federation Exploited Systems" 
-                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      TitleAttributes="Bold"
-                                      Text="{Binding PowerDetails.FederationExploitedEffect, Mode=OneWay}"
-                                      TextColour="{DynamicResource textColor}"
-                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      BorderRadius="5"/>
-
-                    <v:FramedTextView Title="Independent Exploited Systems" 
-                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      TitleAttributes="Bold"
-                                      Text="{Binding PowerDetails.IndependentExploitedEffect, Mode=OneWay}"
-                                      TextColour="{DynamicResource textColor}"
-                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      BorderRadius="5"/>
-
-                    <v:FramedTextView Title="Rating 1" 
-                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      TitleAttributes="Bold"
-                                      Text="{Binding PowerDetails.Rating1, Mode=OneWay}"
-                                      TextColour="{DynamicResource textColor}"
-                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      BorderRadius="5"/>
-
-                    <v:FramedTextView Title="Rating 2" 
-                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      TitleAttributes="Bold"
-                                      Text="{Binding PowerDetails.Rating2, Mode=OneWay}"
-                                      TextColour="{DynamicResource textColor}"
-                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      BorderRadius="5"/>
-
-                    <v:FramedTextView Title="Rating 3" 
-                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      TitleAttributes="Bold"
-                                      Text="{Binding PowerDetails.Rating3, Mode=OneWay}"
-                                      TextColour="{DynamicResource textColor}"
-                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      BorderRadius="5"/>
-
-                    <v:FramedTextView Title="Rating 4" 
-                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      TitleAttributes="Bold"
-                                      Text="{Binding PowerDetails.Rating4, Mode=OneWay}"
-                                      TextColour="{DynamicResource textColor}"
-                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      BorderRadius="5"/>
-
-                    <v:FramedTextView Title="Rating 5" 
-                                      TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      TitleAttributes="Bold"
-                                      Text="{Binding PowerDetails.Rating5, Mode=OneWay}"
-                                      TextColour="{DynamicResource textColor}"
-                                      BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
-                                      BorderRadius="5"/>
-                
-                </StackLayout>
-
             </StackLayout>
-
+            
         </ScrollView>
 
-        <StackLayout Orientation="Horizontal" Spacing="10" BackgroundColor="{StaticResource brandColor}">
+        <StackLayout Orientation="Horizontal" 
+                     Spacing="10" 
+                     BackgroundColor="{StaticResource brandColor}">
             <Label Text="{Binding Cycle, Mode=OneWay}" 
                    HorizontalOptions="Start" 
                    TextColor="{StaticResource altTextColor}" 
@@ -314,5 +226,5 @@
         </StackLayout>
 
     </StackLayout>
-
+    
 </ContentPage>
