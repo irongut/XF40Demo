@@ -18,6 +18,7 @@ namespace XF40Demo.ViewModels
     {
         private static readonly PowerDetailViewModel instance = new PowerDetailViewModel();
 
+        public ICommand BackCommand { get; }
         public ICommand JoinDiscordCommand { get; }
         public ICommand OpenRedditCommand { get; }
 
@@ -129,6 +130,7 @@ namespace XF40Demo.ViewModels
         private PowerDetailViewModel()
         {
             powerList = new List<PowerDetails>();
+            BackCommand = new Command(async () => await Xamarin.Forms.Shell.Current.GoToAsync("///galacticStandings").ConfigureAwait(false));
             JoinDiscordCommand = new Command(JoinDiscord);
             OpenRedditCommand = new Command(OpenReddit);
         }
