@@ -31,6 +31,15 @@
     <StackLayout Orientation="Vertical" 
                  CompressedLayout.IsHeadless="True">
 
+        <ContentView BackgroundColor="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}">
+            <Label Text="Overview" 
+                   FontSize="Medium" 
+                   HorizontalOptions="Fill" 
+                   HorizontalTextAlignment="Start" 
+                   TextColor="{StaticResource altTextColor}" 
+                   Margin="15, 0"/>
+        </ContentView>
+
         <ScrollView VerticalOptions="FillAndExpand" 
                     Padding="0, 10">
 
