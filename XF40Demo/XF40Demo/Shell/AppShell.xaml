@@ -26,19 +26,28 @@
 
     <Shell.ItemTemplate>
         <DataTemplate>
-            <ContentView BackgroundColor="#484B51" 
-                         Padding="50, 10, 20, 10">
-                <StackLayout Orientation="Horizontal" 
-                             Spacing="10">
-                    <ffs:SvgCachedImage Source="{Binding Path=Title, Converter={StaticResource menuIcon}, Mode=OneWay}" 
-                                        WidthRequest="20" 
-                                        VerticalOptions="Center"/>
-                    <Label Text="{Binding Title, Mode=OneWay}" 
-                           TextColor="AntiqueWhite" 
-                           FontSize="Medium" 
-                           VerticalOptions="Center"/>
-                </StackLayout>
-            </ContentView>
+            <Grid ColumnSpacing="10"
+                  BackgroundColor="Transparent" 
+                  Padding="50, 10, 20, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <ffs:SvgCachedImage Grid.Row="0" Grid.Column="0"
+                                    Source="{Binding Path=Title, Converter={StaticResource menuIcon}, Mode=OneWay}" 
+                                    WidthRequest="20" 
+                                    VerticalOptions="Center"/>
+
+                <Label Grid.Row="0" Grid.Column="1"
+                       Text="{Binding Title, Mode=OneWay}" 
+                       TextColor="AntiqueWhite" 
+                       FontSize="Medium" 
+                       VerticalOptions="Center"/>
+            </Grid>
         </DataTemplate>
     </Shell.ItemTemplate>
 
