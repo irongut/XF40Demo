@@ -223,7 +223,7 @@ namespace XF40Demo.ViewModels
         {
             PowerDetailViewModel powerDetailViewModel = PowerDetailViewModel.Instance();
             await powerDetailViewModel.GetPowerDetails(power).ConfigureAwait(false);
-            await Xamarin.Forms.Shell.Current.GoToAsync("///powerDetails").ConfigureAwait(false);
+            await Xamarin.Forms.Shell.Current.GoToAsync("///powerDetails/overview").ConfigureAwait(false);
         }
 
         private void UpdateTimeRemaining()
