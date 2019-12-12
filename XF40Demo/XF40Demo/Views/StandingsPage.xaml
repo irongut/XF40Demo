@@ -9,7 +9,7 @@
              x:Class="XF40Demo.Views.StandingsPage"
              x:DataType="vm:StandingsViewModel"
              Title="Galactic Standings"
-             BackgroundColor="{DynamicResource backgroundColor}">
+             BackgroundColor="{DynamicResource pageBackgroundColor}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -19,7 +19,7 @@
 
             <DataTemplate x:Key="powerTemplate" x:DataType="models:PowerStanding">
                 <v:PowerView Power="{Binding , Mode=OneWay}"
-                             xe:TouchEffect.Color="{StaticResource brandColor}"
+                             xe:TouchEffect.Color="{DynamicResource brandColor}"
                              xe:Commands.Tap="{Binding Source={RelativeSource AncestorType={x:Type vm:StandingsViewModel}}, Path=PowerTappedCommand, Mode=OneWay}"
                              xe:Commands.TapParameter="{Binding , Mode=OneWay}"/>
             </DataTemplate>
@@ -56,11 +56,11 @@
                             Message="{Binding Message, Mode=OneWay}"
                             ButtonText="Retry"
                             ButtonCommand="{Binding RetryDownloadCommand, Mode=OneWay}"
-                            ButtonBackgroundColour="{StaticResource brandColor}"
+                            ButtonBackgroundColour="{DynamicResource brandColor}"
                             ButtonTextColour="{StaticResource altTextColor}"
                             ButtonIsVisible="{Binding IsErrorMessage, Mode=OneWay}"/>
 
-        <StackLayout Orientation="Horizontal" Spacing="10" BackgroundColor="{StaticResource brandColor}">
+        <StackLayout Orientation="Horizontal" Spacing="10" BackgroundColor="{DynamicResource brandColor}">
             <Label Text="{Binding Cycle, Mode=OneWay}" 
                    HorizontalOptions="Start" 
                    TextColor="{StaticResource altTextColor}" 

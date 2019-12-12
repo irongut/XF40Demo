@@ -5,9 +5,17 @@
              x:Class="XF40Demo.Shell.MenuHeader">
 
     <Grid HeightRequest="250">
-        <BoxView HeightRequest="250" BackgroundColor="#2F3136"/>
-        <ffs:SvgCachedImage Source="resource://XF40Demo.Resources.empire.blue.svg" WidthRequest="250" HorizontalOptions="Center" VerticalOptions="Center"/>
-        <Label Text="XF 4.0 Demo" TextColor="AntiqueWhite" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+        <BoxView HeightRequest="250" 
+                 BackgroundColor="{DynamicResource brandColor}"/>
+        <ffs:SvgCachedImage Source="resource://XF40Demo.Resources.empire.blue.svg" 
+                            WidthRequest="250" 
+                            HorizontalOptions="Center" 
+                            VerticalOptions="Center"/>
+        <Label Text="XF 4.0 Demo" 
+               TextColor="{DynamicResource altTextColor}" 
+               FontSize="Large" 
+               HorizontalOptions="Center" 
+               VerticalOptions="Center"/>
     </Grid>
 
 </ContentView>

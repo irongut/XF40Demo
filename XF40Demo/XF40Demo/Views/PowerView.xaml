@@ -103,7 +103,7 @@
 
             <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
                    Text="{Binding Source={x:Reference this}, Path=Power.Name, Mode=OneWay}" 
-                   TextColor="{DynamicResource boldTextColor}" 
+                   TextColor="{DynamicResource strongTextColor}" 
                    LineBreakMode="NoWrap"
                    HorizontalOptions="Start"/>
 

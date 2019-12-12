@@ -6,7 +6,7 @@ namespace XF40Demo.ViewModels
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
-        protected readonly SettingsService settings = new SettingsService();
+        protected readonly SettingsService settings = SettingsService.Instance();
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -12,34 +12,14 @@
             return 6;
         }
 
-        public static int PrioritiesCacheTime()
+        public static int ThemeOption()
         {
-            return 5;
-        }
-
-        public static bool DarkTheme()
-        {
-            return true;
+            return 0;
         }
 
         public static bool OnlyShowNextCycleWhenImminent()
         {
             return false;
-        }
-
-        public static bool ShowEliteStatusOnMenu()
-        {
-            return true;
-        }
-
-        public static bool CopySystemName()
-        {
-            return true;
-        }
-
-        public static bool EnableDiagnostics()
-        {
-            return true;
         }
     }
 }

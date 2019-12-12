@@ -9,20 +9,26 @@
        x:Class="XF40Demo.Shell.AppShell"
        FlyoutHeaderBehavior="CollapseOnScroll"
        Title="XF4.0 Demo"
-       FlyoutBackgroundColor="#484B51"
+       FlyoutBackgroundColor="{DynamicResource pageBackgroundColor}"
        x:Name="self">
 
     <Shell.Resources>
         <c:MenuItemToIcon x:Key="menuIcon"/>
+        <Style x:Key="BaseStyle" TargetType="Element">
+            <Setter Property="Shell.BackgroundColor" Value="{DynamicResource brandColor}" />
+            <Setter Property="Shell.ForegroundColor" Value="{DynamicResource altTextColor}" />
+            <Setter Property="Shell.TitleColor" Value="{DynamicResource altTextColor}" />
+            <Setter Property="Shell.DisabledColor" Value="{DynamicResource disabledTextColor}" />
+            <Setter Property="Shell.UnselectedColor" Value="{DynamicResource disabledTextColor}" />
+            <Setter Property="Shell.TabBarBackgroundColor" Value="{DynamicResource brandColor}" />
+            <Setter Property="Shell.TabBarTitleColor" Value="{DynamicResource altTextColor}"/>
+            <Setter Property="Shell.TabBarUnselectedColor" Value="{DynamicResource disabledTextColor}"/>
+        </Style>
     </Shell.Resources>
 
     <Shell.FlyoutHeader>
         <s:MenuHeader/>
     </Shell.FlyoutHeader>
-
-    <Shell.TabBarBackgroundColor>#7F00FF</Shell.TabBarBackgroundColor>
-    <Shell.TabBarTitleColor>White</Shell.TabBarTitleColor>
-    <Shell.TabBarUnselectedColor>DarkGray</Shell.TabBarUnselectedColor>
 
     <Shell.ItemTemplate>
         <DataTemplate>
@@ -44,7 +50,7 @@
 
                 <Label Grid.Row="0" Grid.Column="1"
                        Text="{Binding Title, Mode=OneWay}" 
-                       TextColor="AntiqueWhite" 
+                       TextColor="{DynamicResource textColor}" 
                        FontSize="Medium" 
                        VerticalOptions="Center"/>
             </Grid>
@@ -53,10 +59,12 @@
 
     <ShellContent Route="home"
                   Title="Home"
-                  ContentTemplate="{DataTemplate v:MainPage}" />
+                  ContentTemplate="{DataTemplate v:MainPage}"
+                  Style="{DynamicResource BaseStyle}"/>
     
     <ShellItem Title="Bottom Tabs" 
-               Route="bottom">
+               Route="bottom"
+               Style="{DynamicResource BaseStyle}">
         <ShellContent Route="tab1" 
                       Title="Tab 1" 
                       Icon="first.png"
@@ -72,7 +80,8 @@
     </ShellItem>
 
     <ShellItem Title="Top Tabs"
-               Route="top">
+               Route="top"
+               Style="{DynamicResource BaseStyle}">
         <ShellSection>
             <ShellContent Title="Tab 1" 
                           Route="tab1" 
@@ -88,14 +97,17 @@
 
     <ShellContent Title="Galactic Standings" 
                   Route="galacticStandings" 
-                  ContentTemplate="{DataTemplate v:StandingsPage}"/>
+                  ContentTemplate="{DataTemplate v:StandingsPage}"
+                  Style="{DynamicResource BaseStyle}"/>
 
     <ShellContent Route="settings" 
                   Title="Settings" 
-                  ContentTemplate="{DataTemplate v:SettingsPage}"/>
+                  ContentTemplate="{DataTemplate v:SettingsPage}"
+                  Style="{DynamicResource BaseStyle}"/>
 
     <ShellItem Route="powerDetails"
-               IsEnabled="False">
+               IsEnabled="False"
+               Style="{DynamicResource BaseStyle}">
         <ShellContent Route="overview" 
                       Title="Overview" 
                       ContentTemplate="{DataTemplate v:PowerOverviewPage}">

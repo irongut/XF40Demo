@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XF40Demo.ViewModels;
 
 namespace XF40Demo.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SettingsPage : ContentPage
 	{
+        private readonly SettingsViewModel viewModel = new SettingsViewModel();
+
 		public SettingsPage()
 		{
 			InitializeComponent();
+            BindingContext = viewModel;
 		}
 	}
 }

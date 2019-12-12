@@ -6,7 +6,6 @@
 
         <OnPlatform x:Key="FontAwesomeBrands" x:TypeArguments="x:String">
             <On Platform="Android" Value="Font Awesome 5 Brands-Regular-400.otf#Font Awesome 5 Brands Regular" />
-            <On Platform="UWP, WinRT, WinPhone" Value="Assets/Font Awesome 5 Brands-Regular-400.otf#Font Awesome 5 Brands" />
         </OnPlatform>
         <Style x:Key="FA-Brands" TargetType="Label">
             <Setter Property="FontFamily" Value="{StaticResource FontAwesomeBrands}" />
@@ -14,17 +13,19 @@
 
         <OnPlatform x:Key="FontAwesomeSolid" x:TypeArguments="x:String">
             <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
-            <On Platform="UWP, WinRT, WinPhone" Value="Assets/Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free" />
         </OnPlatform>
         <Style x:Key="FA-Solid" TargetType="Label">
             <Setter Property="FontFamily" Value="{StaticResource FontAwesomeSolid}" />
         </Style>
 
-        <Color x:Key="backgroundColor">White</Color>
-        <Color x:Key="textColor">Default</Color>
-        <Color x:Key="altTextColor">White</Color>
         <Color x:Key="brandColor">#7F00FF</Color>
-        <Color x:Key="messageBackgroundColor">LightGray</Color>
+        <Color x:Key="pageBackgroundColor">GhostWhite</Color>
+        <Color x:Key="pageForegroundColor">#9BA0A6</Color>
+        <Color x:Key="textColor">Default</Color>
+        <Color x:Key="strongTextColor">#202125</Color>
+        <Color x:Key="altTextColor">White</Color>
+        <Color x:Key="disabledTextColor">DarkGray</Color>
+        <Color x:Key="messageBackgroundColor">#9BA0A6</Color>
         <Color x:Key="messageTextColor">Default</Color>
 
     </Application.Resources>

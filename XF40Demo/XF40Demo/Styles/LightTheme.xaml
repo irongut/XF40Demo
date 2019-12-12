@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="XF40Demo.Styles.LightTheme">
+
+    <Color x:Key="pageBackgroundColor">GhostWhite</Color>
+    <Color x:Key="pageForegroundColor">#9BA0A6</Color>
+    <Color x:Key="textColor">Default</Color>
+    <Color x:Key="strongTextColor">#202125</Color>
+    <Color x:Key="altTextColor">White</Color>
+    <Color x:Key="disabledTextColor">DarkGray</Color>
+    <Color x:Key="messageBackgroundColor">#9BA0A6</Color>
+    <Color x:Key="messageTextColor">Default</Color>
+
+</ResourceDictionary>

@@ -1,11 +1,10 @@
-﻿using XF40Demo.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Xamarin.Essentials;
-using Xamarin.Forms;
+using XF40Demo.Models;
 
 namespace XF40Demo.Services
 {
-    public class SettingsService
+    public sealed class SettingsService
     {
         private static readonly SettingsService instance = new SettingsService();
         private const string sharedName = "com.taranissoftware.XF40Demo.settings";
@@ -42,16 +41,16 @@ namespace XF40Demo.Services
             }
         }
 
-        private bool _darkTheme;
-        public bool DarkTheme
+        private Theme _themeOption;
+        public Theme ThemeOption
         {
-            get { return _darkTheme; }
+            get { return _themeOption; }
             set
             {
-                if (_darkTheme != value)
+                if (_themeOption != value)
                 {
-                    _darkTheme = value;
-                    Preferences.Set("darkTheme", value, sharedName);
+                    _themeOption = value;
+                    Preferences.Set("themeOption", (int)value, sharedName);
                 }
             }
         }
@@ -72,7 +71,7 @@ namespace XF40Demo.Services
 
         #endregion
 
-        public SettingsService()
+        private SettingsService()
         {
             NewsCacheTimes = new List<CacheTime>
             {
@@ -94,38 +93,14 @@ namespace XF40Demo.Services
         {
             _wifiOnly = Preferences.Get("wifiOnly", DefaultSettings.WifiOnly(), sharedName);
             _newsCacheTime = Preferences.Get("newsCacheTime", DefaultSettings.NewsCacheTime(), sharedName);
-            _darkTheme = Preferences.Get("darkTheme", DefaultSettings.DarkTheme(), sharedName);
+            _themeOption = (Theme)Preferences.Get("themeOption", DefaultSettings.ThemeOption(), sharedName);
             _onlyShowNextCycleWhenImminent = Preferences.Get("onlyShowNextCycleWhenImminent", DefaultSettings.OnlyShowNextCycleWhenImminent(), sharedName);
-            SetTheme();
         }
 
         public void ResetDefault()
         {
             Preferences.Clear(sharedName);
             LoadAll();
-        }
-
-        public void SetTheme()
-        {
-            if (App.Current != null)
-            {
-                if (_darkTheme)
-                {
-                    App.Current.Resources["backgroundColor"] = Color.FromHex("202125");
-                    App.Current.Resources["textColor"] = Color.FromHex("9BA0A6");
-                    App.Current.Resources["boldTextColor"] = Color.FromHex("E9EAEE");
-                    App.Current.Resources["messageBackgroundColor"] = Color.FromHex("2A2B2F");
-                    App.Current.Resources["messageTextColor"] = Color.FromHex("9BA0A6");
-                }
-                else
-                {
-                    App.Current.Resources["backgroundColor"] = Color.GhostWhite;
-                    App.Current.Resources["textColor"] = Color.Default;
-                    App.Current.Resources["boldTextColor"] = Color.FromHex("202125");
-                    App.Current.Resources["messageBackgroundColor"] = Color.FromHex("9BA0A6");
-                    App.Current.Resources["messageTextColor"] = Color.Default;
-                }
-            }
         }
     }
 }

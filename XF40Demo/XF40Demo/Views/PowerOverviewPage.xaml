@@ -11,7 +11,7 @@
              x:Class="XF40Demo.Views.PowerOverviewPage"
              x:DataType="vm:PowerDetailViewModel"
              Title="{Binding PowerStanding.Name, Mode=OneWay}"
-             BackgroundColor="{DynamicResource backgroundColor}">
+             BackgroundColor="{DynamicResource pageBackgroundColor}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -150,15 +150,15 @@
                     <!-- age, hq & allegiance -->
                     <Label Grid.Row="1" Grid.Column="1"
                            Text="{Binding PowerDetails.YearOfBirth, StringFormat='Year of Birth: {0}', Mode=OneWay}" 
-                           TextColor="{DynamicResource boldTextColor}"/>
+                           TextColor="{DynamicResource strongTextColor}"/>
 
                     <Label Grid.Row="2" Grid.Column="1" 
                            Text="{Binding PowerDetails.HQ, StringFormat='Headquarters: {0}', Mode=OneWay}" 
-                           TextColor="{DynamicResource boldTextColor}"/>
+                           TextColor="{DynamicResource strongTextColor}"/>
 
                     <Label Grid.Row="3" Grid.Column="1" 
                            Text="{Binding PowerDetails.Allegiance, StringFormat='Allegiance: {0}', Mode=OneWay}" 
-                           TextColor="{DynamicResource boldTextColor}"/>
+                           TextColor="{DynamicResource strongTextColor}"/>
                 </Grid>
 
                 <!-- comms -->

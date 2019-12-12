@@ -1,12 +1,96 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:XF40Demo.ViewModels"
              x:Class="XF40Demo.Views.SettingsPage"
-             Title="Settings">
+             x:DataType="vm:SettingsViewModel"
+             Title="Settings"
+             BackgroundColor="{DynamicResource pageBackgroundColor}">
 
-    <StackLayout VerticalOptions="Center">
-        <Label Text="Here be settings..." HorizontalOptions="Center"/>
-        <Label Text="Settings Page" FontSize="Large" HorizontalOptions="Center"/>
-    </StackLayout>
+    <ScrollView VerticalOptions="FillAndExpand" CompressedLayout.IsHeadless="True">
+
+        <Grid ColumnSpacing="10" RowSpacing="15" HorizontalOptions="Center" Padding="20, 20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0"
+                   Text="Theme:"
+                   TextColor="{DynamicResource textColor}"
+                   HorizontalTextAlignment="End"
+                   HorizontalOptions="End"
+                   VerticalOptions="Center"/>
+
+            <Picker Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+                    ItemsSource="{Binding ThemeOptions}"
+                    ItemDisplayBinding="{Binding .}"
+                    SelectedIndex="{Binding ThemeOptionSelectedIndex}"
+                    TextColor="{DynamicResource textColor}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    WidthRequest="120"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                   Text="Download data only on WiFi:"
+                   TextColor="{DynamicResource textColor}"
+                   HorizontalTextAlignment="End"
+                   HorizontalOptions="End"
+                   VerticalOptions="Center"/>
+
+            <Switch Grid.Row="1" Grid.Column="2"
+                    IsToggled="{Binding WifiOnly}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"/>
+
+            <Label Grid.Row="2" Grid.Column="0"
+                   Text="Cache GalNet News for:"
+                   TextColor="{DynamicResource textColor}"
+                   HorizontalTextAlignment="End"
+                   HorizontalOptions="End"
+                   VerticalOptions="Center"/>
+
+            <Picker Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+                    ItemsSource="{Binding NewsCacheTimes}"
+                    ItemDisplayBinding="{Binding Text}"
+                    SelectedIndex="{Binding NewsCacheSelectedIndex}"
+                    TextColor="{DynamicResource textColor}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    WidthRequest="120"/>
+
+            <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                   Text="Only show next cycle when imminent:"
+                   TextColor="{DynamicResource textColor}"
+                   HorizontalTextAlignment="End"
+                   HorizontalOptions="End"
+                   VerticalOptions="Center"/>
+
+            <Switch Grid.Row="3" Grid.Column="2"
+                    IsToggled="{Binding OnlyShowNextCycleWhenImminent}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"/>
+
+            <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3"
+                    Text="Reset to Defaults" 
+                    Command="{Binding ResetDefaultsCommand}" 
+                    HorizontalOptions="End" 
+                    BackgroundColor="{DynamicResource brandColor}" 
+                    TextColor="{StaticResource altTextColor}" 
+                    CornerRadius="5"
+                    Padding="15, 0" 
+                    Margin="0, 15, 0, 0"/>
+
+        </Grid>
+        
+    </ScrollView>
 
 </ContentPage>

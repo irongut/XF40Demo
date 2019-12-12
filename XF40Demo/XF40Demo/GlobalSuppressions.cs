@@ -18,4 +18,5 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Formatting", "RCS1057:Add empty line between declarations.", Justification = "<Pending>", Scope = "type", Target = "~T:XF40Demo.Services.SettingsService")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Formatting", "RCS1057:Add empty line between declarations.", Justification = "<Pending>", Scope = "type", Target = "~T:XF40Demo.ViewModels.PowerDetailViewModel")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0017:Simplify object initialization", Justification = "<Pending>", Scope = "type", Target = "~T:XF40Demo.Services.StandingsService")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Formatting", "RCS1057:Add empty line between declarations.", Justification = "<Pending>", Scope = "type", Target = "~T:XF40Demo.ViewModels.SettingsViewModel")]
 
