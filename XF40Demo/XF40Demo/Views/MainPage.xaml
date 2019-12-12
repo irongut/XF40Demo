@@ -3,19 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XF40Demo.Views.MainPage"
              Title="XF 4.0 Demo"
+             BackgroundColor="{DynamicResource pageBackgroundColor}"
              Padding="10, 20, 10, 10">
 
     <StackLayout>
+        
         <Label Text="Welcome to Xamarin.Forms 4.0!" 
+               TextColor="{DynamicResource textColor}"
                HorizontalOptions="Center"/>
+        
         <Label Text="Home Page" 
+               TextColor="{DynamicResource textColor}"
                FontSize="Large"
                HorizontalOptions="Center"
                VerticalOptions="CenterAndExpand"/>
+        
         <Label Text="This app contains icons made by Freepik from www.flaticon.com"
+               TextColor="{DynamicResource textColor}"
                LineBreakMode="WordWrap"
                VerticalOptions="Center"
                HorizontalTextAlignment="Center"/>
+        
     </StackLayout>
 
 </ContentPage>

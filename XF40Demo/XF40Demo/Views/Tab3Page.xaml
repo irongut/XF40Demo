@@ -3,12 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ffs="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="XF40Demo.Views.Tab3Page"
-             Title="Tab 3 Page">
+             Title="Tab 3 Page"
+             BackgroundColor="{DynamicResource pageBackgroundColor}">
 
     <StackLayout VerticalOptions="Center">
-        <ffs:SvgCachedImage Source="resource://XF40Demo.Resources.third.svg" WidthRequest="100" HorizontalOptions="Center"/>
-        <Label Text="Lorem Impsum woz 'ere" HorizontalOptions="Center"/>
-        <Label Text="Tab 3 Page" FontSize="Large" HorizontalOptions="Center"/>
+        
+        <ffs:SvgCachedImage Source="resource://XF40Demo.Resources.third.svg" 
+                            WidthRequest="100" 
+                            HorizontalOptions="Center"/>
+        
+        <Label Text="Lorem Impsum woz 'ere" 
+               TextColor="{DynamicResource textColor}"
+               HorizontalOptions="Center"/>
+        
+        <Label Text="Tab 3 Page" 
+               TextColor="{DynamicResource textColor}"
+               FontSize="Large" 
+               HorizontalOptions="Center"/>
+        
     </StackLayout>
 
 </ContentPage>

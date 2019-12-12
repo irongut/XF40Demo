@@ -3,12 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ffs="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="XF40Demo.Views.Tab2Page"
-             Title="Tab 2 Page">
+             Title="Tab 2 Page"
+             BackgroundColor="{DynamicResource pageBackgroundColor}">
 
     <StackLayout VerticalOptions="Center">
-        <ffs:SvgCachedImage Source="resource://XF40Demo.Resources.second.svg" WidthRequest="100" HorizontalOptions="Center"/>
-        <Label Text="Wanted - Dead or Alive: App content!" HorizontalOptions="Center"/>
-        <Label Text="Tab 2 Page" FontSize="Large" HorizontalOptions="Center"/>
+
+        <ffs:SvgCachedImage Source="resource://XF40Demo.Resources.second.svg" 
+                            WidthRequest="100" 
+                            HorizontalOptions="Center"/>
+        
+        <Label Text="Wanted - Dead or Alive: App content!" 
+               TextColor="{DynamicResource textColor}"
+               HorizontalOptions="Center"/>
+        
+        <Label Text="Tab 2 Page" 
+               TextColor="{DynamicResource textColor}"
+               FontSize="Large" 
+               HorizontalOptions="Center"/>
+        
     </StackLayout>
 
 </ContentPage>
