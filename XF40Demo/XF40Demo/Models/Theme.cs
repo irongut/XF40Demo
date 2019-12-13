@@ -4,6 +4,7 @@
     {
         Default = 0,
         Light = 1,
-        Dark = 2
+        Dark = 2,
+        NordDark = 3
     }
 }

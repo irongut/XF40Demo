@@ -31,6 +31,9 @@ namespace XF40Demo.Helpers
                     case Theme.Dark:
                         newTheme = new DarkTheme();
                         break;
+                    case Theme.NordDark:
+                        newTheme = new NordDarkTheme();
+                        break;
                     default:
                         newTheme = new LightTheme();
                         break;

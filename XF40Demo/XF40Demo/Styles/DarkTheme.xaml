@@ -4,6 +4,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="XF40Demo.Styles.DarkTheme">
 
+    <Color x:Key="brandColor">#7F00FF</Color>
     <Color x:Key="pageBackgroundColor">#202125</Color>
     <Color x:Key="pageForegroundColor">#2A2B2F</Color>
     <Color x:Key="textColor">#9BA0A6</Color>

@@ -86,7 +86,8 @@ namespace XF40Demo.ViewModels
             {
                 "System Default",
                 "Light",
-                "Dark"
+                "Dark",
+                "Nord - Dark"
             };
             RefreshView();
         }

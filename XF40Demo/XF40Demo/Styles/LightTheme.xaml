@@ -4,6 +4,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="XF40Demo.Styles.LightTheme">
 
+    <Color x:Key="brandColor">#7F00FF</Color>
     <Color x:Key="pageBackgroundColor">GhostWhite</Color>
     <Color x:Key="pageForegroundColor">#9BA0A6</Color>
     <Color x:Key="textColor">Default</Color>
