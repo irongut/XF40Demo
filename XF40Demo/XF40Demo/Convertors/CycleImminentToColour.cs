@@ -10,7 +10,7 @@ namespace XF40Demo.Converters
         {
             if (value == null)
             {
-                return "#7F00FF";
+                return App.Current.Resources["brandColor"];
             }
             if ((bool)value)
             {
@@ -18,7 +18,7 @@ namespace XF40Demo.Converters
             }
             else
             {
-                return "#7F00FF";
+                return App.Current.Resources["brandColor"];
             }
         }
 
