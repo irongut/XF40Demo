@@ -109,6 +109,9 @@
     <Compile Update="Shell\AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Styles\NordLightTheme.xaml.cs">
+      <DependentUpon>NordLightTheme.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Styles\NordDarkTheme.xaml.cs">
       <DependentUpon>NordDarkTheme.xaml</DependentUpon>
     </Compile>

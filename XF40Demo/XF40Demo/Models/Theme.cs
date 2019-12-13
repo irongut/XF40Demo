@@ -5,6 +5,7 @@
         Default = 0,
         Light = 1,
         Dark = 2,
-        NordDark = 3
+        NordDark = 3,
+        NordLight = 4
     }
 }
