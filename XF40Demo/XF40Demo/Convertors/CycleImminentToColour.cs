@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using Xamarin.Forms;
+using XF40Demo.Helpers;
 
 namespace XF40Demo.Converters
 {
@@ -10,7 +11,7 @@ namespace XF40Demo.Converters
         {
             if (value == null)
             {
-                return App.Current.Resources["brandColor"];
+                return ThemeHelper.GetThemeColor("brandColor");
             }
             if ((bool)value)
             {
@@ -18,7 +19,7 @@ namespace XF40Demo.Converters
             }
             else
             {
-                return App.Current.Resources["brandColor"];
+                return ThemeHelper.GetThemeColor("brandColor");
             }
         }
 
