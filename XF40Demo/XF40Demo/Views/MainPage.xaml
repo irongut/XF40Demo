@@ -8,7 +8,7 @@
 
     <StackLayout>
         
-        <Label Text="Welcome to Xamarin.Forms 4.0!" 
+        <Label Text="Welcome to Xamarin.Forms 4!" 
                TextColor="{DynamicResource textColor}"
                HorizontalOptions="Center"/>
         
