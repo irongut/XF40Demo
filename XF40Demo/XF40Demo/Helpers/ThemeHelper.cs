@@ -56,6 +56,18 @@ namespace XF40Demo.Helpers
             }
         }
 
+        public static Color GetThemeColor(string colorName)
+        {
+            if (Application.Current.Resources.TryGetValue(colorName, out var value))
+            {
+                return (Color)value;
+            }
+            else
+            {
+                return Color.Transparent;
+            }
+        }
+
         private static void ManuallyCopyThemes(ResourceDictionary fromResource, ResourceDictionary toResource)
         {
             foreach (var item in fromResource.Keys)

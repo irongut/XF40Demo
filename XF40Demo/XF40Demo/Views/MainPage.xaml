@@ -1,23 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:v="clr-namespace:XF40Demo.Views"
              x:Class="XF40Demo.Views.MainPage"
+             x:DataType="v:MainPage"
              Title="XF 4.0 Demo"
              BackgroundColor="{DynamicResource pageBackgroundColor}"
              Padding="10, 20, 10, 10">
 
-    <StackLayout>
+    <StackLayout Spacing="50">
         
-        <Label Text="Welcome to Xamarin.Forms 4.0!" 
+        <Label Text="Welcome to Xamarin.Forms 4!" 
                TextColor="{DynamicResource textColor}"
                HorizontalOptions="Center"/>
-        
+
+        <Button Text="Toast Test" 
+                Command="{Binding ToastCommand}" 
+                HorizontalOptions="Center" 
+                BackgroundColor="{DynamicResource brandColor}" 
+                TextColor="{StaticResource altTextColor}" 
+                CornerRadius="5"
+                Padding="30, 0"/>
+
         <Label Text="Home Page" 
                TextColor="{DynamicResource textColor}"
                FontSize="Large"
                HorizontalOptions="Center"
                VerticalOptions="CenterAndExpand"/>
-        
+
         <Label Text="This app contains icons made by Freepik from www.flaticon.com"
                TextColor="{DynamicResource textColor}"
                LineBreakMode="WordWrap"
