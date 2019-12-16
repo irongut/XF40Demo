@@ -14,19 +14,27 @@
     <None Remove="Resources\aisling.logo.svg" />
     <None Remove="Resources\ald.headshot.png" />
     <None Remove="Resources\ald.logo.svg" />
+    <None Remove="Resources\aliens-ufo1.svg" />
     <None Remove="Resources\alliance.green.svg" />
     <None Remove="Resources\antal.headshot.png" />
     <None Remove="Resources\antal.logo.svg" />
     <None Remove="Resources\bottom-left.svg" />
+    <None Remove="Resources\combat-fighter2.svg" />
+    <None Remove="Resources\crime.svg" />
     <None Remove="Resources\delaine.headshot.png" />
     <None Remove="Resources\delaine.logo.svg" />
+    <None Remove="Resources\economy-chart.svg" />
     <None Remove="Resources\empire.blue.svg" />
+    <None Remove="Resources\engineer.orange.svg" />
     <None Remove="Resources\engineer.white.svg" />
+    <None Remove="Resources\exploration-planet.svg" />
     <None Remove="Resources\federation.red.svg" />
     <None Remove="Resources\first.svg" />
+    <None Remove="Resources\galnet.orange.svg" />
     <None Remove="Resources\gear.svg" />
     <None Remove="Resources\grom.headshot.png" />
     <None Remove="Resources\grom.logo.svg" />
+    <None Remove="Resources\health.svg" />
     <None Remove="Resources\home.svg" />
     <None Remove="Resources\hudson.headshot.png" />
     <None Remove="Resources\hudson.logo.svg" />
@@ -35,12 +43,20 @@
     <None Remove="Resources\lyr.logo.svg" />
     <None Remove="Resources\mahon.headshot.png" />
     <None Remove="Resources\mahon.logo.svg" />
+    <None Remove="Resources\mining-pick.svg" />
+    <None Remove="Resources\mystery.svg" />
+    <None Remove="Resources\NewsBoW.csv" />
+    <None Remove="Resources\NewsFalseBoW.csv" />
     <None Remove="Resources\patreus.headshot.png" />
     <None Remove="Resources\patreus.logo.svg" />
     <None Remove="Resources\pedestal.svg" />
+    <None Remove="Resources\politics.svg" />
     <None Remove="Resources\PowerDetails.csv" />
     <None Remove="Resources\powerplay.standings.svg" />
+    <None Remove="Resources\religion-ankh.svg" />
+    <None Remove="Resources\science-atom.svg" />
     <None Remove="Resources\second.svg" />
+    <None Remove="Resources\theatre.svg" />
     <None Remove="Resources\third.svg" />
     <None Remove="Resources\top-right.svg" />
     <None Remove="Resources\torval.headshot.png" />
@@ -54,19 +70,27 @@
     <EmbeddedResource Include="Resources\aisling.logo.svg" />
     <EmbeddedResource Include="Resources\ald.headshot.png" />
     <EmbeddedResource Include="Resources\ald.logo.svg" />
+    <EmbeddedResource Include="Resources\aliens-ufo1.svg" />
     <EmbeddedResource Include="Resources\alliance.green.svg" />
     <EmbeddedResource Include="Resources\antal.headshot.png" />
     <EmbeddedResource Include="Resources\antal.logo.svg" />
     <EmbeddedResource Include="Resources\bottom-left.svg" />
+    <EmbeddedResource Include="Resources\combat-fighter2.svg" />
+    <EmbeddedResource Include="Resources\crime.svg" />
     <EmbeddedResource Include="Resources\delaine.headshot.png" />
     <EmbeddedResource Include="Resources\delaine.logo.svg" />
+    <EmbeddedResource Include="Resources\economy-chart.svg" />
     <EmbeddedResource Include="Resources\empire.blue.svg" />
+    <EmbeddedResource Include="Resources\engineer.orange.svg" />
     <EmbeddedResource Include="Resources\engineer.white.svg" />
+    <EmbeddedResource Include="Resources\exploration-planet.svg" />
     <EmbeddedResource Include="Resources\federation.red.svg" />
     <EmbeddedResource Include="Resources\first.svg" />
+    <EmbeddedResource Include="Resources\galnet.orange.svg" />
     <EmbeddedResource Include="Resources\gear.svg" />
     <EmbeddedResource Include="Resources\grom.headshot.png" />
     <EmbeddedResource Include="Resources\grom.logo.svg" />
+    <EmbeddedResource Include="Resources\health.svg" />
     <EmbeddedResource Include="Resources\home.svg" />
     <EmbeddedResource Include="Resources\hudson.headshot.png" />
     <EmbeddedResource Include="Resources\hudson.logo.svg" />
@@ -75,12 +99,20 @@
     <EmbeddedResource Include="Resources\lyr.logo.svg" />
     <EmbeddedResource Include="Resources\mahon.headshot.png" />
     <EmbeddedResource Include="Resources\mahon.logo.svg" />
+    <EmbeddedResource Include="Resources\mining-pick.svg" />
+    <EmbeddedResource Include="Resources\mystery.svg" />
+    <EmbeddedResource Include="Resources\NewsBoW.csv" />
+    <EmbeddedResource Include="Resources\NewsFalseBoW.csv" />
     <EmbeddedResource Include="Resources\patreus.headshot.png" />
     <EmbeddedResource Include="Resources\patreus.logo.svg" />
     <EmbeddedResource Include="Resources\pedestal.svg" />
+    <EmbeddedResource Include="Resources\politics.svg" />
     <EmbeddedResource Include="Resources\PowerDetails.csv" />
     <EmbeddedResource Include="Resources\powerplay.standings.svg" />
+    <EmbeddedResource Include="Resources\religion-ankh.svg" />
+    <EmbeddedResource Include="Resources\science-atom.svg" />
     <EmbeddedResource Include="Resources\second.svg" />
+    <EmbeddedResource Include="Resources\theatre.svg" />
     <EmbeddedResource Include="Resources\third.svg" />
     <EmbeddedResource Include="Resources\top-right.svg" />
     <EmbeddedResource Include="Resources\torval.headshot.png" />
@@ -93,16 +125,13 @@
     <PackageReference Include="Acr.UserDialogs" Version="7.0.35" />
     <PackageReference Include="CsvHelper" Version="12.2.2" />
     <PackageReference Include="MonkeyCache.FileStore" Version="1.3.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
     <PackageReference Include="XamEffects" Version="1.6.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -128,6 +157,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Styles\LightTheme.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\GalNetNewsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\PowerBenefitsPage.xaml">
