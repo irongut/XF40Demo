@@ -86,7 +86,7 @@
 
         <CarouselView ItemsSource="{Binding GalNetNewsList, Mode=OneWay}" 
                       ItemTemplate="{StaticResource galnetTemplate}" 
-                      PeekAreaInsets="80" 
+                      PeekAreaInsets="25" 
                       VerticalOptions="StartAndExpand">
             <CarouselView.ItemsLayout>
                 <LinearItemsLayout SnapPointsType="MandatorySingle" SnapPointsAlignment="Center">
