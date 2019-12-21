@@ -29,6 +29,7 @@
     <None Remove="Resources\engineer.white.svg" />
     <None Remove="Resources\exploration-planet.svg" />
     <None Remove="Resources\federation.red.svg" />
+    <None Remove="Resources\file.svg" />
     <None Remove="Resources\first.svg" />
     <None Remove="Resources\galnet.orange.svg" />
     <None Remove="Resources\gear.svg" />
@@ -85,6 +86,7 @@
     <EmbeddedResource Include="Resources\engineer.white.svg" />
     <EmbeddedResource Include="Resources\exploration-planet.svg" />
     <EmbeddedResource Include="Resources\federation.red.svg" />
+    <EmbeddedResource Include="Resources\file.svg" />
     <EmbeddedResource Include="Resources\first.svg" />
     <EmbeddedResource Include="Resources\galnet.orange.svg" />
     <EmbeddedResource Include="Resources\gear.svg" />
