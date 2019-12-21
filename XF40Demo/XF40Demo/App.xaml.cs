@@ -14,7 +14,7 @@ namespace XF40Demo
         public App()
         {
             InitializeComponent();
-            Device.SetFlags(new[] { "CarouselView_Experimental" });
+            Device.SetFlags(new[] { "CarouselView_Experimental", "IndicatorView_Experimental" });
             ThemeHelper.ChangeTheme(settings.ThemeOption, true);
             MainPage = new AppShell();
         }

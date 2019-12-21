@@ -34,7 +34,7 @@
                 <Frame BorderColor="{DynamicResource brandColor}" 
                        BackgroundColor="{DynamicResource pageForegroundColor}" 
                        CornerRadius="5" 
-                       Margin="10" 
+                       Margin="10, 10, 10, 0" 
                        Padding="15, 10">
          
                     <Grid ColumnSpacing="8" 
@@ -112,7 +112,8 @@
                    Margin="10, 0"/>
         </ContentView>
 
-        <CarouselView ItemsSource="{Binding GalNetNewsList, Mode=OneWay}" 
+        <CarouselView x:Name="newsCarousel" 
+                      ItemsSource="{Binding GalNetNewsList, Mode=OneWay}" 
                       ItemTemplate="{StaticResource galnetTemplate}" 
                       PeekAreaInsets="25" 
                       VerticalOptions="StartAndExpand">
@@ -124,6 +125,12 @@
                 </LinearItemsLayout>
             </CarouselView.ItemsLayout>
         </CarouselView>
+
+        <IndicatorView ItemsSourceBy="newsCarousel" 
+                       IndicatorColor="{DynamicResource brandColor}"
+                       SelectedIndicatorColor="{DynamicResource textColor}"
+                       IndicatorSize="10"
+                       HorizontalOptions="Center"/>
 
         <ContentView BackgroundColor="{DynamicResource brandColor}">
             <Label Text="{Binding Path=LastUpdated, StringFormat='Updated: {0}', Mode=OneWay}" 
