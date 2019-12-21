@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:c="clr-namespace:XF40Demo.Convertors"
+             xmlns:m="clr-namespace:XF40Demo.Models"
+             xmlns:vm="clr-namespace:XF40Demo.ViewModels"
+             mc:Ignorable="d"
+             x:Class="XF40Demo.Views.GalNetNewsPage"
+             x:DataType="vm:GalNetNewsViewModel"
+             Title="Galactic Standings"
+             BackgroundColor="{DynamicResource pageBackgroundColor}">
+
+    <ContentPage.Resources>
+
+        <c:NewsTopicToImage x:Key="topicImage"/>
+
+        <DataTemplate x:Key="tagsTemplate" x:DataType="x:String">
+            <Frame BackgroundColor="{DynamicResource brandColor}" 
+                   BorderColor="{DynamicResource brandColor}" 
+                   CornerRadius="5" 
+                   Padding="5, 3">
+                <Label Text="{Binding }" 
+                       LineBreakMode="NoWrap" 
+                       TextColor="{StaticResource altTextColor}"/>
+            </Frame>
+        </DataTemplate>
+
+        <DataTemplate x:Key="galnetTemplate" x:DataType="m:NewsItem">
+            <ContentView>
+
+                <Frame BorderColor="{DynamicResource brandColor}" 
+                       BackgroundColor="{DynamicResource pageForegroundColor}" 
+                       CornerRadius="5" 
+                       Margin="10, 10, 10, 0" 
+                       Padding="15, 10">
+         
+                    <Grid ColumnSpacing="8" 
+                          RowSpacing="0" 
+                          HorizontalOptions="Fill">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="9"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="60"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ffsvg:SvgCachedImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+                                              Source="{Binding Path=Topic, Converter={StaticResource topicImage}, Mode=OneWay}" 
+                                              HeightRequest="60" 
+                                              HorizontalOptions="Center"
+                                              VerticalOptions="Center"/>
+
+                        <Label Grid.Row="0" Grid.Column="1"
+                               Text="{Binding Title, Mode=OneWay}"
+                               TextColor="{DynamicResource strongTextColor}"
+                               FontSize="Medium"
+                               MaxLines="2"
+                               LineBreakMode="TailTruncation"
+                               HorizontalOptions="Start"/>
+
+                        <Label Grid.Row="1" Grid.Column="1"
+                               Text="{Binding PublishDate, Mode=OneWay}"
+                               TextColor="{DynamicResource textColor}"
+                               HorizontalOptions="Start"/>
+
+
+                        <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                                     BindableLayout.ItemTemplate="{StaticResource tagsTemplate}"
+                                     BindableLayout.ItemsSource="{Binding Tags, Mode=OneWay}"
+                                     Orientation="Horizontal"
+                                     Spacing="6"
+                                     VerticalOptions="Center"
+                                     Padding="0, 8"
+                                     CompressedLayout.IsHeadless="True"/>
+
+                        <BoxView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" 
+                                 Color="{DynamicResource brandColor}" 
+                                 HeightRequest="1" 
+                                 HorizontalOptions="Fill" 
+                                 Margin="0, 3, 0, 5"/>
+                        
+                        <ScrollView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Label Text="{Binding Body, Mode=OneWay}" 
+                                   TextColor="{DynamicResource textColor}"/>
+                        </ScrollView>
+                        
+                    </Grid>
+                    
+                </Frame>
+                
+            </ContentView>
+        </DataTemplate>
+
+    </ContentPage.Resources>
+
+    <StackLayout Orientation="Vertical" 
+                 Spacing="10" 
+                 CompressedLayout.IsHeadless="True">
+
+        <ContentView BackgroundColor="{DynamicResource brandColor}">
+            <Label Text="GalNet News" 
+                   HorizontalOptions="Start" 
+                   TextColor="{StaticResource altTextColor}" 
+                   Margin="10, 0"/>
+        </ContentView>
+
+        <CarouselView x:Name="newsCarousel" 
+                      ItemsSource="{Binding GalNetNewsList, Mode=OneWay}" 
+                      ItemTemplate="{StaticResource galnetTemplate}" 
+                      PeekAreaInsets="25" 
+                      VerticalOptions="StartAndExpand">
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout SnapPointsType="MandatorySingle" SnapPointsAlignment="Center">
+                    <x:Arguments>
+                        <ItemsLayoutOrientation>Horizontal</ItemsLayoutOrientation>
+                    </x:Arguments>
+                </LinearItemsLayout>
+            </CarouselView.ItemsLayout>
+        </CarouselView>
+
+        <IndicatorView ItemsSourceBy="newsCarousel" 
+                       IndicatorColor="{DynamicResource brandColor}"
+                       SelectedIndicatorColor="{DynamicResource textColor}"
+                       IndicatorSize="10"
+                       HorizontalOptions="Center"/>
+
+        <ContentView BackgroundColor="{DynamicResource brandColor}">
+            <Label Text="{Binding Path=LastUpdated, StringFormat='Updated: {0}', Mode=OneWay}" 
+                   HorizontalOptions="End" 
+                   TextColor="{StaticResource altTextColor}" 
+                   Margin="10, 0"/>
+        </ContentView>
+
+    </StackLayout>
+
+</ContentPage>

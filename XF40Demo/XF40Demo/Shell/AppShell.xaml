@@ -100,6 +100,11 @@
                   ContentTemplate="{DataTemplate v:StandingsPage}"
                   Style="{DynamicResource BaseStyle}"/>
 
+    <ShellContent Title="GalNet News" 
+                  Route="galnetNews" 
+                  ContentTemplate="{DataTemplate v:GalNetNewsPage}"
+                  Style="{DynamicResource BaseStyle}"/>
+
     <ShellContent Route="settings" 
                   Title="Settings" 
                   ContentTemplate="{DataTemplate v:SettingsPage}"

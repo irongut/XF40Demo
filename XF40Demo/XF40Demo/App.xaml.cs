@@ -2,6 +2,7 @@
 using Xamarin.Forms.Xaml;
 using XF40Demo.Helpers;
 using XF40Demo.Services;
+using XF40Demo.Shell;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XF40Demo
@@ -13,8 +14,9 @@ namespace XF40Demo
         public App()
         {
             InitializeComponent();
+            Device.SetFlags(new[] { "CarouselView_Experimental", "IndicatorView_Experimental" });
             ThemeHelper.ChangeTheme(settings.ThemeOption, true);
-            MainPage = new Shell.AppShell();
+            MainPage = new AppShell();
         }
 
         protected override void OnStart()
