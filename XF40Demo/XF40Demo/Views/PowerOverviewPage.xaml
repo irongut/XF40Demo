@@ -231,7 +231,7 @@
 
         <StackLayout Orientation="Horizontal" 
                      Spacing="10" 
-                     BackgroundColor="{StaticResource brandColor}">
+                     BackgroundColor="{DynamicResource brandColor}">
             <Label Text="{Binding Cycle, Mode=OneWay}" 
                    HorizontalOptions="Start" 
                    TextColor="{StaticResource altTextColor}" 
