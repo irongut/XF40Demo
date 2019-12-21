@@ -68,6 +68,13 @@ namespace XF40Demo.Helpers
             }
         }
 
+        public static void SetThemeColor(string colorName, Color color)
+        {
+            if (Application.Current.Resources.ContainsKey(colorName)) {
+                Application.Current.Resources[colorName] = color;
+            }
+        }
+
         private static void ManuallyCopyThemes(ResourceDictionary fromResource, ResourceDictionary toResource)
         {
             foreach (var item in fromResource.Keys)
