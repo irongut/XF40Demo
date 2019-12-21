@@ -15,7 +15,6 @@
         <ResourceDictionary>
 
             <c:BoolToInverse x:Key="inverseBool"/>
-            <c:CycleImminentToColour x:Key="imminentColour"/>
 
             <DataTemplate x:Key="powerTemplate" x:DataType="models:PowerStanding">
                 <v:PowerView Power="{Binding , Mode=OneWay}"
@@ -29,7 +28,7 @@
 
     <StackLayout CompressedLayout.IsHeadless="True">
 
-        <ContentView BackgroundColor="{Binding Path=CycleImminent, Converter={StaticResource imminentColour}, Mode=OneWay}"
+        <ContentView BackgroundColor="{Binding TimeRemainingColor, Mode=OneWay}"
                      IsVisible="{Binding ShowTimeRemaining, Mode=OneWay}"
                      Padding="0, 0, 0, 2">
             <Label Text="{Binding Path=TimeRemaining, StringFormat='Next Cycle: {0}', Mode=OneWay}" 

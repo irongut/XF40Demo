@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using XF40Demo.Helpers;
 using XF40Demo.Models;
 using XF40Demo.Services;
 
@@ -35,6 +36,20 @@ namespace XF40Demo.ViewModels
                 {
                     _timeRemaining = value;
                     OnPropertyChanged(nameof(TimeRemaining));
+                }
+            }
+        }
+
+        private Color _timeRemainingColor;
+        public Color TimeRemainingColor
+        {
+            get { return _timeRemainingColor; }
+            private set
+            {
+                if (_timeRemainingColor != value)
+                {
+                    _timeRemainingColor = value;
+                    OnPropertyChanged(nameof(TimeRemainingColor));
                 }
             }
         }
@@ -228,9 +243,18 @@ namespace XF40Demo.ViewModels
 
         private void UpdateTimeRemaining()
         {
-            ShowTimeRemaining = !settings.OnlyShowNextCycleWhenImminent || CycleService.CycleImminent();
             TimeRemaining = CycleService.TimeRemaining();
             CycleImminent = CycleService.CycleImminent();
+            if (CycleImminent)
+            {
+                TimeRemainingColor = Color.DarkRed;
+            }
+            else
+            {
+                TimeRemainingColor = ThemeHelper.GetThemeColor("brandColor");
+            }
+            ShowTimeRemaining = !settings.OnlyShowNextCycleWhenImminent || CycleService.CycleImminent();
+
             if (pageVisible && (CycleImminent || DateTime.UtcNow.Minute == 59))
             {
                 Device.StartTimer(TimeSpan.FromSeconds(60 - DateTime.UtcNow.Second), () =>
