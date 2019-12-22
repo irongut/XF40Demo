@@ -79,6 +79,14 @@ namespace XF40Demo.Views
             set { SetValue(TextAttributesProperty, value); }
         }
 
+        public static BindableProperty TextTypeProperty = BindableProperty.Create(nameof(TextType), typeof(TextType), typeof(FramedTextView), TextType.Text);
+
+        public TextType TextType
+        {
+            get { return (TextType)GetValue(TextTypeProperty); }
+            set { SetValue(TextTypeProperty, value); }
+        }
+
         #endregion
 
         public FramedTextView()

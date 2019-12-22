@@ -51,6 +51,7 @@
                                   TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   TitleAttributes="Bold"
                                   Text="{Binding PowerDetails.HQSystemEffect, Mode=OneWay}"
+                                  TextType="Html"
                                   TextColour="{DynamicResource textColor}"
                                   BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   BorderRadius="5"
@@ -60,6 +61,7 @@
                                   TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   TitleAttributes="Bold"
                                   Text="{Binding PowerDetails.ControlSystemEffect, Mode=OneWay}"
+                                  TextType="Html"
                                   TextColour="{DynamicResource textColor}"
                                   BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   BorderRadius="5"/>
@@ -68,6 +70,7 @@
                                   TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   TitleAttributes="Bold"
                                   Text="{Binding PowerDetails.AllianceExploitedEffect, Mode=OneWay}"
+                                  TextType="Html"
                                   TextColour="{DynamicResource textColor}"
                                   BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   BorderRadius="5"/>
@@ -76,6 +79,7 @@
                                   TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   TitleAttributes="Bold"
                                   Text="{Binding PowerDetails.EmpireExploitedEffect, Mode=OneWay}"
+                                  TextType="Html"
                                   TextColour="{DynamicResource textColor}"
                                   BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   BorderRadius="5"/>
@@ -84,6 +88,7 @@
                                   TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   TitleAttributes="Bold"
                                   Text="{Binding PowerDetails.FederationExploitedEffect, Mode=OneWay}"
+                                  TextType="Html"
                                   TextColour="{DynamicResource textColor}"
                                   BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   BorderRadius="5"/>
@@ -92,6 +97,7 @@
                                   TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   TitleAttributes="Bold"
                                   Text="{Binding PowerDetails.IndependentExploitedEffect, Mode=OneWay}"
+                                  TextType="Html"
                                   TextColour="{DynamicResource textColor}"
                                   BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   BorderRadius="5"/>
@@ -100,6 +106,7 @@
                                   TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   TitleAttributes="Bold"
                                   Text="{Binding PowerDetails.Rating1, Mode=OneWay}"
+                                  TextType="Html"
                                   TextColour="{DynamicResource textColor}"
                                   BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   BorderRadius="5"/>
@@ -108,6 +115,7 @@
                                   TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   TitleAttributes="Bold"
                                   Text="{Binding PowerDetails.Rating2, Mode=OneWay}"
+                                  TextType="Html"
                                   TextColour="{DynamicResource textColor}"
                                   BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   BorderRadius="5"/>
@@ -116,6 +124,7 @@
                                   TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   TitleAttributes="Bold"
                                   Text="{Binding PowerDetails.Rating3, Mode=OneWay}"
+                                  TextType="Html"
                                   TextColour="{DynamicResource textColor}"
                                   BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   BorderRadius="5"/>
@@ -124,6 +133,7 @@
                                   TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   TitleAttributes="Bold"
                                   Text="{Binding PowerDetails.Rating4, Mode=OneWay}"
+                                  TextType="Html"
                                   TextColour="{DynamicResource textColor}"
                                   BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   BorderRadius="5"/>
@@ -132,6 +142,7 @@
                                   TitleColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   TitleAttributes="Bold"
                                   Text="{Binding PowerDetails.Rating5, Mode=OneWay}"
+                                  TextType="Html"
                                   TextColour="{DynamicResource textColor}"
                                   BorderColour="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}"
                                   BorderRadius="5"/>

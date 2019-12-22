@@ -150,8 +150,8 @@ namespace XF40Demo.ViewModels
                 await GetPowerList().ConfigureAwait(false);
             }
             PowerDetails = powerList.Find(x => x.ShortName.Equals(standing.ShortName));
-            ExpandText = String.Format("{0} \n\nStrong Against: {1} \nWeak Against: {2}", _powerDetails.ExpansionText, _powerDetails.ExpansionStrongGovernment, _powerDetails.ExpansionWeakGovernment);
-            ControlText = String.Format("{0} \n\nStrong Against: {1} \nWeak Against: {2}", _powerDetails.ControlText, _powerDetails.ControlStrongGovernment, _powerDetails.ControlWeakGovernment);
+            ExpandText = String.Format("{0}<br/><p>Strong Against: {1}<br/>Weak Against: {2}</p>", _powerDetails.ExpansionText, _powerDetails.ExpansionStrongGovernment, _powerDetails.ExpansionWeakGovernment);
+            ControlText = String.Format("{0}<br/><p>Strong Against: {1}<br/>Weak Against: {2}</p>", _powerDetails.ControlText, _powerDetails.ControlStrongGovernment, _powerDetails.ControlWeakGovernment);
         }
 
         private async Task GetPowerList()
