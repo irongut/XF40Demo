@@ -9,9 +9,10 @@
              Padding="10, 20, 10, 10">
 
     <StackLayout Spacing="50">
-        
-        <Label Text="Welcome to Xamarin.Forms 4!" 
+
+        <Label Text="&lt;h1 style=&quot;text-align: center&quot;&gt;XF40Demo&lt;/h1&gt;&lt;br/&gt;Welcome to Xamarin.Forms 4!" 
                TextColor="{DynamicResource textColor}"
+               TextType="Html"
                HorizontalOptions="Center"/>
 
         <Button Text="Toast Test" 
@@ -22,14 +23,23 @@
                 CornerRadius="5"
                 Padding="30, 0"/>
 
-        <Label Text="Home Page" 
+        <Label Text="&lt;p style=&quot;text-decoration: line-through; background-color: black;&quot;&gt;Home Page&lt;/p&gt;" 
                TextColor="{DynamicResource textColor}"
+               TextType="Html"
                FontSize="Large"
                HorizontalOptions="Center"
                VerticalOptions="CenterAndExpand"/>
 
-        <Label Text="This app contains icons made by Freepik from www.flaticon.com"
+        <Label Text="&lt;b&gt;Lorem ipsum&lt;/b&gt; &lt;span style=&quot;color: yellow&quot;&gt;dolor sit amet&lt;/span&gt;, &lt;i&gt;consectetur adipiscing elit&lt;/i&gt;. Integer non augue &lt;del&gt;id magna ornare&lt;/del&gt; &lt;small&gt;gravida et id massa.&lt;/small&gt; &lt;sub&gt;Vestibulum&lt;/sub&gt; eu aliquet ex. &lt;sup&gt;Cras non ex&lt;/sup&gt; at ex &lt;mark&gt;vestibulum malesuada&lt;/mark&gt; quis eu dolor."
                TextColor="{DynamicResource textColor}"
+               TextType="Html"
+               LineBreakMode="WordWrap"
+               VerticalOptions="Center"
+               HorizontalTextAlignment="Center"/>
+
+        <Label Text="This app contains icons made by &lt;b&gt;Freepik&lt;/b&gt; from &lt;a href=&quot;www.flaticon.com&quot;&gt;www.flaticon.com&lt;/a&gt;"
+               TextColor="{DynamicResource textColor}"
+               TextType="Html"
                LineBreakMode="WordWrap"
                VerticalOptions="Center"
                HorizontalTextAlignment="Center"/>
