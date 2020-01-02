@@ -25,6 +25,8 @@ steps:
     projectFile: '**/*droid*.csproj'
     outputDirectory: '$(outputDirectory)'
     configuration: '$(buildConfiguration)'
+    clean: true
+    msbuildVersion: latest
 
 # run unit tests
 - task: DotNetCoreCLI@2
