@@ -58,6 +58,7 @@
     <None Remove="Resources\science-atom.svg" />
     <None Remove="Resources\second.svg" />
     <None Remove="Resources\theatre.svg" />
+    <None Remove="Resources\thermometer.svg" />
     <None Remove="Resources\third.svg" />
     <None Remove="Resources\top-right.svg" />
     <None Remove="Resources\torval.headshot.png" />
@@ -115,6 +116,7 @@
     <EmbeddedResource Include="Resources\science-atom.svg" />
     <EmbeddedResource Include="Resources\second.svg" />
     <EmbeddedResource Include="Resources\theatre.svg" />
+    <EmbeddedResource Include="Resources\thermometer.svg" />
     <EmbeddedResource Include="Resources\third.svg" />
     <EmbeddedResource Include="Resources\top-right.svg" />
     <EmbeddedResource Include="Resources\torval.headshot.png" />
@@ -162,6 +164,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\GalNetNewsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\MarsWeatherPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\PowerBenefitsPage.xaml">

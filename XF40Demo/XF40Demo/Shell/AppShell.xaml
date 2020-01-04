@@ -62,8 +62,8 @@
                   ContentTemplate="{DataTemplate v:MainPage}"
                   Style="{DynamicResource BaseStyle}"/>
     
-    <ShellItem Title="Bottom Tabs" 
-               Route="bottom"
+    <ShellItem Route="bottom"
+               Title="Bottom Tabs" 
                Style="{DynamicResource BaseStyle}">
         <ShellContent Route="tab1" 
                       Title="Tab 1" 
@@ -79,30 +79,35 @@
                       ContentTemplate="{DataTemplate v:Tab3Page}"/>
     </ShellItem>
 
-    <ShellItem Title="Top Tabs"
-               Route="top"
+    <ShellItem Route="top"
+               Title="Top Tabs"               
                Style="{DynamicResource BaseStyle}">
         <ShellSection>
-            <ShellContent Title="Tab 1" 
-                          Route="tab1" 
+            <ShellContent Route="tab1" 
+                          Title="Tab 1" 
                           ContentTemplate="{DataTemplate v:Tab1Page}"/>
-            <ShellContent Title="Tab 2" 
-                          Route="tab2" 
+            <ShellContent Route="tab2" 
+                          Title="Tab 2" 
                           ContentTemplate="{DataTemplate v:Tab2Page}"/>
-            <ShellContent Title="Tab 3" 
-                          Route="tab3" 
+            <ShellContent Route="tab3" 
+                          Title="Tab 3" 
                           ContentTemplate="{DataTemplate v:Tab3Page}"/>
         </ShellSection>
     </ShellItem>
 
-    <ShellContent Title="Galactic Standings" 
-                  Route="galacticStandings" 
+    <ShellContent Route="galacticStandings" 
+                  Title="Galactic Standings" 
                   ContentTemplate="{DataTemplate v:StandingsPage}"
                   Style="{DynamicResource BaseStyle}"/>
 
-    <ShellContent Title="GalNet News" 
-                  Route="galnetNews" 
+    <ShellContent Route="galnetNews" 
+                  Title="GalNet News" 
                   ContentTemplate="{DataTemplate v:GalNetNewsPage}"
+                  Style="{DynamicResource BaseStyle}"/>
+
+    <ShellContent Route="marsWeather" 
+                  Title="Mars Weather" 
+                  ContentTemplate="{DataTemplate v:MarsWeatherPage}"
                   Style="{DynamicResource BaseStyle}"/>
 
     <ShellContent Route="settings" 
