@@ -17,7 +17,7 @@ namespace XF40Demo.ViewModels
 
         protected override void RefreshView()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
