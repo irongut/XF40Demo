@@ -1,14 +1,1 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="256" y1="514" x2="256" y2="2" gradientTransform="matrix(1 0 0 -1 0 514)">
-	<stop  offset="0" style="stop-color:#2AF598"/>
-	<stop  offset="1" style="stop-color:#009EFD"/>
-</linearGradient>
-<path style="fill:url(#SVGID_1_);" d="M452,80h-20V60c0-33.084-26.916-60-60-60H60C26.916,0,0,26.916,0,60v312
-	c0,33.084,26.916,60,60,60h20v20c0,33.084,26.916,60,60,60h229.828L512,369.145V140C512,106.916,485.084,80,452,80z M60,392
-	c-11.028,0-20-8.972-20-20V60c0-11.028,8.972-20,20-20h312c11.028,0,20,8.972,20,20v20H140c-33.084,0-60,26.916-60,60v252H60z
-	 M120,452V140c0-11.028,8.972-20,20-20h312c11.028,0,20,8.972,20,20v200.889h-70.111c-33.084,0-60,26.916-60,60V472H140
-	C128.972,472,120,463.028,120,452z M443.879,380.889l-61.99,62.288v-42.288c0-11.028,8.972-20,20-20H443.879z M412,220H180v-40h232
-	V220z M412,300H180v-40h232V300z M302,340v40H180v-40H302z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="Capa_1" x="0" y="0" enable-background="new 0 0 512 512" version="1.1" viewBox="0 0 512 512" xml:space="preserve"><linearGradient id="SVGID_1_" x1="256" x2="256" y1="514" y2="2" gradientTransform="matrix(1 0 0 -1 0 514)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2AF598"/><stop offset="1" stop-color="#009EFD"/></linearGradient><path fill="url(#SVGID_1_)" d="M452,80h-20V60c0-33.084-26.916-60-60-60H60C26.916,0,0,26.916,0,60v312	c0,33.084,26.916,60,60,60h20v20c0,33.084,26.916,60,60,60h229.828L512,369.145V140C512,106.916,485.084,80,452,80z M60,392	c-11.028,0-20-8.972-20-20V60c0-11.028,8.972-20,20-20h312c11.028,0,20,8.972,20,20v20H140c-33.084,0-60,26.916-60,60v252H60z M120,452V140c0-11.028,8.972-20,20-20h312c11.028,0,20,8.972,20,20v200.889h-70.111c-33.084,0-60,26.916-60,60V472H140	C128.972,472,120,463.028,120,452z M443.879,380.889l-61.99,62.288v-42.288c0-11.028,8.972-20,20-20H443.879z M412,220H180v-40h232	V220z M412,300H180v-40h232V300z M302,340v40H180v-40H302z"/></svg>
