@@ -125,7 +125,7 @@
 
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.0.35" />
-    <PackageReference Include="CsvHelper" Version="12.3.2" />
+    <PackageReference Include="CsvHelper" Version="13.0.0" />
     <PackageReference Include="MonkeyCache.FileStore" Version="1.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
