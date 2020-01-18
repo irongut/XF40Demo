@@ -23,3 +23,4 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Formatting", "RCS1057:Add empty line between declarations.", Justification = "<Pending>", Scope = "type", Target = "~T:XF40Demo.Models.NewsItem")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Formatting", "RCS1057:Add empty line between declarations.", Justification = "<Pending>", Scope = "type", Target = "~T:XF40Demo.ViewModels.GalNetNewsViewModel")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0017:Simplify object initialization", Justification = "<Pending>", Scope = "type", Target = "~T:XF40Demo.Services.StandingsService")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Readability", "RCS1239:Use 'for' statement instead of 'while' statement.", Justification = "<Pending>", Scope = "member", Target = "~M:XF40Demo.Services.StandingsService.GetData(System.Threading.CancellationTokenSource,System.Boolean)~System.Threading.Tasks.Task{System.}")]

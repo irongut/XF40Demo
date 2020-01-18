@@ -3,6 +3,7 @@ using CsvHelper;
 using CsvHelper.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -167,7 +168,7 @@ namespace XF40Demo.ViewModels
                     {
                         using (StreamReader reader = new StreamReader(stream))
                         {
-                            Configuration csvConfig = new Configuration
+                            CsvConfiguration csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
                             {
                                 Delimiter = ","
                             };
