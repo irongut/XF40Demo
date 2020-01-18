@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Globalization;
 
 namespace XF40Demo.Services
 {
@@ -43,8 +44,10 @@ namespace XF40Demo.Services
 
             // parse the csv
             List<PowerStanding> standingList = new List<PowerStanding>();
-            Configuration csvConfig = new Configuration();
-            csvConfig.Delimiter = ",";
+            CsvConfiguration csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                Delimiter = ","
+            };
             using (CsvReader csv = new CsvReader(new StringReader(csvText), csvConfig))
             {
                 int i = 0;
