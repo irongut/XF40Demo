@@ -12,3 +12,4 @@ Experiments with new & preview features in Xamarin Forms 4.x and Azure DevOps Pi
 
 **Relevant Visual Studio Release Blogs**
 * [VS 2019 v16.4 - HotReload, Android App Bundle & AndroidX](https://devblogs.microsoft.com/xamarin/visual-studio-2019-version-16-4/)
+* [VS 2019 v16.5 Preview - HotRestart, Apply Changes & Improved Startup Tracing (AOT)](https://devblogs.microsoft.com/xamarin/visual-studio-2019-version-16-5-preview-2/)
