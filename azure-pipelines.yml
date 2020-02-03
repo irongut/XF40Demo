@@ -1,6 +1,5 @@
-# Xamarin.Android
-# Build a Xamarin.Android project.
-# Add steps that test, sign, and distribute an app, save build artifacts, and more:
+# XF40Demo Xamarin.Forms Android pipeline
+# https://github.com/irongut/XF40Demo
 # https://docs.microsoft.com/azure/devops/pipelines/languages/xamarin
 
 trigger:
@@ -10,16 +9,21 @@ pool:
   vmImage: 'windows-2019'
 
 variables:
-  buildConfiguration: 'Release'
-  outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+- group: xf40demo-variables
 
+# setup + restore nugets
 steps:
 - task: NuGetToolInstaller@0
-
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '**/*.sln'
 
+# get keystore
+- task: DownloadSecureFile@1
+  inputs:
+    secureFile: '$(keystore-filename)'
+
+# build app
 - task: XamarinAndroid@1
   inputs:
     projectFile: '**/*droid*.csproj'
@@ -34,4 +38,13 @@ steps:
     command: test
     projects: '**/*Tests/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
-    
+
+# sign app
+- task: AndroidSigning@3
+  inputs:
+    apkFiles: '**/*.aab'
+    apksignerKeystoreFile: '$(keystore-filename)'
+    apksignerKeystorePassword: '$(keystore-password)'
+    apksignerKeystoreAlias: '$(keystore-alias)'
+    apksignerKeyPassword: '$(keystore-password)'
+    apksignerArguments: '$(signer-arguments)'
