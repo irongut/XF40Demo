@@ -52,7 +52,7 @@ steps:
 # copy to staging folder
 - task: CopyFiles@2
   inputs:
-    Contents: '**/*-Signed.aab'
+    Contents: '**/*.aab'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     CleanTargetFolder: true
     flattenFolders: true
