@@ -48,3 +48,19 @@ steps:
     apksignerKeystoreAlias: '$(keystore-alias)'
     apksignerKeyPassword: '$(keystore-password)'
     apksignerArguments: '$(signer-arguments)'
+
+# copy to staging folder
+- task: CopyFiles@2
+  inputs:
+    Contents: '**/*-Signed.aab'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    CleanTargetFolder: true
+    flattenFolders: true
+    preserveTimestamp: true
+
+# publish build artifact
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'releaseBuild'
+    publishLocation: 'Container'
