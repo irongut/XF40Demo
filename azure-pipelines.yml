@@ -26,7 +26,7 @@ steps:
 # set build version details
 - task: android-manifest-version@1
   inputs:
-    sourcePath: '**/AndroidManifest.xml'
+    sourcePath: '$(Build.Repository.LocalPath)/XF40Demo/XF40Demo.Android/Properties/AndroidManifest.xml'
     versionCodeOption: 'buildid'
     versionCode: '$(Build.BuildId)'
     versionName: '$(Build.BuildId).$(Build.BuildNumber)'
