@@ -23,6 +23,15 @@ steps:
   inputs:
     secureFile: '$(keystore-filename)'
 
+# set build version details
+- task: android-manifest-version@1
+  inputs:
+    sourcePath: '**/*droid/Properties/AndroidManifest.xml'
+    versionCodeOption: 'buildid'
+    versionCode: '$(Build.BuildId)'
+    versionName: '$(Build.BuildId).$(Build.BuildNumber)'
+    printFile: true
+
 # build app
 - task: XamarinAndroid@1
   inputs:
