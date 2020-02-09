@@ -73,3 +73,16 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'releaseBuild'
     publishLocation: 'Container'
+
+# publish to GitHub releases
+- task: GitHubRelease@1
+  inputs:
+    gitHubConnection: 'irongut'
+    repositoryName: '$(Build.Repository.Name)'
+    action: 'create'
+    target: '$(Build.SourceVersion)'
+    tagSource: 'userSpecifiedTag'
+    tag: '$(Build.BuildId).$(Build.BuildNumber)'
+    isPreRelease: true
+    changeLogCompareToRelease: 'lastNonDraftRelease'
+    changeLogType: 'commitBased'
