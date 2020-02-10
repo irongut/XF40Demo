@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:h="clr-namespace:XF40Demo.Helpers"
              xmlns:vm="clr-namespace:XF40Demo.ViewModels"
              x:Class="XF40Demo.Views.MarsWeatherPage"
              x:DataType="vm:MarsWeatherViewModel"
@@ -92,10 +93,18 @@
                    HorizontalOptions="Center">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="v"/>
-                        <Span Text="{Binding Path=LatestWeather.AtmosphericTemp.Min, StringFormat='{0:N2}', Mode=OneWay}"/>
-                        <Span Text=" °F ^"/>
-                        <Span Text="{Binding Path=LatestWeather.AtmosphericTemp.Max, StringFormat='{0:N2}', Mode=OneWay}"/>
+                        <Span Text="{x:Static h:FA5FreeSolid.ThermometerQuarter}"
+                              Style="{StaticResource FA-Solid}"
+                              TextColor="LightBlue"
+                              FontSize="Large"/>
+                        <Span Text="{Binding Path=LatestWeather.AtmosphericTemp.Min, StringFormat=' {0:N2}', Mode=OneWay}"/>
+                        <Span Text=" °F"/>
+                        <Span Text="   "/>
+                        <Span Text="{x:Static h:FA5FreeSolid.ThermometerFull}"
+                              Style="{StaticResource FA-Solid}"
+                              TextColor="Red"
+                              FontSize="Large"/>
+                        <Span Text="{Binding Path=LatestWeather.AtmosphericTemp.Max, StringFormat=' {0:N2}', Mode=OneWay}"/>
                         <Span Text=" °F"/>
                     </FormattedString>
                 </Label.FormattedText>
