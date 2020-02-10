@@ -12,7 +12,6 @@
              x:DataType="v:PowerView">
 
     <ContentView.Resources>
-
         <ResourceDictionary>
 
             <c:FactionToColour x:Key="factionColour"/>

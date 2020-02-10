@@ -5,11 +5,83 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:h="clr-namespace:XF40Demo.Helpers"
+             xmlns:m="clr-namespace:XF40Demo.Models"
              xmlns:vm="clr-namespace:XF40Demo.ViewModels"
              x:Class="XF40Demo.Views.MarsWeatherPage"
              x:DataType="vm:MarsWeatherViewModel"
              Title="Mars Weather"
              BackgroundColor="{DynamicResource pageBackgroundColor}">
+
+    <ContentPage.Resources>
+
+        <DataTemplate x:Key="dayTemplate" x:DataType="m:MartianDay">
+            <ContentView Padding="7, 0">
+                <Frame BackgroundColor="{DynamicResource pageForegroundColor}"
+                   BorderColor="OrangeRed"
+                   CornerRadius="5"
+                   Padding="15, 0">
+                    <Grid RowSpacing="3"
+                      VerticalOptions="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="12"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0"
+                               Text="{Binding Path=Sol, StringFormat='Sol {0}', Mode=OneWay}"
+                               TextColor="{DynamicResource textColor}"
+                               HorizontalOptions="Center"/>
+
+                        <Label Grid.Row="1"
+                               Text="{Binding Path=LastUTC, StringFormat='{0:M}', Mode=OneWay}"
+                               TextColor="{DynamicResource textColor}"
+                               HorizontalOptions="Center"/>
+
+                        <BoxView Grid.Row="2"
+                                 Color="OrangeRed"
+                                 HeightRequest="2"
+                                 HorizontalOptions="Fill"
+                                 Margin="0, 5, 0, 5"/>
+
+                        <Label Grid.Row="3"
+                               TextColor="{DynamicResource textColor}"
+                               HorizontalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static h:FA5FreeSolid.ThermometerQuarter}"
+                                          Style="{StaticResource FA-Solid}"
+                                          TextColor="LightBlue"
+                                          FontSize="Large"/>
+                                    <Span Text="{Binding Path=AtmosphericTemp.Min, StringFormat=' {0:N2}', Mode=OneWay}"/>
+                                    <Span Text=" °F"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                        <Label Grid.Row="4"
+                               TextColor="{DynamicResource textColor}"
+                               HorizontalOptions="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{x:Static h:FA5FreeSolid.ThermometerFull}"
+                                          Style="{StaticResource FA-Solid}"
+                                          TextColor="Red"
+                                          FontSize="Large"/>
+                                    <Span Text="{Binding Path=AtmosphericTemp.Max, StringFormat=' {0:N2}', Mode=OneWay}"/>
+                                    <Span Text=" °F"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                    </Grid>
+                </Frame>
+            </ContentView>
+        </DataTemplate>
+        
+    </ContentPage.Resources>
 
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
@@ -172,12 +244,13 @@
 
         <!-- recent days -->
 
-        <!--<CollectionView Grid.Row="3"
-                        ItemTemplate=""
-                        ItemsSource=""
-                        ItemSizingStrategy="MeasureFirstItem"
+        <CollectionView Grid.Row="3"
+                        ItemTemplate="{StaticResource dayTemplate}"
+                        ItemsSource="{Binding MarsWeather, Mode=OneWay}"
+                        ItemSizingStrategy="MeasureAllItems"
                         ItemsLayout="HorizontalList"
-                        Margin="10, 5"/>-->
+                        HeightRequest="130"
+                        Margin="5, 5, 5, 10"/>
 
     </Grid>
     
