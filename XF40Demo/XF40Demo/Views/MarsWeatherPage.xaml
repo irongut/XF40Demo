@@ -42,9 +42,15 @@
                    FontSize="32"/>
 
             <Label Grid.Row="1" Grid.Column="0"
-                   Text="Sol 388 - December 29"
                    TextColor="{DynamicResource strongTextColor}"
-                   FontSize="Large"/>
+                   FontSize="Large">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding Path=LatestWeather.Sol, StringFormat='Sol {0} -', Mode=OneWay}"/>
+                        <Span Text="{Binding Path=LatestWeather.LastUTC, StringFormat=' {0:M}', Mode=OneWay}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
 
             <CheckBox Grid.Row="0" Grid.Column="1"
                       IsChecked="False"
@@ -75,18 +81,27 @@
                      Spacing="5"
                      HorizontalOptions="Center"
                      VerticalOptions="Center">
-            
-            <Label Text="-65°F"
+
+            <Label Text="{Binding Path=LatestWeather.AtmosphericTemp.Average, StringFormat='{0:N2} °F', Mode=OneWay}"
                    TextColor="{DynamicResource strongTextColor}"
                    FontSize="42"
                    HorizontalOptions="Center"/>
-            
-            <Label Text="v-98°F ^-17°F"
-                   TextColor="{DynamicResource textColor}"
+
+            <Label TextColor="{DynamicResource textColor}"
                    FontSize="Medium"
-                   HorizontalOptions="Center"/>
+                   HorizontalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="v"/>
+                        <Span Text="{Binding Path=LatestWeather.AtmosphericTemp.Min, StringFormat='{0:N2}', Mode=OneWay}"/>
+                        <Span Text=" °F ^"/>
+                        <Span Text="{Binding Path=LatestWeather.AtmosphericTemp.Max, StringFormat='{0:N2}', Mode=OneWay}"/>
+                        <Span Text=" °F"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
             
-            <Label Text="Spring"
+            <Label Text="{Binding LatestWeather.Season, Mode=OneWay}"
                    TextColor="{DynamicResource textColor}"
                    FontSize="Medium"
                    HorizontalOptions="Center"/>
@@ -110,7 +125,7 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0"
-                   Text="5.6 m/s"
+                   Text="{Binding Path=LatestWeather.HorizontalWindSpeed.Average, StringFormat='{0:N2} m/s', Mode=OneWay}"
                    TextColor="{DynamicResource strongTextColor}"
                    FontSize="Large"
                    HorizontalOptions="Center"/>
@@ -122,7 +137,7 @@
                    HorizontalOptions="Center"/>
 
             <Label Grid.Row="0" Grid.Column="1"
-                   Text="SSE"
+                   Text="{Binding LatestWeather.WindDirection.MostCommon.CompassPointName, Mode=OneWay}"
                    TextColor="{DynamicResource strongTextColor}"
                    FontSize="Large"
                    HorizontalOptions="Center"/>
@@ -134,7 +149,7 @@
                    HorizontalOptions="Center"/>
 
             <Label Grid.Row="0" Grid.Column="2"
-                   Text="643 Pa"
+                   Text="{Binding Path=LatestWeather.AtmosphericPressure.Average, StringFormat='{0:N1} Pa', Mode=OneWay}"
                    TextColor="{DynamicResource strongTextColor}"
                    FontSize="Large"
                    HorizontalOptions="Center"/>

@@ -1,14 +1,20 @@
-﻿namespace XF40Demo.Models
+﻿using Newtonsoft.Json;
+
+namespace XF40Demo.Models
 {
     public class SensorData
     {
-        public double Average { get; }
+        [JsonProperty(PropertyName = "av")]
+        public double Average { get; internal set; }
 
-        public uint Count { get; }
+        [JsonProperty(PropertyName = "ct")]
+        public uint Count { get; internal set; }
 
-        public double Min { get; }
+        [JsonProperty(PropertyName = "mn")]
+        public double Min { get; internal set; }
 
-        public double Max { get; }
+        [JsonProperty(PropertyName = "mx")]
+        public double Max { get; internal set; }
 
         public SensorData(double avg, uint count, double min, double max)
         {

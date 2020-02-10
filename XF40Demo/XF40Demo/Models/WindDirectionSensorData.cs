@@ -6,7 +6,12 @@ namespace XF40Demo.Models
     {
         public List<CompassPoint> CompassPoints { get; }
 
-        public CompassPoint MostCommon { get; }
+        public CompassPoint MostCommon { get; internal set; }
+
+        public WindDirectionSensorData()
+        {
+            CompassPoints = new List<CompassPoint>();
+        }
 
         public WindDirectionSensorData(List<CompassPoint> points, CompassPoint common)
         {
