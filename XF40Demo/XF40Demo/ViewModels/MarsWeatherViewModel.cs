@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using XF40Demo.Helpers;
 using XF40Demo.Models;
 using XF40Demo.Services;
@@ -110,7 +108,7 @@ namespace XF40Demo.ViewModels
 
                     if (weather.Count < 1)
                     {
-                        SetMessages("Unable to display Martian Weather due to parsing error.", true);
+                        SetMessages("Unable to display Martian Weather due to data problem.", true);
                     }
                     else
                     {

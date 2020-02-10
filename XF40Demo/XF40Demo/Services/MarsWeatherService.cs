@@ -3,12 +3,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using XF40Demo.Helpers;
 using XF40Demo.Models;
 
 namespace XF40Demo.Services
@@ -88,17 +85,15 @@ namespace XF40Demo.Services
                                 }
                             }
 
-                            MartianDay martianDay = new MartianDay(
-                                uint.Parse(solName),
-                                airTemp,
-                                windSpeed,
-                                airPressure,
-                                windDirection,
-                                season,
-                                firstUTC,
-                                lastUTC
-                                );
-                            weather.Add(martianDay);
+                            weather.Add(new MartianDay(
+                                            uint.Parse(solName),
+                                            airTemp,
+                                            windSpeed,
+                                            airPressure,
+                                            windDirection,
+                                            season,
+                                            firstUTC,
+                                            lastUTC));
                         }
                     }
                     if (weather.Count > 0)
@@ -122,8 +117,7 @@ namespace XF40Demo.Services
 
         private DateTime ParseTimestamp(string timestamp)
         {
-            DateTime r;
-            return DateTime.TryParse(timestamp, out r) ? r : DateTime.MinValue;
+            return DateTime.TryParse(timestamp, out DateTime r) ? r : DateTime.MinValue;
         }
 
         private string ParseSeason(string season)
