@@ -33,7 +33,7 @@
                                HorizontalOptions="Center"/>
 
                         <Label Grid.Row="1"
-                               Text="{Binding Path=LastUTC, StringFormat='{0:M}', Mode=OneWay}"
+                               Text="{Binding Path=FirstUTC, StringFormat='{0:M}', Mode=OneWay}"
                                TextColor="{DynamicResource textColor}"
                                HorizontalOptions="Center"/>
 
@@ -52,8 +52,8 @@
                                           Style="{StaticResource FA-Solid}"
                                           TextColor="LightBlue"
                                           FontSize="Large"/>
-                                    <Span Text="{Binding Path=AtmosphericTemp.Min, StringFormat=' {0:N2}', Mode=OneWay}"/>
-                                    <Span Text=" °F"/>
+                                    <Span Text="{Binding Path=AtmosphericTemp.Min, StringFormat=' {0:N1}', Mode=OneWay}"/>
+                                    <Span Text=" °C"/>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
@@ -67,8 +67,8 @@
                                           Style="{StaticResource FA-Solid}"
                                           TextColor="Red"
                                           FontSize="Large"/>
-                                    <Span Text="{Binding Path=AtmosphericTemp.Max, StringFormat=' {0:N2}', Mode=OneWay}"/>
-                                    <Span Text=" °F"/>
+                                    <Span Text="{Binding Path=AtmosphericTemp.Max, StringFormat=' {0:N1}', Mode=OneWay}"/>
+                                    <Span Text=" °C"/>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
@@ -117,13 +117,13 @@
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="{Binding Path=LatestWeather.Sol, StringFormat='Sol {0} -', Mode=OneWay}"/>
-                        <Span Text="{Binding Path=LatestWeather.LastUTC, StringFormat=' {0:M}', Mode=OneWay}"/>
+                        <Span Text="{Binding Path=LatestWeather.FirstUTC, StringFormat=' {0:M}', Mode=OneWay}"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
 
             <CheckBox Grid.Row="0" Grid.Column="1"
-                      IsChecked="False"
+                      IsChecked="True"
                       Color="{DynamicResource textColor}"
                       VerticalOptions="Center"/>
 
@@ -134,7 +134,7 @@
                    VerticalOptions="Center"/>
 
             <CheckBox Grid.Row="1" Grid.Column="1"
-                      IsChecked="True"
+                      IsChecked="False"
                       Color="{DynamicResource textColor}"/>
 
             <Label Grid.Row="1" Grid.Column="2"
@@ -152,7 +152,7 @@
                      HorizontalOptions="Center"
                      VerticalOptions="Center">
 
-            <Label Text="{Binding Path=LatestWeather.AtmosphericTemp.Average, StringFormat='{0:N2} °F', Mode=OneWay}"
+            <Label Text="{Binding Path=LatestWeather.AtmosphericTemp.Average, StringFormat='{0:N1} °C', Mode=OneWay}"
                    TextColor="{DynamicResource strongTextColor}"
                    FontSize="42"
                    HorizontalOptions="Center"/>
@@ -166,15 +166,15 @@
                               Style="{StaticResource FA-Solid}"
                               TextColor="LightBlue"
                               FontSize="Large"/>
-                        <Span Text="{Binding Path=LatestWeather.AtmosphericTemp.Min, StringFormat=' {0:N2}', Mode=OneWay}"/>
-                        <Span Text=" °F"/>
+                        <Span Text="{Binding Path=LatestWeather.AtmosphericTemp.Min, StringFormat=' {0:N1}', Mode=OneWay}"/>
+                        <Span Text=" °C"/>
                         <Span Text="   "/>
                         <Span Text="{x:Static h:FA5FreeSolid.ThermometerFull}"
                               Style="{StaticResource FA-Solid}"
                               TextColor="Red"
                               FontSize="Large"/>
-                        <Span Text="{Binding Path=LatestWeather.AtmosphericTemp.Max, StringFormat=' {0:N2}', Mode=OneWay}"/>
-                        <Span Text=" °F"/>
+                        <Span Text="{Binding Path=LatestWeather.AtmosphericTemp.Max, StringFormat=' {0:N1}', Mode=OneWay}"/>
+                        <Span Text=" °C"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
