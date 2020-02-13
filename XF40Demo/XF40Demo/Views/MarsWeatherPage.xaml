@@ -172,7 +172,7 @@
                    HorizontalOptions="Center"/>
 
             <Label TextColor="{DynamicResource textColor}"
-                   FontSize="Medium"
+                   FontSize="Large"
                    HorizontalOptions="Center">
                 <Label.FormattedText>
                     <FormattedString>
@@ -195,7 +195,7 @@
             
             <Label Text="{Binding LatestWeather.Season, Mode=OneWay}"
                    TextColor="{DynamicResource textColor}"
-                   FontSize="Large"
+                   FontSize="32"
                    HorizontalOptions="Center"/>
             
         </StackLayout>
