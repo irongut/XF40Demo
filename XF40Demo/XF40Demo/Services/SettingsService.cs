@@ -69,6 +69,20 @@ namespace XF40Demo.Services
             }
         }
 
+        private int _marsBackground;
+        public int MarsBackground
+        {
+            get { return _marsBackground; }
+            set
+            {
+                if (_marsBackground != value)
+                {
+                    _marsBackground = value;
+                    Preferences.Set("marsBackground", value, sharedName);
+                }
+            }
+        }
+
         #endregion
 
         private SettingsService()
@@ -95,6 +109,7 @@ namespace XF40Demo.Services
             _newsCacheTime = Preferences.Get("newsCacheTime", DefaultSettings.NewsCacheTime(), sharedName);
             _themeOption = (Theme)Preferences.Get("themeOption", DefaultSettings.ThemeOption(), sharedName);
             _onlyShowNextCycleWhenImminent = Preferences.Get("onlyShowNextCycleWhenImminent", DefaultSettings.OnlyShowNextCycleWhenImminent(), sharedName);
+            _marsBackground = Preferences.Get("marsBackground", DefaultSettings.MarsBackground(), sharedName);
         }
 
         public void ResetDefault()

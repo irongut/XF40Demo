@@ -21,5 +21,10 @@
         {
             return false;
         }
+
+        public static int MarsBackground()
+        {
+            return 0;
+        }
     }
 }

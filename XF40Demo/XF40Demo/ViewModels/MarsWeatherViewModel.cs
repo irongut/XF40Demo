@@ -45,6 +45,20 @@ namespace XF40Demo.ViewModels
             }
         }
 
+        private string _backgroundImage;
+        public string BackgroundImage
+        {
+            get { return _backgroundImage; }
+            private set
+            {
+                if (_backgroundImage != value)
+                {
+                    _backgroundImage = value;
+                    OnPropertyChanged(nameof(BackgroundImage));
+                }
+            }
+        }
+
         private bool _showMessage;
         public bool ShowMessage
         {
@@ -92,6 +106,36 @@ namespace XF40Demo.ViewModels
         public MarsWeatherViewModel()
         {
             MarsWeather = new ObservableCollection<MartianDay>();
+        }
+
+        private void SetBackgroundImage()
+        {
+            switch (settings.MarsBackground)
+            {
+                case 0:
+                    BackgroundImage = "resource://XF40Demo.Resources.Mars.PIA22226-2250.jpg";
+                    break;
+                case 1:
+                    BackgroundImage = "resource://XF40Demo.Resources.Mars.PIA22871-1440.jpg";
+                    break;
+                case 2:
+                    BackgroundImage = "resource://XF40Demo.Resources.Mars.PIA23249-1440.jpg";
+                    break;
+                case 3:
+                    BackgroundImage = "resource://XF40Demo.Resources.Mars.PIA22736-1440.jpg";
+                    break;
+                default:
+                    BackgroundImage = string.Empty;
+                    break;
+            }
+            if (settings.MarsBackground > 2)
+            {
+                settings.MarsBackground = DefaultSettings.MarsBackground();
+            }
+            else
+            {
+                settings.MarsBackground++;
+            }
         }
 
         private async void GetWeatherDataAsync(bool ignoreCache = false)
@@ -165,6 +209,7 @@ namespace XF40Demo.ViewModels
         protected override void RefreshView()
         {
             GetWeatherDataAsync();
+            SetBackgroundImage();
         }
     }
 }

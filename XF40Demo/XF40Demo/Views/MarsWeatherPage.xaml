@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:h="clr-namespace:XF40Demo.Helpers"
              xmlns:m="clr-namespace:XF40Demo.Models"
              xmlns:vm="clr-namespace:XF40Demo.ViewModels"
@@ -17,12 +18,12 @@
                    BorderColor="OrangeRed"
                    CornerRadius="5"
                    Padding="15, 0">
-                    <Grid RowSpacing="3"
+                    <Grid RowSpacing="5"
                       VerticalOptions="Center">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="12"/>
+                            <RowDefinition Height="14"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
@@ -41,7 +42,7 @@
                                  Color="OrangeRed"
                                  HeightRequest="2"
                                  HorizontalOptions="Fill"
-                                 Margin="0, 5, 0, 5"/>
+                                 Margin="0, 5, 0, 7"/>
 
                         <Label Grid.Row="3"
                                TextColor="{DynamicResource textColor}"
@@ -89,6 +90,18 @@
         </Grid.RowDefinitions>
 
         <!-- background image -->
+
+        <ff:CachedImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="4"
+                        Source="{Binding BackgroundImage, Mode=OneWay}"
+                        DownsampleToViewSize="true"
+                        Aspect="AspectFill"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Fill"/>
+
+        <BoxView Grid.Row="0" Grid.Column="0" Grid.RowSpan="4"
+                 Color="#33000000"
+                 HorizontalOptions="Fill"
+                 VerticalOptions="Fill"/>
 
         <!-- header -->
 
@@ -246,8 +259,8 @@
                         ItemsSource="{Binding MarsWeather, Mode=OneWay}"
                         ItemSizingStrategy="MeasureAllItems"
                         ItemsLayout="HorizontalList"
-                        HeightRequest="130"
-                        Margin="5, 5, 5, 10"/>
+                        HeightRequest="135"
+                        Margin="5, 10, 5, 15"/>
 
     </Grid>
     
