@@ -23,7 +23,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="14"/>
+                            <RowDefinition Height="12"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
@@ -42,7 +42,7 @@
                                  Color="OrangeRed"
                                  HeightRequest="2"
                                  HorizontalOptions="Fill"
-                                 Margin="0, 5, 0, 7"/>
+                                 Margin="0, 4, 0, 6"/>
 
                         <Label Grid.Row="3"
                                TextColor="{DynamicResource textColor}"
@@ -106,6 +106,7 @@
         <!-- header -->
 
         <Grid Grid.Row="0"
+              BackgroundColor="#66000000"
               ColumnSpacing="0"
               RowSpacing="0"
               Padding="10, 5">
@@ -260,7 +261,7 @@
                         ItemSizingStrategy="MeasureAllItems"
                         ItemsLayout="HorizontalList"
                         HeightRequest="135"
-                        Margin="5, 5, 5, 15"/>
+                        Margin="5, 5, 5, 10"/>
 
     </Grid>
     
