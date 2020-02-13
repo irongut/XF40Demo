@@ -214,39 +214,61 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0"
+                   Text="{x:Static h:FA5FreeSolid.Wind}"
+                   Style="{StaticResource FA-Solid}"
+                   TextColor="{DynamicResource strongTextColor}"
+                   FontSize="32"
+                   HorizontalOptions="Center"/>
+
+            <Label Grid.Row="1" Grid.Column="0"
                    Text="{Binding Path=LatestWeather.HorizontalWindSpeed.Average, StringFormat='{0:N2} m/s', Mode=OneWay}"
                    TextColor="{DynamicResource strongTextColor}"
                    FontSize="Large"
                    HorizontalOptions="Center"/>
 
-            <Label Grid.Row="1" Grid.Column="0"
+            <Label Grid.Row="2" Grid.Column="0"
                    Text="Wind Speed"
                    TextColor="{DynamicResource textColor}"
                    FontSize="Medium"
                    HorizontalOptions="Center"/>
 
             <Label Grid.Row="0" Grid.Column="1"
+                   Text="{x:Static h:FA5FreeSolid.Compass}"
+                   Style="{StaticResource FA-Solid}"
+                   TextColor="{DynamicResource strongTextColor}"
+                   FontSize="32"
+                   HorizontalOptions="Center"/>
+
+            <Label Grid.Row="1" Grid.Column="1"
                    Text="{Binding LatestWeather.WindDirection.MostCommon.CompassPointName, Mode=OneWay}"
                    TextColor="{DynamicResource strongTextColor}"
                    FontSize="Large"
                    HorizontalOptions="Center"/>
 
-            <Label Grid.Row="1" Grid.Column="1"
+            <Label Grid.Row="2" Grid.Column="1"
                    Text="Wind Direction"
                    TextColor="{DynamicResource textColor}"
                    FontSize="Medium"
                    HorizontalOptions="Center"/>
 
             <Label Grid.Row="0" Grid.Column="2"
+                   Text="{x:Static h:FA5FreeSolid.Smog}"
+                   Style="{StaticResource FA-Solid}"
+                   TextColor="{DynamicResource strongTextColor}"
+                   FontSize="32"
+                   HorizontalOptions="Center"/>
+
+            <Label Grid.Row="1" Grid.Column="2"
                    Text="{Binding Path=LatestWeather.AtmosphericPressure.Average, StringFormat='{0:N1} Pa', Mode=OneWay}"
                    TextColor="{DynamicResource strongTextColor}"
                    FontSize="Large"
                    HorizontalOptions="Center"/>
 
-            <Label Grid.Row="1" Grid.Column="2"
+            <Label Grid.Row="2" Grid.Column="2"
                    Text="Air Pressure"
                    TextColor="{DynamicResource textColor}"
                    FontSize="Medium"
