@@ -475,6 +475,8 @@ namespace XF40Demo.Helpers
         public const string TicketAlt = "\uf3ff";
         public const string UserAlt = "\uf406";
         public const string WindowClose = "\uf410";
+        public const string CompressAlt = "\uf422";
+        public const string ExpandAlt = "\uf424";
         public const string BaseballBall = "\uf433";
         public const string BasketballBall = "\uf434";
         public const string BowlingBall = "\uf436";
@@ -570,6 +572,8 @@ namespace XF40Demo.Helpers
         public const string UserTag = "\uf507";
         public const string UserTie = "\uf508";
         public const string UsersCog = "\uf509";
+        public const string BalanceScaleLeft = "\uf515";
+        public const string BalanceScaleRight = "\uf516";
         public const string Blender = "\uf517";
         public const string BookOpen = "\uf518";
         public const string BroadcastTower = "\uf519";
@@ -784,7 +788,7 @@ namespace XF40Demo.Helpers
         public const string FunnelDollar = "\uf662";
         public const string Gopuram = "\uf664";
         public const string Hamsa = "\uf665";
-        public const string Haykal = "\uf666";
+        public const string Bahai = "\uf666";
         public const string Jedi = "\uf669";
         public const string JournalWhills = "\uf66a";
         public const string Kaaba = "\uf66b";
@@ -939,5 +943,29 @@ namespace XF40Demo.Helpers
         public const string TrashRestoreAlt = "\uf82a";
         public const string UserNurse = "\uf82f";
         public const string WaveSquare = "\uf83e";
+        public const string Biking = "\uf84a";
+        public const string BorderAll = "\uf84c";
+        public const string BorderNone = "\uf850";
+        public const string BorderStyle = "\uf853";
+        public const string Fan = "\uf863";
+        public const string Icons = "\uf86d";
+        public const string PhoneAlt = "\uf879";
+        public const string PhoneSquareAlt = "\uf87b";
+        public const string PhotoVideo = "\uf87c";
+        public const string RemoveFormat = "\uf87d";
+        public const string SortAlphaDownAlt = "\uf881";
+        public const string SortAlphaUpAlt = "\uf882";
+        public const string SortAmountDownAlt = "\uf884";
+        public const string SortAmountUpAlt = "\uf885";
+        public const string SortNumericDownAlt = "\uf886";
+        public const string SortNumericUpAlt = "\uf887";
+        public const string SpellCheck = "\uf891";
+        public const string Voicemail = "\uf897";
+        public const string HatCowboy = "\uf8c0";
+        public const string HatCowboySide = "\uf8c1";
+        public const string Mouse = "\uf8cc";
+        public const string RecordVinyl = "\uf8d9";
+        public const string Caravan = "\uf8ff";
+        public const string Trailer = "\uf941";
     }
 }
