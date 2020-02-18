@@ -138,6 +138,20 @@
                 </Label.FormattedText>
             </Label>
 
+            <ImageButton Grid.Row="0" Grid.Column="1"
+                         Command="{Binding InfoTappedCommand}"
+                         BackgroundColor="{DynamicResource pageForegroundColor}"
+                         CornerRadius="15"
+                         Padding="6"
+                         VerticalOptions="Center">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}"
+                                     Glyph="{x:Static h:FA5FreeSolid.SatelliteDish}"
+                                     Size="18"
+                                     Color="{DynamicResource textColor}"/>
+                </ImageButton.Source>
+            </ImageButton>
+
             <ImageButton Grid.Row="1" Grid.Column="1"
                          Command="{Binding TemperatureScaleTappedCommand}"
                          BackgroundColor="{DynamicResource pageForegroundColor}"

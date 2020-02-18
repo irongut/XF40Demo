@@ -17,6 +17,8 @@ namespace XF40Demo.ViewModels
     {
         #region Properties
 
+        public ICommand InfoTappedCommand { get; }
+
         public ICommand TemperatureScaleTappedCommand { get; }
 
         public ObservableCollection<MartianDay> MarsWeather { get; }
@@ -124,9 +126,15 @@ namespace XF40Demo.ViewModels
 
         public MarsWeatherViewModel()
         {
+            InfoTappedCommand = new Command(ShowInfo);
             TemperatureScaleTappedCommand = new Command(ToggleTemperatureScale);
             MarsWeather = new ObservableCollection<MartianDay>();
             TemperatureScale = settings.TemperatureScale;
+        }
+
+        private void ShowInfo()
+        {
+            ToastHelper.Toast("Not implemented yet!");
         }
 
         private void ToggleTemperatureScale()
