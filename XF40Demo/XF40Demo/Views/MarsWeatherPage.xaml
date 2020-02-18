@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:c="clr-namespace:XF40Demo.Convertors"
              xmlns:h="clr-namespace:XF40Demo.Helpers"
              xmlns:m="clr-namespace:XF40Demo.Models"
              xmlns:vm="clr-namespace:XF40Demo.ViewModels"
@@ -11,7 +12,9 @@
              BackgroundColor="{DynamicResource pageBackgroundColor}">
 
     <ContentPage.Resources>
-
+        
+        <c:TemperatureScaleToLabel x:Key="scaleLabel"/>
+        
         <DataTemplate x:Key="dayTemplate" x:DataType="m:MartianDay">
             <ContentView Padding="7, 0">
                 <Frame BackgroundColor="{DynamicResource pageForegroundColor}"
@@ -54,7 +57,7 @@
                                           TextColor="LightBlue"
                                           FontSize="Large"/>
                                     <Span Text="{Binding Path=AtmosphericTemp.Min, StringFormat=' {0:N1}', Mode=OneWay}"/>
-                                    <Span Text=" °C"/>
+                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:MarsWeatherViewModel}}, Path=TemperatureScale, Converter={StaticResource scaleLabel}, StringFormat=' {0}', Mode=OneWay}"/>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
@@ -69,7 +72,7 @@
                                           TextColor="Red"
                                           FontSize="Large"/>
                                     <Span Text="{Binding Path=AtmosphericTemp.Max, StringFormat=' {0:N1}', Mode=OneWay}"/>
-                                    <Span Text=" °C"/>
+                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:MarsWeatherViewModel}}, Path=TemperatureScale, Converter={StaticResource scaleLabel}, StringFormat=' {0}', Mode=OneWay}"/>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
@@ -113,7 +116,6 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -136,25 +138,19 @@
                 </Label.FormattedText>
             </Label>
 
-            <CheckBox Grid.Row="0" Grid.Column="1"
-                      IsChecked="True"
-                      Color="{DynamicResource textColor}"
-                      VerticalOptions="Center"/>
-
-            <Label Grid.Row="0" Grid.Column="2"
-                   Text="°C"
-                   TextColor="{DynamicResource textColor}"
-                   FontSize="Large"
-                   VerticalOptions="Center"/>
-
-            <CheckBox Grid.Row="1" Grid.Column="1"
-                      IsChecked="False"
-                      Color="{DynamicResource textColor}"/>
-
-            <Label Grid.Row="1" Grid.Column="2"
-                   Text="°F"
-                   TextColor="{DynamicResource textColor}"
-                   FontSize="Large"/>
+            <ImageButton Grid.Row="1" Grid.Column="1"
+                         Command="{Binding TemperatureScaleTappedCommand}"
+                         BackgroundColor="{DynamicResource pageForegroundColor}"
+                         CornerRadius="15"
+                         Padding="6"
+                         VerticalOptions="Center">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}"
+                                     Glyph="{x:Static h:FA5FreeSolid.TemperatureHigh}"
+                                     Size="18"
+                                     Color="{DynamicResource textColor}"/>
+                </ImageButton.Source>
+            </ImageButton>
 
         </Grid>
 
@@ -166,10 +162,16 @@
                      HorizontalOptions="Center"
                      VerticalOptions="Center">
 
-            <Label Text="{Binding Path=LatestWeather.AtmosphericTemp.Average, StringFormat='{0:N1} °C', Mode=OneWay}"
-                   TextColor="{DynamicResource strongTextColor}"
+            <Label TextColor="{DynamicResource strongTextColor}"
                    FontSize="42"
-                   HorizontalOptions="Center"/>
+                   HorizontalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding Path=LatestWeather.AtmosphericTemp.Average, StringFormat='{0:N1}', Mode=OneWay}"/>
+                        <Span Text="{Binding TemperatureScale, Converter={StaticResource scaleLabel}, StringFormat=' {0}', Mode=OneWay}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
 
             <Label TextColor="{DynamicResource textColor}"
                    FontSize="Large"
@@ -181,14 +183,14 @@
                               TextColor="LightBlue"
                               FontSize="Large"/>
                         <Span Text="{Binding Path=LatestWeather.AtmosphericTemp.Min, StringFormat=' {0:N1}', Mode=OneWay}"/>
-                        <Span Text=" °C"/>
+                        <Span Text="{Binding TemperatureScale, Converter={StaticResource scaleLabel}, StringFormat=' {0}', Mode=OneWay}"/>
                         <Span Text="   "/>
                         <Span Text="{x:Static h:FA5FreeSolid.ThermometerFull}"
                               Style="{StaticResource FA-Solid}"
                               TextColor="Red"
                               FontSize="Large"/>
                         <Span Text="{Binding Path=LatestWeather.AtmosphericTemp.Max, StringFormat=' {0:N1}', Mode=OneWay}"/>
-                        <Span Text=" °C"/>
+                        <Span Text="{Binding TemperatureScale, Converter={StaticResource scaleLabel}, StringFormat=' {0}', Mode=OneWay}"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>

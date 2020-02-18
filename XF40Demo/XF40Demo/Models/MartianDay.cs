@@ -1,12 +1,15 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace XF40Demo.Models
 {
-    public class MartianDay
+    public class MartianDay : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public uint Sol { get; }
 
-        public SensorData AtmosphericTemp { get; }
+        public TemperatureSensorData AtmosphericTemp { get; }
 
         public SensorData HorizontalWindSpeed { get; }
 
@@ -20,7 +23,7 @@ namespace XF40Demo.Models
 
         public DateTime LastUTC { get; }
 
-        public MartianDay(uint sol, SensorData temp, SensorData speed, SensorData pressure, WindDirectionSensorData direction, string season, DateTime first, DateTime last)
+        public MartianDay(uint sol, TemperatureSensorData temp, SensorData speed, SensorData pressure, WindDirectionSensorData direction, string season, DateTime first, DateTime last)
         {
             Sol = sol;
             AtmosphericTemp = temp;
@@ -30,6 +33,21 @@ namespace XF40Demo.Models
             Season = season;
             FirstUTC = first;
             LastUTC = last;
+        }
+
+        public void SetTemperatureScale(TemperatureScale scale)
+        {
+            AtmosphericTemp.Scale = scale;
+            OnPropertyChanged(nameof(AtmosphericTemp));
+        }
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            var changed = PropertyChanged;
+            if (changed != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }

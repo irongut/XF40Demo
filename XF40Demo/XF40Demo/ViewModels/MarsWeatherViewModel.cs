@@ -5,6 +5,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading;
+using System.Windows.Input;
+using Xamarin.Forms;
 using XF40Demo.Helpers;
 using XF40Demo.Models;
 using XF40Demo.Services;
@@ -14,6 +16,8 @@ namespace XF40Demo.ViewModels
     public class MarsWeatherViewModel : BaseViewModel
     {
         #region Properties
+
+        public ICommand TemperatureScaleTappedCommand { get; }
 
         public ObservableCollection<MartianDay> MarsWeather { get; }
 
@@ -55,6 +59,21 @@ namespace XF40Demo.ViewModels
                 {
                     _backgroundImage = value;
                     OnPropertyChanged(nameof(BackgroundImage));
+                }
+            }
+        }
+
+        private TemperatureScale _temperatureScale;
+        public TemperatureScale TemperatureScale
+        {
+            get { return _temperatureScale; }
+            set
+            {
+                if (_temperatureScale != value)
+                {
+                    _temperatureScale = value;
+                    settings.TemperatureScale = value;
+                    OnPropertyChanged(nameof(TemperatureScale));
                 }
             }
         }
@@ -105,7 +124,19 @@ namespace XF40Demo.ViewModels
 
         public MarsWeatherViewModel()
         {
+            TemperatureScaleTappedCommand = new Command(ToggleTemperatureScale);
             MarsWeather = new ObservableCollection<MartianDay>();
+            TemperatureScale = settings.TemperatureScale;
+        }
+
+        private void ToggleTemperatureScale()
+        {
+            TemperatureScale = TemperatureScale == TemperatureScale.Celsius ? TemperatureScale.Fahrenheit : TemperatureScale.Celsius;
+            LatestWeather.SetTemperatureScale(TemperatureScale);
+            foreach (MartianDay sol in MarsWeather)
+            {
+                sol.SetTemperatureScale(TemperatureScale);
+            }
         }
 
         private void SetBackgroundImage()
@@ -148,7 +179,7 @@ namespace XF40Demo.ViewModels
                 {
                     MarsWeatherService weatherService = MarsWeatherService.Instance();
                     List<MartianDay> weather = new List<MartianDay>();
-                    (weather, LastUpdated) = await weatherService.GetDataAsync(cancelToken, ignoreCache).ConfigureAwait(false);
+                    (weather, LastUpdated) = await weatherService.GetDataAsync(TemperatureScale, cancelToken, ignoreCache).ConfigureAwait(false);
 
                     if (weather.Count < 1)
                     {

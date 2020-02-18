@@ -32,7 +32,7 @@ namespace XF40Demo.Services
             return instance;
         }
 
-        public async Task<(List<MartianDay> weather, DateTime updated)> GetDataAsync(CancellationTokenSource cancelToken, bool ignoreCache = false)
+        public async Task<(List<MartianDay> weather, DateTime updated)> GetDataAsync(TemperatureScale tempScale, CancellationTokenSource cancelToken, bool ignoreCache = false)
         {
             if (weather.Count < 1 || ignoreCache || Barrel.Current.IsExpired(dataKey))
             {
@@ -59,7 +59,8 @@ namespace XF40Demo.Services
                             string season = solData.TryGetValue("Season", out object s) ? ParseSeason(s.ToString()) : String.Empty;
 
                             // get air temp, pressure + wind speed
-                            SensorData airTemp = solData.TryGetValue("AT", out object at) ? JsonConvert.DeserializeObject<SensorData>(at.ToString()) : null;
+                            TemperatureSensorData airTemp = solData.TryGetValue("AT", out object at) ? JsonConvert.DeserializeObject<TemperatureSensorData>(at.ToString()) : null;
+                            airTemp.Scale = tempScale;
                             SensorData airPressure = solData.TryGetValue("PRE", out object pre) ? JsonConvert.DeserializeObject<SensorData>(pre.ToString()) : null;
                             SensorData windSpeed = solData.TryGetValue("HWS", out object hws) ? JsonConvert.DeserializeObject<SensorData>(hws.ToString()) : null;
 

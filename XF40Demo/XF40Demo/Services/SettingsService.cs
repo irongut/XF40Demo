@@ -83,6 +83,20 @@ namespace XF40Demo.Services
             }
         }
 
+        private TemperatureScale _temperatureScale;
+        public TemperatureScale TemperatureScale
+        {
+            get { return _temperatureScale; }
+            set
+            {
+                if (_temperatureScale != value)
+                {
+                    _temperatureScale = value;
+                    Preferences.Set("temperatureScale", (int)value, sharedName);
+                }
+            }
+        }
+
         #endregion
 
         private SettingsService()
@@ -110,6 +124,7 @@ namespace XF40Demo.Services
             _themeOption = (Theme)Preferences.Get("themeOption", DefaultSettings.ThemeOption(), sharedName);
             _onlyShowNextCycleWhenImminent = Preferences.Get("onlyShowNextCycleWhenImminent", DefaultSettings.OnlyShowNextCycleWhenImminent(), sharedName);
             _marsBackground = Preferences.Get("marsBackground", DefaultSettings.MarsBackground(), sharedName);
+            _temperatureScale = (TemperatureScale)Preferences.Get("temperatureScale", DefaultSettings.TemperatureScale(), sharedName);
         }
 
         public void ResetDefault()
