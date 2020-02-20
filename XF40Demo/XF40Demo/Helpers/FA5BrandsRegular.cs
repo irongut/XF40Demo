@@ -127,7 +127,7 @@ namespace XF40Demo.Helpers
         public const string InternetExplorer = "\uf26b";
         public const string Contao = "\uf26d";
         public const string FiveHundredPx = "\uf26e";
-	    public const string Amazon = "\uf270";
+        public const string Amazon = "\uf270";
         public const string Houzz = "\uf27c";
         public const string VimeoV = "\uf27d";
         public const string BlackTie = "\uf27e";
@@ -304,7 +304,6 @@ namespace XF40Demo.Helpers
         public const string ApplePay = "\uf415";
         public const string CcApplePay = "\uf416";
         public const string Fly = "\uf417";
-        public const string NintendoSwitch = "\uf418";
         public const string Node = "\uf419";
         public const string Osi = "\uf41a";
         public const string React = "\uf41b";
@@ -431,5 +430,20 @@ namespace XF40Demo.Helpers
         public const string Yammer = "\uf840";
         public const string GitAlt = "\uf841";
         public const string Stackpath = "\uf842";
+        public const string CottonBureau = "\uf89e";
+        public const string BuyNLarge = "\uf8a6";
+        public const string Mdb = "\uf8ca";
+        public const string Orcid = "\uf8d2";
+        public const string Swift = "\uf8e1";
+        public const string Umbraco = "\uf8e8";
+        public const string FirefoxBrowser = "\uf907";
+        public const string Ideal = "\uf913";
+        public const string Microblog = "\uf91a";
+        public const string PiedPiperSquare = "\uf91e";
+        public const string Unity = "\uf949";
+        public const string Dailymotion = "\uf952";
+        public const string InstagramSquare = "\uf955";
+        public const string Mixer = "\uf956";
+        public const string Shopify = "\uf957";
     }
 }

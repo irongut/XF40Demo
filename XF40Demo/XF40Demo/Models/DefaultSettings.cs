@@ -21,5 +21,15 @@
         {
             return false;
         }
+
+        public static int MarsBackground()
+        {
+            return 0;
+        }
+
+        public static int TemperatureScale()
+        {
+            return 0;
+        }
     }
 }
