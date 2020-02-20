@@ -1,21 +1,26 @@
 ﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using XF40Demo.Helpers;
 using XF40Demo.Models;
 using XF40Demo.Services;
+using XF40Demo.Views;
 
 namespace XF40Demo.ViewModels
 {
     public class MarsWeatherViewModel : BaseViewModel
     {
         #region Properties
+
+        public INavigation MyNavigation { get; set; }
 
         public ICommand InfoTappedCommand { get; }
 
@@ -126,15 +131,15 @@ namespace XF40Demo.ViewModels
 
         public MarsWeatherViewModel()
         {
-            InfoTappedCommand = new Command(ShowInfo);
+            InfoTappedCommand = new Command(async () => await ShowInfoAsync().ConfigureAwait(false));
             TemperatureScaleTappedCommand = new Command(ToggleTemperatureScale);
             MarsWeather = new ObservableCollection<MartianDay>();
             TemperatureScale = settings.TemperatureScale;
         }
 
-        private void ShowInfo()
+        private async Task ShowInfoAsync()
         {
-            ToastHelper.Toast("Not implemented yet!");
+            await MyNavigation.PushPopupAsync(new InSightInfoPopupPage()).ConfigureAwait(false);
         }
 
         private void ToggleTemperatureScale()

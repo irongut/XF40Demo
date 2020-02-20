@@ -4,7 +4,7 @@ using Android.Content.PM;
 using Android.OS;
 using FFImageLoading.Forms.Platform;
 using Plugin.CurrentActivity;
-using Xamarin.Forms;
+using Rg.Plugins.Popup;
 
 namespace XF40Demo.Droid
 {
@@ -23,6 +23,7 @@ namespace XF40Demo.Droid
             CachedImageRenderer.Init(true);
             XamEffects.Droid.Effects.Init();
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
+            Popup.Init(this, savedInstanceState);
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());

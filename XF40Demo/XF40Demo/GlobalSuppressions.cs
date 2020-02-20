@@ -24,4 +24,5 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Formatting", "RCS1057:Add empty line between declarations.", Justification = "<Pending>", Scope = "type", Target = "~T:XF40Demo.Models.NewsItem")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Formatting", "RCS1057:Add empty line between declarations.", Justification = "<Pending>", Scope = "type", Target = "~T:XF40Demo.ViewModels.GalNetNewsViewModel")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Formatting", "RCS1057:Add empty line between declarations.", Justification = "<Pending>", Scope = "type", Target = "~T:XF40Demo.ViewModels.MarsWeatherViewModel")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Formatting", "RCS1057:Add empty line between declarations.", Justification = "<Pending>", Scope = "type", Target = "~T:XF40Demo.ViewModels.InSightInfoViewModel")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0017:Simplify object initialization", Justification = "<Pending>", Scope = "type", Target = "~T:XF40Demo.Services.StandingsService")]

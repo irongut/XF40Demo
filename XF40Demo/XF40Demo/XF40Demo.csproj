@@ -44,6 +44,7 @@
     <None Remove="Resources\lyr.logo.svg" />
     <None Remove="Resources\mahon.headshot.png" />
     <None Remove="Resources\mahon.logo.svg" />
+    <None Remove="Resources\Mars\insight-patch-600.png" />
     <None Remove="Resources\Mars\PIA22226-1024.jpg" />
     <None Remove="Resources\Mars\PIA22226-2250.jpg" />
     <None Remove="Resources\Mars\PIA22228-1024.jpg" />
@@ -112,6 +113,7 @@
     <EmbeddedResource Include="Resources\lyr.logo.svg" />
     <EmbeddedResource Include="Resources\mahon.headshot.png" />
     <EmbeddedResource Include="Resources\mahon.logo.svg" />
+    <EmbeddedResource Include="Resources\Mars\insight-patch-600.png" />
     <EmbeddedResource Include="Resources\Mars\PIA22226-2250.jpg" />
     <EmbeddedResource Include="Resources\Mars\PIA22736-1440.jpg" />
     <EmbeddedResource Include="Resources\Mars\PIA22871-1440.jpg" />
@@ -144,6 +146,7 @@
     <PackageReference Include="CsvHelper" Version="12.2.2" />
     <PackageReference Include="MonkeyCache.FileStore" Version="1.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
@@ -178,6 +181,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\GalNetNewsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\InSightInfoPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MarsWeatherPage.xaml">
