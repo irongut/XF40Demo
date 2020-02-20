@@ -51,6 +51,10 @@
                                TextColor="{DynamicResource textColor}"
                                TextType="Html"/>
 
+                        <Label Text="{Binding Credits, Mode=OneTime}"
+                               TextColor="{DynamicResource textColor}"
+                               TextType="Html"/>
+
                     </StackLayout>
 
                 </ScrollView>

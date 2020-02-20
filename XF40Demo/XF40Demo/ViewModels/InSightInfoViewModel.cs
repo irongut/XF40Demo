@@ -76,6 +76,18 @@ namespace XF40Demo.ViewModels
             }
         }
 
+        public string Credits
+        {
+            get
+            {
+                StringBuilder credits = new StringBuilder();
+                credits.Append("<h2>Credits</h2>");
+                credits.Append("<br/>");
+                credits.Append("<p>Images are courtesy of NASA / JPL-Caltech.</p>");
+                return credits.ToString();
+            }
+        }
+
         #endregion
 
         public InSightInfoViewModel()
