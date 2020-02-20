@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+              xmlns:rg="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+              xmlns:rga="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+              xmlns:h="clr-namespace:XF40Demo.Helpers"
+              xmlns:vm="clr-namespace:XF40Demo.ViewModels"
+              x:Class="XF40Demo.Views.InSightInfoPopupPage"
+              x:DataType="vm:InSightInfoViewModel"
+              HasSystemPadding="True">
+
+    <rg:PopupPage.Animation>
+        <rga:ScaleAnimation PositionIn="Center"
+                            PositionOut="Center"
+                            ScaleIn="0.7"
+                            ScaleOut="0.7"
+                            DurationIn="450"
+                            DurationOut="350"
+                            EasingIn="SinOut"
+                            EasingOut="SinIn"
+                            HasBackgroundAnimation="True"/>
+    </rg:PopupPage.Animation>
+
+    <AbsoluteLayout>
+
+        <Frame BackgroundColor="{DynamicResource pageForegroundColor}"
+               BorderColor="OrangeRed"
+               Margin="15"
+               HorizontalOptions="Center"
+               HeightRequest="{Binding FrameHeight, Mode=OneTime}">
+
+            <StackLayout Spacing="15"
+                         Padding="10, 0">
+
+                <ff:CachedImage Source="{Binding HeroImage, Mode=OneTime}"
+                                DownsampleToViewSize="True"
+                                Aspect="AspectFit"
+                                HorizontalOptions="Center"
+                                WidthRequest="300"/>
+
+                <ScrollView>
+
+                    <StackLayout Spacing="0">
+
+                        <Label Text="{Binding MissionInfo, Mode=OneTime}"
+                               TextColor="{DynamicResource textColor}"
+                               TextType="Html"/>
+
+                        <Label Text="{Binding ApiInfo, Mode=OneTime}"
+                               TextColor="{DynamicResource textColor}"
+                               TextType="Html"/>
+
+                        <Label Text="{Binding Credits, Mode=OneTime}"
+                               TextColor="{DynamicResource textColor}"
+                               TextType="Html"/>
+
+                    </StackLayout>
+
+                </ScrollView>
+
+            </StackLayout>
+        
+        </Frame>
+
+        <ImageButton AbsoluteLayout.LayoutFlags="PositionProportional"
+                     AbsoluteLayout.LayoutBounds="1, 0, -1, -1"
+                     Command="{Binding CloseTappedCommand}"
+                     BackgroundColor="DarkRed"
+                     CornerRadius="23"
+                     Padding="8"
+                     VerticalOptions="Center">
+            <ImageButton.Source>
+                <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}"
+                                 Glyph="{x:Static h:FA5FreeSolid.TimesCircle}"
+                                 Size="30"
+                                 Color="{DynamicResource textColor}"/>
+            </ImageButton.Source>
+        </ImageButton>
+
+    </AbsoluteLayout>
+
+</rg:PopupPage>

@@ -24,6 +24,8 @@ namespace XF40Demo.Convertors
                     return "resource://XF40Demo.Resources.pedestal.svg";
                 case "galnet news":
                     return "resource://XF40Demo.Resources.file.svg";
+                case "mars weather":
+                    return "resource://XF40Demo.Resources.thermometer.svg";
                 case "settings":
                     return "resource://XF40Demo.Resources.gear.svg";
                 default:
