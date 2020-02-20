@@ -200,12 +200,15 @@ namespace XF40Demo.ViewModels
                     }
                     else
                     {
-                        MarsWeather.Clear();
-                        foreach (MartianDay day in weather.OrderBy(d => d.Sol))
+                        Device.BeginInvokeOnMainThread(() =>
                         {
-                            MarsWeather.Add(day);
-                        }
-                        LatestWeather = MarsWeather.Last<MartianDay>();
+                            MarsWeather.Clear();
+                            foreach (MartianDay day in weather.OrderBy(d => d.Sol))
+                            {
+                                MarsWeather.Add(day);
+                            }
+                            LatestWeather = MarsWeather.Last<MartianDay>();
+                        });
                     }
                 }
                 catch (OperationCanceledException)
