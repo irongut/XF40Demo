@@ -182,11 +182,14 @@ namespace XF40Demo.ViewModels
                     else
                     {
                         // show the standings
-                        Standings.Clear();
-                        foreach (PowerStanding item in standingsList)
+                        Device.BeginInvokeOnMainThread(() =>
                         {
-                            Standings.Add(item);
-                        }
+                            Standings.Clear();
+                            foreach (PowerStanding item in standingsList)
+                            {
+                                Standings.Add(item);
+                            }
+                        });
 
                         // cache till next cycle if updated
                         int p = _cycle.IndexOf(" ") + 1;
