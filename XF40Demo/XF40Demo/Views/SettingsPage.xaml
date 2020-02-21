@@ -5,7 +5,7 @@
              x:Class="XF40Demo.Views.SettingsPage"
              x:DataType="vm:SettingsViewModel"
              Title="Settings"
-             BackgroundColor="{DynamicResource pageBackgroundColor}">
+             BackgroundColor="{DynamicResource pageForegroundColor}">
 
     <ScrollView VerticalOptions="FillAndExpand" CompressedLayout.IsHeadless="True">
 

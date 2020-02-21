@@ -5,9 +5,9 @@
                     x:Class="XF40Demo.Styles.LightTheme">
 
     <Color x:Key="brandColor">#7F00FF</Color>
-    <Color x:Key="pageBackgroundColor">GhostWhite</Color>
-    <Color x:Key="pageForegroundColor">#9BA0A6</Color>
-    <Color x:Key="textColor">Default</Color>
+    <Color x:Key="pageBackgroundColor">#9BA0A6</Color>
+    <Color x:Key="pageForegroundColor">GhostWhite</Color>
+    <Color x:Key="textColor">#3B4252</Color>
     <Color x:Key="strongTextColor">#202125</Color>
     <Color x:Key="altTextColor">White</Color>
     <Color x:Key="disabledTextColor">DarkGray</Color>

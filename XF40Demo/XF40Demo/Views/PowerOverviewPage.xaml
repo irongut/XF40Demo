@@ -11,7 +11,7 @@
              x:Class="XF40Demo.Views.PowerOverviewPage"
              x:DataType="vm:PowerDetailViewModel"
              Title="{Binding PowerStanding.Name, Mode=OneWay}"
-             BackgroundColor="{DynamicResource pageBackgroundColor}">
+             BackgroundColor="{DynamicResource pageForegroundColor}">
 
     <ContentPage.Resources>
         <ResourceDictionary>

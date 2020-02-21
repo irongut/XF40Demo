@@ -9,7 +9,7 @@
        x:Class="XF40Demo.Shell.AppShell"
        FlyoutHeaderBehavior="CollapseOnScroll"
        Title="XF4.0 Demo"
-       FlyoutBackgroundColor="{DynamicResource pageBackgroundColor}"
+       FlyoutBackgroundColor="{DynamicResource pageForegroundColor}"
        x:Name="self">
 
     <Shell.Resources>

@@ -4,7 +4,7 @@
              xmlns:ffs="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="XF40Demo.Views.Tab1Page"
              Title="Tab 1 Page"
-             BackgroundColor="{DynamicResource pageBackgroundColor}">
+             BackgroundColor="{DynamicResource pageForegroundColor}">
 
     <StackLayout VerticalOptions="Center">
         

@@ -23,7 +23,7 @@
         </ResourceDictionary>
     </ContentView.Resources>
 
-    <Frame BackgroundColor="Transparent" BorderColor="{StaticResource brandColor}" CornerRadius="5" Padding="3" Margin="2, 5">
+    <Frame BackgroundColor="{StaticResource pageForegroundColor}" BorderColor="{StaticResource brandColor}" CornerRadius="5" Padding="3" Margin="2, 5">
         <Grid RowSpacing="0" ColumnSpacing="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>

@@ -74,7 +74,7 @@
                 <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}"
                                  Glyph="{x:Static h:FA5FreeSolid.TimesCircle}"
                                  Size="30"
-                                 Color="{DynamicResource textColor}"/>
+                                 Color="{DynamicResource altTextColor}"/>
             </ImageButton.Source>
         </ImageButton>
 

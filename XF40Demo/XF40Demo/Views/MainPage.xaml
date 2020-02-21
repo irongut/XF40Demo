@@ -5,7 +5,7 @@
              x:Class="XF40Demo.Views.MainPage"
              x:DataType="v:MainPage"
              Title="XF 4.0 Demo"
-             BackgroundColor="{DynamicResource pageBackgroundColor}"
+             BackgroundColor="{DynamicResource pageForegroundColor}"
              Padding="10, 20, 10, 10">
 
     <StackLayout Spacing="50">
