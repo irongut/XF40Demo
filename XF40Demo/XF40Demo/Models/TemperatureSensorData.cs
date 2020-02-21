@@ -19,7 +19,7 @@ namespace XF40Demo.Models
             {
                 return Scale == TemperatureScale.Fahrenheit ? (_average * 1.8) + 32 : _average;
             }
-            internal set
+            set
             {
                 if (_average != value)
                 {
@@ -37,7 +37,7 @@ namespace XF40Demo.Models
             {
                 return Scale == TemperatureScale.Fahrenheit ? (_min * 1.8) + 32 : _min;
             }
-            internal set
+            set
             {
                 if (_min != value)
                 {
@@ -55,7 +55,7 @@ namespace XF40Demo.Models
             {
                 return Scale == TemperatureScale.Fahrenheit ? (_max * 1.8) + 32 : _max;
             }
-            internal set
+            set
             {
                 if (_max != value)
                 {
@@ -64,6 +64,6 @@ namespace XF40Demo.Models
             }
         }
 
-        public TemperatureScale Scale { get; internal set; }
+        public TemperatureScale Scale { get; set; }
     }
 }
