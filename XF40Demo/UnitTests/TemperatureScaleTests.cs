@@ -33,10 +33,10 @@ namespace UnitTests
         {
             TemperatureSensorData data = new TemperatureSensorData
             {
-                Average = 80.28,
+                Average = 28.8,
                 Scale = TemperatureScale.Fahrenheit
             };
-            Assert.AreEqual(176.504, data.Average);
+            Assert.AreEqual(83.84, data.Average);
         }
 
         [TestMethod]
@@ -77,10 +77,10 @@ namespace UnitTests
         {
             TemperatureSensorData data = new TemperatureSensorData
             {
-                Min = 80.28,
+                Min = 28.8,
                 Scale = TemperatureScale.Fahrenheit
             };
-            Assert.AreEqual(176.504, data.Min);
+            Assert.AreEqual(83.84, data.Min);
         }
 
         [TestMethod]
@@ -121,10 +121,10 @@ namespace UnitTests
         {
             TemperatureSensorData data = new TemperatureSensorData
             {
-                Max = 80.28,
+                Max = 28.8,
                 Scale = TemperatureScale.Fahrenheit
             };
-            Assert.AreEqual(176.504, data.Max);
+            Assert.AreEqual(83.84, data.Max);
         }
 
         [TestMethod]
