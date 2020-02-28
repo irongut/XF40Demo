@@ -17,6 +17,7 @@ Experiments with new & preview features in Xamarin Forms 4.x and Azure DevOps Pi
 * [Forms 4.2 - Shell Lifecycle](https://devblogs.microsoft.com/xamarin/xamarin-forms-4-2-0-hits-ga-collectionview-updates/)
 * [Forms 4.3 - CollectionView & RefreshView](https://devblogs.microsoft.com/xamarin/xamarin-forms-4-3-introducing-collectionview/)
 * [Forms 4.4 - CarouselView, IndicatorView, SwipeView & Animated GIF](https://devblogs.microsoft.com/xamarin/xamarin-forms-4-4/)
+* [Forms 4.5 - AndroidX, VisualStateManager, Shell Modal, StateTriggers & Media Element](https://devblogs.microsoft.com/xamarin/xamarin-forms-4-5/)
 
 **Relevant Visual Studio Release Blogs**
 * [VS 2019 v16.4 - HotReload, Android App Bundle & AndroidX](https://devblogs.microsoft.com/xamarin/visual-studio-2019-version-16-4/)
