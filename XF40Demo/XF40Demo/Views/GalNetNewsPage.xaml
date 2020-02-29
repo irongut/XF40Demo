@@ -112,9 +112,9 @@
                    Margin="10, 0"/>
         </ContentView>
 
-        <CarouselView x:Name="newsCarousel" 
-                      ItemsSource="{Binding GalNetNewsList, Mode=OneWay}" 
-                      ItemTemplate="{StaticResource galnetTemplate}" 
+        <CarouselView ItemsSource="{Binding GalNetNewsList, Mode=OneWay}" 
+                      ItemTemplate="{StaticResource galnetTemplate}"
+                      IndicatorView="newsIndicator"
                       PeekAreaInsets="25" 
                       VerticalOptions="StartAndExpand">
             <CarouselView.ItemsLayout>
@@ -126,7 +126,7 @@
             </CarouselView.ItemsLayout>
         </CarouselView>
 
-        <IndicatorView ItemsSourceBy="newsCarousel" 
+        <IndicatorView x:Name="newsIndicator" 
                        IndicatorColor="{DynamicResource brandColor}"
                        SelectedIndicatorColor="{DynamicResource textColor}"
                        IndicatorSize="10"
