@@ -10,8 +10,9 @@
              mc:Ignorable="d"
              x:Class="XF40Demo.Views.GalNetNewsPage"
              x:DataType="vm:GalNetNewsViewModel"
-             Title="Galactic Standings"
-             BackgroundColor="{DynamicResource pageBackgroundColor}">
+             Title="GalNet News"
+             BackgroundColor="{DynamicResource pageBackgroundColor}"
+             Padding="0, 10, 0, 0">
 
     <ContentPage.Resources>
 
@@ -126,13 +127,6 @@
     <StackLayout Orientation="Vertical" 
                  Spacing="10" 
                  CompressedLayout.IsHeadless="True">
-
-        <ContentView BackgroundColor="{DynamicResource brandColor}">
-            <Label Text="GalNet News" 
-                   HorizontalOptions="Start" 
-                   TextColor="{StaticResource altTextColor}" 
-                   Margin="10, 0"/>
-        </ContentView>
 
         <CarouselView ItemsSource="{Binding GalNetNewsList, Mode=OneWay}" 
                       ItemTemplate="{StaticResource galnetTemplate}"
