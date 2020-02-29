@@ -76,7 +76,7 @@ namespace XF40Demo.ViewModels
                     await Task.Run(() =>
                     {
                         List<NewsItem> fullNews = JsonConvert.DeserializeObject<List<NewsItem>>(json, NewsItemConverter.Instance);
-                        foreach (NewsItem item in fullNews.Where(o => !String.IsNullOrEmpty(o.Body)).OrderByDescending(o => o.PublishDateTime).Take(20))
+                        foreach (NewsItem item in fullNews.Where(o => !String.IsNullOrEmpty(o.Body)).OrderByDescending(o => o.PublishDateTime).Take(15))
                         {
                             item.ClassifyArticle();
                             Device.BeginInvokeOnMainThread(() => GalNetNewsList.Add(item));

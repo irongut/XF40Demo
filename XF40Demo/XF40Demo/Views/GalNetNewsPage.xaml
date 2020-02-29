@@ -22,7 +22,7 @@
                    BorderColor="{DynamicResource brandColor}" 
                    CornerRadius="5" 
                    Padding="5, 3">
-                <Label Text="{Binding }" 
+                <Label Text="{Binding .}" 
                        LineBreakMode="NoWrap" 
                        TextColor="{StaticResource altTextColor}"/>
             </Frame>
@@ -31,11 +31,33 @@
         <DataTemplate x:Key="galnetTemplate" x:DataType="m:NewsItem">
             <ContentView>
 
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="CurrentItem">
+                            <VisualState.Setters>
+                                <Setter Property="Opacity" Value="1.0"/>
+                                <Setter Property="Scale" Value="1.0"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="PreviousItem">
+                            <VisualState.Setters>
+                                <Setter Property="Opacity" Value="0.5"/>
+                                <Setter Property="Scale" Value="0.9"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="NextItem">
+                            <VisualState.Setters>
+                                <Setter Property="Opacity" Value="0.5"/>
+                                <Setter Property="Scale" Value="0.9"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                
                 <Frame BorderColor="{DynamicResource brandColor}" 
                        BackgroundColor="{DynamicResource pageForegroundColor}" 
                        CornerRadius="5" 
-                       Margin="10, 10, 10, 0" 
-                       Padding="15, 10">
+                       Padding="15, 15">
          
                     <Grid ColumnSpacing="8" 
                           RowSpacing="0" 
@@ -112,21 +134,13 @@
                    Margin="10, 0"/>
         </ContentView>
 
-        <CarouselView x:Name="newsCarousel" 
-                      ItemsSource="{Binding GalNetNewsList, Mode=OneWay}" 
-                      ItemTemplate="{StaticResource galnetTemplate}" 
-                      PeekAreaInsets="25" 
-                      VerticalOptions="StartAndExpand">
-            <CarouselView.ItemsLayout>
-                <LinearItemsLayout SnapPointsType="MandatorySingle" SnapPointsAlignment="Center">
-                    <x:Arguments>
-                        <ItemsLayoutOrientation>Horizontal</ItemsLayoutOrientation>
-                    </x:Arguments>
-                </LinearItemsLayout>
-            </CarouselView.ItemsLayout>
-        </CarouselView>
+        <CarouselView ItemsSource="{Binding GalNetNewsList, Mode=OneWay}" 
+                      ItemTemplate="{StaticResource galnetTemplate}"
+                      IndicatorView="newsIndicator"
+                      PeekAreaInsets="30" 
+                      VerticalOptions="StartAndExpand"/>
 
-        <IndicatorView ItemsSourceBy="newsCarousel" 
+        <IndicatorView x:Name="newsIndicator" 
                        IndicatorColor="{DynamicResource brandColor}"
                        SelectedIndicatorColor="{DynamicResource textColor}"
                        IndicatorSize="10"

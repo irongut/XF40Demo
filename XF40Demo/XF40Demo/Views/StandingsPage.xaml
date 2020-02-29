@@ -17,10 +17,10 @@
             <c:BoolToInverse x:Key="inverseBool"/>
 
             <DataTemplate x:Key="powerTemplate" x:DataType="models:PowerStanding">
-                <v:PowerView Power="{Binding , Mode=OneWay}"
+                <v:PowerView Power="{Binding ., Mode=OneWay}"
                              xe:TouchEffect.Color="{DynamicResource brandColor}"
                              xe:Commands.Tap="{Binding Source={RelativeSource AncestorType={x:Type vm:StandingsViewModel}}, Path=PowerTappedCommand, Mode=OneWay}"
-                             xe:Commands.TapParameter="{Binding , Mode=OneWay}"/>
+                             xe:Commands.TapParameter="{Binding ., Mode=OneWay}"/>
             </DataTemplate>
 
         </ResourceDictionary>
