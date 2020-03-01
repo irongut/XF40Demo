@@ -9,7 +9,8 @@
              x:Class="XF40Demo.Views.StandingsPage"
              x:DataType="vm:StandingsViewModel"
              Title="Galactic Standings"
-             BackgroundColor="{DynamicResource pageBackgroundColor}">
+             BackgroundColor="{DynamicResource pageBackgroundColor}"
+             Shell.NavBarHasShadow="False">
 
     <ContentPage.Resources>
         <ResourceDictionary>
