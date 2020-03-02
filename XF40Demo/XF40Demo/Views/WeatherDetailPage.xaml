@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mg="clr-namespace:MagicGradients;assembly=MagicGradients"
+             xmlns:h="clr-namespace:XF40Demo.Helpers"
+             x:Class="XF40Demo.Views.WeatherDetailPage"
+             x:DataType="vm:WeatherdetailViewModel"
+             Title="Mars Weather"
+             BackgroundColor="{DynamicResource pageBackgroundColor}"
+             Padding="15, 10">
+
+    <ScrollView>
+
+        <Grid ColumnSpacing="5" 
+              RowSpacing="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+                   Text="Summer"
+                   TextColor="{DynamicResource altTextColor}"
+                   FontSize="32"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                   Text="Atmospheric Temperature"
+                   TextColor="{DynamicResource altTextColor}"
+                   FontSize="Medium"/>
+
+            <Label Grid.Row="2" Grid.Column="0"
+                   Text="{x:Static h:FA5FreeSolid.Wind}"
+                   Style="{StaticResource FA-Solid}"
+                   TextColor="{DynamicResource altTextColor}"
+                   FontSize="30"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+
+            <mg:GradientView Grid.Row="2" Grid.Column="1"
+                             HeightRequest="35" 
+                             HorizontalOptions="FillAndExpand">
+                <mg:GradientView.GradientSource>
+                    <mg:LinearGradient Angle="90">
+                        <mg:GradientStop Color="Blue" Offset="1"/>
+                        <mg:GradientStop Color="Red" Offset="0"/>
+                    </mg:LinearGradient>
+                </mg:GradientView.GradientSource>
+            </mg:GradientView>
+
+            <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                   Text="Wind Speed"
+                   TextColor="{DynamicResource altTextColor}"
+                   FontSize="Medium"
+                   Padding="0, 5, 0, 0"/>
+
+            <Label Grid.Row="4" Grid.Column="0"
+                   Text="{x:Static h:FA5FreeSolid.Compass}"
+                   Style="{StaticResource FA-Solid}"
+                   TextColor="{DynamicResource altTextColor}"
+                   FontSize="30"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+
+            <mg:GradientView Grid.Row="4" Grid.Column="1"
+                             HeightRequest="35" 
+                             HorizontalOptions="FillAndExpand">
+                <mg:GradientView.GradientSource>
+                    <mg:LinearGradient Angle="90">
+                        <mg:GradientStop Color="Blue" Offset="1"/>
+                        <mg:GradientStop Color="Red" Offset="0"/>
+                    </mg:LinearGradient>
+                </mg:GradientView.GradientSource>
+            </mg:GradientView>
+
+            <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
+                   Text="Atmospheric Pressure"
+                   TextColor="{DynamicResource altTextColor}"
+                   FontSize="Medium"
+                   Padding="0, 5, 0, 0"/>
+
+            <Label Grid.Row="6" Grid.Column="0"
+                   Text="{x:Static h:FA5FreeSolid.Smog}"
+                   Style="{StaticResource FA-Solid}"
+                   TextColor="{DynamicResource altTextColor}"
+                   FontSize="30"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+
+            <mg:GradientView Grid.Row="6" Grid.Column="1"
+                             HeightRequest="35" 
+                             HorizontalOptions="FillAndExpand">
+                <mg:GradientView.GradientSource>
+                    <mg:LinearGradient Angle="90">
+                        <mg:GradientStop Color="Blue" Offset="1"/>
+                        <mg:GradientStop Color="Red" Offset="0"/>
+                    </mg:LinearGradient>
+                </mg:GradientView.GradientSource>
+            </mg:GradientView>
+
+            <Label Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"
+                   Text="Wind Direction Distribution"
+                   TextColor="{DynamicResource altTextColor}"
+                   FontSize="Medium"
+                   Padding="0, 10, 0, 0"/>
+
+        </Grid>
+        
+    </ScrollView>
+    
+</ContentPage>

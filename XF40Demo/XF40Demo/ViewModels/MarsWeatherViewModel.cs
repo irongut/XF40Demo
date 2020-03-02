@@ -26,6 +26,8 @@ namespace XF40Demo.ViewModels
 
         public ICommand TemperatureScaleTappedCommand { get; }
 
+        public ICommand SolTappedCommand { get; }
+
         public ObservableCollection<MartianDay> MarsWeather { get; }
 
         private MartianDay _latestWeather;
@@ -133,8 +135,14 @@ namespace XF40Demo.ViewModels
         {
             InfoTappedCommand = new Command(async () => await ShowInfoAsync().ConfigureAwait(false));
             TemperatureScaleTappedCommand = new Command(ToggleTemperatureScale);
+            SolTappedCommand = new Command<uint>(async (x) => await OpenWeatherDetailAsync(x).ConfigureAwait(false));
             MarsWeather = new ObservableCollection<MartianDay>();
             TemperatureScale = settings.TemperatureScale;
+        }
+
+        private async Task OpenWeatherDetailAsync(uint sol)
+        {
+            await Xamarin.Forms.Shell.Current.GoToAsync($"///marsWeather/details?sol={sol}").ConfigureAwait(false);
         }
 
         private async Task ShowInfoAsync()
