@@ -16,8 +16,10 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="35"/>
@@ -29,17 +31,34 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+            <!-- header -->
+
+            <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"
                    Text="Summer"
                    TextColor="{DynamicResource altTextColor}"
                    FontSize="32"/>
 
-            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+            <ImageButton Grid.Row="0" Grid.Column="2"
+                         BackgroundColor="{DynamicResource pageForegroundColor}"
+                         CornerRadius="15"
+                         HeightRequest="30"
+                         Padding="6">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}"
+                                     Glyph="{x:Static h:FA5FreeSolid.TemperatureHigh}"
+                                     Size="18"
+                                     Color="{DynamicResource textColor}"/>
+                </ImageButton.Source>
+            </ImageButton>
+
+            <!-- temperature -->
+
+            <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                    Text="Atmospheric Temperature"
                    TextColor="{DynamicResource altTextColor}"
                    FontSize="Medium"/>
 
-            <Label Grid.Row="2" Grid.Column="0"
+            <Label Grid.Row="3" Grid.Column="0"
                    Text="{x:Static h:FA5FreeSolid.Wind}"
                    Style="{StaticResource FA-Solid}"
                    TextColor="{DynamicResource altTextColor}"
@@ -47,18 +66,20 @@
                    HorizontalOptions="Center"
                    VerticalOptions="Center"/>
 
-            <v:LinearGaugeView Grid.Row="2" Grid.Column="1"
+            <v:LinearGaugeView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                                MinText="-150 °C"
                                AverageText="-75 °C"
                                MaxText="-10 °C"/>
 
-            <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+            <!-- wind speed -->
+            
+            <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
                    Text="Wind Speed"
                    TextColor="{DynamicResource altTextColor}"
                    FontSize="Medium"
                    Padding="0, 5, 0, 0"/>
 
-            <Label Grid.Row="4" Grid.Column="0"
+            <Label Grid.Row="5" Grid.Column="0"
                    Text="{x:Static h:FA5FreeSolid.Compass}"
                    Style="{StaticResource FA-Solid}"
                    TextColor="{DynamicResource altTextColor}"
@@ -66,20 +87,22 @@
                    HorizontalOptions="Center"
                    VerticalOptions="Center"/>
 
-            <v:LinearGaugeView Grid.Row="4" Grid.Column="1"
+            <v:LinearGaugeView Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"
                                MinColor="DarkGreen"
                                MaxColor="DarkGoldenrod"
                                MinText="2.3 m/s"
                                AverageText="6.12 m/s"
                                MaxText="11.7 m/s"/>
 
-            <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
+            <!-- pressure -->
+            
+            <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"
                    Text="Atmospheric Pressure"
                    TextColor="{DynamicResource altTextColor}"
                    FontSize="Medium"
                    Padding="0, 5, 0, 0"/>
 
-            <Label Grid.Row="6" Grid.Column="0"
+            <Label Grid.Row="7" Grid.Column="0"
                    Text="{x:Static h:FA5FreeSolid.Smog}"
                    Style="{StaticResource FA-Solid}"
                    TextColor="{DynamicResource altTextColor}"
@@ -87,14 +110,16 @@
                    HorizontalOptions="Center"
                    VerticalOptions="Center"/>
 
-            <v:LinearGaugeView Grid.Row="6" Grid.Column="1"
+            <v:LinearGaugeView Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2"
                                MinColor="MediumPurple"
                                MaxColor="DarkBlue"
                                MinText="414.4 Pa"
                                AverageText="628.7 Pa"
                                MaxText="857.4 Pa"/>
 
-            <Label Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"
+            <!-- wind direction -->
+            
+            <Label Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"
                    Text="Wind Direction Distribution"
                    TextColor="{DynamicResource altTextColor}"
                    FontSize="Medium"
