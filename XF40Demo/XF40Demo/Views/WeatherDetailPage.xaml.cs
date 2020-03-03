@@ -12,7 +12,7 @@ namespace XF40Demo.Views
         private readonly WeatherDetailViewModel vm = new WeatherDetailViewModel();
 
         private string _sol;
-        public string Sol 
+        public string Sol
         {
             get { return _sol; }
             set

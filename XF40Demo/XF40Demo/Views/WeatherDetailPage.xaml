@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:mg="clr-namespace:MagicGradients;assembly=MagicGradients"
              xmlns:h="clr-namespace:XF40Demo.Helpers"
+             xmlns:v="clr-namespace:XF40Demo.Views"
              x:Class="XF40Demo.Views.WeatherDetailPage"
              x:DataType="vm:WeatherdetailViewModel"
              Title="Mars Weather"
@@ -43,20 +43,14 @@
                    Text="{x:Static h:FA5FreeSolid.Wind}"
                    Style="{StaticResource FA-Solid}"
                    TextColor="{DynamicResource altTextColor}"
-                   FontSize="30"
+                   FontSize="26"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"/>
 
-            <mg:GradientView Grid.Row="2" Grid.Column="1"
-                             HeightRequest="35" 
-                             HorizontalOptions="FillAndExpand">
-                <mg:GradientView.GradientSource>
-                    <mg:LinearGradient Angle="90">
-                        <mg:GradientStop Color="Blue" Offset="1"/>
-                        <mg:GradientStop Color="Red" Offset="0"/>
-                    </mg:LinearGradient>
-                </mg:GradientView.GradientSource>
-            </mg:GradientView>
+            <v:LinearGaugeView Grid.Row="2" Grid.Column="1"
+                               MinText="-150 °C"
+                               AverageText="-75 °C"
+                               MaxText="-10 °C"/>
 
             <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
                    Text="Wind Speed"
@@ -68,20 +62,16 @@
                    Text="{x:Static h:FA5FreeSolid.Compass}"
                    Style="{StaticResource FA-Solid}"
                    TextColor="{DynamicResource altTextColor}"
-                   FontSize="30"
+                   FontSize="26"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"/>
 
-            <mg:GradientView Grid.Row="4" Grid.Column="1"
-                             HeightRequest="35" 
-                             HorizontalOptions="FillAndExpand">
-                <mg:GradientView.GradientSource>
-                    <mg:LinearGradient Angle="90">
-                        <mg:GradientStop Color="Blue" Offset="1"/>
-                        <mg:GradientStop Color="Red" Offset="0"/>
-                    </mg:LinearGradient>
-                </mg:GradientView.GradientSource>
-            </mg:GradientView>
+            <v:LinearGaugeView Grid.Row="4" Grid.Column="1"
+                               MinColor="DarkGreen"
+                               MaxColor="DarkGoldenrod"
+                               MinText="2.3 m/s"
+                               AverageText="6.12 m/s"
+                               MaxText="11.7 m/s"/>
 
             <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
                    Text="Atmospheric Pressure"
@@ -93,20 +83,16 @@
                    Text="{x:Static h:FA5FreeSolid.Smog}"
                    Style="{StaticResource FA-Solid}"
                    TextColor="{DynamicResource altTextColor}"
-                   FontSize="30"
+                   FontSize="26"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"/>
 
-            <mg:GradientView Grid.Row="6" Grid.Column="1"
-                             HeightRequest="35" 
-                             HorizontalOptions="FillAndExpand">
-                <mg:GradientView.GradientSource>
-                    <mg:LinearGradient Angle="90">
-                        <mg:GradientStop Color="Blue" Offset="1"/>
-                        <mg:GradientStop Color="Red" Offset="0"/>
-                    </mg:LinearGradient>
-                </mg:GradientView.GradientSource>
-            </mg:GradientView>
+            <v:LinearGaugeView Grid.Row="6" Grid.Column="1"
+                               MinColor="MediumPurple"
+                               MaxColor="DarkBlue"
+                               MinText="414.4 Pa"
+                               AverageText="628.7 Pa"
+                               MaxText="857.4 Pa"/>
 
             <Label Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"
                    Text="Wind Direction Distribution"
