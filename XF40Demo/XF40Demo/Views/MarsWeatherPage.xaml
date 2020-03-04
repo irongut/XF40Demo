@@ -37,30 +37,30 @@
                             </Grid.RowDefinitions>
 
                             <Label Grid.Row="0"
-                               Text="{Binding Path=Sol, StringFormat='Sol {0}', Mode=OneWay}"
-                               TextColor="{DynamicResource textColor}"
-                               HorizontalOptions="Center"/>
+                                   Text="{Binding Path=Sol, StringFormat='Sol {0}', Mode=OneWay}"
+                                   TextColor="{DynamicResource textColor}"
+                                   HorizontalOptions="Center"/>
 
                             <Label Grid.Row="1"
-                               Text="{Binding Path=FirstUTC, StringFormat='{0:M}', Mode=OneWay}"
-                               TextColor="{DynamicResource textColor}"
-                               HorizontalOptions="Center"/>
+                                   Text="{Binding Path=FirstUTC, StringFormat='{0:M}', Mode=OneWay}"
+                                   TextColor="{DynamicResource textColor}"
+                                   HorizontalOptions="Center"/>
 
                             <BoxView Grid.Row="2"
-                                 Color="OrangeRed"
-                                 HeightRequest="2"
-                                 HorizontalOptions="Fill"
-                                 Margin="0, 4, 0, 6"/>
+                                     Color="OrangeRed"
+                                     HeightRequest="2"
+                                     HorizontalOptions="Fill"
+                                     Margin="0, 4, 0, 6"/>
 
                             <Label Grid.Row="3"
-                               TextColor="{DynamicResource textColor}"
-                               HorizontalOptions="Center">
+                                   TextColor="{DynamicResource textColor}"
+                                   HorizontalOptions="Center">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="{x:Static h:FA5FreeSolid.ThermometerQuarter}"
-                                          Style="{StaticResource FA-Solid}"
-                                          TextColor="LightBlue"
-                                          FontSize="Large"/>
+                                              Style="{StaticResource FA-Solid}"
+                                              TextColor="LightBlue"
+                                              FontSize="Large"/>
                                         <Span Text="{Binding Path=AtmosphericTemp.Min, StringFormat=' {0:N1}', Mode=OneWay}"/>
                                         <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:MarsWeatherViewModel}}, Path=TemperatureScale, Converter={StaticResource scaleLabel}, StringFormat=' {0}', Mode=OneWay}"/>
                                     </FormattedString>
@@ -68,14 +68,14 @@
                             </Label>
 
                             <Label Grid.Row="4"
-                               TextColor="{DynamicResource textColor}"
-                               HorizontalOptions="Center">
+                                   TextColor="{DynamicResource textColor}"
+                                   HorizontalOptions="Center">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="{x:Static h:FA5FreeSolid.ThermometerFull}"
-                                          Style="{StaticResource FA-Solid}"
-                                          TextColor="Red"
-                                          FontSize="Large"/>
+                                              Style="{StaticResource FA-Solid}"
+                                              TextColor="Red"
+                                              FontSize="Large"/>
                                         <Span Text="{Binding Path=AtmosphericTemp.Max, StringFormat=' {0:N1}', Mode=OneWay}"/>
                                         <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:MarsWeatherViewModel}}, Path=TemperatureScale, Converter={StaticResource scaleLabel}, StringFormat=' {0}', Mode=OneWay}"/>
                                     </FormattedString>

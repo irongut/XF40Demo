@@ -1,15 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:c="clr-namespace:XF40Demo.Convertors"
              xmlns:h="clr-namespace:XF40Demo.Helpers"
              xmlns:v="clr-namespace:XF40Demo.Views"
+             xmlns:vm="clr-namespace:XF40Demo.ViewModels"
              x:Class="XF40Demo.Views.WeatherDetailPage"
-             x:DataType="vm:WeatherdetailViewModel"
-             Title="Mars Weather"
+             x:DataType="vm:WeatherDetailViewModel"
+             Title="{Binding SolDate, Mode=OneWay}"
              BackgroundColor="{DynamicResource pageBackgroundColor}"
              Padding="15, 10">
 
-    <ScrollView>
+    <ContentPage.Resources>
+        <c:TemperatureScaleToLabel x:Key="scaleLabel"/>
+    </ContentPage.Resources>
+
+        <ScrollView>
 
         <Grid ColumnSpacing="5" 
               RowSpacing="3">
@@ -34,11 +40,12 @@
             <!-- header -->
 
             <Label Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"
-                   Text="Summer"
+                   Text="{Binding SolWeather.Season, Mode=OneWay}"
                    TextColor="{DynamicResource altTextColor}"
                    FontSize="32"/>
 
             <ImageButton Grid.Row="0" Grid.Column="2"
+                         Command="{Binding TemperatureScaleTappedCommand}"
                          BackgroundColor="{DynamicResource pageForegroundColor}"
                          CornerRadius="15"
                          HeightRequest="30"
@@ -59,7 +66,7 @@
                    FontSize="Medium"/>
 
             <Label Grid.Row="3" Grid.Column="0"
-                   Text="{x:Static h:FA5FreeSolid.Wind}"
+                   Text="{x:Static h:FA5FreeSolid.ThermometerHalf}"
                    Style="{StaticResource FA-Solid}"
                    TextColor="{DynamicResource altTextColor}"
                    FontSize="26"
@@ -67,9 +74,10 @@
                    VerticalOptions="Center"/>
 
             <v:LinearGaugeView Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
-                               MinText="-150 °C"
-                               AverageText="-75 °C"
-                               MaxText="-10 °C"/>
+                               Min="{Binding Path=SolWeather.AtmosphericTemp.Min, StringFormat='{0:N1}', Mode=OneWay}"
+                               Max="{Binding Path=SolWeather.AtmosphericTemp.Max, StringFormat=' {0:N1}', Mode=OneWay}"
+                               Average="{Binding Path=SolWeather.AtmosphericTemp.Average, StringFormat=' {0:N1}', Mode=OneWay}"
+                               Units="{Binding Path=SolWeather.AtmosphericTemp.Scale, Converter={StaticResource scaleLabel}, Mode=OneWay}"/>
 
             <!-- wind speed -->
             
@@ -80,7 +88,7 @@
                    Padding="0, 5, 0, 0"/>
 
             <Label Grid.Row="5" Grid.Column="0"
-                   Text="{x:Static h:FA5FreeSolid.Compass}"
+                   Text="{x:Static h:FA5FreeSolid.Wind}"
                    Style="{StaticResource FA-Solid}"
                    TextColor="{DynamicResource altTextColor}"
                    FontSize="26"
@@ -90,9 +98,10 @@
             <v:LinearGaugeView Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"
                                MinColor="DarkGreen"
                                MaxColor="DarkGoldenrod"
-                               MinText="2.3 m/s"
-                               AverageText="6.12 m/s"
-                               MaxText="11.7 m/s"/>
+                               Min="{Binding Path=SolWeather.HorizontalWindSpeed.Min, StringFormat='{0:N2}', Mode=OneWay}"
+                               Max="{Binding Path=SolWeather.HorizontalWindSpeed.Max, StringFormat='{0:N2}', Mode=OneWay}"
+                               Average="{Binding Path=SolWeather.HorizontalWindSpeed.Average, StringFormat='{0:N2}', Mode=OneWay}"
+                               Units="m/s"/>
 
             <!-- pressure -->
             
@@ -113,9 +122,10 @@
             <v:LinearGaugeView Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2"
                                MinColor="MediumPurple"
                                MaxColor="DarkBlue"
-                               MinText="414.4 Pa"
-                               AverageText="628.7 Pa"
-                               MaxText="857.4 Pa"/>
+                               Min="{Binding Path=SolWeather.AtmosphericPressure.Min, StringFormat='{0:N1}', Mode=OneWay}"
+                               Max="{Binding Path=SolWeather.AtmosphericPressure.Max, StringFormat='{0:N1}', Mode=OneWay}"
+                               Average="{Binding Path=SolWeather.AtmosphericPressure.Average, StringFormat='{0:N1}', Mode=OneWay}"
+                               Units="Pa"/>
 
             <!-- wind direction -->
             

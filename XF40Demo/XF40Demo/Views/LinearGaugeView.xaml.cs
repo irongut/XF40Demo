@@ -68,28 +68,36 @@ namespace XF40Demo.Views
             set { SetValue(TextColorProperty, value); }
         }
 
-        public static BindableProperty MinTextProperty = BindableProperty.Create(nameof(MinText), typeof(string), typeof(LinearGaugeView));
+        public static BindableProperty MinProperty = BindableProperty.Create(nameof(Min), typeof(string), typeof(LinearGaugeView));
 
-        public string MinText
+        public string Min
         {
-            get { return (string)GetValue(MinTextProperty); }
-            set { SetValue(MinTextProperty, value); }
+            get { return (string)GetValue(MinProperty); }
+            set { SetValue(MinProperty, value); }
         }
 
-        public static BindableProperty AverageTextProperty = BindableProperty.Create(nameof(AverageText), typeof(string), typeof(LinearGaugeView));
+        public static BindableProperty AverageProperty = BindableProperty.Create(nameof(Average), typeof(string), typeof(LinearGaugeView));
 
-        public string AverageText
+        public string Average
         {
-            get { return (string)GetValue(AverageTextProperty); }
-            set { SetValue(AverageTextProperty, value); }
+            get { return (string)GetValue(AverageProperty); }
+            set { SetValue(AverageProperty, value); }
         }
 
-        public static BindableProperty MaxTextProperty = BindableProperty.Create(nameof(MaxText), typeof(string), typeof(LinearGaugeView));
+        public static BindableProperty MaxProperty = BindableProperty.Create(nameof(Max), typeof(string), typeof(LinearGaugeView));
 
-        public string MaxText
+        public string Max
         {
-            get { return (string)GetValue(MaxTextProperty); }
-            set { SetValue(MaxTextProperty, value); }
+            get { return (string)GetValue(MaxProperty); }
+            set { SetValue(MaxProperty, value); }
+        }
+
+        public static BindableProperty UnitsProperty = BindableProperty.Create(nameof(Units), typeof(string), typeof(FramedTextView));
+
+        public string Units
+        {
+            get { return (string)GetValue(UnitsProperty); }
+            set { SetValue(UnitsProperty, value); }
         }
 
         #endregion

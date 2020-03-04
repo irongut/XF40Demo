@@ -29,30 +29,51 @@
     </mg:GradientView>
 
     <Label Grid.Column="0"
-           Text="{Binding Source={x:Reference this}, Path=MinText, Mode=OneWay}"
            TextColor="{Binding Source={x:Reference this}, Path=TextColor, Mode=OneWay}"
            FontAttributes="{Binding Source={x:Reference this}, Path=FontAttributes, Mode=OneWay}"
            FontFamily="{Binding Source={x:Reference this}, Path=FontFamily, Mode=OneWay}"
            FontSize="{Binding Source={x:Reference this}, Path=FontSize, Mode=OneWay}"
            VerticalOptions="Center"
-           Padding="10, 0"/>
+           Padding="10, 0">
+        <Label.FormattedText>
+            <FormattedString>
+                <Span Text="{Binding Source={x:Reference this}, Path=Min, Mode=OneWay}"/>
+                <Span Text=" "/>
+                <Span Text="{Binding Source={x:Reference this}, Path=Units, Mode=OneWay}"/>
+            </FormattedString>
+        </Label.FormattedText>
+    </Label>
 
     <Label Grid.Column="1"
-           Text="{Binding Source={x:Reference this}, Path=AverageText, Mode=OneWay}"
            TextColor="{Binding Source={x:Reference this}, Path=TextColor, Mode=OneWay}"
            FontAttributes="{Binding Source={x:Reference this}, Path=FontAttributes, Mode=OneWay}"
            FontFamily="{Binding Source={x:Reference this}, Path=FontFamily, Mode=OneWay}"
            FontSize="{Binding Source={x:Reference this}, Path=FontSize, Mode=OneWay}"
            HorizontalOptions="Center"
-           VerticalOptions="Center"/>
+           VerticalOptions="Center">
+        <Label.FormattedText>
+            <FormattedString>
+                <Span Text="{Binding Source={x:Reference this}, Path=Average, Mode=OneWay}"/>
+                <Span Text=" "/>
+                <Span Text="{Binding Source={x:Reference this}, Path=Units, Mode=OneWay}"/>
+            </FormattedString>
+        </Label.FormattedText>
+    </Label>
 
     <Label Grid.Column="2"
-           Text="{Binding Source={x:Reference this}, Path=MaxText, Mode=OneWay}"
            TextColor="{Binding Source={x:Reference this}, Path=TextColor, Mode=OneWay}"
            FontAttributes="{Binding Source={x:Reference this}, Path=FontAttributes, Mode=OneWay}"
            FontFamily="{Binding Source={x:Reference this}, Path=FontFamily, Mode=OneWay}"
            FontSize="{Binding Source={x:Reference this}, Path=FontSize, Mode=OneWay}"
            VerticalOptions="Center"
-           Padding="10, 0"/>
+           Padding="10, 0">
+        <Label.FormattedText>
+            <FormattedString>
+                <Span Text="{Binding Source={x:Reference this}, Path=Max, Mode=OneWay}"/>
+                <Span Text=" "/>
+                <Span Text="{Binding Source={x:Reference this}, Path=Units, Mode=OneWay}"/>
+            </FormattedString>
+        </Label.FormattedText>
+    </Label>
 
 </Grid>
