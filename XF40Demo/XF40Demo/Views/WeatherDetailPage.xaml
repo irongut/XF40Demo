@@ -15,7 +15,7 @@
         <c:TemperatureScaleToLabel x:Key="scaleLabel"/>
     </ContentPage.Resources>
 
-        <ScrollView>
+    <ScrollView>
 
         <Grid ColumnSpacing="5" 
               RowSpacing="3">

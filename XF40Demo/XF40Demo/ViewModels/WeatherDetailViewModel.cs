@@ -1,8 +1,4 @@
-﻿using Acr.UserDialogs;
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading;
+﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -14,6 +10,8 @@ namespace XF40Demo.ViewModels
 {
     public class WeatherDetailViewModel : BaseViewModel
     {
+        private readonly MarsWeatherService weatherService = MarsWeatherService.Instance();
+
         #region Properties
 
         public ICommand TemperatureScaleTappedCommand { get; }
@@ -48,21 +46,6 @@ namespace XF40Demo.ViewModels
             }
         }
 
-        private TemperatureScale _temperatureScale;
-        public TemperatureScale TemperatureScale
-        {
-            get { return _temperatureScale; }
-            set
-            {
-                if (_temperatureScale != value)
-                {
-                    _temperatureScale = value;
-                    settings.TemperatureScale = value;
-                    OnPropertyChanged(nameof(TemperatureScale));
-                }
-            }
-        }
-
         private DateTime _lastUpdated;
         public DateTime LastUpdated
         {
@@ -82,71 +65,38 @@ namespace XF40Demo.ViewModels
         public WeatherDetailViewModel()
         {
             TemperatureScaleTappedCommand = new Command(ToggleTemperatureScale);
-            TemperatureScale = settings.TemperatureScale;
         }
 
         private void ToggleTemperatureScale()
         {
-            TemperatureScale = TemperatureScale == TemperatureScale.Celsius ? TemperatureScale.Fahrenheit : TemperatureScale.Celsius;
-            SolWeather.SetTemperatureScale(TemperatureScale);
+            settings.TemperatureScale = settings.TemperatureScale == TemperatureScale.Celsius ? TemperatureScale.Fahrenheit : TemperatureScale.Celsius;
+            SolWeather.SetTemperatureScale(settings.TemperatureScale);
+            foreach (MartianDay sol in weatherService.Weather)
+            {
+                sol.SetTemperatureScale(settings.TemperatureScale);
+            }
         }
 
-        private async void GetSolWeather()
+        private void GetSolWeather()
         {
-            CancellationTokenSource cancelToken = new CancellationTokenSource();
-
-            using (UserDialogs.Instance.Loading("Loading", () => cancelToken.Cancel(), null, true, MaskType.Clear))
+            try
             {
-                try
+                if (weatherService.Weather.Count < 1)
                 {
-                    MarsWeatherService weatherService = MarsWeatherService.Instance();
-                    List<MartianDay> weather = new List<MartianDay>();
-                    (weather, LastUpdated) = await weatherService.GetDataAsync(TemperatureScale, cancelToken, false).ConfigureAwait(false);
-
-                    if (weather.Count < 1)
-                    {
-                        SetMessages("Unable to display Martian Weather due to data problem.");
-                    }
-                    else
-                    {
-                        Device.BeginInvokeOnMainThread(() =>
-                        {
-                            SolWeather = weather.Find(x => x.Sol.Equals(Sol));
-                            SolDate = String.Format("Sol {0} - {1:M}", SolWeather.Sol, SolWeather.FirstUTC);
-                        });
-                    }
+                    SetMessages("No Martian Weather data available.");
                 }
-                catch (OperationCanceledException)
+                else
                 {
-                    SetMessages("Martian Weather download was cancelled or timed out.");
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        SolWeather = weatherService.Weather.Find(x => x.Sol.Equals(Sol));
+                        SolDate = String.Format("Sol {0} - {1:M}", SolWeather.Sol, SolWeather.FirstUTC);
+                    });
                 }
-                catch (HttpRequestException ex)
-                {
-                    string err = ex.Message;
-                    int start = err.IndexOf("OPENSSL_internal:", StringComparison.OrdinalIgnoreCase);
-                    if (start > 0)
-                    {
-                        start += 17;
-                        int end = err.IndexOf(" ", start, StringComparison.OrdinalIgnoreCase);
-                        err = String.Format("SSL Error ({0})", err.Substring(start, end - start).Trim());
-                    }
-                    else if (err.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) > 0)
-                    {
-                        err = err.Substring(err.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) + 6).Trim();
-                    }
-                    SetMessages(String.Format("Network Error: {0}", err));
-                }
-                catch (Exception ex)
-                {
-                    if (ex.Message.Contains("unexpected end of stream"))
-                    {
-                        SetMessages("Martian Weather download was cancelled.");
-                    }
-                    else
-                    {
-                        SetMessages(String.Format("Error: {0}", ex.Message));
-                    }
-                }
+            }
+            catch (Exception ex)
+            {
+                SetMessages(String.Format("Error: {0}", ex.Message));
             }
         }
 

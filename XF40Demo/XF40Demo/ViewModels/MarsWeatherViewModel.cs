@@ -72,63 +72,6 @@ namespace XF40Demo.ViewModels
             }
         }
 
-        private TemperatureScale _temperatureScale;
-        public TemperatureScale TemperatureScale
-        {
-            get { return _temperatureScale; }
-            set
-            {
-                if (_temperatureScale != value)
-                {
-                    _temperatureScale = value;
-                    settings.TemperatureScale = value;
-                    OnPropertyChanged(nameof(TemperatureScale));
-                }
-            }
-        }
-
-        private bool _showMessage;
-        public bool ShowMessage
-        {
-            get { return _showMessage; }
-            set
-            {
-                if (_showMessage != value)
-                {
-                    _showMessage = value;
-                    OnPropertyChanged(nameof(ShowMessage));
-                }
-            }
-        }
-
-        private string _message;
-        public string Message
-        {
-            get { return _message; }
-            set
-            {
-                if (_message != value)
-                {
-                    _message = value;
-                    OnPropertyChanged(nameof(Message));
-                }
-            }
-        }
-
-        private bool _isErrorMessage;
-        public bool IsErrorMessage
-        {
-            get { return _isErrorMessage; }
-            protected set
-            {
-                if (_isErrorMessage != value)
-                {
-                    _isErrorMessage = value;
-                    OnPropertyChanged(nameof(IsErrorMessage));
-                }
-            }
-        }
-
         #endregion
 
         public MarsWeatherViewModel()
@@ -137,7 +80,6 @@ namespace XF40Demo.ViewModels
             TemperatureScaleTappedCommand = new Command(ToggleTemperatureScale);
             SolTappedCommand = new Command<uint>(async (x) => await OpenWeatherDetailAsync(x).ConfigureAwait(false));
             MarsWeather = new ObservableCollection<MartianDay>();
-            TemperatureScale = settings.TemperatureScale;
         }
 
         private async Task OpenWeatherDetailAsync(uint sol)
@@ -152,11 +94,11 @@ namespace XF40Demo.ViewModels
 
         private void ToggleTemperatureScale()
         {
-            TemperatureScale = TemperatureScale == TemperatureScale.Celsius ? TemperatureScale.Fahrenheit : TemperatureScale.Celsius;
-            LatestWeather.SetTemperatureScale(TemperatureScale);
+            settings.TemperatureScale = settings.TemperatureScale == TemperatureScale.Celsius ? TemperatureScale.Fahrenheit : TemperatureScale.Celsius;
+            LatestWeather.SetTemperatureScale(settings.TemperatureScale);
             foreach (MartianDay sol in MarsWeather)
             {
-                sol.SetTemperatureScale(TemperatureScale);
+                sol.SetTemperatureScale(settings.TemperatureScale);
             }
         }
 
@@ -199,10 +141,9 @@ namespace XF40Demo.ViewModels
                 try
                 {
                     MarsWeatherService weatherService = MarsWeatherService.Instance();
-                    List<MartianDay> weather = new List<MartianDay>();
-                    (weather, LastUpdated) = await weatherService.GetDataAsync(TemperatureScale, cancelToken, ignoreCache).ConfigureAwait(false);
+                    await weatherService.GetDataAsync(cancelToken, ignoreCache).ConfigureAwait(false);
 
-                    if (weather.Count < 1)
+                    if (weatherService.Weather.Count < 1)
                     {
                         SetMessages("Unable to display Martian Weather due to data problem.", true);
                     }
@@ -211,8 +152,9 @@ namespace XF40Demo.ViewModels
                         Device.BeginInvokeOnMainThread(() =>
                         {
                             MarsWeather.Clear();
-                            foreach (MartianDay day in weather.OrderBy(d => d.Sol))
+                            foreach (MartianDay day in weatherService.Weather.OrderBy(d => d.Sol))
                             {
+                                day.AtmosphericTemp.Scale = settings.TemperatureScale;
                                 MarsWeather.Add(day);
                             }
                             LatestWeather = MarsWeather.Last<MartianDay>();
@@ -255,10 +197,11 @@ namespace XF40Demo.ViewModels
 
         private void SetMessages(string message, Boolean isError)
         {
-            Message = message;
-            ShowMessage = true;
-            IsErrorMessage = isError;
-            ToastHelper.Toast(Message);
+            if (isError)
+            {
+                message = "Error: " + message;
+            }
+            ToastHelper.Toast(message);
         }
 
         protected override void RefreshView()
