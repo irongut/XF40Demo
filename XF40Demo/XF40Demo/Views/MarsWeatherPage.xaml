@@ -146,7 +146,7 @@
             </Label>
 
             <Label Grid.Row="2" Grid.Column="0"
-                   Text="{Binding Path=LastUpdated, StringFormat='Updated: {0}', Mode=OneWay}" 
+                   Text="{Binding LastUpdated, StringFormat='Updated: {0}', Mode=OneWay}" 
                    TextColor="{StaticResource altTextColor}" 
                    FontSize="Default"/>
 
