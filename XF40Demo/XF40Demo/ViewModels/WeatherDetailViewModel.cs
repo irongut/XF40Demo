@@ -91,6 +91,7 @@ namespace XF40Demo.ViewModels
                     {
                         SolWeather = weatherService.Weather.Find(x => x.Sol.Equals(Sol));
                         SolDate = String.Format("Sol {0} - {1:M}", SolWeather.Sol, SolWeather.FirstUTC);
+                        LastUpdated = weatherService.LastUpdated;
                     });
                 }
             }

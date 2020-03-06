@@ -126,6 +126,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0"
@@ -143,6 +144,11 @@
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
+
+            <Label Grid.Row="2" Grid.Column="0"
+                   Text="{Binding Path=LastUpdated, StringFormat='Updated: {0}', Mode=OneWay}" 
+                   TextColor="{StaticResource altTextColor}" 
+                   FontSize="Default"/>
 
             <ImageButton Grid.Row="0" Grid.Column="1"
                          Command="{Binding InfoTappedCommand}"

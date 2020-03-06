@@ -158,6 +158,7 @@ namespace XF40Demo.ViewModels
                                 MarsWeather.Add(day);
                             }
                             LatestWeather = MarsWeather.Last<MartianDay>();
+                            LastUpdated = weatherService.LastUpdated;
                         });
                     }
                 }
