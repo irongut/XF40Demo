@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mcf="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              xmlns:c="clr-namespace:XF40Demo.Convertors"
              xmlns:h="clr-namespace:XF40Demo.Helpers"
              xmlns:v="clr-namespace:XF40Demo.Views"
@@ -174,10 +175,14 @@
                 <!-- wind direction -->
 
                 <Label Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"
-                       Text="Wind Direction Distribution"
+                       Text="{Binding SolWeather.WindDirection.MostCommon.CompassPointName, StringFormat='Wind Direction ({0})', Mode=OneWay}"
                        TextColor="{DynamicResource textColor}"
                        FontSize="Medium"
                        Padding="0, 10, 0, 0"/>
+
+                <mcf:ChartView Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2"
+                               Chart="{Binding WindChart}"
+                               HeightRequest="300"/>
 
             </Grid>
 

@@ -145,6 +145,8 @@
     <PackageReference Include="Acr.UserDialogs" Version="7.0.35" />
     <PackageReference Include="CsvHelper" Version="15.0.0" />
     <PackageReference Include="MagicGradients" Version="1.0.0" />
+    <PackageReference Include="Microcharts" Version="0.8.5-pre" />
+    <PackageReference Include="Microcharts.Forms" Version="0.8.5-pre" />
     <PackageReference Include="MonkeyCache.FileStore" Version="1.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
