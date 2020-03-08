@@ -182,7 +182,7 @@
 
                 <mcf:ChartView Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2"
                                Chart="{Binding WindChart}"
-                               HeightRequest="300"/>
+                               HeightRequest="350"/>
 
             </Grid>
 

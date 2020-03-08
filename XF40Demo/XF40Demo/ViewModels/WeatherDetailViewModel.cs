@@ -2,7 +2,6 @@
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -89,7 +88,11 @@ namespace XF40Demo.ViewModels
             WindChart = new RadarChart()
             {
                 Entries = windEntries,
-                BackgroundColor = SKColor.Parse(ThemeHelper.GetThemeColor("pageBackgroundColor").ToHex())
+                BackgroundColor = SKColor.Parse(ThemeHelper.GetThemeColor("pageBackgroundColor").ToHex()),
+                LabelTextSize = 32,
+                LineSize = 8,
+                Margin = 40,
+                BorderLineSize = 5
             };
         }
 
@@ -116,7 +119,7 @@ namespace XF40Demo.ViewModels
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         SolWeather = weatherService.Weather.Find(x => x.Sol.Equals(Sol));
-                        SolDate = String.Format("Sol {0} - {1:M}", SolWeather.Sol, SolWeather.FirstUTC);
+                        SolDate = String.Format("Sol {0} - {1:M}", Sol, SolWeather.FirstUTC);
                         LastUpdated = weatherService.LastUpdated;
                         BuildWindChart();
                     });
