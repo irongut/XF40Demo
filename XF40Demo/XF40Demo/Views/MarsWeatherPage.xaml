@@ -278,7 +278,7 @@
                    HorizontalOptions="Center"/>
 
             <Label Grid.Row="2" Grid.Column="1"
-                   Text="Wind Direction"
+                   Text="Direction"
                    TextColor="{DynamicResource altTextColor}"
                    FontSize="Medium"
                    HorizontalOptions="Center"/>
@@ -297,7 +297,7 @@
                    HorizontalOptions="Center"/>
 
             <Label Grid.Row="2" Grid.Column="2"
-                   Text="Air Pressure"
+                   Text="Pressure"
                    TextColor="{DynamicResource altTextColor}"
                    FontSize="Medium"
                    HorizontalOptions="Center"/>
