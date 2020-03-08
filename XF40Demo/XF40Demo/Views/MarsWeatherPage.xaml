@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
              xmlns:c="clr-namespace:XF40Demo.Convertors"
              xmlns:h="clr-namespace:XF40Demo.Helpers"
              xmlns:m="clr-namespace:XF40Demo.Models"
@@ -18,66 +19,71 @@
         <DataTemplate x:Key="dayTemplate" x:DataType="m:MartianDay">
             <ContentView Padding="7, 0">
                 <Frame BackgroundColor="{DynamicResource pageForegroundColor}"
-                   BorderColor="OrangeRed"
-                   CornerRadius="5"
-                   Padding="15, 0">
-                    <Grid RowSpacing="5"
-                      VerticalOptions="Center">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="12"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
+                       BorderColor="OrangeRed"
+                       CornerRadius="5"
+                       Padding="0">
+                    <ContentView Padding="15, 0"
+                                 xe:TouchEffect.Color="OrangeRed"
+                                 xe:Commands.Tap="{Binding Source={RelativeSource AncestorType={x:Type vm:MarsWeatherViewModel}}, Path=SolTappedCommand, Mode=OneWay}"
+                                 xe:Commands.TapParameter="{Binding Sol, Mode=OneWay}">
+                        <Grid RowSpacing="5"
+                              VerticalOptions="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="12"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                        <Label Grid.Row="0"
-                               Text="{Binding Path=Sol, StringFormat='Sol {0}', Mode=OneWay}"
-                               TextColor="{DynamicResource textColor}"
-                               HorizontalOptions="Center"/>
+                            <Label Grid.Row="0"
+                                   Text="{Binding Sol, StringFormat='Sol {0}', Mode=OneWay}"
+                                   TextColor="{DynamicResource textColor}"
+                                   HorizontalOptions="Center"/>
 
-                        <Label Grid.Row="1"
-                               Text="{Binding Path=FirstUTC, StringFormat='{0:M}', Mode=OneWay}"
-                               TextColor="{DynamicResource textColor}"
-                               HorizontalOptions="Center"/>
+                            <Label Grid.Row="1"
+                                   Text="{Binding FirstUTC, StringFormat='{0:M}', Mode=OneWay}"
+                                   TextColor="{DynamicResource textColor}"
+                                   HorizontalOptions="Center"/>
 
-                        <BoxView Grid.Row="2"
-                                 Color="OrangeRed"
-                                 HeightRequest="2"
-                                 HorizontalOptions="Fill"
-                                 Margin="0, 4, 0, 6"/>
+                            <BoxView Grid.Row="2"
+                                     Color="OrangeRed"
+                                     HeightRequest="2"
+                                     HorizontalOptions="Fill"
+                                     Margin="0, 4, 0, 6"/>
 
-                        <Label Grid.Row="3"
-                               TextColor="{DynamicResource textColor}"
-                               HorizontalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="{x:Static h:FA5FreeSolid.ThermometerQuarter}"
-                                          Style="{StaticResource FA-Solid}"
-                                          TextColor="LightBlue"
-                                          FontSize="Large"/>
-                                    <Span Text="{Binding Path=AtmosphericTemp.Min, StringFormat=' {0:N1}', Mode=OneWay}"/>
-                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:MarsWeatherViewModel}}, Path=TemperatureScale, Converter={StaticResource scaleLabel}, StringFormat=' {0}', Mode=OneWay}"/>
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
+                            <Label Grid.Row="3"
+                                   TextColor="{DynamicResource textColor}"
+                                   HorizontalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static h:FA5FreeSolid.ThermometerQuarter}"
+                                              Style="{StaticResource FA-Solid}"
+                                              TextColor="LightBlue"
+                                              FontSize="Large"/>
+                                        <Span Text="{Binding AtmosphericTemp.Min, StringFormat=' {0:N1}', Mode=OneWay}"/>
+                                        <Span Text="{Binding AtmosphericTemp.Scale, Converter={StaticResource scaleLabel}, StringFormat=' {0}', Mode=OneWay}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
 
-                        <Label Grid.Row="4"
-                               TextColor="{DynamicResource textColor}"
-                               HorizontalOptions="Center">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="{x:Static h:FA5FreeSolid.ThermometerFull}"
-                                          Style="{StaticResource FA-Solid}"
-                                          TextColor="Red"
-                                          FontSize="Large"/>
-                                    <Span Text="{Binding Path=AtmosphericTemp.Max, StringFormat=' {0:N1}', Mode=OneWay}"/>
-                                    <Span Text="{Binding Source={RelativeSource AncestorType={x:Type vm:MarsWeatherViewModel}}, Path=TemperatureScale, Converter={StaticResource scaleLabel}, StringFormat=' {0}', Mode=OneWay}"/>
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
+                            <Label Grid.Row="4"
+                                   TextColor="{DynamicResource textColor}"
+                                   HorizontalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static h:FA5FreeSolid.ThermometerFull}"
+                                              Style="{StaticResource FA-Solid}"
+                                              TextColor="Red"
+                                              FontSize="Large"/>
+                                        <Span Text="{Binding AtmosphericTemp.Max, StringFormat=' {0:N1}', Mode=OneWay}"/>
+                                        <Span Text="{Binding AtmosphericTemp.Scale, Converter={StaticResource scaleLabel}, StringFormat=' {0}', Mode=OneWay}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
 
-                    </Grid>
+                        </Grid>
+                    </ContentView>
                 </Frame>
             </ContentView>
         </DataTemplate>
@@ -120,6 +126,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0"
@@ -132,11 +139,16 @@
                    FontSize="Large">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="{Binding Path=LatestWeather.Sol, StringFormat='Sol {0} -', Mode=OneWay}"/>
-                        <Span Text="{Binding Path=LatestWeather.FirstUTC, StringFormat=' {0:M}', Mode=OneWay}"/>
+                        <Span Text="{Binding LatestWeather.Sol, StringFormat='Sol {0} -', Mode=OneWay}"/>
+                        <Span Text="{Binding LatestWeather.FirstUTC, StringFormat=' {0:M}', Mode=OneWay}"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
+
+            <Label Grid.Row="2" Grid.Column="0"
+                   Text="{Binding LastUpdated, StringFormat='Updated: {0}', Mode=OneWay}" 
+                   TextColor="{StaticResource altTextColor}" 
+                   FontSize="Default"/>
 
             <ImageButton Grid.Row="0" Grid.Column="1"
                          Command="{Binding InfoTappedCommand}"
@@ -181,8 +193,8 @@
                    HorizontalOptions="Center">
                 <Label.FormattedText>
                     <FormattedString>
-                        <Span Text="{Binding Path=LatestWeather.AtmosphericTemp.Average, StringFormat='{0:N1}', Mode=OneWay}"/>
-                        <Span Text="{Binding TemperatureScale, Converter={StaticResource scaleLabel}, StringFormat=' {0}', Mode=OneWay}"/>
+                        <Span Text="{Binding LatestWeather.AtmosphericTemp.Average, StringFormat='{0:N1}', Mode=OneWay}"/>
+                        <Span Text="{Binding LatestWeather.AtmosphericTemp.Scale, Converter={StaticResource scaleLabel}, StringFormat=' {0}', Mode=OneWay}"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
@@ -196,15 +208,15 @@
                               Style="{StaticResource FA-Solid}"
                               TextColor="LightBlue"
                               FontSize="Large"/>
-                        <Span Text="{Binding Path=LatestWeather.AtmosphericTemp.Min, StringFormat=' {0:N1}', Mode=OneWay}"/>
-                        <Span Text="{Binding TemperatureScale, Converter={StaticResource scaleLabel}, StringFormat=' {0}', Mode=OneWay}"/>
+                        <Span Text="{Binding LatestWeather.AtmosphericTemp.Min, StringFormat=' {0:N1}', Mode=OneWay}"/>
+                        <Span Text="{Binding LatestWeather.AtmosphericTemp.Scale, Converter={StaticResource scaleLabel}, StringFormat=' {0}', Mode=OneWay}"/>
                         <Span Text="   "/>
                         <Span Text="{x:Static h:FA5FreeSolid.ThermometerFull}"
                               Style="{StaticResource FA-Solid}"
                               TextColor="Red"
                               FontSize="Large"/>
-                        <Span Text="{Binding Path=LatestWeather.AtmosphericTemp.Max, StringFormat=' {0:N1}', Mode=OneWay}"/>
-                        <Span Text="{Binding TemperatureScale, Converter={StaticResource scaleLabel}, StringFormat=' {0}', Mode=OneWay}"/>
+                        <Span Text="{Binding LatestWeather.AtmosphericTemp.Max, StringFormat=' {0:N1}', Mode=OneWay}"/>
+                        <Span Text="{Binding LatestWeather.AtmosphericTemp.Scale, Converter={StaticResource scaleLabel}, StringFormat=' {0}', Mode=OneWay}"/>
                     </FormattedString>
                 </Label.FormattedText>
             </Label>
@@ -241,7 +253,7 @@
                    HorizontalOptions="Center"/>
 
             <Label Grid.Row="1" Grid.Column="0"
-                   Text="{Binding Path=LatestWeather.HorizontalWindSpeed.Average, StringFormat='{0:N2} m/s', Mode=OneWay}"
+                   Text="{Binding LatestWeather.HorizontalWindSpeed.Average, StringFormat='{0:N2} m/s', Mode=OneWay}"
                    TextColor="{DynamicResource altTextColor}"
                    FontSize="Large"
                    HorizontalOptions="Center"/>
@@ -266,7 +278,7 @@
                    HorizontalOptions="Center"/>
 
             <Label Grid.Row="2" Grid.Column="1"
-                   Text="Wind Direction"
+                   Text="Direction"
                    TextColor="{DynamicResource altTextColor}"
                    FontSize="Medium"
                    HorizontalOptions="Center"/>
@@ -279,13 +291,13 @@
                    HorizontalOptions="Center"/>
 
             <Label Grid.Row="1" Grid.Column="2"
-                   Text="{Binding Path=LatestWeather.AtmosphericPressure.Average, StringFormat='{0:N1} Pa', Mode=OneWay}"
+                   Text="{Binding LatestWeather.AtmosphericPressure.Average, StringFormat='{0:N1} Pa', Mode=OneWay}"
                    TextColor="{DynamicResource altTextColor}"
                    FontSize="Large"
                    HorizontalOptions="Center"/>
 
             <Label Grid.Row="2" Grid.Column="2"
-                   Text="Air Pressure"
+                   Text="Pressure"
                    TextColor="{DynamicResource altTextColor}"
                    FontSize="Medium"
                    HorizontalOptions="Center"/>
