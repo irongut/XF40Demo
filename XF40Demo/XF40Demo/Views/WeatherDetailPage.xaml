@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mcf="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             xmlns:c="clr-namespace:XF40Demo.Convertors"
+             xmlns:h="clr-namespace:XF40Demo.Helpers"
+             xmlns:v="clr-namespace:XF40Demo.Views"
+             xmlns:vm="clr-namespace:XF40Demo.ViewModels"
+             x:Class="XF40Demo.Views.WeatherDetailPage"
+             x:DataType="vm:WeatherDetailViewModel"
+             Title="Daily Summary"
+             BackgroundColor="{DynamicResource pageForegroundColor}">
+
+    <ContentPage.Resources>
+        <c:TemperatureScaleToLabel x:Key="scaleLabel"/>
+    </ContentPage.Resources>
+
+    <StackLayout Orientation="Vertical"
+                 Spacing="0">
+
+        <!-- header -->
+
+        <Grid BackgroundColor="{DynamicResource pageBackgroundColor}"
+              ColumnSpacing="5"
+              RowSpacing="0"
+              Padding="15, 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0"
+                   Text="{Binding SolDate, Mode=OneWay}"
+                   TextColor="{DynamicResource textColor}"
+                   FontSize="Large"/>
+
+            <ImageButton Grid.Row="0" Grid.Column="1"
+                         Command="{Binding TemperatureScaleTappedCommand}"
+                         BackgroundColor="{DynamicResource pageForegroundColor}"
+                         CornerRadius="15"
+                         Padding="6">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}"
+                                     Glyph="{x:Static h:FA5FreeSolid.TemperatureHigh}"
+                                     Size="18"
+                                     Color="{DynamicResource textColor}"/>
+                </ImageButton.Source>
+            </ImageButton>
+
+            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                   Text="{Binding LastUpdated, StringFormat='Updated: {0}', Mode=OneWay}"
+                   TextColor="{DynamicResource textColor}"
+                   FontSize="Default"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                   Text="{Binding SolWeather.FirstUTC, StringFormat='First Datum: {0}', Mode=OneWay}"
+                   TextColor="{DynamicResource textColor}"
+                   FontSize="Default"/>
+
+            <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                   Text="{Binding SolWeather.LastUTC, StringFormat='Last Datum: {0}', Mode=OneWay}"
+                   TextColor="{DynamicResource textColor}"
+                   FontSize="Default"/>
+
+        </Grid>
+
+        <!-- content -->
+
+        <ScrollView>
+
+            <Grid ColumnSpacing="5" 
+                  RowSpacing="3"
+                  Padding="15, 5, 15, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- temperature -->
+
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                       Text="Atmospheric Temperature"
+                       TextColor="{DynamicResource textColor}"
+                       FontSize="Medium"/>
+
+                <Label Grid.Row="1" Grid.Column="0"
+                       Text="{x:Static h:FA5FreeSolid.ThermometerHalf}"
+                       Style="{StaticResource FA-Solid}"
+                       TextColor="{DynamicResource textColor}"
+                       FontSize="26"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+
+                <v:LinearGaugeView Grid.Row="1" Grid.Column="1"
+                                   Min="{Binding Path=SolWeather.AtmosphericTemp.Min, StringFormat='{0:N1}', Mode=OneWay}"
+                                   Max="{Binding Path=SolWeather.AtmosphericTemp.Max, StringFormat=' {0:N1}', Mode=OneWay}"
+                                   Average="{Binding Path=SolWeather.AtmosphericTemp.Average, StringFormat=' {0:N1}', Mode=OneWay}"
+                                   Units="{Binding Path=SolWeather.AtmosphericTemp.Scale, Converter={StaticResource scaleLabel}, Mode=OneWay}"/>
+
+                <!-- wind speed -->
+
+                <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                       Text="Wind Speed"
+                       TextColor="{DynamicResource textColor}"
+                       FontSize="Medium"
+                       Padding="0, 5, 0, 0"/>
+
+                <Label Grid.Row="3" Grid.Column="0"
+                       Text="{x:Static h:FA5FreeSolid.Wind}"
+                       Style="{StaticResource FA-Solid}"
+                       TextColor="{DynamicResource textColor}"
+                       FontSize="26"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+
+                <v:LinearGaugeView Grid.Row="3" Grid.Column="1"
+                                   MinColor="DarkGreen"
+                                   MaxColor="DarkGoldenrod"
+                                   Min="{Binding Path=SolWeather.HorizontalWindSpeed.Min, StringFormat='{0:N2}', Mode=OneWay}"
+                                   Max="{Binding Path=SolWeather.HorizontalWindSpeed.Max, StringFormat='{0:N2}', Mode=OneWay}"
+                                   Average="{Binding Path=SolWeather.HorizontalWindSpeed.Average, StringFormat='{0:N2}', Mode=OneWay}"
+                                   Units="m/s"/>
+
+                <!-- pressure -->
+
+                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                       Text="Atmospheric Pressure"
+                       TextColor="{DynamicResource textColor}"
+                       FontSize="Medium"
+                       Padding="0, 5, 0, 0"/>
+
+                <Label Grid.Row="5" Grid.Column="0"
+                       Text="{x:Static h:FA5FreeSolid.Smog}"
+                       Style="{StaticResource FA-Solid}"
+                       TextColor="{DynamicResource textColor}"
+                       FontSize="26"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+
+                <v:LinearGaugeView Grid.Row="5" Grid.Column="1"
+                                   MinColor="MediumPurple"
+                                   MaxColor="DarkBlue"
+                                   Min="{Binding Path=SolWeather.AtmosphericPressure.Min, StringFormat='{0:N1}', Mode=OneWay}"
+                                   Max="{Binding Path=SolWeather.AtmosphericPressure.Max, StringFormat='{0:N1}', Mode=OneWay}"
+                                   Average="{Binding Path=SolWeather.AtmosphericPressure.Average, StringFormat='{0:N1}', Mode=OneWay}"
+                                   Units="Pa"/>
+
+                <!-- wind direction -->
+
+                <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"
+                       Text="{Binding SolWeather.WindDirection.MostCommon.CompassPointName, StringFormat='Wind Direction ({0})', Mode=OneWay}"
+                       TextColor="{DynamicResource textColor}"
+                       FontSize="Medium"
+                       Padding="0, 5, 0, 0"/>
+
+                <mcf:ChartView Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"
+                               Chart="{Binding WindChart}"
+                               HeightRequest="350"/>
+
+            </Grid>
+
+        </ScrollView>
+
+    </StackLayout>
+
+</ContentPage>
