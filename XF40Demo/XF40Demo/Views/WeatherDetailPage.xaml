@@ -76,7 +76,7 @@
 
             <Grid ColumnSpacing="5" 
                   RowSpacing="3"
-                  Padding="15, 5">
+                  Padding="15, 5, 15, 10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40"/>
                     <ColumnDefinition Width="*"/>
@@ -166,7 +166,8 @@
                 <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"
                        Text="{Binding SolWeather.WindDirection.MostCommon.CompassPointName, StringFormat='Wind Direction ({0})', Mode=OneWay}"
                        TextColor="{DynamicResource textColor}"
-                       FontSize="Medium"/>
+                       FontSize="Medium"
+                       Padding="0, 5, 0, 0"/>
 
                 <mcf:ChartView Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"
                                Chart="{Binding WindChart}"
