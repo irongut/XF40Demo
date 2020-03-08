@@ -22,7 +22,7 @@
 
         <Grid BackgroundColor="{DynamicResource pageBackgroundColor}"
               ColumnSpacing="5"
-              RowSpacing="3"
+              RowSpacing="0"
               Padding="15, 5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -83,7 +83,6 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="30"/>
@@ -93,21 +92,14 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <!-- season -->
-
-                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                       Text="{Binding SolWeather.Season, StringFormat='Season: {0}', Mode=OneWay}"
-                       TextColor="{DynamicResource textColor}"
-                       FontSize="Medium"/>
-
                 <!-- temperature -->
 
-                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                        Text="Atmospheric Temperature"
                        TextColor="{DynamicResource textColor}"
                        FontSize="Medium"/>
 
-                <Label Grid.Row="2" Grid.Column="0"
+                <Label Grid.Row="1" Grid.Column="0"
                        Text="{x:Static h:FA5FreeSolid.ThermometerHalf}"
                        Style="{StaticResource FA-Solid}"
                        TextColor="{DynamicResource textColor}"
@@ -115,7 +107,7 @@
                        HorizontalOptions="Center"
                        VerticalOptions="Center"/>
 
-                <v:LinearGaugeView Grid.Row="2" Grid.Column="1"
+                <v:LinearGaugeView Grid.Row="1" Grid.Column="1"
                                    Min="{Binding Path=SolWeather.AtmosphericTemp.Min, StringFormat='{0:N1}', Mode=OneWay}"
                                    Max="{Binding Path=SolWeather.AtmosphericTemp.Max, StringFormat=' {0:N1}', Mode=OneWay}"
                                    Average="{Binding Path=SolWeather.AtmosphericTemp.Average, StringFormat=' {0:N1}', Mode=OneWay}"
@@ -123,13 +115,13 @@
 
                 <!-- wind speed -->
 
-                <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                        Text="Wind Speed"
                        TextColor="{DynamicResource textColor}"
                        FontSize="Medium"
                        Padding="0, 5, 0, 0"/>
 
-                <Label Grid.Row="4" Grid.Column="0"
+                <Label Grid.Row="3" Grid.Column="0"
                        Text="{x:Static h:FA5FreeSolid.Wind}"
                        Style="{StaticResource FA-Solid}"
                        TextColor="{DynamicResource textColor}"
@@ -137,7 +129,7 @@
                        HorizontalOptions="Center"
                        VerticalOptions="Center"/>
 
-                <v:LinearGaugeView Grid.Row="4" Grid.Column="1"
+                <v:LinearGaugeView Grid.Row="3" Grid.Column="1"
                                    MinColor="DarkGreen"
                                    MaxColor="DarkGoldenrod"
                                    Min="{Binding Path=SolWeather.HorizontalWindSpeed.Min, StringFormat='{0:N2}', Mode=OneWay}"
@@ -147,13 +139,13 @@
 
                 <!-- pressure -->
 
-                <Label Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
+                <Label Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
                        Text="Atmospheric Pressure"
                        TextColor="{DynamicResource textColor}"
                        FontSize="Medium"
                        Padding="0, 5, 0, 0"/>
 
-                <Label Grid.Row="6" Grid.Column="0"
+                <Label Grid.Row="5" Grid.Column="0"
                        Text="{x:Static h:FA5FreeSolid.Smog}"
                        Style="{StaticResource FA-Solid}"
                        TextColor="{DynamicResource textColor}"
@@ -161,7 +153,7 @@
                        HorizontalOptions="Center"
                        VerticalOptions="Center"/>
 
-                <v:LinearGaugeView Grid.Row="6" Grid.Column="1"
+                <v:LinearGaugeView Grid.Row="5" Grid.Column="1"
                                    MinColor="MediumPurple"
                                    MaxColor="DarkBlue"
                                    Min="{Binding Path=SolWeather.AtmosphericPressure.Min, StringFormat='{0:N1}', Mode=OneWay}"
@@ -171,13 +163,12 @@
 
                 <!-- wind direction -->
 
-                <Label Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"
+                <Label Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"
                        Text="{Binding SolWeather.WindDirection.MostCommon.CompassPointName, StringFormat='Wind Direction ({0})', Mode=OneWay}"
                        TextColor="{DynamicResource textColor}"
-                       FontSize="Medium"
-                       Padding="0, 10, 0, 0"/>
+                       FontSize="Medium"/>
 
-                <mcf:ChartView Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"
+                <mcf:ChartView Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"
                                Chart="{Binding WindChart}"
                                HeightRequest="350"/>
 
