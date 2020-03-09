@@ -116,11 +116,12 @@
 
         <Grid Grid.Row="0"
               BackgroundColor="#66000000"
-              ColumnSpacing="0"
+              ColumnSpacing="10"
               RowSpacing="0"
               Padding="10, 5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -151,6 +152,20 @@
                    FontSize="Default"/>
 
             <ImageButton Grid.Row="0" Grid.Column="1"
+                         Command="{Binding WeeklyTappedCommand}"
+                         BackgroundColor="{DynamicResource pageForegroundColor}"
+                         CornerRadius="15"
+                         Padding="6"
+                         VerticalOptions="Center">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}"
+                                     Glyph="{x:Static h:FA5FreeSolid.CalendarWeek}"
+                                     Size="18"
+                                     Color="{DynamicResource textColor}"/>
+                </ImageButton.Source>
+            </ImageButton>
+
+            <ImageButton Grid.Row="0" Grid.Column="2"
                          Command="{Binding InfoTappedCommand}"
                          BackgroundColor="{DynamicResource pageForegroundColor}"
                          CornerRadius="15"
@@ -164,7 +179,7 @@
                 </ImageButton.Source>
             </ImageButton>
 
-            <ImageButton Grid.Row="1" Grid.Column="1"
+            <ImageButton Grid.Row="1" Grid.Column="2"
                          Command="{Binding TemperatureScaleTappedCommand}"
                          BackgroundColor="{DynamicResource pageForegroundColor}"
                          CornerRadius="15"

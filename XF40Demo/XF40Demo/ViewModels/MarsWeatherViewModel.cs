@@ -22,6 +22,8 @@ namespace XF40Demo.ViewModels
 
         public INavigation MyNavigation { get; set; }
 
+        public ICommand WeeklyTappedCommand { get; }
+
         public ICommand InfoTappedCommand { get; }
 
         public ICommand TemperatureScaleTappedCommand { get; }
@@ -76,15 +78,21 @@ namespace XF40Demo.ViewModels
 
         public MarsWeatherViewModel()
         {
+            WeeklyTappedCommand = new Command(async () => await OpenWeatherWeeklyAsync().ConfigureAwait(false));
             InfoTappedCommand = new Command(async () => await ShowInfoAsync().ConfigureAwait(false));
             TemperatureScaleTappedCommand = new Command(ToggleTemperatureScale);
             SolTappedCommand = new Command<uint>(async (x) => await OpenWeatherDetailAsync(x).ConfigureAwait(false));
             MarsWeather = new ObservableCollection<MartianDay>();
         }
 
+        private async Task OpenWeatherWeeklyAsync()
+        {
+            await Xamarin.Forms.Shell.Current.GoToAsync($"//marsWeather/weekly?dummy=0").ConfigureAwait(false);
+        }
+
         private async Task OpenWeatherDetailAsync(uint sol)
         {
-            await Xamarin.Forms.Shell.Current.GoToAsync($"///marsWeather/details?sol={sol}").ConfigureAwait(false);
+            await Xamarin.Forms.Shell.Current.GoToAsync($"//marsWeather/details?sol={sol}").ConfigureAwait(false);
         }
 
         private async Task ShowInfoAsync()
