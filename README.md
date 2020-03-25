@@ -3,13 +3,13 @@ Experiments with new & preview features in Xamarin Forms 4.x and Azure DevOps Pi
 
 [![Build Status](https://dev.azure.com/taranissoftware/XF40Demo/_apis/build/status/irongut.XF40Demo?branchName=master)](https://dev.azure.com/taranissoftware/XF40Demo/_build/latest?definitionId=2&branchName=master)
 &nbsp;&nbsp;
-![Test Status](https://img.shields.io/azure-devops/tests/taranissoftware/xf40demo/2?logo=azure-pipelines)
+[![Test Status](https://img.shields.io/azure-devops/tests/taranissoftware/xf40demo/2?logo=azure-pipelines)](https://dev.azure.com/taranissoftware/XF40Demo/_build/latest?definitionId=2&branchName=master)
 &nbsp;&nbsp;
-![Last Commit](https://img.shields.io/github/last-commit/irongut/xf40demo?logo=github)
+[![Last Commit](https://img.shields.io/github/last-commit/irongut/xf40demo?logo=github)](https://github.com/irongut/XF40Demo/commits/master)
 &nbsp;&nbsp;
-![Release Date](https://img.shields.io/github/release-date-pre/irongut/xf40demo?logo=github)
+[![Release Date](https://img.shields.io/github/release-date-pre/irongut/xf40demo?logo=github)](https://github.com/irongut/XF40Demo/releases)
 &nbsp;&nbsp;
-![License](https://img.shields.io/github/license/irongut/xf40demo?logo=github)
+[![License](https://img.shields.io/github/license/irongut/xf40demo?logo=github)](https://github.com/irongut/XF40Demo/blob/master/LICENSE)
 
 **Xamarin Forms Release Blogs**
 * [Forms 4.0 - Shell, Fast Renderers & ImageSource](https://devblogs.microsoft.com/xamarin/introducing-xamarin-forms-4-0-the-era-of-shell/)
