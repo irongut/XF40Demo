@@ -8,7 +8,7 @@ Experiments with new & preview features in Xamarin Forms 4.x and Azure DevOps Pi
 [![Last Commit](https://img.shields.io/github/last-commit/irongut/xf40demo?logo=github)](https://github.com/irongut/XF40Demo/commits/master)
 &nbsp;&nbsp;
 [![Trufflehog Scan](https://github.com/irongut/XF40Demo/workflows/Trufflehog%20Scan/badge.svg)](https://github.com/irongut/XF40Demo/actions?query=workflow%3A%22Trufflehog+Scan%22)
-
+&nbsp;&nbsp;
 [![Release Date](https://img.shields.io/github/release-date-pre/irongut/xf40demo?logo=github)](https://github.com/irongut/XF40Demo/releases)
 &nbsp;&nbsp;
 [![License](https://img.shields.io/github/license/irongut/xf40demo?logo=github)](https://github.com/irongut/XF40Demo/blob/master/LICENSE)
