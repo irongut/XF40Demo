@@ -1,0 +1,18 @@
+# Trufflehog Secret Scan
+# Scan the last 50 commits in a repository for secrets
+# https://github.com/edplato/trufflehog-actions-scan
+
+name: Trufflehog Secret Scan
+on: [push]
+
+jobs:
+  scanSecrets:
+    name: Trufflehog Scan
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: trufflehog-actions-scan
+      uses: edplato/trufflehog-actions-scan@master
+      with:
+        scanArguments: "--regex --rules /regexes.json"
+    
