@@ -1,8 +1,8 @@
-# Trufflehog Secret Scan
+# Trufflehog Scan
 # Scan the last 50 commits in a repository for secrets
 # https://github.com/edplato/trufflehog-actions-scan
 
-name: Trufflehog Secret Scan
+name: Trufflehog Scan
 on: [push]
 
 jobs:
