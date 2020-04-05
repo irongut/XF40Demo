@@ -131,9 +131,17 @@
                        FontSize="Medium"
                        Padding="0, 5, 0, 0"/>
 
-                <!--<mcf:ChartView Grid.Row="6"
-                               Chart="{Binding PressureChart}"
-                               HeightRequest="350"/>-->
+                <mcf:ChartView Grid.Row="6"
+                               Chart="{Binding MinPressureChart}"
+                               HeightRequest="150"/>
+
+                <mcf:ChartView Grid.Row="6"
+                               Chart="{Binding MaxPressureChart}"
+                               HeightRequest="150"/>
+
+                <mcf:ChartView Grid.Row="6"
+                               Chart="{Binding AveragePressureChart}"
+                               HeightRequest="150"/>
 
             </Grid>
             
