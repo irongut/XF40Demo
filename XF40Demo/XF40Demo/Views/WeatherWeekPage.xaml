@@ -119,9 +119,17 @@
                        FontSize="Medium"
                        Padding="0, 5, 0, 0"/>
 
-                <!--<mcf:ChartView Grid.Row="4"
-                               Chart="{Binding WindChart}"
-                               HeightRequest="350"/>-->
+                <mcf:ChartView Grid.Row="4"
+                               Chart="{Binding MinWindSpeedChart}"
+                               HeightRequest="150"/>
+
+                <mcf:ChartView Grid.Row="4"
+                               Chart="{Binding MaxWindSpeedChart}"
+                               HeightRequest="150"/>
+
+                <mcf:ChartView Grid.Row="4"
+                               Chart="{Binding AverageWindSpeedChart}"
+                               HeightRequest="150"/>
 
                 <!-- pressure -->
 
