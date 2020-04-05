@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mcf="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              xmlns:c="clr-namespace:XF40Demo.Convertors"
              xmlns:h="clr-namespace:XF40Demo.Helpers"
              xmlns:vm="clr-namespace:XF40Demo.ViewModels"
@@ -33,7 +34,7 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0"
-                   Text="Sol 402 - Sol 408"
+                   Text="{Binding MarsDates, Mode=OneWay}"
                    TextColor="{DynamicResource textColor}"
                    FontSize="Large"/>
 
@@ -51,9 +52,9 @@
             </ImageButton>
 
             <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-                   Text="March 2 - March 8"
+                   Text="{Binding EarthDates, Mode=OneWay}"
                    TextColor="{DynamicResource textColor}"
-                   FontSize="Default"/>
+                   FontSize="Large"/>
 
             <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                    Text="{Binding LastUpdated, StringFormat='Updated: {0}', Mode=OneWay}"
@@ -61,6 +62,82 @@
                    FontSize="Default"/>
 
         </Grid>
+
+        <!-- content -->
+
+        <ScrollView>
+
+            <Grid RowSpacing="3"
+                  Padding="15, 5, 15, 10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- season -->
+
+                <Label Grid.Row="0"
+                       TextColor="{DynamicResource textColor}"
+                       FontSize="Medium">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Season: "/>
+                            <Span Text="{Binding Season, Mode=OneWay}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <!-- temperature -->
+
+                <Label Grid.Row="1"
+                       Text="Atmospheric Temperature"
+                       TextColor="{DynamicResource textColor}"
+                       FontSize="Medium"/>
+
+                <mcf:ChartView Grid.Row="2"
+                               Chart="{Binding MinTempChart}"
+                               HeightRequest="150"/>
+
+                <mcf:ChartView Grid.Row="2"
+                               Chart="{Binding MaxTempChart}"
+                               HeightRequest="150"/>
+
+                <mcf:ChartView Grid.Row="2"
+                               Chart="{Binding AverageTempChart}"
+                               HeightRequest="150"/>
+
+                <!-- wind speed -->
+
+                <Label Grid.Row="3"
+                       Text="Wind Speed"
+                       TextColor="{DynamicResource textColor}"
+                       FontSize="Medium"
+                       Padding="0, 5, 0, 0"/>
+
+                <!--<mcf:ChartView Grid.Row="4"
+                               Chart="{Binding WindChart}"
+                               HeightRequest="350"/>-->
+
+                <!-- pressure -->
+
+                <Label Grid.Row="5"
+                       Text="Atmospheric Pressure"
+                       TextColor="{DynamicResource textColor}"
+                       FontSize="Medium"
+                       Padding="0, 5, 0, 0"/>
+
+                <!--<mcf:ChartView Grid.Row="6"
+                               Chart="{Binding PressureChart}"
+                               HeightRequest="350"/>-->
+
+            </Grid>
+            
+        </ScrollView>
 
     </StackLayout>
         
