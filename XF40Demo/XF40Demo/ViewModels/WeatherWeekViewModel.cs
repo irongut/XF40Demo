@@ -381,7 +381,6 @@ namespace XF40Demo.ViewModels
                 }
                 else
                 {
-                    // header details
                     MartianDay firstDay = weatherService.Weather.OrderBy(d => d.Sol).First<MartianDay>();
                     MartianDay lastDay = weatherService.Weather.OrderBy(d => d.Sol).Last<MartianDay>();
                     MarsDates = string.Format("Sol {0} - Sol {1}", firstDay.Sol, lastDay.Sol);
@@ -389,108 +388,16 @@ namespace XF40Demo.ViewModels
                     LastUpdated = weatherService.LastUpdated;
                     Season = lastDay.Season;
 
-                    // temperature min / max / scale
-                    double minTemp = weatherService.Weather.OrderBy(t => t.AtmosphericTemp.Min).First<MartianDay>().AtmosphericTemp.Min;
-                    double maxTemp = weatherService.Weather.OrderBy(t => t.AtmosphericTemp.Max).Last<MartianDay>().AtmosphericTemp.Max;
                     string tempScale = settings.TemperatureScale == TemperatureScale.Celsius ? "°C" : "°F";
-                    MinTempChart.MinValue = (float)minTemp;
-                    MinTempChart.MaxValue = (float)maxTemp;
-                    MaxTempChart.MinValue = (float)minTemp;
-                    MaxTempChart.MaxValue = (float)maxTemp;
-                    AverageTempChart.MinValue = (float)minTemp;
-                    AverageTempChart.MaxValue = (float)maxTemp;
+                    SetTempChartAxes();
+                    SetWindSpeedChartAxes();
+                    SetPressureChartAxes();
 
-                    // wind speed
-                    double minWindSpeed = weatherService.Weather.OrderBy(t => t.HorizontalWindSpeed.Min).First<MartianDay>().HorizontalWindSpeed.Min;
-                    double maxWindSpeed = weatherService.Weather.OrderBy(t => t.HorizontalWindSpeed.Max).Last<MartianDay>().HorizontalWindSpeed.Max;
-                    MinWindSpeedChart.MinValue = (float)minWindSpeed;
-                    MinWindSpeedChart.MaxValue = (float)maxWindSpeed;
-                    MaxWindSpeedChart.MinValue = (float)minWindSpeed;
-                    MaxWindSpeedChart.MaxValue = (float)maxWindSpeed;
-                    AverageWindSpeedChart.MinValue = (float)minWindSpeed;
-                    AverageWindSpeedChart.MaxValue = (float)maxWindSpeed;
-
-                    // pressure min / max
-                    double minPressure = weatherService.Weather.OrderBy(t => t.AtmosphericPressure.Min).First<MartianDay>().AtmosphericPressure.Min;
-                    double maxPressure = weatherService.Weather.OrderBy(t => t.AtmosphericPressure.Max).Last<MartianDay>().AtmosphericPressure.Max;
-                    MinPressureChart.MinValue = (float)minPressure;
-                    MinPressureChart.MaxValue = (float)maxPressure;
-                    MaxPressureChart.MinValue = (float)minPressure;
-                    MaxPressureChart.MaxValue = (float)maxPressure;
-                    AveragePressureChart.MinValue = (float)minPressure;
-                    AveragePressureChart.MaxValue = (float)maxPressure;
-
-                    // chart values
                     foreach (MartianDay sol in weatherService.Weather.OrderBy(d => d.Sol))
                     {
-                        // temperature
-                        minTempEntries.Add(new ChartEntry((float)sol.AtmosphericTemp.Min)
-                        {
-                            Label = string.Format("{0}", sol.Sol),
-                            ValueLabel = string.Empty,
-                            Color = SKColor.Parse(Color.LightBlue.ToHex())
-                        });
-
-                        maxTempEntries.Add(new ChartEntry((float)sol.AtmosphericTemp.Max)
-                        {
-                            Label = string.Format("{0}", sol.Sol),
-                            ValueLabel = string.Empty,
-                            Color = SKColor.Parse(Color.Red.ToHex())
-                        });
-
-                        averageTempEntries.Add(new ChartEntry((float)sol.AtmosphericTemp.Average)
-                        {
-                            Label = string.Format("{0}", sol.Sol),
-                            ValueLabel = string.Format("{0:N1}{1}", sol.AtmosphericTemp.Average, tempScale),
-                            Color = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex()),
-                            TextColor = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex())
-                        });
-
-                        // wind speed
-                        minWindSpeedEntries.Add(new ChartEntry((float)sol.HorizontalWindSpeed.Min)
-                        {
-                            Label = string.Format("{0}", sol.Sol),
-                            ValueLabel = string.Empty,
-                            Color = SKColor.Parse(Color.DarkGreen.ToHex())
-                        });
-
-                        maxWindSpeedEntries.Add(new ChartEntry((float)sol.HorizontalWindSpeed.Max)
-                        {
-                            Label = string.Format("{0}", sol.Sol),
-                            ValueLabel = string.Empty,
-                            Color = SKColor.Parse(Color.DarkGoldenrod.ToHex())
-                        });
-
-                        averageWindSpeedEntries.Add(new ChartEntry((float)sol.HorizontalWindSpeed.Average)
-                        {
-                            Label = string.Format("{0}", sol.Sol),
-                            ValueLabel = string.Format("{0:N1} m/s", sol.HorizontalWindSpeed.Average),
-                            Color = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex()),
-                            TextColor = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex())
-                        });
-
-                        // pressure
-                        minPressureEntries.Add(new ChartEntry((float)sol.AtmosphericPressure.Min)
-                        {
-                            Label = string.Format("{0}", sol.Sol),
-                            ValueLabel = string.Empty,
-                            Color = SKColor.Parse(Color.MediumPurple.ToHex())
-                        });
-
-                        maxPressureEntries.Add(new ChartEntry((float)sol.AtmosphericPressure.Max)
-                        {
-                            Label = string.Format("{0}", sol.Sol),
-                            ValueLabel = string.Empty,
-                            Color = SKColor.Parse(Color.DarkBlue.ToHex())
-                        });
-
-                        averagePressureEntries.Add(new ChartEntry((float)sol.AtmosphericPressure.Average)
-                        {
-                            Label = string.Format("{0}", sol.Sol),
-                            ValueLabel = string.Format("{0:N0} Pa", sol.AtmosphericPressure.Average),
-                            Color = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex()),
-                            TextColor = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex())
-                        });
+                        AddTempChartEntries(tempScale, sol);
+                        AddWindSpeedChartEntries(sol);
+                        AddPressureChartEntries(sol);
                     }
                 }
             }
@@ -498,6 +405,117 @@ namespace XF40Demo.ViewModels
             {
                 SetMessages(String.Format("Error: {0}", ex.Message));
             }
+        }
+
+        private void AddTempChartEntries(string tempScale, MartianDay sol)
+        {
+            minTempEntries.Add(new ChartEntry((float)sol.AtmosphericTemp.Min)
+            {
+                Label = string.Format("{0}", sol.Sol),
+                ValueLabel = string.Empty,
+                Color = SKColor.Parse(Color.LightBlue.ToHex())
+            });
+
+            maxTempEntries.Add(new ChartEntry((float)sol.AtmosphericTemp.Max)
+            {
+                Label = string.Format("{0}", sol.Sol),
+                ValueLabel = string.Empty,
+                Color = SKColor.Parse(Color.Red.ToHex())
+            });
+
+            averageTempEntries.Add(new ChartEntry((float)sol.AtmosphericTemp.Average)
+            {
+                Label = string.Format("{0}", sol.Sol),
+                ValueLabel = string.Format("{0:N1}{1}", sol.AtmosphericTemp.Average, tempScale),
+                Color = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex()),
+                TextColor = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex())
+            });
+        }
+
+        private void AddWindSpeedChartEntries(MartianDay sol)
+        {
+            minWindSpeedEntries.Add(new ChartEntry((float)sol.HorizontalWindSpeed.Min)
+            {
+                Label = string.Format("{0}", sol.Sol),
+                ValueLabel = string.Empty,
+                Color = SKColor.Parse(Color.DarkGreen.ToHex())
+            });
+
+            maxWindSpeedEntries.Add(new ChartEntry((float)sol.HorizontalWindSpeed.Max)
+            {
+                Label = string.Format("{0}", sol.Sol),
+                ValueLabel = string.Empty,
+                Color = SKColor.Parse(Color.DarkGoldenrod.ToHex())
+            });
+
+            averageWindSpeedEntries.Add(new ChartEntry((float)sol.HorizontalWindSpeed.Average)
+            {
+                Label = string.Format("{0}", sol.Sol),
+                ValueLabel = string.Format("{0:N1} m/s", sol.HorizontalWindSpeed.Average),
+                Color = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex()),
+                TextColor = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex())
+            });
+        }
+
+        private void AddPressureChartEntries(MartianDay sol)
+        {
+            minPressureEntries.Add(new ChartEntry((float)sol.AtmosphericPressure.Min)
+            {
+                Label = string.Format("{0}", sol.Sol),
+                ValueLabel = string.Empty,
+                Color = SKColor.Parse(Color.MediumPurple.ToHex())
+            });
+
+            maxPressureEntries.Add(new ChartEntry((float)sol.AtmosphericPressure.Max)
+            {
+                Label = string.Format("{0}", sol.Sol),
+                ValueLabel = string.Empty,
+                Color = SKColor.Parse(Color.DarkBlue.ToHex())
+            });
+
+            averagePressureEntries.Add(new ChartEntry((float)sol.AtmosphericPressure.Average)
+            {
+                Label = string.Format("{0}", sol.Sol),
+                ValueLabel = string.Format("{0:N0} Pa", sol.AtmosphericPressure.Average),
+                Color = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex()),
+                TextColor = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex())
+            });
+        }
+
+        private void SetTempChartAxes()
+        {
+            double minTemp = weatherService.Weather.OrderBy(t => t.AtmosphericTemp.Min).First<MartianDay>().AtmosphericTemp.Min;
+            double maxTemp = weatherService.Weather.OrderBy(t => t.AtmosphericTemp.Max).Last<MartianDay>().AtmosphericTemp.Max;
+            MinTempChart.MinValue = (float)minTemp;
+            MinTempChart.MaxValue = (float)maxTemp;
+            MaxTempChart.MinValue = (float)minTemp;
+            MaxTempChart.MaxValue = (float)maxTemp;
+            AverageTempChart.MinValue = (float)minTemp;
+            AverageTempChart.MaxValue = (float)maxTemp;
+        }
+
+        private void SetWindSpeedChartAxes()
+        {
+            double minWindSpeed = weatherService.Weather.OrderBy(t => t.HorizontalWindSpeed.Min).First<MartianDay>().HorizontalWindSpeed.Min;
+            double maxWindSpeed = weatherService.Weather.OrderBy(t => t.HorizontalWindSpeed.Max).Last<MartianDay>().HorizontalWindSpeed.Max;
+            MinWindSpeedChart.MinValue = (float)minWindSpeed;
+            MinWindSpeedChart.MaxValue = (float)maxWindSpeed;
+            MaxWindSpeedChart.MinValue = (float)minWindSpeed;
+            MaxWindSpeedChart.MaxValue = (float)maxWindSpeed;
+            AverageWindSpeedChart.MinValue = (float)minWindSpeed;
+            AverageWindSpeedChart.MaxValue = (float)maxWindSpeed;
+        }
+
+        private void SetPressureChartAxes()
+        {
+            double minPressure = weatherService.Weather.OrderBy(t => t.AtmosphericPressure.Min).First<MartianDay>().AtmosphericPressure.Min;
+            double maxPressure = weatherService.Weather.OrderBy(t => t.AtmosphericPressure.Max).Last<MartianDay>().AtmosphericPressure.Max;
+            MinPressureChart.MinValue = (float)minPressure;
+            MinPressureChart.MaxValue = (float)maxPressure;
+            MaxPressureChart.MinValue = (float)minPressure;
+            MaxPressureChart.MaxValue = (float)maxPressure;
+            AveragePressureChart.MinValue = (float)minPressure;
+            AveragePressureChart.MaxValue = (float)maxPressure;
         }
 
         private void SetMessages(string message)
