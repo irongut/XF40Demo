@@ -3,7 +3,6 @@ using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 using XF40Demo.Helpers;
@@ -33,6 +32,8 @@ namespace XF40Demo.ViewModels
         private readonly List<ChartEntry> maxPressureEntries;
 
         private readonly List<ChartEntry> averagePressureEntries;
+
+        private bool updatingCharts = false;
 
         #region Properties
 
@@ -253,10 +254,36 @@ namespace XF40Demo.ViewModels
 
         private void ToggleTemperatureScale()
         {
-            settings.TemperatureScale = settings.TemperatureScale == TemperatureScale.Celsius ? TemperatureScale.Fahrenheit : TemperatureScale.Celsius;
-            foreach (MartianDay sol in weatherService.Weather)
+            if (!updatingCharts)
             {
-                sol.SetTemperatureScale(settings.TemperatureScale);
+                updatingCharts = true;
+                try
+                {
+                    settings.TemperatureScale = settings.TemperatureScale == TemperatureScale.Celsius ? TemperatureScale.Fahrenheit : TemperatureScale.Celsius;
+                    foreach (MartianDay sol in weatherService.Weather)
+                    {
+                        sol.SetTemperatureScale(settings.TemperatureScale);
+                    }
+
+                    minTempEntries.Clear();
+                    maxTempEntries.Clear();
+                    averageTempEntries.Clear();
+                    SetTempChartAxes();
+                    string tempScale = settings.TemperatureScale == TemperatureScale.Celsius ? "°C" : "°F";
+                    foreach (MartianDay sol in weatherService.Weather.OrderBy(d => d.Sol))
+                    {
+                        sol.SetTemperatureScale(settings.TemperatureScale);
+                        AddTempChartEntries(tempScale, sol);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    SetMessages(String.Format("Error: {0}", ex.Message));
+                }
+                finally
+                {
+                    updatingCharts = false;
+                }
             }
         }
 
@@ -373,38 +400,82 @@ namespace XF40Demo.ViewModels
 
         private void GetWeeklyOverview()
         {
-            try
+            if (!updatingCharts)
             {
-                if (weatherService.Weather.Count <1)
+                updatingCharts = true;
+                try
                 {
-                    SetMessages("No Martian Weather data available.");
-                }
-                else
-                {
-                    MartianDay firstDay = weatherService.Weather.OrderBy(d => d.Sol).First<MartianDay>();
-                    MartianDay lastDay = weatherService.Weather.OrderBy(d => d.Sol).Last<MartianDay>();
-                    MarsDates = string.Format("Sol {0} - Sol {1}", firstDay.Sol, lastDay.Sol);
-                    EarthDates = string.Format("{0:M} - {1:M}", firstDay.FirstUTC, lastDay.FirstUTC);
-                    LastUpdated = weatherService.LastUpdated;
-                    Season = lastDay.Season;
-
-                    string tempScale = settings.TemperatureScale == TemperatureScale.Celsius ? "°C" : "°F";
-                    SetTempChartAxes();
-                    SetWindSpeedChartAxes();
-                    SetPressureChartAxes();
-
-                    foreach (MartianDay sol in weatherService.Weather.OrderBy(d => d.Sol))
+                    if (weatherService.Weather.Count < 1)
                     {
-                        AddTempChartEntries(tempScale, sol);
-                        AddWindSpeedChartEntries(sol);
-                        AddPressureChartEntries(sol);
+                        SetMessages("No Martian Weather data available.");
+                    }
+                    else
+                    {
+                        MartianDay firstDay = weatherService.Weather.OrderBy(d => d.Sol).First<MartianDay>();
+                        MartianDay lastDay = weatherService.Weather.OrderBy(d => d.Sol).Last<MartianDay>();
+                        MarsDates = string.Format("Sol {0} - Sol {1}", firstDay.Sol, lastDay.Sol);
+                        EarthDates = string.Format("{0:M} - {1:M}", firstDay.FirstUTC, lastDay.FirstUTC);
+                        LastUpdated = weatherService.LastUpdated;
+                        Season = lastDay.Season;
+
+                        SetTempChartAxes();
+                        SetWindSpeedChartAxes();
+                        SetPressureChartAxes();
+                        string tempScale = settings.TemperatureScale == TemperatureScale.Celsius ? "°C" : "°F";
+
+                        foreach (MartianDay sol in weatherService.Weather.OrderBy(d => d.Sol))
+                        {
+                            AddTempChartEntries(tempScale, sol);
+                            AddWindSpeedChartEntries(sol);
+                            AddPressureChartEntries(sol);
+                        }
                     }
                 }
+                catch (Exception ex)
+                {
+                    SetMessages(String.Format("Error: {0}", ex.Message));
+                }
+                finally
+                {
+                    updatingCharts = false;
+                }
             }
-            catch (Exception ex)
-            {
-                SetMessages(String.Format("Error: {0}", ex.Message));
-            }
+        }
+
+        private void SetTempChartAxes()
+        {
+            double minTemp = weatherService.Weather.OrderBy(t => t.AtmosphericTemp.Min).First<MartianDay>().AtmosphericTemp.Min;
+            double maxTemp = weatherService.Weather.OrderBy(t => t.AtmosphericTemp.Max).Last<MartianDay>().AtmosphericTemp.Max;
+            MinTempChart.MinValue = (float)minTemp;
+            MinTempChart.MaxValue = (float)maxTemp;
+            MaxTempChart.MinValue = (float)minTemp;
+            MaxTempChart.MaxValue = (float)maxTemp;
+            AverageTempChart.MinValue = (float)minTemp;
+            AverageTempChart.MaxValue = (float)maxTemp;
+        }
+
+        private void SetWindSpeedChartAxes()
+        {
+            double minWindSpeed = weatherService.Weather.OrderBy(t => t.HorizontalWindSpeed.Min).First<MartianDay>().HorizontalWindSpeed.Min;
+            double maxWindSpeed = weatherService.Weather.OrderBy(t => t.HorizontalWindSpeed.Max).Last<MartianDay>().HorizontalWindSpeed.Max;
+            MinWindSpeedChart.MinValue = (float)minWindSpeed;
+            MinWindSpeedChart.MaxValue = (float)maxWindSpeed;
+            MaxWindSpeedChart.MinValue = (float)minWindSpeed;
+            MaxWindSpeedChart.MaxValue = (float)maxWindSpeed;
+            AverageWindSpeedChart.MinValue = (float)minWindSpeed;
+            AverageWindSpeedChart.MaxValue = (float)maxWindSpeed;
+        }
+
+        private void SetPressureChartAxes()
+        {
+            double minPressure = weatherService.Weather.OrderBy(t => t.AtmosphericPressure.Min).First<MartianDay>().AtmosphericPressure.Min;
+            double maxPressure = weatherService.Weather.OrderBy(t => t.AtmosphericPressure.Max).Last<MartianDay>().AtmosphericPressure.Max;
+            MinPressureChart.MinValue = (float)minPressure;
+            MinPressureChart.MaxValue = (float)maxPressure;
+            MaxPressureChart.MinValue = (float)minPressure;
+            MaxPressureChart.MaxValue = (float)maxPressure;
+            AveragePressureChart.MinValue = (float)minPressure;
+            AveragePressureChart.MaxValue = (float)maxPressure;
         }
 
         private void AddTempChartEntries(string tempScale, MartianDay sol)
@@ -480,42 +551,6 @@ namespace XF40Demo.ViewModels
                 Color = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex()),
                 TextColor = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex())
             });
-        }
-
-        private void SetTempChartAxes()
-        {
-            double minTemp = weatherService.Weather.OrderBy(t => t.AtmosphericTemp.Min).First<MartianDay>().AtmosphericTemp.Min;
-            double maxTemp = weatherService.Weather.OrderBy(t => t.AtmosphericTemp.Max).Last<MartianDay>().AtmosphericTemp.Max;
-            MinTempChart.MinValue = (float)minTemp;
-            MinTempChart.MaxValue = (float)maxTemp;
-            MaxTempChart.MinValue = (float)minTemp;
-            MaxTempChart.MaxValue = (float)maxTemp;
-            AverageTempChart.MinValue = (float)minTemp;
-            AverageTempChart.MaxValue = (float)maxTemp;
-        }
-
-        private void SetWindSpeedChartAxes()
-        {
-            double minWindSpeed = weatherService.Weather.OrderBy(t => t.HorizontalWindSpeed.Min).First<MartianDay>().HorizontalWindSpeed.Min;
-            double maxWindSpeed = weatherService.Weather.OrderBy(t => t.HorizontalWindSpeed.Max).Last<MartianDay>().HorizontalWindSpeed.Max;
-            MinWindSpeedChart.MinValue = (float)minWindSpeed;
-            MinWindSpeedChart.MaxValue = (float)maxWindSpeed;
-            MaxWindSpeedChart.MinValue = (float)minWindSpeed;
-            MaxWindSpeedChart.MaxValue = (float)maxWindSpeed;
-            AverageWindSpeedChart.MinValue = (float)minWindSpeed;
-            AverageWindSpeedChart.MaxValue = (float)maxWindSpeed;
-        }
-
-        private void SetPressureChartAxes()
-        {
-            double minPressure = weatherService.Weather.OrderBy(t => t.AtmosphericPressure.Min).First<MartianDay>().AtmosphericPressure.Min;
-            double maxPressure = weatherService.Weather.OrderBy(t => t.AtmosphericPressure.Max).Last<MartianDay>().AtmosphericPressure.Max;
-            MinPressureChart.MinValue = (float)minPressure;
-            MinPressureChart.MaxValue = (float)maxPressure;
-            MaxPressureChart.MinValue = (float)minPressure;
-            MaxPressureChart.MaxValue = (float)maxPressure;
-            AveragePressureChart.MinValue = (float)minPressure;
-            AveragePressureChart.MaxValue = (float)maxPressure;
         }
 
         private void SetMessages(string message)
