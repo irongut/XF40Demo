@@ -339,7 +339,7 @@ namespace XF40Demo.ViewModels
                 LabelTextSize = 32,
                 LabelOrientation = Orientation.Horizontal,
                 ValueLabelOrientation = Orientation.Horizontal,
-                LineAreaAlpha = 0,
+                LineAreaAlpha = 64,
                 LineSize = 8,
                 Margin = 20
             };
@@ -350,7 +350,7 @@ namespace XF40Demo.ViewModels
                 LabelTextSize = 32,
                 LabelOrientation = Orientation.Horizontal,
                 ValueLabelOrientation = Orientation.Horizontal,
-                LineAreaAlpha = 0,
+                LineAreaAlpha = 48,
                 LineSize = 8,
                 Margin = 20
             };
@@ -361,7 +361,7 @@ namespace XF40Demo.ViewModels
                 LabelTextSize = 32,
                 LabelOrientation = Orientation.Horizontal,
                 ValueLabelOrientation = Orientation.Horizontal,
-                LineAreaAlpha = 0,
+                LineAreaAlpha = 48,
                 LineSize = 8,
                 Margin = 20
             };
@@ -369,15 +369,13 @@ namespace XF40Demo.ViewModels
 
         private void SetupWindSpeedCharts()
         {
-            AverageWindSpeedChart = new LineChart()
+            AverageWindSpeedChart = new BarChart()
             {
                 Entries = averageWindSpeedEntries,
                 BackgroundColor = SKColor.Parse(ThemeHelper.GetThemeColor("pageBackgroundColor").ToHex()),
                 LabelTextSize = 32,
                 LabelOrientation = Orientation.Horizontal,
                 ValueLabelOrientation = Orientation.Horizontal,
-                LineAreaAlpha = 0,
-                LineSize = 8,
                 Margin = 20
             };
             MinWindSpeedChart = new LineChart()
@@ -406,15 +404,14 @@ namespace XF40Demo.ViewModels
 
         private void SetupPressureCharts()
         {
-            AveragePressureChart = new LineChart()
+            AveragePressureChart = new PointChart()
             {
                 Entries = averagePressureEntries,
                 BackgroundColor = SKColor.Parse(ThemeHelper.GetThemeColor("pageBackgroundColor").ToHex()),
                 LabelTextSize = 32,
                 LabelOrientation = Orientation.Horizontal,
                 ValueLabelOrientation = Orientation.Horizontal,
-                LineAreaAlpha = 0,
-                LineSize = 8,
+                PointSize = 20,
                 Margin = 20
             };
             MinPressureChart = new LineChart()
@@ -424,7 +421,6 @@ namespace XF40Demo.ViewModels
                 LabelTextSize = 32,
                 LabelOrientation = Orientation.Horizontal,
                 ValueLabelOrientation = Orientation.Horizontal,
-                LineAreaAlpha = 0,
                 LineSize = 8,
                 Margin = 20
             };
@@ -435,7 +431,6 @@ namespace XF40Demo.ViewModels
                 LabelTextSize = 32,
                 LabelOrientation = Orientation.Horizontal,
                 ValueLabelOrientation = Orientation.Horizontal,
-                LineAreaAlpha = 0,
                 LineSize = 8,
                 Margin = 20
             };
