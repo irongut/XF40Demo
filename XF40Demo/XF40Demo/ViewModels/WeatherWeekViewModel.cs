@@ -284,6 +284,52 @@ namespace XF40Demo.ViewModels
             }
         }
 
+        private void GetWeeklyOverview()
+        {
+            if (!updatingCharts)
+            {
+                updatingCharts = true;
+                try
+                {
+                    if (weatherService.Weather.Count < 1)
+                    {
+                        SetMessages("No Martian Weather data available.");
+                    }
+                    else
+                    {
+                        MartianDay firstDay = weatherService.Weather.OrderBy(d => d.Sol).First<MartianDay>();
+                        MartianDay lastDay = weatherService.Weather.OrderBy(d => d.Sol).Last<MartianDay>();
+                        MarsDates = string.Format("Sol {0} - Sol {1}", firstDay.Sol, lastDay.Sol);
+                        EarthDates = string.Format("{0:M} - {1:M}", firstDay.FirstUTC, lastDay.FirstUTC);
+                        LastUpdated = weatherService.LastUpdated;
+                        Season = lastDay.Season;
+
+                        SetTempChartAxes();
+                        SetWindSpeedChartAxes();
+                        SetPressureChartAxes();
+                        string tempScale = settings.TemperatureScale == TemperatureScale.Celsius ? "°C" : "°F";
+
+                        foreach (MartianDay sol in weatherService.Weather.OrderBy(d => d.Sol))
+                        {
+                            AddTempChartEntries(tempScale, sol);
+                            AddWindSpeedChartEntries(sol);
+                            AddPressureChartEntries(sol);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    SetMessages(String.Format("Error: {0}", ex.Message));
+                }
+                finally
+                {
+                    updatingCharts = false;
+                }
+            }
+        }
+
+        #region Setup Charts
+
         private void SetupTempCharts()
         {
             AverageTempChart = new LineChart()
@@ -395,49 +441,9 @@ namespace XF40Demo.ViewModels
             };
         }
 
-        private void GetWeeklyOverview()
-        {
-            if (!updatingCharts)
-            {
-                updatingCharts = true;
-                try
-                {
-                    if (weatherService.Weather.Count < 1)
-                    {
-                        SetMessages("No Martian Weather data available.");
-                    }
-                    else
-                    {
-                        MartianDay firstDay = weatherService.Weather.OrderBy(d => d.Sol).First<MartianDay>();
-                        MartianDay lastDay = weatherService.Weather.OrderBy(d => d.Sol).Last<MartianDay>();
-                        MarsDates = string.Format("Sol {0} - Sol {1}", firstDay.Sol, lastDay.Sol);
-                        EarthDates = string.Format("{0:M} - {1:M}", firstDay.FirstUTC, lastDay.FirstUTC);
-                        LastUpdated = weatherService.LastUpdated;
-                        Season = lastDay.Season;
+        #endregion
 
-                        SetTempChartAxes();
-                        SetWindSpeedChartAxes();
-                        SetPressureChartAxes();
-                        string tempScale = settings.TemperatureScale == TemperatureScale.Celsius ? "°C" : "°F";
-
-                        foreach (MartianDay sol in weatherService.Weather.OrderBy(d => d.Sol))
-                        {
-                            AddTempChartEntries(tempScale, sol);
-                            AddWindSpeedChartEntries(sol);
-                            AddPressureChartEntries(sol);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    SetMessages(String.Format("Error: {0}", ex.Message));
-                }
-                finally
-                {
-                    updatingCharts = false;
-                }
-            }
-        }
+        #region Set Axes
 
         private void SetTempChartAxes()
         {
@@ -482,6 +488,10 @@ namespace XF40Demo.ViewModels
             MaxPressureChart.MinValue = (float)minPressure;
             MaxPressureChart.MaxValue = (float)maxPressure;
         }
+
+        #endregion
+
+        #region Chart Entries
 
         private void AddTempChartEntries(string tempScale, MartianDay sol)
         {
@@ -557,6 +567,8 @@ namespace XF40Demo.ViewModels
                 Color = SKColor.Parse(Color.DarkBlue.ToHex())
             });
         }
+
+        #endregion
 
         private void SetMessages(string message)
         {
