@@ -15,23 +15,23 @@ namespace XF40Demo.ViewModels
     {
         private readonly MarsWeatherService weatherService = MarsWeatherService.Instance();
 
+        private readonly List<ChartEntry> averageTempEntries;
+
         private readonly List<ChartEntry> minTempEntries;
 
         private readonly List<ChartEntry> maxTempEntries;
 
-        private readonly List<ChartEntry> averageTempEntries;
+        private readonly List<ChartEntry> averageWindSpeedEntries;
 
         private readonly List<ChartEntry> minWindSpeedEntries;
 
         private readonly List<ChartEntry> maxWindSpeedEntries;
 
-        private readonly List<ChartEntry> averageWindSpeedEntries;
+        private readonly List<ChartEntry> averagePressureEntries;
 
         private readonly List<ChartEntry> minPressureEntries;
 
         private readonly List<ChartEntry> maxPressureEntries;
-
-        private readonly List<ChartEntry> averagePressureEntries;
 
         private bool updatingCharts = false;
 
@@ -97,6 +97,20 @@ namespace XF40Demo.ViewModels
 
         #region Temperature
 
+        private Chart _averageTempChart;
+        public Chart AverageTempChart
+        {
+            get { return _averageTempChart; }
+            private set
+            {
+                if (_averageTempChart != value)
+                {
+                    _averageTempChart = value;
+                    OnPropertyChanged(nameof(AverageTempChart));
+                }
+            }
+        }
+
         private Chart _minTempChart;
         public Chart MinTempChart
         {
@@ -125,23 +139,23 @@ namespace XF40Demo.ViewModels
             }
         }
 
-        private Chart _averageTempChart;
-        public Chart AverageTempChart
-        {
-            get { return _averageTempChart; }
-            private set
-            {
-                if (_averageTempChart != value)
-                {
-                    _averageTempChart = value;
-                    OnPropertyChanged(nameof(AverageTempChart));
-                }
-            }
-        }
-
         #endregion
 
         #region Wind Speed
+
+        private Chart _averageWindSpeedChart;
+        public Chart AverageWindSpeedChart
+        {
+            get { return _averageWindSpeedChart; }
+            private set
+            {
+                if (_averageWindSpeedChart != value)
+                {
+                    _averageWindSpeedChart = value;
+                    OnPropertyChanged(nameof(AverageWindSpeedChart));
+                }
+            }
+        }
 
         private Chart _minWindSpeedChart;
         public Chart MinWindSpeedChart
@@ -171,23 +185,23 @@ namespace XF40Demo.ViewModels
             }
         }
 
-        private Chart _averageWindSpeedChart;
-        public Chart AverageWindSpeedChart
-        {
-            get { return _averageWindSpeedChart; }
-            private set
-            {
-                if (_averageWindSpeedChart != value)
-                {
-                    _averageWindSpeedChart = value;
-                    OnPropertyChanged(nameof(AverageWindSpeedChart));
-                }
-            }
-        }
-
         #endregion
 
         #region Pressure
+
+        private Chart _averagePressureChart;
+        public Chart AveragePressureChart
+        {
+            get { return _averagePressureChart; }
+            private set
+            {
+                if (_averagePressureChart != value)
+                {
+                    _averagePressureChart = value;
+                    OnPropertyChanged(nameof(AveragePressureChart));
+                }
+            }
+        }
 
         private Chart _minPressureChart;
         public Chart MinPressureChart
@@ -217,20 +231,6 @@ namespace XF40Demo.ViewModels
             }
         }
 
-        private Chart _averagePressureChart;
-        public Chart AveragePressureChart
-        {
-            get { return _averagePressureChart; }
-            private set
-            {
-                if (_averagePressureChart != value)
-                {
-                    _averagePressureChart = value;
-                    OnPropertyChanged(nameof(AveragePressureChart));
-                }
-            }
-        }
-
         #endregion
 
         #endregion
@@ -238,17 +238,17 @@ namespace XF40Demo.ViewModels
         public WeatherWeekViewModel()
         {
             TemperatureScaleTappedCommand = new Command(ToggleTemperatureScale);
+            averageTempEntries = new List<ChartEntry>();
             minTempEntries = new List<ChartEntry>();
             maxTempEntries = new List<ChartEntry>();
-            averageTempEntries = new List<ChartEntry>();
             SetupTempCharts();
+            averageWindSpeedEntries = new List<ChartEntry>();
             minWindSpeedEntries = new List<ChartEntry>();
             maxWindSpeedEntries = new List<ChartEntry>();
-            averageWindSpeedEntries = new List<ChartEntry>();
             SetupWindSpeedCharts();
+            averagePressureEntries = new List<ChartEntry>();
             minPressureEntries = new List<ChartEntry>();
             maxPressureEntries = new List<ChartEntry>();
-            averagePressureEntries = new List<ChartEntry>();
             SetupPressureCharts();
         }
 
@@ -265,9 +265,9 @@ namespace XF40Demo.ViewModels
                         sol.SetTemperatureScale(settings.TemperatureScale);
                     }
 
+                    averageTempEntries.Clear();
                     minTempEntries.Clear();
                     maxTempEntries.Clear();
-                    averageTempEntries.Clear();
                     SetTempChartAxes();
                     string tempScale = settings.TemperatureScale == TemperatureScale.Celsius ? "°C" : "°F";
                     foreach (MartianDay sol in weatherService.Weather.OrderBy(d => d.Sol))
@@ -289,10 +289,21 @@ namespace XF40Demo.ViewModels
 
         private void SetupTempCharts()
         {
+            AverageTempChart = new LineChart()
+            {
+                Entries = averageTempEntries,
+                BackgroundColor = SKColor.Parse(ThemeHelper.GetThemeColor("pageBackgroundColor").ToHex()),
+                LabelTextSize = 32,
+                LabelOrientation = Orientation.Horizontal,
+                ValueLabelOrientation = Orientation.Horizontal,
+                LineAreaAlpha = 0,
+                LineSize = 8,
+                Margin = 20
+            };
             MinTempChart = new LineChart()
             {
                 Entries = minTempEntries,
-                BackgroundColor = SKColor.Parse(ThemeHelper.GetThemeColor("pageBackgroundColor").ToHex()),
+                BackgroundColor = SKColor.Parse(Color.Transparent.ToHex()),
                 LabelTextSize = 32,
                 LabelOrientation = Orientation.Horizontal,
                 ValueLabelOrientation = Orientation.Horizontal,
@@ -311,10 +322,14 @@ namespace XF40Demo.ViewModels
                 LineSize = 8,
                 Margin = 20
             };
-            AverageTempChart = new LineChart()
+        }
+
+        private void SetupWindSpeedCharts()
+        {
+            AverageWindSpeedChart = new LineChart()
             {
-                Entries = averageTempEntries,
-                BackgroundColor = SKColor.Parse(Color.Transparent.ToHex()),
+                Entries = averageWindSpeedEntries,
+                BackgroundColor = SKColor.Parse(ThemeHelper.GetThemeColor("pageBackgroundColor").ToHex()),
                 LabelTextSize = 32,
                 LabelOrientation = Orientation.Horizontal,
                 ValueLabelOrientation = Orientation.Horizontal,
@@ -322,14 +337,10 @@ namespace XF40Demo.ViewModels
                 LineSize = 8,
                 Margin = 20
             };
-        }
-
-        private void SetupWindSpeedCharts()
-        {
             MinWindSpeedChart = new LineChart()
             {
                 Entries = minWindSpeedEntries,
-                BackgroundColor = SKColor.Parse(ThemeHelper.GetThemeColor("pageBackgroundColor").ToHex()),
+                BackgroundColor = SKColor.Parse(Color.Transparent.ToHex()),
                 LabelTextSize = 32,
                 LabelOrientation = Orientation.Horizontal,
                 ValueLabelOrientation = Orientation.Horizontal,
@@ -348,10 +359,14 @@ namespace XF40Demo.ViewModels
                 LineSize = 8,
                 Margin = 20
             };
-            AverageWindSpeedChart = new LineChart()
+        }
+
+        private void SetupPressureCharts()
+        {
+            AveragePressureChart = new LineChart()
             {
-                Entries = averageWindSpeedEntries,
-                BackgroundColor = SKColor.Parse(Color.Transparent.ToHex()),
+                Entries = averagePressureEntries,
+                BackgroundColor = SKColor.Parse(ThemeHelper.GetThemeColor("pageBackgroundColor").ToHex()),
                 LabelTextSize = 32,
                 LabelOrientation = Orientation.Horizontal,
                 ValueLabelOrientation = Orientation.Horizontal,
@@ -359,14 +374,10 @@ namespace XF40Demo.ViewModels
                 LineSize = 8,
                 Margin = 20
             };
-        }
-
-        private void SetupPressureCharts()
-        {
             MinPressureChart = new LineChart()
             {
                 Entries = minPressureEntries,
-                BackgroundColor = SKColor.Parse(ThemeHelper.GetThemeColor("pageBackgroundColor").ToHex()),
+                BackgroundColor = SKColor.Parse(Color.Transparent.ToHex()),
                 LabelTextSize = 32,
                 LabelOrientation = Orientation.Horizontal,
                 ValueLabelOrientation = Orientation.Horizontal,
@@ -377,17 +388,6 @@ namespace XF40Demo.ViewModels
             MaxPressureChart = new LineChart()
             {
                 Entries = maxPressureEntries,
-                BackgroundColor = SKColor.Parse(Color.Transparent.ToHex()),
-                LabelTextSize = 32,
-                LabelOrientation = Orientation.Horizontal,
-                ValueLabelOrientation = Orientation.Horizontal,
-                LineAreaAlpha = 0,
-                LineSize = 8,
-                Margin = 20
-            };
-            AveragePressureChart = new LineChart()
-            {
-                Entries = averagePressureEntries,
                 BackgroundColor = SKColor.Parse(Color.Transparent.ToHex()),
                 LabelTextSize = 32,
                 LabelOrientation = Orientation.Horizontal,
@@ -446,40 +446,47 @@ namespace XF40Demo.ViewModels
         {
             double minTemp = weatherService.Weather.OrderBy(t => t.AtmosphericTemp.Min).First<MartianDay>().AtmosphericTemp.Min;
             double maxTemp = weatherService.Weather.OrderBy(t => t.AtmosphericTemp.Max).Last<MartianDay>().AtmosphericTemp.Max;
+            AverageTempChart.MinValue = (float)minTemp;
+            AverageTempChart.MaxValue = (float)maxTemp;
             MinTempChart.MinValue = (float)minTemp;
             MinTempChart.MaxValue = (float)maxTemp;
             MaxTempChart.MinValue = (float)minTemp;
             MaxTempChart.MaxValue = (float)maxTemp;
-            AverageTempChart.MinValue = (float)minTemp;
-            AverageTempChart.MaxValue = (float)maxTemp;
         }
 
         private void SetWindSpeedChartAxes()
         {
-            double minWindSpeed = weatherService.Weather.OrderBy(t => t.HorizontalWindSpeed.Min).First<MartianDay>().HorizontalWindSpeed.Min;
             double maxWindSpeed = weatherService.Weather.OrderBy(t => t.HorizontalWindSpeed.Max).Last<MartianDay>().HorizontalWindSpeed.Max;
-            MinWindSpeedChart.MinValue = (float)minWindSpeed;
-            MinWindSpeedChart.MaxValue = (float)maxWindSpeed;
-            MaxWindSpeedChart.MinValue = (float)minWindSpeed;
-            MaxWindSpeedChart.MaxValue = (float)maxWindSpeed;
-            AverageWindSpeedChart.MinValue = (float)minWindSpeed;
+            AverageWindSpeedChart.MinValue = 0;
             AverageWindSpeedChart.MaxValue = (float)maxWindSpeed;
+            MinWindSpeedChart.MinValue = 0;
+            MinWindSpeedChart.MaxValue = (float)maxWindSpeed;
+            MaxWindSpeedChart.MinValue = 0;
+            MaxWindSpeedChart.MaxValue = (float)maxWindSpeed;
         }
 
         private void SetPressureChartAxes()
         {
             double minPressure = weatherService.Weather.OrderBy(t => t.AtmosphericPressure.Min).First<MartianDay>().AtmosphericPressure.Min;
             double maxPressure = weatherService.Weather.OrderBy(t => t.AtmosphericPressure.Max).Last<MartianDay>().AtmosphericPressure.Max;
+            AveragePressureChart.MinValue = (float)minPressure;
+            AveragePressureChart.MaxValue = (float)maxPressure;
             MinPressureChart.MinValue = (float)minPressure;
             MinPressureChart.MaxValue = (float)maxPressure;
             MaxPressureChart.MinValue = (float)minPressure;
             MaxPressureChart.MaxValue = (float)maxPressure;
-            AveragePressureChart.MinValue = (float)minPressure;
-            AveragePressureChart.MaxValue = (float)maxPressure;
         }
 
         private void AddTempChartEntries(string tempScale, MartianDay sol)
         {
+            averageTempEntries.Add(new ChartEntry((float)sol.AtmosphericTemp.Average)
+            {
+                Label = string.Format("{0}", sol.Sol),
+                ValueLabel = string.Format("{0:N1}{1}", sol.AtmosphericTemp.Average, tempScale),
+                Color = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex()),
+                TextColor = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex())
+            });
+
             minTempEntries.Add(new ChartEntry((float)sol.AtmosphericTemp.Min)
             {
                 Label = string.Format("{0}", sol.Sol),
@@ -493,18 +500,18 @@ namespace XF40Demo.ViewModels
                 ValueLabel = string.Empty,
                 Color = SKColor.Parse(Color.Red.ToHex())
             });
-
-            averageTempEntries.Add(new ChartEntry((float)sol.AtmosphericTemp.Average)
-            {
-                Label = string.Format("{0}", sol.Sol),
-                ValueLabel = string.Format("{0:N1}{1}", sol.AtmosphericTemp.Average, tempScale),
-                Color = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex()),
-                TextColor = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex())
-            });
         }
 
         private void AddWindSpeedChartEntries(MartianDay sol)
         {
+            averageWindSpeedEntries.Add(new ChartEntry((float)sol.HorizontalWindSpeed.Average)
+            {
+                Label = string.Format("{0}", sol.Sol),
+                ValueLabel = string.Format("{0:N1} m/s", sol.HorizontalWindSpeed.Average),
+                Color = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex()),
+                TextColor = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex())
+            });
+
             minWindSpeedEntries.Add(new ChartEntry((float)sol.HorizontalWindSpeed.Min)
             {
                 Label = string.Format("{0}", sol.Sol),
@@ -518,18 +525,18 @@ namespace XF40Demo.ViewModels
                 ValueLabel = string.Empty,
                 Color = SKColor.Parse(Color.DarkGoldenrod.ToHex())
             });
-
-            averageWindSpeedEntries.Add(new ChartEntry((float)sol.HorizontalWindSpeed.Average)
-            {
-                Label = string.Format("{0}", sol.Sol),
-                ValueLabel = string.Format("{0:N1} m/s", sol.HorizontalWindSpeed.Average),
-                Color = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex()),
-                TextColor = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex())
-            });
         }
 
         private void AddPressureChartEntries(MartianDay sol)
         {
+            averagePressureEntries.Add(new ChartEntry((float)sol.AtmosphericPressure.Average)
+            {
+                Label = string.Format("{0}", sol.Sol),
+                ValueLabel = string.Format("{0:N0} Pa", sol.AtmosphericPressure.Average),
+                Color = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex()),
+                TextColor = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex())
+            });
+
             minPressureEntries.Add(new ChartEntry((float)sol.AtmosphericPressure.Min)
             {
                 Label = string.Format("{0}", sol.Sol),
@@ -542,14 +549,6 @@ namespace XF40Demo.ViewModels
                 Label = string.Format("{0}", sol.Sol),
                 ValueLabel = string.Empty,
                 Color = SKColor.Parse(Color.DarkBlue.ToHex())
-            });
-
-            averagePressureEntries.Add(new ChartEntry((float)sol.AtmosphericPressure.Average)
-            {
-                Label = string.Format("{0}", sol.Sol),
-                ValueLabel = string.Format("{0:N0} Pa", sol.AtmosphericPressure.Average),
-                Color = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex()),
-                TextColor = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex())
             });
         }
 

@@ -100,15 +100,15 @@
                        FontSize="Medium"/>
 
                 <mcf:ChartView Grid.Row="2"
+                               Chart="{Binding AverageTempChart}"
+                               HeightRequest="150"/>
+
+                <mcf:ChartView Grid.Row="2"
                                Chart="{Binding MinTempChart}"
                                HeightRequest="150"/>
 
                 <mcf:ChartView Grid.Row="2"
                                Chart="{Binding MaxTempChart}"
-                               HeightRequest="150"/>
-
-                <mcf:ChartView Grid.Row="2"
-                               Chart="{Binding AverageTempChart}"
                                HeightRequest="150"/>
 
                 <!-- wind speed -->
@@ -120,15 +120,15 @@
                        Padding="0, 5, 0, 0"/>
 
                 <mcf:ChartView Grid.Row="4"
+                               Chart="{Binding AverageWindSpeedChart}"
+                               HeightRequest="150"/>
+
+                <mcf:ChartView Grid.Row="4"
                                Chart="{Binding MinWindSpeedChart}"
                                HeightRequest="150"/>
 
                 <mcf:ChartView Grid.Row="4"
                                Chart="{Binding MaxWindSpeedChart}"
-                               HeightRequest="150"/>
-
-                <mcf:ChartView Grid.Row="4"
-                               Chart="{Binding AverageWindSpeedChart}"
                                HeightRequest="150"/>
 
                 <!-- pressure -->
@@ -140,15 +140,15 @@
                        Padding="0, 5, 0, 0"/>
 
                 <mcf:ChartView Grid.Row="6"
+                               Chart="{Binding AveragePressureChart}"
+                               HeightRequest="150"/>
+
+                <mcf:ChartView Grid.Row="6"
                                Chart="{Binding MinPressureChart}"
                                HeightRequest="150"/>
 
                 <mcf:ChartView Grid.Row="6"
                                Chart="{Binding MaxPressureChart}"
-                               HeightRequest="150"/>
-
-                <mcf:ChartView Grid.Row="6"
-                               Chart="{Binding AveragePressureChart}"
                                HeightRequest="150"/>
 
             </Grid>
