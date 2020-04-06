@@ -265,9 +265,6 @@ namespace XF40Demo.ViewModels
                         sol.SetTemperatureScale(settings.TemperatureScale);
                     }
 
-                    averageTempEntries.Clear();
-                    minTempEntries.Clear();
-                    maxTempEntries.Clear();
                     SetTempChartAxes();
                     string tempScale = settings.TemperatureScale == TemperatureScale.Celsius ? "°C" : "°F";
                     foreach (MartianDay sol in weatherService.Weather.OrderBy(d => d.Sol))
@@ -444,6 +441,9 @@ namespace XF40Demo.ViewModels
 
         private void SetTempChartAxes()
         {
+            averageTempEntries.Clear();
+            minTempEntries.Clear();
+            maxTempEntries.Clear();
             double minTemp = weatherService.Weather.OrderBy(t => t.AtmosphericTemp.Min).First<MartianDay>().AtmosphericTemp.Min;
             double maxTemp = weatherService.Weather.OrderBy(t => t.AtmosphericTemp.Max).Last<MartianDay>().AtmosphericTemp.Max;
             AverageTempChart.MinValue = (float)minTemp;
@@ -456,6 +456,9 @@ namespace XF40Demo.ViewModels
 
         private void SetWindSpeedChartAxes()
         {
+            averageWindSpeedEntries.Clear();
+            minWindSpeedEntries.Clear();
+            maxWindSpeedEntries.Clear();
             double maxWindSpeed = weatherService.Weather.OrderBy(t => t.HorizontalWindSpeed.Max).Last<MartianDay>().HorizontalWindSpeed.Max;
             AverageWindSpeedChart.MinValue = 0;
             AverageWindSpeedChart.MaxValue = (float)maxWindSpeed;
@@ -467,6 +470,9 @@ namespace XF40Demo.ViewModels
 
         private void SetPressureChartAxes()
         {
+            averagePressureEntries.Clear();
+            minPressureEntries.Clear();
+            maxPressureEntries.Clear();
             double minPressure = weatherService.Weather.OrderBy(t => t.AtmosphericPressure.Min).First<MartianDay>().AtmosphericPressure.Min;
             double maxPressure = weatherService.Weather.OrderBy(t => t.AtmosphericPressure.Max).Last<MartianDay>().AtmosphericPressure.Max;
             AveragePressureChart.MinValue = (float)minPressure;
