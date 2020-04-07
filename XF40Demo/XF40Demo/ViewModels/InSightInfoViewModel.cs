@@ -94,7 +94,7 @@ namespace XF40Demo.ViewModels
         {
             CloseTappedCommand = new Command(async () => await ClosePage().ConfigureAwait(false));
             FrameHeight = DeviceDisplay.MainDisplayInfo.Height * 0.275;
-            HeroImage = "resource://XF40Demo.Resources.Mars.insight-patch-600.png";
+            HeroImage = "resource://XF40Demo.Resources.Mars.insight-patch-600.webp";
         }
 
         private async Task ClosePage()
