@@ -12,6 +12,7 @@ namespace XF40Demo.Shell
 			InitializeComponent();
 			BindingContext = this;
 			Routing.RegisterRoute("marsWeather/details", typeof(WeatherDetailPage));
+			Routing.RegisterRoute("marsWeather/weekly", typeof(WeatherWeekPage));
 		}
 	}
 }

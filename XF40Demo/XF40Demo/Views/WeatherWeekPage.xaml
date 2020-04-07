@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mcf="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             xmlns:c="clr-namespace:XF40Demo.Convertors"
+             xmlns:h="clr-namespace:XF40Demo.Helpers"
+             xmlns:vm="clr-namespace:XF40Demo.ViewModels"
+             x:Class="XF40Demo.Views.WeatherWeekPage"
+             x:DataType="vm:WeatherWeekViewModel"
+             Title="Weekly Overview"
+             BackgroundColor="{DynamicResource pageForegroundColor}">
+
+    <ContentPage.Resources>
+        <c:TemperatureScaleToLabel x:Key="scaleLabel"/>
+    </ContentPage.Resources>
+
+    <StackLayout Orientation="Vertical"
+                 Spacing="0">
+
+        <!-- header -->
+
+        <Grid BackgroundColor="{DynamicResource pageBackgroundColor}"
+              ColumnSpacing="5"
+              RowSpacing="0"
+              Padding="15, 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0"
+                   Text="{Binding MarsDates, Mode=OneWay}"
+                   TextColor="{DynamicResource textColor}"
+                   FontSize="Large"/>
+
+            <ImageButton Grid.Row="0" Grid.Column="1"
+                         Command="{Binding TemperatureScaleTappedCommand}"
+                         BackgroundColor="{DynamicResource pageForegroundColor}"
+                         CornerRadius="15"
+                         Padding="6">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}"
+                                     Glyph="{x:Static h:FA5FreeSolid.TemperatureHigh}"
+                                     Size="18"
+                                     Color="{DynamicResource textColor}"/>
+                </ImageButton.Source>
+            </ImageButton>
+
+            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                   Text="{Binding EarthDates, Mode=OneWay}"
+                   TextColor="{DynamicResource textColor}"
+                   FontSize="Large"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                   Text="{Binding LastUpdated, StringFormat='Updated: {0}', Mode=OneWay}"
+                   TextColor="{DynamicResource textColor}"
+                   FontSize="Default"/>
+
+        </Grid>
+
+        <!-- content -->
+
+        <ScrollView>
+
+            <Grid RowSpacing="3"
+                  Padding="15, 5, 15, 10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- season -->
+
+                <Label Grid.Row="0"
+                       TextColor="{DynamicResource textColor}"
+                       FontSize="Medium">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Season: "/>
+                            <Span Text="{Binding Season, Mode=OneWay}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <!-- temperature -->
+
+                <Label Grid.Row="1"
+                       Text="Atmospheric Temperature"
+                       TextColor="{DynamicResource textColor}"
+                       FontSize="Medium"/>
+
+                <mcf:ChartView Grid.Row="2"
+                               Chart="{Binding AverageTempChart}"
+                               HeightRequest="150"/>
+
+                <mcf:ChartView Grid.Row="2"
+                               Chart="{Binding MinTempChart}"
+                               HeightRequest="150"/>
+
+                <mcf:ChartView Grid.Row="2"
+                               Chart="{Binding MaxTempChart}"
+                               HeightRequest="150"/>
+
+                <!-- wind speed -->
+
+                <Label Grid.Row="3"
+                       Text="Wind Speed"
+                       TextColor="{DynamicResource textColor}"
+                       FontSize="Medium"
+                       Padding="0, 5, 0, 0"/>
+
+                <mcf:ChartView Grid.Row="4"
+                               Chart="{Binding AverageWindSpeedChart}"
+                               HeightRequest="150"/>
+
+                <mcf:ChartView Grid.Row="4"
+                               Chart="{Binding MinWindSpeedChart}"
+                               HeightRequest="150"/>
+
+                <mcf:ChartView Grid.Row="4"
+                               Chart="{Binding MaxWindSpeedChart}"
+                               HeightRequest="150"/>
+
+                <!-- pressure -->
+
+                <Label Grid.Row="5"
+                       Text="Atmospheric Pressure"
+                       TextColor="{DynamicResource textColor}"
+                       FontSize="Medium"
+                       Padding="0, 5, 0, 0"/>
+
+                <mcf:ChartView Grid.Row="6"
+                               Chart="{Binding AveragePressureChart}"
+                               HeightRequest="150"/>
+
+                <mcf:ChartView Grid.Row="6"
+                               Chart="{Binding MinPressureChart}"
+                               HeightRequest="150"/>
+
+                <mcf:ChartView Grid.Row="6"
+                               Chart="{Binding MaxPressureChart}"
+                               HeightRequest="150"/>
+
+            </Grid>
+            
+        </ScrollView>
+
+    </StackLayout>
+        
+</ContentPage>
