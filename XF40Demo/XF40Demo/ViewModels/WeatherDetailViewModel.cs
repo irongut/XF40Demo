@@ -148,7 +148,7 @@ namespace XF40Demo.ViewModels
                     windEntries.Add(new ChartEntry(point.Count)
                     {
                         Label = point.CompassPointName,
-                        Color = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex()),
+                        Color = SKColor.Parse(Color.DarkGoldenrod.ToHex()),
                         TextColor = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex())
                     });
                 }
@@ -157,7 +157,7 @@ namespace XF40Demo.ViewModels
                     windEntries.Add(new ChartEntry(0)
                     {
                         Label = p,
-                        Color = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex()),
+                        Color = SKColor.Parse(Color.DarkGoldenrod.ToHex()),
                         TextColor = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex())
                     });
                 }

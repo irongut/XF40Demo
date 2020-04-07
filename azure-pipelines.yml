@@ -13,7 +13,9 @@ variables:
 
 # setup + restore nugets
 steps:
-- task: NuGetToolInstaller@0
+- task: NuGetToolInstaller@1
+  inputs:
+    versionSpec: '5.x'
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '**/*.sln'
