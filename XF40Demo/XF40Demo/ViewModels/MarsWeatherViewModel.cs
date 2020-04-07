@@ -1,7 +1,6 @@
 ﻿using Acr.UserDialogs;
 using Rg.Plugins.Popup.Extensions;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
@@ -115,16 +114,16 @@ namespace XF40Demo.ViewModels
             switch (settings.MarsBackground)
             {
                 case 0:
-                    BackgroundImage = "resource://XF40Demo.Resources.Mars.PIA22226-2250.jpg";
+                    BackgroundImage = "resource://XF40Demo.Resources.Mars.PIA22226-2250.webp";
                     break;
                 case 1:
-                    BackgroundImage = "resource://XF40Demo.Resources.Mars.PIA22871-1440.jpg";
+                    BackgroundImage = "resource://XF40Demo.Resources.Mars.PIA22871-1440.webp";
                     break;
                 case 2:
-                    BackgroundImage = "resource://XF40Demo.Resources.Mars.PIA23249-1440.jpg";
+                    BackgroundImage = "resource://XF40Demo.Resources.Mars.PIA23249-1440.webp";
                     break;
                 case 3:
-                    BackgroundImage = "resource://XF40Demo.Resources.Mars.PIA22736-1440.jpg";
+                    BackgroundImage = "resource://XF40Demo.Resources.Mars.PIA22736-1440.webp";
                     break;
                 default:
                     BackgroundImage = string.Empty;
