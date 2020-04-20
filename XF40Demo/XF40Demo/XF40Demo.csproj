@@ -143,7 +143,7 @@
 
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.1.0.442" />
-    <PackageReference Include="CsvHelper" Version="15.0.4" />
+    <PackageReference Include="CsvHelper" Version="15.0.5" />
     <PackageReference Include="MagicGradients" Version="1.0.0" />
     <PackageReference Include="Microcharts" Version="0.8.5-pre" />
     <PackageReference Include="Microcharts.Forms" Version="0.8.5-pre" />
