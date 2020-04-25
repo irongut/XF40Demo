@@ -1,5 +1,4 @@
 # Assign PR to Author
-# Scan your repo for secrets. AWS tokens, keys, etc.
 # https://github.com/samspills/assign-pr-to-author
 
 name: AutoAssigner
