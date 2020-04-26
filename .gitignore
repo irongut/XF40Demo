@@ -32,6 +32,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+[Ll]ogs/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -352,3 +353,9 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /builds
+
+# Backup folder for Package Reference Convert tool in Visual Studio 2017
+MigrationBackup/
+
+# Ionide (cross platform F# VS Code tools) working folder
+.ionide/
