@@ -13,10 +13,63 @@ DevOps:
   - .github/**/*
 
 Shell:
+  - XF40Demo/XF40Demo/Converters/MenuItemTo*.cs
   - XF40Demo/XF40Demo/Shell/**/*
 
 UI:
   - XF40Demo/XF40Demo/Converters/**/*
+  - XF40Demo/XF40Demo/Helpers/FA5*.cs
+  - XF40Demo/XF40Demo/Helpers/IEnvironment.cs
+  - XF40Demo/XF40Demo/Helpers/ThemeHelper.cs
+  - XF40Demo/XF40Demo/Helpers/ToastHelper.cs
+  - XF40Demo/XF40Demo/Models/Theme.cs
   - XF40Demo/XF40Demo/Resources/*.png
   - XF40Demo/XF40Demo/Resources/*.svg
+  - XF40Demo/XF40Demo/Resources/*.webp
+  - XF40Demo/XF40Demo/Resources/Mars/**/*
+  - XF40Demo/XF40Demo/Styles/**/*
   - XF40Demo/XF40Demo/Views/**/*
+  - XF40Demo/XF40Demo.Android/Assets/**/*
+  - XF40Demo/XF40Demo.Android/Helpers/Environment.cs
+  - XF40Demo/XF40Demo.Android/Resources/**/*
+
+Tests:
+  - XF40Demo/UnitTests/**/*
+
+GalNet:
+  - XF40Demo/XF40Demo/Convertors/News*.cs
+  - XF40Demo/XF40Demo/Models/NewsItem.cs
+  - XF40Demo/XF40Demo/Models/Topi*.cs
+  - XF40Demo/XF40Demo/Resources/News*.csv
+  - XF40Demo/XF40Demo/Services/GalNetService.cs
+  - XF40Demo/XF40Demo/ViewModels/GalNet*.cs
+  - XF40Demo/XF40Demo/Views/GalNet*
+
+Galactic Standings:
+  - XF40Demo/XF40Demo/Converters/FactionTo*.cs
+  - XF40Demo/XF40Demo/Converters/PowerTo*.cs
+  - XF40Demo/XF40Demo/Converters/StandingChangeTo*.cs
+  - XF40Demo/XF40Demo/Models/Power*.cs
+  - XF40Demo/XF40Demo/Resources/PowerDetails.csv
+  - XF40Demo/XF40Demo/Resources/*.headshot.*
+  - XF40Demo/XF40Demo/Resources/*.logo.*
+  - XF40Demo/XF40Demo/Services/CycleService.cs
+  - XF40Demo/XF40Demo/Services/StandingsService.cs
+  - XF40Demo/XF40Demo/ViewModels/PowerDetailViewModel.cs
+  - XF40Demo/XF40Demo/ViewModels/StandingsViewModel.cs
+  - XF40Demo/XF40Demo/Views/Power*
+  - EliteALD/EliteALD/EliteALD/Views/Standings*
+
+Mars Weather:
+  - XF40Demo/XF40Demo/Converters/Temperature*.cs
+  - XF40Demo/XF40Demo/Models/CompassPoint.cs
+  - XF40Demo/XF40Demo/Models/MartianDay.cs
+  - XF40Demo/XF40Demo/Models/*ensorData.cs
+  - XF40Demo/XF40Demo/Resources/Mars/**/*
+  - XF40Demo/XF40Demo/Services/MarsWeatherService.cs
+  - XF40Demo/XF40Demo/ViewModels/InSight*
+  - XF40Demo/XF40Demo/ViewModels/MarsWeather*
+  - XF40Demo/XF40Demo/ViewModels/Weather*
+  - XF40Demo/XF40Demo/Views/InSight*
+  - XF40Demo/XF40Demo/Views/MarsWeather*
+  - XF40Demo/XF40Demo/Views/Weather*
