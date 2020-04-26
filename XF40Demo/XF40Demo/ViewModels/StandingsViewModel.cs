@@ -258,7 +258,7 @@ namespace XF40Demo.ViewModels
             }
             ShowTimeRemaining = !settings.OnlyShowNextCycleWhenImminent || CycleService.CycleImminent();
 
-            if (pageVisible && (CycleImminent || DateTime.UtcNow.Minute == 59))
+            if (pageVisible && (CycleService.FinalDay() || DateTime.UtcNow.Minute == 59))
             {
                 Device.StartTimer(TimeSpan.FromSeconds(60 - DateTime.UtcNow.Second), () =>
                 {
