@@ -13,7 +13,7 @@ Experiments with new & preview features in Xamarin Forms 4.x and Azure DevOps Pi
 &nbsp;
 [![License](https://img.shields.io/github/license/irongut/xf40demo?logo=github)](https://github.com/irongut/XF40Demo/blob/master/LICENSE)
 
-**Xamarin Forms Release Blogs**
+### Xamarin Forms Release Blogs
 * [Forms 4.0 - Shell, Fast Renderers & ImageSource](https://devblogs.microsoft.com/xamarin/introducing-xamarin-forms-4-0-the-era-of-shell/)
 * [Forms 4.1 - Checkbox & Maps](https://devblogs.microsoft.com/xamarin/xamarin-forms-4-1-0-stable-now-available/)
 * [Forms 4.2 - Shell Lifecycle](https://devblogs.microsoft.com/xamarin/xamarin-forms-4-2-0-hits-ga-collectionview-updates/)
@@ -22,6 +22,12 @@ Experiments with new & preview features in Xamarin Forms 4.x and Azure DevOps Pi
 * [Forms 4.5 - AndroidX, VisualStateManager, Shell Modal, StateTriggers & Media Element](https://devblogs.microsoft.com/xamarin/xamarin-forms-4-5/)
 * [Forms 4.6 - Material Update, Navigating Back & Fly-out Style, Preview: RadioButton, Expander](https://devblogs.microsoft.com/xamarin/xamarin-forms-4-6/)
 
-**Relevant Visual Studio Release Blogs**
+### Relevant Visual Studio Release Blogs
 * [VS 2019 v16.4 - HotReload, Android App Bundle & AndroidX](https://devblogs.microsoft.com/xamarin/visual-studio-2019-version-16-4/)
 * [VS 2019 v16.5 Preview - HotRestart, Apply Changes & Improved Startup Tracing (AOT)](https://devblogs.microsoft.com/xamarin/visual-studio-2019-version-16-5-preview-2/)
+
+### Xamarin Forms & MAUI Future
+* [Xamarin Updates From Build 2020](https://devblogs.microsoft.com/xamarin/microsoft-build-2020-xamarin/)
+* [Introducing .NET Multi-platform App UI](https://devblogs.microsoft.com/dotnet/introducing-net-multi-platform-app-ui/)
+* [Channel 9: The Journey to One .NET](https://channel9.msdn.com/Events/Build/2020/BOD106)
+* [Build 2020: Xamarin.Forms Experts Panel](https://codetraveler.io/build2020/)
