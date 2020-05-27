@@ -18,6 +18,21 @@ namespace XF40Demo.ViewModels
 
         #region Properties
 
+        public string CommsLogoFilename
+        {
+            get
+            {
+                return string.Equals(PowerStanding.ShortName.Trim(), "aisling", StringComparison.OrdinalIgnoreCase)
+                    ? FA5BrandsRegular.Slack
+                    : FA5BrandsRegular.Discord;
+            }
+        }
+
+        public string RedditLogoFilename
+        {
+            get { return FA5BrandsRegular.RedditSquare; }
+        }
+
         private PowerStanding _powerStanding;
         public PowerStanding PowerStanding
         {
@@ -28,6 +43,7 @@ namespace XF40Demo.ViewModels
                 {
                     _powerStanding = value;
                     OnPropertyChanged(nameof(PowerStanding));
+                    OnPropertyChanged(nameof(CommsLogoFilename));
                 }
             }
         }
