@@ -1,24 +1,17 @@
-﻿using Acr.UserDialogs;
-using CsvHelper;
-using CsvHelper.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using XF40Demo.Helpers;
 using XF40Demo.Models;
+using XF40Demo.Services;
 
 namespace XF40Demo.ViewModels
 {
-    public sealed class PowerDetailViewModel : BaseViewModel
+    public class PowerDetailViewModel : BaseViewModel
     {
-        private static readonly PowerDetailViewModel instance = new PowerDetailViewModel();
-
         public ICommand BackCommand { get; }
         public ICommand JoinDiscordCommand { get; }
         public ICommand OpenRedditCommand { get; }
@@ -29,7 +22,7 @@ namespace XF40Demo.ViewModels
         public PowerStanding PowerStanding
         {
             get { return _powerStanding; }
-            private set
+            set
             {
                 if (_powerStanding != value)
                 {
@@ -126,100 +119,40 @@ namespace XF40Demo.ViewModels
 
         #endregion
 
-        private readonly List<PowerDetails> powerList;
-
-        private PowerDetailViewModel()
+        public PowerDetailViewModel()
         {
-            powerList = new List<PowerDetails>();
             BackCommand = new Command(async () => await Xamarin.Forms.Shell.Current.GoToAsync("///galacticStandings").ConfigureAwait(false));
             JoinDiscordCommand = new Command(JoinDiscord);
             OpenRedditCommand = new Command(OpenReddit);
         }
 
-        public static PowerDetailViewModel Instance()
+        private async Task GetPowerDetailsAsync()
         {
-            return instance;
-        }
-
-        public async Task GetPowerDetails(PowerStanding standing)
-        {
-            PowerStanding = standing;
-            Cycle = standing.Cycle;
-            LastUpdated = standing.LastUpdated;
-            if (powerList?.Any() == false)
+            try
             {
-                await GetPowerList().ConfigureAwait(false);
-            }
-            PowerDetails = powerList.Find(x => x.ShortName.Equals(standing.ShortName));
-            ExpandText = String.Format("{0}<br/><p>Strong Against: {1}<br/>Weak Against: {2}</p>", _powerDetails.ExpansionText, _powerDetails.ExpansionStrongGovernment, _powerDetails.ExpansionWeakGovernment);
-            ControlText = String.Format("{0}<br/><p>Strong Against: {1}<br/>Weak Against: {2}</p>", _powerDetails.ControlText, _powerDetails.ControlStrongGovernment, _powerDetails.ControlWeakGovernment);
-        }
-
-        private async Task GetPowerList()
-        {
-            const string fileName = "XF40Demo.Resources.PowerDetails.csv";
-
-            using (UserDialogs.Instance.Loading("Loading", null, null, true, MaskType.Clear))
-            {
-                try
+                PowerDetailsService pdService = PowerDetailsService.Instance();
+                StandingsService gsService = StandingsService.Instance();
+                if (pdService.SelectedPower != null)
                 {
-                    Assembly assembly = GetType().GetTypeInfo().Assembly;
-                    using (Stream stream = assembly.GetManifestResourceStream(fileName))
-                    {
-                        using (StreamReader reader = new StreamReader(stream))
-                        {
-                            CsvConfiguration csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
-                            {
-                                Delimiter = ","
-                            };
-                            using (CsvReader csv = new CsvReader(reader, csvConfig))
-                            {
-                                csv.Read(); // ignore header row
-                                while (csv.Read())
-                                {
-                                    powerList.Add(new PowerDetails(
-                                        csv.GetField<int>(0),
-                                        csv.GetField<string>(1),
-                                        csv.GetField<string>(2),
-                                        csv.GetField<int>(3),
-                                        csv.GetField<string>(4),
-                                        csv.GetField<string>(5),
-                                        csv.GetField<string>(6),
-                                        csv.GetField<string>(7),
-                                        csv.GetField<string>(8),
-                                        csv.GetField<string>(9),
-                                        csv.GetField<string>(10),
-                                        csv.GetField<string>(11),
-                                        csv.GetField<string>(12),
-                                        csv.GetField<string>(13),
-                                        csv.GetField<string>(14),
-                                        Desanitise(csv.GetField<string>(15)),
-                                        Desanitise(csv.GetField<string>(16)),
-                                        Desanitise(csv.GetField<string>(17)),
-                                        Desanitise(csv.GetField<string>(18)),
-                                        Desanitise(csv.GetField<string>(19)),
-                                        Desanitise(csv.GetField<string>(20)),
-                                        Desanitise(csv.GetField<string>(21)),
-                                        Desanitise(csv.GetField<string>(22)),
-                                        Desanitise(csv.GetField<string>(23)),
-                                        Desanitise(csv.GetField<string>(24)),
-                                        Desanitise(csv.GetField<string>(25))
-                                        ));
-                                }
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    await UserDialogs.Instance.AlertAsync(String.Format("Error parsing Power Details: {0}", ex.Message), "Elite ALD: Error", "OK").ConfigureAwait(false);
+                    PowerDetails = pdService.SelectedPower;
+                    CancellationTokenSource cancelToken = new CancellationTokenSource();
+                    PowerStanding = await gsService.GetPowerAsync(PowerDetails.ShortName, cancelToken).ConfigureAwait(false);
+                    Cycle = PowerStanding.Cycle;
+                    LastUpdated = PowerStanding.LastUpdated;
+                    ExpandText = String.Format("<p>{0}</p>&nbsp;<ul><li>Strong Against: {1}</li><li>Weak Against: {2}</li></ul>",
+                                    PowerDetails.ExpansionText,
+                                    PowerDetails.ExpansionStrongGovernment,
+                                    PowerDetails.ExpansionWeakGovernment);
+                    ControlText = String.Format("<p>{0}</p>&nbsp;<ul><li>Strong Against: {1}</li><li>Weak Against: {2}</li></ul>",
+                                    PowerDetails.ControlText,
+                                    PowerDetails.ControlStrongGovernment,
+                                    PowerDetails.ControlWeakGovernment);
                 }
             }
-        }
-
-        private string Desanitise(string data)
-        {
-            return data.Replace("\\n", "\n");
+            catch (Exception ex)
+            {
+                ToastHelper.Toast(String.Format("Error getting Power details: {0}", ex.Message));
+            }
         }
 
         private void JoinDiscord()
@@ -252,13 +185,13 @@ namespace XF40Demo.ViewModels
                     URL = "https://discord.me/antal";
                     break;
                 case "grom":
-                    URL = "https://discord.gg/ZjXwVPy";
+                    URL = "https://discord.gg/9Uatz63";
                     break;
                 case "hudson":
                     URL = "https://discord.gg/YDHTRUM";
                     break;
                 case "torval":
-                    URL = "https://discord.gg/WXBb784";
+                    URL = "https://discord.gg/cj2DgwQ";
                     break;
                 default:
                     break;
@@ -316,9 +249,9 @@ namespace XF40Demo.ViewModels
             }
         }
 
-        protected override void RefreshView()
+        protected override async void RefreshView()
         {
-            // nothing to refresh
+            await GetPowerDetailsAsync().ConfigureAwait(false);
         }
     }
 }

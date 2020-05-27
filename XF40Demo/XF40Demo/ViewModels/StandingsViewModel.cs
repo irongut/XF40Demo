@@ -160,6 +160,13 @@ namespace XF40Demo.ViewModels
             Standings = new ObservableCollection<PowerStanding>();
         }
 
+        private async Task OpenPowerDetailsAsync(PowerStanding power)
+        {
+            PowerDetailsService pdService = PowerDetailsService.Instance();
+            pdService.SetSelectedPower(power.ShortName);
+            await Xamarin.Forms.Shell.Current.GoToAsync($"//powerDetails/overview").ConfigureAwait(false);
+        }
+
         private async void GetStandingsAsync(bool ignoreCache = false)
         {
             int cycleNo = 0;
@@ -218,7 +225,7 @@ namespace XF40Demo.ViewModels
                         {
                             err = err.Substring(err.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) + 6).Trim();
                         }
-                        SetMessages(String.Format("Network Error: {0}", err), true);
+                        SetMessages($"Network Error: {err}", true);
                     }
                     catch (Exception ex)
                     {
@@ -228,18 +235,11 @@ namespace XF40Demo.ViewModels
                         }
                         else
                         {
-                            SetMessages(String.Format("Error: {0}", ex.Message), true);
+                            SetMessages($"Error: {ex.Message}", true);
                         }
                     }
                 }
             }
-        }
-
-        private async Task OpenPowerDetailsAsync(PowerStanding power)
-        {
-            PowerDetailViewModel powerDetailViewModel = PowerDetailViewModel.Instance();
-            await powerDetailViewModel.GetPowerDetails(power).ConfigureAwait(false);
-            await Xamarin.Forms.Shell.Current.GoToAsync("///powerDetails/overview").ConfigureAwait(false);
         }
 
         private void UpdateTimeRemaining()

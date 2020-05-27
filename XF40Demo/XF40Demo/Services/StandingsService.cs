@@ -121,6 +121,15 @@ namespace XF40Demo.Services
             return standingList.OrderBy(x => x.Position).ToList();
         }
 
+        public async Task<PowerStanding> GetPowerAsync(string shortName, CancellationTokenSource cancelToken, bool ignoreCache = false)
+        {
+            if (powerStandings?.Any() == false)
+            {
+                _ = await GetData(cancelToken, ignoreCache).ConfigureAwait(false);
+            }
+            return powerStandings.Find(x => x.ShortName.Equals(shortName));
+        }
+
         private StandingChange ConvertChange(string change)
         {
             change = change.Trim().ToLower();
