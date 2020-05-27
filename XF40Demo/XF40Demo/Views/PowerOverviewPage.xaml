@@ -166,7 +166,7 @@
                              Spacing="45" 
                              Padding="30, 0" 
                              CompressedLayout.IsHeadless="True">
-                    <Button Text="{Binding CommsLogoFilename}" 
+                    <Button Text="{Binding CommsLogoFilename, Mode=OneWay}" 
                             Style="{StaticResource FA-Brands}" 
                             FontSize="30" 
                             Command="{Binding JoinDiscordCommand}" 
@@ -174,7 +174,7 @@
                             TextColor="{StaticResource altTextColor}" 
                             CornerRadius="5"
                             HorizontalOptions="FillAndExpand"/>
-                    <Button Text="{Binding RedditLogoFilename}" 
+                    <Button Text="{Binding RedditLogoFilename, Mode=OneWay}" 
                             Style="{StaticResource FA-Brands}" 
                             FontSize="30" 
                             Command="{Binding OpenRedditCommand}" 
