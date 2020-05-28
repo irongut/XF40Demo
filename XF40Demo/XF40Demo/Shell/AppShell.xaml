@@ -122,7 +122,7 @@
                       Title="Overview" 
                       ContentTemplate="{DataTemplate v:PowerOverviewPage}">
             <ShellContent.Icon>
-                <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" 
+                <FontImageSource FontFamily="FontAwesomeSolid" 
                                  Glyph="{x:Static h:FA5FreeSolid.File}"/>
             </ShellContent.Icon>
         </ShellContent>
@@ -130,7 +130,7 @@
                       Title="Benefits" 
                       ContentTemplate="{DataTemplate v:PowerBenefitsPage}">
             <ShellContent.Icon>
-                <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" 
+                <FontImageSource FontFamily="FontAwesomeSolid" 
                                  Glyph="{x:Static h:FA5FreeSolid.FileAlt}"/>
             </ShellContent.Icon>
         </ShellContent>

@@ -137,7 +137,7 @@ namespace XF40Demo.ViewModels
 
         public PowerDetailViewModel()
         {
-            BackCommand = new Command(async () => await Xamarin.Forms.Shell.Current.GoToAsync("///galacticStandings").ConfigureAwait(false));
+            BackCommand = new Command(async () => await Xamarin.Forms.Shell.Current.GoToAsync("//galacticStandings").ConfigureAwait(false));
             JoinDiscordCommand = new Command(JoinDiscord);
             OpenRedditCommand = new Command(OpenReddit);
         }

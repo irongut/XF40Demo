@@ -8,7 +8,8 @@
              x:Class="XF40Demo.Views.WeatherWeekPage"
              x:DataType="vm:WeatherWeekViewModel"
              Title="Weekly Overview"
-             BackgroundColor="{DynamicResource pageForegroundColor}">
+             BackgroundColor="{DynamicResource pageForegroundColor}"
+             Shell.PresentationMode="ModalAnimated">
 
     <ContentPage.Resources>
         <c:TemperatureScaleToLabel x:Key="scaleLabel"/>
@@ -44,7 +45,7 @@
                          CornerRadius="15"
                          Padding="6">
                 <ImageButton.Source>
-                    <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}"
+                    <FontImageSource FontFamily="FontAwesomeSolid"
                                      Glyph="{x:Static h:FA5FreeSolid.TemperatureHigh}"
                                      Size="18"
                                      Color="{DynamicResource textColor}"/>

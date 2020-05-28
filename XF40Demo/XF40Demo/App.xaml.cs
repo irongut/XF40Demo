@@ -4,6 +4,9 @@ using XF40Demo.Helpers;
 using XF40Demo.Services;
 using XF40Demo.Shell;
 
+[assembly: ExportFont("Font Awesome 5 Brands-Regular-400.otf", Alias = "FontAwesomeBrands")]
+[assembly: ExportFont("Font Awesome 5 Free-Solid-900.otf", Alias = "FontAwesomeSolid")]
+
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XF40Demo
 {
