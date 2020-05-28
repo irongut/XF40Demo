@@ -9,7 +9,8 @@
              x:Class="XF40Demo.Views.WeatherDetailPage"
              x:DataType="vm:WeatherDetailViewModel"
              Title="Daily Summary"
-             BackgroundColor="{DynamicResource pageForegroundColor}">
+             BackgroundColor="{DynamicResource pageForegroundColor}"
+             Shell.PresentationMode="ModalAnimated">
 
     <ContentPage.Resources>
         <c:TemperatureScaleToLabel x:Key="scaleLabel"/>

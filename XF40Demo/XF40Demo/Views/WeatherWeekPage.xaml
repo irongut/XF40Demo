@@ -8,7 +8,8 @@
              x:Class="XF40Demo.Views.WeatherWeekPage"
              x:DataType="vm:WeatherWeekViewModel"
              Title="Weekly Overview"
-             BackgroundColor="{DynamicResource pageForegroundColor}">
+             BackgroundColor="{DynamicResource pageForegroundColor}"
+             Shell.PresentationMode="ModalAnimated">
 
     <ContentPage.Resources>
         <c:TemperatureScaleToLabel x:Key="scaleLabel"/>
