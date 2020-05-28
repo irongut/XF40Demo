@@ -158,7 +158,7 @@
                          Padding="6"
                          VerticalOptions="Center">
                 <ImageButton.Source>
-                    <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}"
+                    <FontImageSource FontFamily="FontAwesomeSolid"
                                      Glyph="{x:Static h:FA5FreeSolid.CalendarWeek}"
                                      Size="18"
                                      Color="{DynamicResource textColor}"/>
@@ -172,7 +172,7 @@
                          Padding="6"
                          VerticalOptions="Center">
                 <ImageButton.Source>
-                    <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}"
+                    <FontImageSource FontFamily="FontAwesomeSolid"
                                      Glyph="{x:Static h:FA5FreeSolid.SatelliteDish}"
                                      Size="18"
                                      Color="{DynamicResource textColor}"/>
@@ -186,7 +186,7 @@
                          Padding="6"
                          VerticalOptions="Center">
                 <ImageButton.Source>
-                    <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}"
+                    <FontImageSource FontFamily="FontAwesomeSolid"
                                      Glyph="{x:Static h:FA5FreeSolid.TemperatureHigh}"
                                      Size="18"
                                      Color="{DynamicResource textColor}"/>

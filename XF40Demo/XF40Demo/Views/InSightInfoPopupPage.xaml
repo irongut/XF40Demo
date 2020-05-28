@@ -71,7 +71,7 @@
                      Padding="8"
                      VerticalOptions="Center">
             <ImageButton.Source>
-                <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}"
+                <FontImageSource FontFamily="FontAwesomeSolid"
                                  Glyph="{x:Static h:FA5FreeSolid.TimesCircle}"
                                  Size="30"
                                  Color="{DynamicResource altTextColor}"/>

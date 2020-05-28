@@ -4,18 +4,12 @@
              x:Class="XF40Demo.App">
     <Application.Resources>
 
-        <OnPlatform x:Key="FontAwesomeBrands" x:TypeArguments="x:String">
-            <On Platform="Android" Value="Font Awesome 5 Brands-Regular-400.otf#Font Awesome 5 Brands Regular" />
-        </OnPlatform>
         <Style x:Key="FA-Brands" TargetType="Label">
-            <Setter Property="FontFamily" Value="{StaticResource FontAwesomeBrands}" />
+            <Setter Property="FontFamily" Value="FontAwesomeBrands" />
         </Style>
 
-        <OnPlatform x:Key="FontAwesomeSolid" x:TypeArguments="x:String">
-            <On Platform="Android" Value="Font Awesome 5 Free-Solid-900.otf#Font Awesome 5 Free Solid" />
-        </OnPlatform>
         <Style x:Key="FA-Solid" TargetType="Label">
-            <Setter Property="FontFamily" Value="{StaticResource FontAwesomeSolid}" />
+            <Setter Property="FontFamily" Value="FontAwesomeSolid" />
         </Style>
 
         <Color x:Key="brandColor">#7F00FF</Color>

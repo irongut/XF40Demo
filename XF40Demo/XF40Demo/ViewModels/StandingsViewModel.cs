@@ -164,7 +164,7 @@ namespace XF40Demo.ViewModels
         {
             PowerDetailsService pdService = PowerDetailsService.Instance();
             pdService.SetSelectedPower(power.ShortName);
-            await Xamarin.Forms.Shell.Current.GoToAsync($"//powerDetails/overview").ConfigureAwait(false);
+            await Xamarin.Forms.Shell.Current.GoToAsync("//powerDetails/overview").ConfigureAwait(false);
         }
 
         private async void GetStandingsAsync(bool ignoreCache = false)

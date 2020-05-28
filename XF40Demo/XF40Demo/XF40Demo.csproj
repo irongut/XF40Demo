@@ -31,6 +31,8 @@
     <None Remove="Resources\federation.red.svg" />
     <None Remove="Resources\file.svg" />
     <None Remove="Resources\first.svg" />
+    <None Remove="Resources\Fonts\Font Awesome 5 Brands-Regular-400.otf" />
+    <None Remove="Resources\Fonts\Font Awesome 5 Free-Solid-900.otf" />
     <None Remove="Resources\galnet.orange.svg" />
     <None Remove="Resources\gear.svg" />
     <None Remove="Resources\grom.headshot.webp" />
@@ -100,6 +102,8 @@
     <EmbeddedResource Include="Resources\federation.red.svg" />
     <EmbeddedResource Include="Resources\file.svg" />
     <EmbeddedResource Include="Resources\first.svg" />
+    <EmbeddedResource Include="Resources\Fonts\Font Awesome 5 Brands-Regular-400.otf" />
+    <EmbeddedResource Include="Resources\Fonts\Font Awesome 5 Free-Solid-900.otf" />
     <EmbeddedResource Include="Resources\galnet.orange.svg" />
     <EmbeddedResource Include="Resources\gear.svg" />
     <EmbeddedResource Include="Resources\grom.headshot.webp" />
@@ -154,7 +158,7 @@
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />
+    <PackageReference Include="Xamarin.Forms" Version="4.6.0.800" />
     <PackageReference Include="XamEffects" Version="1.6.3" />
   </ItemGroup>
 

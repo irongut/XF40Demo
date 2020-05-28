@@ -21,7 +21,7 @@
     <Shell.BackButtonBehavior>
         <BackButtonBehavior Command="{Binding BackCommand}">
             <BackButtonBehavior.IconOverride>
-                <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" 
+                <FontImageSource FontFamily="FontAwesomeSolid" 
                                  Glyph="{x:Static h:FA5FreeSolid.ArrowLeft}"/>
             </BackButtonBehavior.IconOverride>
         </BackButtonBehavior>
