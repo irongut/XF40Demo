@@ -47,7 +47,7 @@
                          CornerRadius="15"
                          Padding="6">
                 <ImageButton.Source>
-                    <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}"
+                    <FontImageSource FontFamily="FontAwesomeSolid"
                                      Glyph="{x:Static h:FA5FreeSolid.TemperatureHigh}"
                                      Size="18"
                                      Color="{DynamicResource textColor}"/>
