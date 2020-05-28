@@ -1,5 +1,4 @@
 ﻿using Acr.UserDialogs;
-using MonkeyCache.FileStore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -161,87 +160,86 @@ namespace XF40Demo.ViewModels
             Standings = new ObservableCollection<PowerStanding>();
         }
 
+        private async Task OpenPowerDetailsAsync(PowerStanding power)
+        {
+            PowerDetailsService pdService = PowerDetailsService.Instance();
+            pdService.SetSelectedPower(power.ShortName);
+            await Xamarin.Forms.Shell.Current.GoToAsync($"//powerDetails/overview").ConfigureAwait(false);
+        }
+
         private async void GetStandingsAsync(bool ignoreCache = false)
         {
-            ShowMessage = false;
-            CancellationTokenSource cancelToken = new CancellationTokenSource();
-
-            using (UserDialogs.Instance.Loading("Loading", () => cancelToken.Cancel(), null, true, MaskType.Clear))
+            int cycleNo = 0;
+            if (!string.IsNullOrWhiteSpace(Cycle))
             {
-                try
+                int p = Cycle.IndexOf(" ") + 1;
+                Int32.TryParse(Cycle.Substring(p, Cycle.Length - p), out cycleNo);
+            }
+
+            if ((Standings.Count < 1) || (cycleNo != CycleService.CurrentCycle() && (LastUpdated + TimeSpan.FromMinutes(10) < DateTime.Now)))
+            {
+                ShowMessage = false;
+                CancellationTokenSource cancelToken = new CancellationTokenSource();
+
+                using (UserDialogs.Instance.Loading("Loading", () => cancelToken.Cancel(), null, true, MaskType.Clear))
                 {
-                    // get the standings
-                    List<PowerStanding> standingsList = new List<PowerStanding>();
-                    StandingsService standingsService = new StandingsService();
-                    (standingsList, Cycle, LastUpdated) = await standingsService.GetData(cancelToken, ignoreCache).ConfigureAwait(false);
+                    try
+                    {
+                        // get the standings
+                        List<PowerStanding> standingsList = null;
+                        StandingsService standingsService = StandingsService.Instance();
+                        (standingsList, Cycle, LastUpdated) = await standingsService.GetData(cancelToken, ignoreCache).ConfigureAwait(false);
 
-                    if (standingsList.Count < 1)
-                    {
-                        SetMessages("Unable to display Powerplay Standings due to parsing error.", true);
-                    }
-                    else
-                    {
-                        // show the standings
-                        Device.BeginInvokeOnMainThread(() =>
+                        if (standingsList.Count < 1)
                         {
-                            Standings.Clear();
-                            foreach (PowerStanding item in standingsList)
+                            SetMessages("Unable to display Powerplay Standings due to parsing error.", true);
+                        }
+                        else
+                        {
+                            // show the standings
+                            Device.BeginInvokeOnMainThread(() =>
                             {
-                                Standings.Add(item);
-                            }
-                        });
-
-                        // cache till next cycle if updated
-                        int p = _cycle.IndexOf(" ") + 1;
-                        Int32.TryParse(_cycle.Substring(p, _cycle.Length - p), out int newCycle);
-                        if (newCycle == CycleService.CurrentCycle())
+                                Standings.Clear();
+                                foreach (PowerStanding item in standingsList)
+                                {
+                                    Standings.Add(item);
+                                }
+                            });
+                        }
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        SetMessages("Powerplay Standings download was cancelled or timed out.", true);
+                    }
+                    catch (HttpRequestException ex)
+                    {
+                        string err = ex.Message;
+                        int start = err.IndexOf("OPENSSL_internal:", StringComparison.OrdinalIgnoreCase);
+                        if (start > 0)
                         {
-                            TimeSpan expiry = CycleService.TimeTillTick();
-                            string csvText = Barrel.Current.Get<string>(standingsService.DataKey);
-                            Barrel.Current.Add(standingsService.DataKey, csvText, expiry);
-                            Barrel.Current.Add(standingsService.LastUpdatedKey, _lastUpdated.ToString(), expiry);
+                            start += 17;
+                            int end = err.IndexOf(" ", start, StringComparison.OrdinalIgnoreCase);
+                            err = String.Format("SSL Error ({0})", err.Substring(start, end - start).Trim());
+                        }
+                        else if (err.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) > 0)
+                        {
+                            err = err.Substring(err.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) + 6).Trim();
+                        }
+                        SetMessages($"Network Error: {err}", true);
+                    }
+                    catch (Exception ex)
+                    {
+                        if (ex.Message.Contains("unexpected end of stream"))
+                        {
+                            SetMessages("Powerplay Standings download was cancelled.", true);
+                        }
+                        else
+                        {
+                            SetMessages($"Error: {ex.Message}", true);
                         }
                     }
                 }
-                catch (OperationCanceledException)
-                {
-                    SetMessages("Powerplay Standings download was cancelled or timed out.", true);
-                }
-                catch (HttpRequestException ex)
-                {
-                    string err = ex.Message;
-                    int start = err.IndexOf("OPENSSL_internal:", StringComparison.OrdinalIgnoreCase);
-                    if (start > 0)
-                    {
-                        start += 17;
-                        int end = err.IndexOf(" ", start, StringComparison.OrdinalIgnoreCase);
-                        err = String.Format("SSL Error ({0})", err.Substring(start, end - start).Trim());
-                    }
-                    else if (err.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) > 0)
-                    {
-                        err = err.Substring(err.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) + 6).Trim();
-                    }
-                    SetMessages(String.Format("Network Error: {0}", err), true);
-                }
-                catch (Exception ex)
-                {
-                    if (ex.Message.Contains("unexpected end of stream"))
-                    {
-                        SetMessages("Powerplay Standings download was cancelled.", true);
-                    }
-                    else
-                    {
-                        SetMessages(String.Format("Error: {0}", ex.Message), true);
-                    }
-                }
             }
-        }
-
-        private async Task OpenPowerDetailsAsync(PowerStanding power)
-        {
-            PowerDetailViewModel powerDetailViewModel = PowerDetailViewModel.Instance();
-            await powerDetailViewModel.GetPowerDetails(power).ConfigureAwait(false);
-            await Xamarin.Forms.Shell.Current.GoToAsync("///powerDetails/overview").ConfigureAwait(false);
         }
 
         private void UpdateTimeRemaining()
