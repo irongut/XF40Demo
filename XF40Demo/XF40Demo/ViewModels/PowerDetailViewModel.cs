@@ -180,7 +180,7 @@ namespace XF40Demo.ViewModels
                     URL = "https://dinusty.typeform.com/to/ewQU8A";
                     break;
                 case "delaine":
-                    URL = "https://discord.gg/0nLvLOrzijjO2POL";
+                    URL = "https://discord.gg/K5azNaB";
                     break;
                 case "ald":
                     URL = "https://discord.gg/h28SG5H";
