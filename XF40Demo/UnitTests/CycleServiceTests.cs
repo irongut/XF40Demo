@@ -33,6 +33,22 @@ namespace UnitTests
         }
 
         [TestMethod]
+        public void FinalDayTest()
+        {
+            DateTime currentUTC = DateTime.UtcNow;
+            int day = (int)currentUTC.DayOfWeek;
+            int hour = currentUTC.Hour;
+            if ((day == 3 && hour >= 7) || (day == 4 && hour < 7))
+            {
+                Assert.IsTrue(CycleService.FinalDay());
+            }
+            else
+            {
+                Assert.IsFalse(CycleService.FinalDay());
+            }
+        }
+
+        [TestMethod]
         public void TimeTillTickTest()
         {
             TimeSpan time = CycleService.TimeTillTick();
