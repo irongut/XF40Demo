@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DebugType>full</DebugType>
+    <DebugType>portable</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
@@ -78,6 +78,11 @@
     <None Remove="Resources\torval.logo.svg" />
     <None Remove="Resources\winters.headshot.webp" />
     <None Remove="Resources\winters.logo.svg" />
+    <None Remove="SecurityCodeScan.config.yml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="SecurityCodeScan.config.yml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -154,6 +159,10 @@
     <PackageReference Include="MonkeyCache.FileStore" Version="1.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
+    <PackageReference Include="SecurityCodeScan" Version="3.5.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
