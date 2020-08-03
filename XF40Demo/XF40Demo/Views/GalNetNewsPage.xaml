@@ -59,21 +59,12 @@
                        BackgroundColor="{DynamicResource pageForegroundColor}" 
                        CornerRadius="5" 
                        Padding="15, 15">
-         
-                    <Grid ColumnSpacing="8" 
-                          RowSpacing="0" 
+
+                    <Grid ColumnDefinitions="60, *"
+                          RowDefinitions="Auto, Auto, Auto, 9, *"
+                          ColumnSpacing="8"
+                          RowSpacing="0"
                           HorizontalOptions="Fill">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="9"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="60"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
 
                         <ffsvg:SvgCachedImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
                                               Source="{Binding Path=Topic, Converter={StaticResource topicImage}, Mode=OneWay}" 
