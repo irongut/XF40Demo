@@ -68,15 +68,9 @@
                 <!-- season -->
 
                 <Label Grid.Row="0"
+                       Text="{Binding Season, StringFormat='Season: {0}', Mode=OneWay}"
                        TextColor="{DynamicResource textColor}"
-                       FontSize="Medium">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Season: "/>
-                            <Span Text="{Binding Season, Mode=OneWay}"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
+                       FontSize="Medium"/>
 
                 <!-- temperature -->
 

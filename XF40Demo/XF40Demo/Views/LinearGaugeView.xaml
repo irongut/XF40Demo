@@ -28,13 +28,12 @@
            FontSize="{Binding Source={x:Reference this}, Path=FontSize, Mode=OneWay}"
            VerticalOptions="Center"
            Padding="10, 0">
-        <Label.FormattedText>
-            <FormattedString>
-                <Span Text="{Binding Source={x:Reference this}, Path=Min, Mode=OneWay}"/>
-                <Span Text=" "/>
-                <Span Text="{Binding Source={x:Reference this}, Path=Units, Mode=OneWay}"/>
-            </FormattedString>
-        </Label.FormattedText>
+        <Label.Text>
+            <MultiBinding StringFormat="{}{0} {1}" Mode="OneWay">
+                <Binding Source="{x:Reference this}" Path="Min"/>
+                <Binding Source="{x:Reference this}" Path="Units"/>
+            </MultiBinding>
+        </Label.Text>
     </Label>
 
     <Label Grid.Column="1"
@@ -44,13 +43,12 @@
            FontSize="{Binding Source={x:Reference this}, Path=FontSize, Mode=OneWay}"
            HorizontalOptions="Center"
            VerticalOptions="Center">
-        <Label.FormattedText>
-            <FormattedString>
-                <Span Text="{Binding Source={x:Reference this}, Path=Average, Mode=OneWay}"/>
-                <Span Text=" "/>
-                <Span Text="{Binding Source={x:Reference this}, Path=Units, Mode=OneWay}"/>
-            </FormattedString>
-        </Label.FormattedText>
+        <Label.Text>
+            <MultiBinding StringFormat="{}{0} {1}" Mode="OneWay">
+                <Binding Source="{x:Reference this}" Path="Average"/>
+                <Binding Source="{x:Reference this}" Path="Units"/>
+            </MultiBinding>
+        </Label.Text>
     </Label>
 
     <Label Grid.Column="2"
@@ -60,13 +58,12 @@
            FontSize="{Binding Source={x:Reference this}, Path=FontSize, Mode=OneWay}"
            VerticalOptions="Center"
            Padding="10, 0">
-        <Label.FormattedText>
-            <FormattedString>
-                <Span Text="{Binding Source={x:Reference this}, Path=Max, Mode=OneWay}"/>
-                <Span Text=" "/>
-                <Span Text="{Binding Source={x:Reference this}, Path=Units, Mode=OneWay}"/>
-            </FormattedString>
-        </Label.FormattedText>
+        <Label.Text>
+            <MultiBinding StringFormat="{}{0} {1}" Mode="OneWay">
+                <Binding Source="{x:Reference this}" Path="Max"/>
+                <Binding Source="{x:Reference this}" Path="Units"/>
+            </MultiBinding>
+        </Label.Text>
     </Label>
 
 </Grid>

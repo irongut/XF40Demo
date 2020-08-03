@@ -120,12 +120,12 @@
             <Label Grid.Row="1" Grid.Column="0"
                    TextColor="{DynamicResource altTextColor}"
                    FontSize="Large">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="{Binding LatestWeather.Sol, StringFormat='Sol {0} -', Mode=OneWay}"/>
-                        <Span Text="{Binding LatestWeather.FirstUTC, StringFormat=' {0:M}', Mode=OneWay}"/>
-                    </FormattedString>
-                </Label.FormattedText>
+                <Label.Text>
+                    <MultiBinding StringFormat="{}Sol {0} - {1:M}" Mode="OneWay">
+                        <Binding Path="LatestWeather.Sol"/>
+                        <Binding Path="LatestWeather.FirstUTC"/>
+                    </MultiBinding>
+                </Label.Text>
             </Label>
 
             <Label Grid.Row="2" Grid.Column="0"
@@ -188,12 +188,12 @@
             <Label TextColor="{DynamicResource altTextColor}"
                    FontSize="42"
                    HorizontalOptions="Center">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="{Binding LatestWeather.AtmosphericTemp.Average, StringFormat='{0:N1}', Mode=OneWay}"/>
-                        <Span Text="{Binding LatestWeather.AtmosphericTemp.Scale, Converter={StaticResource scaleLabel}, StringFormat=' {0}', Mode=OneWay}"/>
-                    </FormattedString>
-                </Label.FormattedText>
+                <Label.Text>
+                    <MultiBinding StringFormat="{}{0:N1} {1}" Mode="OneWay">
+                        <Binding Path="LatestWeather.AtmosphericTemp.Average"/>
+                        <Binding Path="LatestWeather.AtmosphericTemp.Scale" Converter="{StaticResource scaleLabel}"/>
+                    </MultiBinding>
+                </Label.Text>
             </Label>
 
             <Label TextColor="{DynamicResource altTextColor}"
