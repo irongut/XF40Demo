@@ -26,15 +26,9 @@
                                  xe:TouchEffect.Color="OrangeRed"
                                  xe:Commands.Tap="{Binding Source={RelativeSource AncestorType={x:Type vm:MarsWeatherViewModel}}, Path=SolTappedCommand, Mode=OneWay}"
                                  xe:Commands.TapParameter="{Binding Sol, Mode=OneWay}">
-                        <Grid RowSpacing="5"
+                        <Grid RowDefinitions="Auto, Auto, 12, Auto, Auto"
+                              RowSpacing="5"
                               VerticalOptions="Center">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="12"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
 
                             <Label Grid.Row="0"
                                    Text="{Binding Sol, StringFormat='Sol {0}', Mode=OneWay}"
@@ -90,13 +84,8 @@
         
     </ContentPage.Resources>
 
-    <Grid RowSpacing="0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    <Grid RowDefinitions="Auto, *, Auto, Auto"
+          RowSpacing="0">
 
         <!-- background image -->
 
@@ -115,20 +104,13 @@
         <!-- header -->
 
         <Grid Grid.Row="0"
-              BackgroundColor="#66000000"
+              ColumnDefinitions="*, Auto, Auto"
+              RowDefinitions="Auto, Auto, Auto"
               ColumnSpacing="10"
+              BackgroundColor="#66000000"
               RowSpacing="0"
               Padding="10, 5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+            
 
             <Label Grid.Row="0" Grid.Column="0"
                    Text="Elysium Planitia"
@@ -246,20 +228,12 @@
         <!-- wind + pressure -->
 
         <Grid Grid.Row="2"
+              ColumnDefinitions="*, *, *"
+              RowDefinitions="Auto, Auto, Auto"
               ColumnSpacing="10"
               RowSpacing="0"
               Padding="10, 5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
+            
             <Label Grid.Row="0" Grid.Column="0"
                    Text="{x:Static h:FA5FreeSolid.Wind}"
                    Style="{StaticResource FA-Solid}"

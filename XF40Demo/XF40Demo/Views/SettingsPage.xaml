@@ -9,19 +9,12 @@
 
     <ScrollView VerticalOptions="FillAndExpand" CompressedLayout.IsHeadless="True">
 
-        <Grid ColumnSpacing="10" RowSpacing="15" HorizontalOptions="Center" Padding="20, 20">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+        <Grid ColumnDefinitions="*, Auto, Auto"
+              RowDefinitions="Auto, Auto, Auto, Auto, Auto"
+              ColumnSpacing="10"
+              RowSpacing="15"
+              HorizontalOptions="Center"
+              Padding="20, 20">
 
             <Label Grid.Row="0" Grid.Column="0"
                    Text="Theme:"

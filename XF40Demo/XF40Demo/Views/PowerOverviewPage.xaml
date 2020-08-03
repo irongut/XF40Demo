@@ -61,17 +61,11 @@
                             HorizontalOptions="FillAndExpand" 
                             CompressedLayout.IsHeadless="True">
 
-                    <Grid RowSpacing="5" ColumnSpacing="5" 
+                    <Grid ColumnDefinitions="35, 95, 30"
+                          RowDefinitions="30, 135"
+                          ColumnSpacing="5"
+                          RowSpacing="5"
                           CompressedLayout.IsHeadless="True">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="30"/>
-                            <RowDefinition Height="135"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="35"/>
-                            <ColumnDefinition Width="95"/>
-                            <ColumnDefinition Width="30"/>
-                        </Grid.ColumnDefinitions>
 
                         <!-- portrait -->
                         <ff:CachedImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" 
@@ -127,20 +121,13 @@
                                           VerticalOptions="Center"/>
                 </FlexLayout>
 
-                <Grid ColumnSpacing="30" RowSpacing="0" 
+                <Grid ColumnDefinitions="80, Auto"
+                      RowDefinitions="15, Auto, Auto, Auto"
+                      ColumnSpacing="30"
+                      RowSpacing="0" 
                       Padding="15, 0" 
                       HorizontalOptions="Center" 
                       CompressedLayout.IsHeadless="True">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="15"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
 
                     <!-- faction logo -->
                     <ffsvg:SvgCachedImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="4"

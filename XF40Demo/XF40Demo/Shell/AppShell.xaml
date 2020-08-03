@@ -32,16 +32,10 @@
 
     <Shell.ItemTemplate>
         <DataTemplate>
-            <Grid ColumnSpacing="10"
-                  BackgroundColor="Transparent" 
+            <Grid ColumnDefinitions="20, *"
+                  ColumnSpacing="10"
+                  BackgroundColor="Transparent"
                   Padding="50, 10, 20, 10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="20"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
 
                 <ffs:SvgCachedImage Grid.Row="0" Grid.Column="0"
                                     Source="{Binding Path=Title, Converter={StaticResource menuIcon}, Mode=OneWay}" 
