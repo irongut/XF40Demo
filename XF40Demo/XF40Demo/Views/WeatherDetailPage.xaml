@@ -21,20 +21,12 @@
 
         <!-- header -->
 
-        <Grid BackgroundColor="{DynamicResource pageBackgroundColor}"
+        <Grid ColumnDefinitions="*, 30"
+              RowDefinitions="30, Auto, Auto, Auto"
               ColumnSpacing="5"
               RowSpacing="0"
+              BackgroundColor="{DynamicResource pageBackgroundColor}"
               Padding="15, 5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="30"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0"
                    Text="{Binding SolDate, Mode=OneWay}"
@@ -75,23 +67,11 @@
 
         <ScrollView>
 
-            <Grid ColumnSpacing="5" 
+            <Grid ColumnDefinitions="40, *"
+                  RowDefinitions="Auto, 30, Auto, 30, Auto, 30, Auto, *"
+                  ColumnSpacing="5" 
                   RowSpacing="3"
                   Padding="15, 5, 15, 10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
 
                 <!-- temperature -->
 

@@ -6,16 +6,9 @@
       x:Name="this"
       x:Class="XF40Demo.Views.LinearGaugeView"
       x:DataType="v:LinearGaugeView"
+      ColumnDefinitions="Auto, *, Auto"
+      RowDefinitions="{Binding Source={x:Reference this}, Path=GaugeHeight, Mode=OneWay}"
       ColumnSpacing="0">
-
-    <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto"/>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="Auto"/>
-    </Grid.ColumnDefinitions>
-    <Grid.RowDefinitions>
-        <RowDefinition Height="{Binding Source={x:Reference this}, Path=GaugeHeight, Mode=OneWay}"/>
-    </Grid.RowDefinitions>
 
     <mg:GradientView Grid.Column="0" Grid.ColumnSpan="3"
                      HeightRequest="{Binding Source={x:Reference this}, Path=GaugeHeight, Mode=OneWay}"
