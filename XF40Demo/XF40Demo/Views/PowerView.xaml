@@ -24,19 +24,10 @@
     </ContentView.Resources>
 
     <Frame BackgroundColor="{StaticResource pageForegroundColor}" BorderColor="{StaticResource brandColor}" CornerRadius="5" Padding="3" Margin="2, 5">
-        <Grid RowSpacing="0" ColumnSpacing="5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="140"/>
-                <RowDefinition Height="5"/>
-                <RowDefinition Height="18"/>
-                <RowDefinition Height="18"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="35"/>
-                <ColumnDefinition Width="95"/>
-                <ColumnDefinition Width="30"/>
-            </Grid.ColumnDefinitions>
+        <Grid ColumnDefinitions="35, 95, 30"
+              RowDefinitions="30, 140, 5, 18, 18"
+              ColumnSpacing="5"
+              RowSpacing="0">
 
             <!-- portrait -->
             <ff:CachedImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="3" 
