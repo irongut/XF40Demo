@@ -23,7 +23,7 @@
                    BorderColor="{DynamicResource brandColor}" 
                    CornerRadius="5" 
                    Padding="5, 3">
-                <Label Text="{Binding .}" 
+                <Label Text="{Binding ., Mode=OneTime}" 
                        LineBreakMode="NoWrap" 
                        TextColor="{StaticResource altTextColor}"/>
             </Frame>
@@ -67,13 +67,13 @@
                           HorizontalOptions="Fill">
 
                         <ffsvg:SvgCachedImage Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
-                                              Source="{Binding Path=Topic, Converter={StaticResource topicImage}, Mode=OneWay}" 
+                                              Source="{Binding Path=Topic, Converter={StaticResource topicImage}, Mode=OneTime}" 
                                               HeightRequest="60" 
                                               HorizontalOptions="Center"
                                               VerticalOptions="Center"/>
 
                         <Label Grid.Row="0" Grid.Column="1"
-                               Text="{Binding Title, Mode=OneWay}"
+                               Text="{Binding Title, Mode=OneTime}"
                                TextColor="{DynamicResource strongTextColor}"
                                FontSize="Medium"
                                MaxLines="2"
@@ -81,7 +81,7 @@
                                HorizontalOptions="Start"/>
 
                         <Label Grid.Row="1" Grid.Column="1"
-                               Text="{Binding PublishDate, Mode=OneWay}"
+                               Text="{Binding PublishDate, Mode=OneTime}"
                                TextColor="{DynamicResource textColor}"
                                HorizontalOptions="Start"/>
 
@@ -102,7 +102,7 @@
                                  Margin="0, 3, 0, 5"/>
                         
                         <ScrollView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
-                            <Label Text="{Binding Body, Mode=OneWay}" 
+                            <Label Text="{Binding Body, Mode=OneTime}" 
                                    TextColor="{DynamicResource textColor}"/>
                         </ScrollView>
                         
@@ -115,14 +115,14 @@
 
     </ContentPage.Resources>
 
-    <StackLayout Orientation="Vertical" 
-                 Spacing="10" 
+    <StackLayout Orientation="Vertical"
+                 Spacing="10"
                  CompressedLayout.IsHeadless="True">
 
-        <CarouselView ItemsSource="{Binding GalNetNewsList, Mode=OneWay}" 
+        <CarouselView ItemsSource="{Binding GalNetNewsList, Mode=OneWay}"
                       ItemTemplate="{StaticResource galnetTemplate}"
                       IndicatorView="newsIndicator"
-                      PeekAreaInsets="30" 
+                      PeekAreaInsets="30"
                       VerticalOptions="StartAndExpand"/>
 
         <IndicatorView x:Name="newsIndicator" 
@@ -132,9 +132,9 @@
                        HorizontalOptions="Center"/>
 
         <ContentView BackgroundColor="{DynamicResource brandColor}">
-            <Label Text="{Binding Path=LastUpdated, StringFormat='Updated: {0}', Mode=OneWay}" 
-                   HorizontalOptions="End" 
-                   TextColor="{StaticResource altTextColor}" 
+            <Label Text="{Binding Path=LastUpdated, StringFormat='Updated: {0}', Mode=OneWay}"
+                   HorizontalOptions="End"
+                   TextColor="{StaticResource altTextColor}"
                    Margin="10, 0"/>
         </ContentView>
 
