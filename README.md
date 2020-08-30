@@ -1,11 +1,11 @@
 # XF40Demo
 Experiments with new & preview features in Xamarin Forms 4.x and Azure DevOps Pipelines.
 
-[![Build Status](https://dev.azure.com/taranissoftware/XF40Demo/_apis/build/status/irongut.XF40Demo?branchName=master)](https://dev.azure.com/taranissoftware/XF40Demo/_build/latest?definitionId=2&branchName=master)
-&nbsp;
 [![Last Commit](https://img.shields.io/github/last-commit/irongut/xf40demo?logo=github)](https://github.com/irongut/XF40Demo/commits/master)
 &nbsp;
 [![Release Date](https://img.shields.io/github/release-date-pre/irongut/xf40demo?logo=github)](https://github.com/irongut/XF40Demo/releases)
+&nbsp;
+[![Build Status](https://dev.azure.com/taranissoftware/XF40Demo/_apis/build/status/irongut.XF40Demo?branchName=master)](https://dev.azure.com/taranissoftware/XF40Demo/_build/latest?definitionId=2&branchName=master)
 &nbsp;
 [![Test Status](https://img.shields.io/azure-devops/tests/taranissoftware/xf40demo/2?logo=azure-pipelines)](https://dev.azure.com/taranissoftware/XF40Demo/_build/latest?definitionId=2&branchName=master)
 &nbsp;
