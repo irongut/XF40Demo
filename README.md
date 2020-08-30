@@ -3,13 +3,15 @@ Experiments with new & preview features in Xamarin Forms 4.x and Azure DevOps Pi
 
 [![Build Status](https://dev.azure.com/taranissoftware/XF40Demo/_apis/build/status/irongut.XF40Demo?branchName=master)](https://dev.azure.com/taranissoftware/XF40Demo/_build/latest?definitionId=2&branchName=master)
 &nbsp;
-[![Test Status](https://img.shields.io/azure-devops/tests/taranissoftware/xf40demo/2?logo=azure-pipelines)](https://dev.azure.com/taranissoftware/XF40Demo/_build/latest?definitionId=2&branchName=master)
-&nbsp;
 [![Last Commit](https://img.shields.io/github/last-commit/irongut/xf40demo?logo=github)](https://github.com/irongut/XF40Demo/commits/master)
+&nbsp;
+[![Release Date](https://img.shields.io/github/release-date-pre/irongut/xf40demo?logo=github)](https://github.com/irongut/XF40Demo/releases)
+&nbsp;
+[![Test Status](https://img.shields.io/azure-devops/tests/taranissoftware/xf40demo/2?logo=azure-pipelines)](https://dev.azure.com/taranissoftware/XF40Demo/_build/latest?definitionId=2&branchName=master)
 &nbsp;
 [![Trufflehog Scan](https://github.com/irongut/XF40Demo/workflows/Trufflehog%20Scan/badge.svg)](https://github.com/irongut/XF40Demo/actions?query=workflow%3A%22Trufflehog+Scan%22)
 &nbsp;
-[![Release Date](https://img.shields.io/github/release-date-pre/irongut/xf40demo?logo=github)](https://github.com/irongut/XF40Demo/releases)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=irongut/XF40Demo)](https://dependabot.com)
 &nbsp;
 [![License](https://img.shields.io/github/license/irongut/xf40demo?logo=github)](https://github.com/irongut/XF40Demo/blob/master/LICENSE)
 
