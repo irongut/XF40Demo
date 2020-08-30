@@ -16,7 +16,7 @@
                HorizontalOptions="Center"/>
 
         <Button Text="Toast Test" 
-                Command="{Binding ToastCommand}" 
+                Command="{Binding ToastCommand, Mode=OneTime}" 
                 HorizontalOptions="Center" 
                 BackgroundColor="{DynamicResource brandColor}" 
                 TextColor="{StaticResource altTextColor}" 
