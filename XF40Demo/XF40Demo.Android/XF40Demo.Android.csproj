@@ -162,9 +162,4 @@
     <AndroidResource Include="Resources\drawable-hdpi\third.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
-  <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties XamarinHotReloadDebuggerTimeoutExceptionXF40DemoAndroidHideInfoBar="True" />
-    </VisualStudio>
-  </ProjectExtensions>
 </Project>
