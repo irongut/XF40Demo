@@ -34,7 +34,7 @@
                    FontSize="Large"/>
 
             <ImageButton Grid.Row="0" Grid.Column="1"
-                         Command="{Binding TemperatureScaleTappedCommand}"
+                         Command="{Binding TemperatureScaleTappedCommand, Mode=OneTime}"
                          BackgroundColor="{DynamicResource pageForegroundColor}"
                          CornerRadius="15"
                          Padding="6">
@@ -151,7 +151,7 @@
                        Padding="0, 5, 0, 0"/>
 
                 <mcf:ChartView Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"
-                               Chart="{Binding WindChart}"
+                               Chart="{Binding WindChart, Mode=OneTime}"
                                HeightRequest="350"/>
 
             </Grid>
