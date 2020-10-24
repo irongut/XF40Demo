@@ -33,7 +33,7 @@
                    FontSize="Large"/>
 
             <ImageButton Grid.Row="0" Grid.Column="1"
-                         Command="{Binding TemperatureScaleTappedCommand}"
+                         Command="{Binding TemperatureScaleTappedCommand, Mode=OneTime}"
                          BackgroundColor="{DynamicResource pageForegroundColor}"
                          CornerRadius="15"
                          Padding="6">
@@ -80,15 +80,15 @@
                        FontSize="Medium"/>
 
                 <mcf:ChartView Grid.Row="2"
-                               Chart="{Binding AverageTempChart}"
+                               Chart="{Binding AverageTempChart, Mode=OneTime}"
                                HeightRequest="150"/>
 
                 <mcf:ChartView Grid.Row="2"
-                               Chart="{Binding MinTempChart}"
+                               Chart="{Binding MinTempChart, Mode=OneTime}"
                                HeightRequest="150"/>
 
                 <mcf:ChartView Grid.Row="2"
-                               Chart="{Binding MaxTempChart}"
+                               Chart="{Binding MaxTempChart, Mode=OneTime}"
                                HeightRequest="150"/>
 
                 <!-- wind speed -->
@@ -100,15 +100,15 @@
                        Padding="0, 5, 0, 0"/>
 
                 <mcf:ChartView Grid.Row="4"
-                               Chart="{Binding AverageWindSpeedChart}"
+                               Chart="{Binding AverageWindSpeedChart, Mode=OneTime}"
                                HeightRequest="150"/>
 
                 <mcf:ChartView Grid.Row="4"
-                               Chart="{Binding MinWindSpeedChart}"
+                               Chart="{Binding MinWindSpeedChart, Mode=OneTime}"
                                HeightRequest="150"/>
 
                 <mcf:ChartView Grid.Row="4"
-                               Chart="{Binding MaxWindSpeedChart}"
+                               Chart="{Binding MaxWindSpeedChart, Mode=OneTime}"
                                HeightRequest="150"/>
 
                 <!-- pressure -->
@@ -120,15 +120,15 @@
                        Padding="0, 5, 0, 0"/>
 
                 <mcf:ChartView Grid.Row="6"
-                               Chart="{Binding AveragePressureChart}"
+                               Chart="{Binding AveragePressureChart, Mode=OneTime}"
                                HeightRequest="150"/>
 
                 <mcf:ChartView Grid.Row="6"
-                               Chart="{Binding MinPressureChart}"
+                               Chart="{Binding MinPressureChart, Mode=OneTime}"
                                HeightRequest="150"/>
 
                 <mcf:ChartView Grid.Row="6"
-                               Chart="{Binding MaxPressureChart}"
+                               Chart="{Binding MaxPressureChart, Mode=OneTime}"
                                HeightRequest="150"/>
 
             </Grid>

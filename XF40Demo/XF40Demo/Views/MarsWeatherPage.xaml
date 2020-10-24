@@ -24,19 +24,19 @@
                        Padding="0">
                     <ContentView Padding="15, 0"
                                  xe:TouchEffect.Color="OrangeRed"
-                                 xe:Commands.Tap="{Binding Source={RelativeSource AncestorType={x:Type vm:MarsWeatherViewModel}}, Path=SolTappedCommand, Mode=OneWay}"
-                                 xe:Commands.TapParameter="{Binding Sol, Mode=OneWay}">
+                                 xe:Commands.Tap="{Binding Source={RelativeSource AncestorType={x:Type vm:MarsWeatherViewModel}}, Path=SolTappedCommand, Mode=OneTime}"
+                                 xe:Commands.TapParameter="{Binding Sol, Mode=OneTime}">
                         <Grid RowDefinitions="Auto, Auto, 12, Auto, Auto"
                               RowSpacing="5"
                               VerticalOptions="Center">
 
                             <Label Grid.Row="0"
-                                   Text="{Binding Sol, StringFormat='Sol {0}', Mode=OneWay}"
+                                   Text="{Binding Sol, StringFormat='Sol {0}', Mode=OneTime}"
                                    TextColor="{DynamicResource textColor}"
                                    HorizontalOptions="Center"/>
 
                             <Label Grid.Row="1"
-                                   Text="{Binding FirstUTC, StringFormat='{0:M}', Mode=OneWay}"
+                                   Text="{Binding FirstUTC, StringFormat='{0:M}', Mode=OneTime}"
                                    TextColor="{DynamicResource textColor}"
                                    HorizontalOptions="Center"/>
 
@@ -134,7 +134,7 @@
                    FontSize="Default"/>
 
             <ImageButton Grid.Row="0" Grid.Column="1"
-                         Command="{Binding WeeklyTappedCommand}"
+                         Command="{Binding WeeklyTappedCommand, Mode=OneTime}"
                          BackgroundColor="{DynamicResource pageForegroundColor}"
                          CornerRadius="15"
                          Padding="6"
@@ -148,7 +148,7 @@
             </ImageButton>
 
             <ImageButton Grid.Row="0" Grid.Column="2"
-                         Command="{Binding InfoTappedCommand}"
+                         Command="{Binding InfoTappedCommand, Mode=OneTime}"
                          BackgroundColor="{DynamicResource pageForegroundColor}"
                          CornerRadius="15"
                          Padding="6"
@@ -162,7 +162,7 @@
             </ImageButton>
 
             <ImageButton Grid.Row="1" Grid.Column="2"
-                         Command="{Binding TemperatureScaleTappedCommand}"
+                         Command="{Binding TemperatureScaleTappedCommand, Mode=OneTime}"
                          BackgroundColor="{DynamicResource pageForegroundColor}"
                          CornerRadius="15"
                          Padding="6"
