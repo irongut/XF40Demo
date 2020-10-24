@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Grid xmlns="http://xamarin.com/schemas/2014/forms"
       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-      xmlns:mg="clr-namespace:MagicGradients;assembly=MagicGradients"
       xmlns:v="clr-namespace:XF40Demo.Views"
       x:Name="this"
       x:Class="XF40Demo.Views.LinearGaugeView"
@@ -10,16 +9,19 @@
       RowDefinitions="{Binding Source={x:Reference this}, Path=GaugeHeight, Mode=OneWay}"
       ColumnSpacing="0">
 
-    <mg:GradientView Grid.Column="0" Grid.ColumnSpan="3"
-                     HeightRequest="{Binding Source={x:Reference this}, Path=GaugeHeight, Mode=OneWay}"
-                     HorizontalOptions="FillAndExpand">
-        <mg:GradientView.GradientSource>
-            <mg:LinearGradient Angle="90">
-                <mg:GradientStop Color="{Binding Source={x:Reference this}, Path=MinColor, Mode=OneWay}" Offset="1"/>
-                <mg:GradientStop Color="{Binding Source={x:Reference this}, Path=MaxColor, Mode=OneWay}" Offset="0"/>
-            </mg:LinearGradient>
-        </mg:GradientView.GradientSource>
-    </mg:GradientView>
+    <BoxView Grid.Column="0" Grid.ColumnSpan="3"
+             HeightRequest="{Binding Source={x:Reference this}, Path=GaugeHeight, Mode=OneWay}"
+             HorizontalOptions="FillAndExpand">
+        <BoxView.Background>
+            <LinearGradientBrush StartPoint="0,0"
+                                 EndPoint="1,0">
+                <GradientStop Color="{Binding Source={x:Reference this}, Path=MinColor, Mode=OneWay}"
+                              Offset="0.1"/>
+                <GradientStop Color="{Binding Source={x:Reference this}, Path=MaxColor, Mode=OneWay}"
+                              Offset="1.0"/>
+            </LinearGradientBrush>
+        </BoxView.Background>
+    </BoxView>
 
     <Label Grid.Column="0"
            TextColor="{Binding Source={x:Reference this}, Path=TextColor, Mode=OneWay}"
