@@ -29,7 +29,7 @@
     </ContentPage.Resources>
 
     <Shell.BackButtonBehavior>
-        <BackButtonBehavior Command="{Binding BackCommand}">
+        <BackButtonBehavior Command="{Binding BackCommand, Mode=OneTime}">
             <BackButtonBehavior.IconOverride>
                 <FontImageSource FontFamily="FontAwesomeSolid" 
                                  Glyph="{x:Static h:FA5FreeSolid.ArrowLeft}"/>
@@ -156,7 +156,7 @@
                     <Button Text="{Binding CommsLogoFilename, Mode=OneWay}" 
                             Style="{StaticResource FA-Brands}" 
                             FontSize="30" 
-                            Command="{Binding JoinDiscordCommand}" 
+                            Command="{Binding JoinDiscordCommand, Mode=OneTime}"
                             BackgroundColor="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}" 
                             TextColor="{StaticResource altTextColor}" 
                             CornerRadius="5"
@@ -164,7 +164,7 @@
                     <Button Text="{Binding RedditLogoFilename, Mode=OneWay}" 
                             Style="{StaticResource FA-Brands}" 
                             FontSize="30" 
-                            Command="{Binding OpenRedditCommand}" 
+                            Command="{Binding OpenRedditCommand, Mode=OneTime}"
                             BackgroundColor="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}" 
                             TextColor="{StaticResource altTextColor}" 
                             CornerRadius="5"

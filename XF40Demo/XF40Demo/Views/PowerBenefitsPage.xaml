@@ -19,23 +19,23 @@
     </ContentPage.Resources>
 
     <Shell.BackButtonBehavior>
-        <BackButtonBehavior Command="{Binding BackCommand}">
+        <BackButtonBehavior Command="{Binding BackCommand, Mode=OneTime}">
             <BackButtonBehavior.IconOverride>
-                <FontImageSource FontFamily="FontAwesomeSolid" 
+                <FontImageSource FontFamily="FontAwesomeSolid"
                                  Glyph="{x:Static h:FA5FreeSolid.ArrowLeft}"/>
             </BackButtonBehavior.IconOverride>
         </BackButtonBehavior>
     </Shell.BackButtonBehavior>
 
-    <StackLayout Orientation="Vertical" 
+    <StackLayout Orientation="Vertical"
                  CompressedLayout.IsHeadless="True">
 
         <ContentView BackgroundColor="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerColour}, Mode=OneWay}">
-            <Label Text="Benefits" 
-                   FontSize="Medium" 
-                   HorizontalOptions="Fill" 
-                   HorizontalTextAlignment="Start" 
-                   TextColor="{StaticResource altTextColor}" 
+            <Label Text="Benefits"
+                   FontSize="Medium"
+                   HorizontalOptions="Fill"
+                   HorizontalTextAlignment="Start"
+                   TextColor="{StaticResource altTextColor}"
                    Margin="15, 0"/>
         </ContentView>
 
