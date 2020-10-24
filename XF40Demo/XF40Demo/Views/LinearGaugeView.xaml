@@ -11,12 +11,13 @@
 
     <BoxView Grid.Column="0" Grid.ColumnSpan="3"
              HeightRequest="{Binding Source={x:Reference this}, Path=GaugeHeight, Mode=OneWay}"
+             CornerRadius="{Binding Source={x:Reference this}, Path=CornerRadius, Mode=OneWay}"
              HorizontalOptions="FillAndExpand">
         <BoxView.Background>
             <LinearGradientBrush StartPoint="0,0"
                                  EndPoint="1,0">
                 <GradientStop Color="{Binding Source={x:Reference this}, Path=MinColor, Mode=OneWay}"
-                              Offset="0.1"/>
+                              Offset="0.0"/>
                 <GradientStop Color="{Binding Source={x:Reference this}, Path=MaxColor, Mode=OneWay}"
                               Offset="1.0"/>
             </LinearGradientBrush>
