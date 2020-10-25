@@ -8,6 +8,14 @@ namespace XF40Demo.Views
     {
         #region Gauge
 
+        public static BindableProperty CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(double), typeof(LinearGaugeView), 0.0);
+
+        public double CornerRadius
+        {
+            get { return (double)GetValue(CornerRadiusProperty); }
+            set { SetValue(CornerRadiusProperty, value); }
+        }
+
         public static BindableProperty GaugeHeightProperty = BindableProperty.Create(nameof(GaugeHeight), typeof(double), typeof(LinearGaugeView), 30.0);
 
         public double GaugeHeight

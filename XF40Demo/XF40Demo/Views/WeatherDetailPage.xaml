@@ -34,7 +34,7 @@
                    FontSize="Large"/>
 
             <ImageButton Grid.Row="0" Grid.Column="1"
-                         Command="{Binding TemperatureScaleTappedCommand}"
+                         Command="{Binding TemperatureScaleTappedCommand, Mode=OneTime}"
                          BackgroundColor="{DynamicResource pageForegroundColor}"
                          CornerRadius="15"
                          Padding="6">
@@ -89,6 +89,7 @@
                        VerticalOptions="Center"/>
 
                 <v:LinearGaugeView Grid.Row="1" Grid.Column="1"
+                                   CornerRadius="5"
                                    Min="{Binding Path=SolWeather.AtmosphericTemp.Min, StringFormat='{0:N1}', Mode=OneWay}"
                                    Max="{Binding Path=SolWeather.AtmosphericTemp.Max, StringFormat=' {0:N1}', Mode=OneWay}"
                                    Average="{Binding Path=SolWeather.AtmosphericTemp.Average, StringFormat=' {0:N1}', Mode=OneWay}"
@@ -111,6 +112,7 @@
                        VerticalOptions="Center"/>
 
                 <v:LinearGaugeView Grid.Row="3" Grid.Column="1"
+                                   CornerRadius="5"
                                    MinColor="DarkGreen"
                                    MaxColor="DarkGoldenrod"
                                    Min="{Binding Path=SolWeather.HorizontalWindSpeed.Min, StringFormat='{0:N2}', Mode=OneWay}"
@@ -135,6 +137,7 @@
                        VerticalOptions="Center"/>
 
                 <v:LinearGaugeView Grid.Row="5" Grid.Column="1"
+                                   CornerRadius="5"
                                    MinColor="MediumPurple"
                                    MaxColor="DarkBlue"
                                    Min="{Binding Path=SolWeather.AtmosphericPressure.Min, StringFormat='{0:N1}', Mode=OneWay}"
@@ -151,7 +154,7 @@
                        Padding="0, 5, 0, 0"/>
 
                 <mcf:ChartView Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"
-                               Chart="{Binding WindChart}"
+                               Chart="{Binding WindChart, Mode=OneTime}"
                                HeightRequest="350"/>
 
             </Grid>
