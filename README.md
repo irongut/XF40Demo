@@ -1,6 +1,12 @@
 # XF40Demo
 Experiments with new & preview features in Xamarin Forms 4.x and Azure DevOps Pipelines.
 
+<div align="center">
+  
+[![forthebadge](https://forthebadge.com/images/badges/made-with-c-sharp.svg)](https://forthebadge.com)
+&nbsp;
+[![forthebadge](https://forthebadge.com/images/badges/powered-by-coffee.svg)](https://forthebadge.com)
+
 [![Last Commit](https://img.shields.io/github/last-commit/irongut/xf40demo?logo=github)](https://github.com/irongut/XF40Demo/commits/master)
 &nbsp;
 [![Release Date](https://img.shields.io/github/release-date-pre/irongut/xf40demo?logo=github)](https://github.com/irongut/XF40Demo/releases)
@@ -14,6 +20,8 @@ Experiments with new & preview features in Xamarin Forms 4.x and Azure DevOps Pi
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=irongut/XF40Demo)](https://dependabot.com)
 &nbsp;
 [![License](https://img.shields.io/github/license/irongut/xf40demo?logo=github)](https://github.com/irongut/XF40Demo/blob/master/LICENSE)
+
+</div>
 
 ### Xamarin Forms Release Blogs
 * [Forms 4.0 - Shell, Fast Renderers & ImageSource](https://devblogs.microsoft.com/xamarin/introducing-xamarin-forms-4-0-the-era-of-shell/)
