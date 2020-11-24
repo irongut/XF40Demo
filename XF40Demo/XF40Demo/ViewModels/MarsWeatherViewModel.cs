@@ -86,7 +86,7 @@ namespace XF40Demo.ViewModels
 
         private async Task OpenWeatherWeeklyAsync()
         {
-            await Xamarin.Forms.Shell.Current.GoToAsync($"//marsWeather/weekly?dummy=0").ConfigureAwait(false);
+            await Xamarin.Forms.Shell.Current.GoToAsync("//marsWeather/weekly?dummy=0").ConfigureAwait(false);
         }
 
         private async Task OpenWeatherDetailAsync(uint sol)
@@ -161,7 +161,7 @@ namespace XF40Demo.ViewModels
                             MarsWeather.Clear();
                             foreach (MartianDay day in weatherService.Weather.OrderBy(d => d.Sol))
                             {
-                                day.AtmosphericTemp.Scale = settings.TemperatureScale;
+                                day.SetTemperatureScale(settings.TemperatureScale);
                                 MarsWeather.Add(day);
                             }
                             LatestWeather = MarsWeather.Last<MartianDay>();
