@@ -37,8 +37,11 @@ namespace XF40Demo.Models
 
         public void SetTemperatureScale(TemperatureScale scale)
         {
-            AtmosphericTemp.Scale = scale;
-            OnPropertyChanged(nameof(AtmosphericTemp));
+            if (AtmosphericTemp != null)
+            {
+                AtmosphericTemp.Scale = scale;
+                OnPropertyChanged(nameof(AtmosphericTemp));
+            }
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
