@@ -15,7 +15,7 @@ namespace XF40Demo.Services
             }
             else
             {
-                hours = String.Format("{0} hours", time.Hours);
+                hours = $"{time.Hours} hours";
             }
 
             if (time.Days == 0)
@@ -27,17 +27,17 @@ namespace XF40Demo.Services
                 }
                 else
                 {
-                    minutes = String.Format("{0} minutes", time.Minutes);
+                    minutes = $"{time.Minutes} minutes";
                 }
-                return String.Format("{0} {1}", hours, minutes);
+                return $"{hours} {minutes}";
             }
             else if (time.Days == 1)
             {
-                return String.Format("1 day {0}", hours);
+                return $"1 day {hours}";
             }
             else
             {
-                return String.Format("{0} days {1}", time.Days, hours);
+                return $"{time.Days} days {hours}";
             }
         }
 

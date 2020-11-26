@@ -1,7 +1,7 @@
 ﻿using Acr.UserDialogs;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -176,7 +176,7 @@ namespace XF40Demo.ViewModels
                 Int32.TryParse(Cycle.Substring(p, Cycle.Length - p), out cycleNo);
             }
 
-            if ((Standings.Count < 1) || (cycleNo != CycleService.CurrentCycle() && (LastUpdated + TimeSpan.FromMinutes(10) < DateTime.Now)))
+            if ((Standings?.Any() == false) || (cycleNo != CycleService.CurrentCycle() && (LastUpdated + TimeSpan.FromMinutes(10) < DateTime.Now)))
             {
                 ShowMessage = false;
                 CancellationTokenSource cancelToken = new CancellationTokenSource();
@@ -186,11 +186,12 @@ namespace XF40Demo.ViewModels
                     try
                     {
                         // get the standings
-                        List<PowerStanding> standingsList = null;
                         StandingsService standingsService = StandingsService.Instance();
-                        (standingsList, Cycle, LastUpdated) = await standingsService.GetData(cancelToken, ignoreCache).ConfigureAwait(false);
+                        GalacticStandings standings = await standingsService.GetData(cancelToken, ignoreCache).ConfigureAwait(false);
+                        Cycle = $"Cycle {standings.Cycle}";
+                        LastUpdated = standings.LastUpdated;
 
-                        if (standingsList.Count < 1)
+                        if (standings.Standings.Count < 1)
                         {
                             SetMessages("Unable to display Powerplay Standings due to parsing error.", true);
                         }
@@ -200,7 +201,7 @@ namespace XF40Demo.ViewModels
                             Device.BeginInvokeOnMainThread(() =>
                             {
                                 Standings.Clear();
-                                foreach (PowerStanding item in standingsList)
+                                foreach (PowerStanding item in standings.Standings)
                                 {
                                     Standings.Add(item);
                                 }
@@ -273,11 +274,11 @@ namespace XF40Demo.ViewModels
             IsErrorMessage = isError;
         }
 
-        protected override void RefreshView()
+        protected override async void RefreshView()
         {
             pageVisible = true;
             UpdateTimeRemaining();
-            GetStandingsAsync();
+            await Task.Run(() => GetStandingsAsync()).ConfigureAwait(false);
         }
 
         public override void OnDisappearing()

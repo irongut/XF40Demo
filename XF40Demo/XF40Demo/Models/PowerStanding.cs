@@ -11,15 +11,15 @@ namespace XF40Demo.Models
 
     public class PowerStanding
     {
-        public int Id { get; }
-        public string Name { get; }
-        public int Position { get; }
-        public StandingChange Change { get; }
-        public bool Turmoil { get; }
-        public string Allegiance { get; }
-        public string ShortName { get; }
-        public string Cycle { get; internal set; }
-        public DateTime LastUpdated { get; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int Position { get; set; }
+        public StandingChange Change { get; set; }
+        public bool Turmoil { get; set; }
+        public string Allegiance { get; set; }
+        public string ShortName { get; set; }
+        public string Cycle { get; set; }
+        public DateTime LastUpdated { get; set; }
 
         public string ChangeString
         {
@@ -39,6 +39,11 @@ namespace XF40Demo.Models
             }
         }
 
+        public PowerStanding()
+        {
+            // required for NewtonsoftJson
+        }
+
         public PowerStanding(int id, string name, int position, StandingChange change, bool turmoil, string allegiance, string shortname, DateTime updated)
         {
             Id = id;
@@ -53,7 +58,9 @@ namespace XF40Demo.Models
 
         public override string ToString()
         {
-            return String.Format("{0:00} {1} - {2} ({3})", Position, ChangeString, Name, Allegiance);
+            return Turmoil
+                ? $"{Position:00} {ChangeString} - {Name} ({Allegiance}) TURMOIL"
+                : $"{Position:00} {ChangeString} - {Name} ({Allegiance})";
         }
     }
 }

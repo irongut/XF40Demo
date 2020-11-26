@@ -16,7 +16,7 @@ namespace XF40Demo.Services
 
         private readonly SettingsService settings = SettingsService.Instance();
 
-        private HttpClient client;
+        private readonly HttpClient client;
 
         private DownloadService()
         {
@@ -34,7 +34,7 @@ namespace XF40Demo.Services
 
         public async Task<(string data, DateTime updated)> GetData(string url, string dataKey, string lastUpdatedKey, TimeSpan expiry, bool ignoreCache = false)
         {
-            string data = String.Empty;
+            string data;
             DateTime lastUpdated;
 
             if (Connectivity.NetworkAccess != NetworkAccess.Internet || (settings.WifiOnly && !Connectivity.ConnectionProfiles.Contains(ConnectionProfile.WiFi)))
@@ -85,7 +85,7 @@ namespace XF40Demo.Services
 
         public async Task<(string data, DateTime updated)> GetData(string url, string dataKey, string lastUpdatedKey, TimeSpan expiry, CancellationTokenSource cancelToken, bool ignoreCache = false)
         {
-            string data = String.Empty;
+            string data;
             DateTime lastUpdated;
 
             if (Connectivity.NetworkAccess != NetworkAccess.Internet || (settings.WifiOnly && !Connectivity.ConnectionProfiles.Contains(ConnectionProfile.WiFi)))
