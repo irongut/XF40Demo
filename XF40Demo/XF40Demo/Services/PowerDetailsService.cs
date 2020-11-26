@@ -1,10 +1,10 @@
-﻿using CsvHelper;
-using CsvHelper.Configuration;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using XF40Demo.Models;
 
 namespace XF40Demo.Services
@@ -13,7 +13,12 @@ namespace XF40Demo.Services
     {
         private static readonly PowerDetailsService instance = new PowerDetailsService();
 
-        private readonly List<PowerDetails> powerList;
+        private const string URL = "https://api.taranissoftware.com/elite-dangerous/power-comms.json";
+        private const string dataKey = "PowerComms";
+        private const string lastUpdatedKey = "PowerCommsUpdated";
+
+        private List<PowerDetails> powerList;
+        private List<PowerComms> commsList;
 
         #region Properties
 
@@ -24,6 +29,7 @@ namespace XF40Demo.Services
         private PowerDetailsService()
         {
             powerList = new List<PowerDetails>();
+            commsList = new List<PowerComms>();
         }
 
         public static PowerDetailsService Instance()
@@ -49,59 +55,41 @@ namespace XF40Demo.Services
             SelectedPower = powerList.Find(x => x.ShortName.Equals(shortName));
         }
 
+        public async Task<PowerComms> GetPowerCommsAsync(string shortName, int cacheDays)
+        {
+            if (commsList?.Any() == false)
+            {
+                await GetPowerCommsListAsync(cacheDays).ConfigureAwait(false);
+            }
+            return commsList.Find(x => x.ShortName.Equals(shortName));
+        }
+
         private void GetPowerList()
         {
-            const string fileName = "XF40Demo.Resources.PowerDetails.csv";
+            const string fileName = "XF40Demo.Resources.PowerDetails.json";
 
             Assembly assembly = GetType().GetTypeInfo().Assembly;
             using (Stream stream = assembly.GetManifestResourceStream(fileName))
+            {
                 using (StreamReader reader = new StreamReader(stream))
                 {
-                    CsvConfiguration csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
-                    {
-                        Delimiter = ","
-                    };
-                    using (CsvReader csv = new CsvReader(reader, csvConfig))
-                    {
-                        csv.Read(); // ignore header row
-                        while (csv.Read())
-                        {
-                            powerList.Add(new PowerDetails(
-                                csv.GetField<int>(0),
-                                csv.GetField<string>(1),
-                                csv.GetField<string>(2),
-                                csv.GetField<int>(3),
-                                csv.GetField<string>(4),
-                                csv.GetField<string>(5),
-                                csv.GetField<string>(6),
-                                csv.GetField<string>(7),
-                                csv.GetField<string>(8),
-                                csv.GetField<string>(9),
-                                csv.GetField<string>(10),
-                                csv.GetField<string>(11),
-                                csv.GetField<string>(12),
-                                csv.GetField<string>(13),
-                                csv.GetField<string>(14),
-                                Desanitise(csv.GetField<string>(15)),
-                                Desanitise(csv.GetField<string>(16)),
-                                Desanitise(csv.GetField<string>(17)),
-                                Desanitise(csv.GetField<string>(18)),
-                                Desanitise(csv.GetField<string>(19)),
-                                Desanitise(csv.GetField<string>(20)),
-                                Desanitise(csv.GetField<string>(21)),
-                                Desanitise(csv.GetField<string>(22)),
-                                Desanitise(csv.GetField<string>(23)),
-                                Desanitise(csv.GetField<string>(24)),
-                                Desanitise(csv.GetField<string>(25))
-                                ));
-                        }
-                    }
+                    JsonSerializer serializer = new JsonSerializer();
+                    powerList = (List<PowerDetails>)serializer.Deserialize(reader, typeof(List<PowerDetails>));
                 }
+            }
         }
 
-        private string Desanitise(string data)
+        private async Task GetPowerCommsListAsync(int cacheDays)
         {
-            return data.Replace("\\n", "\n");
+            string json;
+            if (cacheDays < 1)
+            {
+                cacheDays = 1;
+            }
+            TimeSpan expiry = TimeSpan.FromDays(cacheDays);
+            DownloadService downloadService = DownloadService.Instance();
+            (json, _) = await downloadService.GetData(URL, dataKey, lastUpdatedKey, expiry).ConfigureAwait(false);
+            commsList = JsonConvert.DeserializeObject<List<PowerComms>>(json);
         }
     }
 }
