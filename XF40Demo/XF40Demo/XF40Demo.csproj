@@ -65,7 +65,7 @@
     <None Remove="Resources\patreus.logo.svg" />
     <None Remove="Resources\pedestal.svg" />
     <None Remove="Resources\politics.svg" />
-    <None Remove="Resources\PowerDetails.csv" />
+    <None Remove="Resources\PowerDetails.json" />
     <None Remove="Resources\powerplay.standings.svg" />
     <None Remove="Resources\religion-ankh.svg" />
     <None Remove="Resources\science-atom.svg" />
@@ -135,7 +135,7 @@
     <EmbeddedResource Include="Resources\patreus.logo.svg" />
     <EmbeddedResource Include="Resources\pedestal.svg" />
     <EmbeddedResource Include="Resources\politics.svg" />
-    <EmbeddedResource Include="Resources\PowerDetails.csv" />
+    <EmbeddedResource Include="Resources\PowerDetails.json" />
     <EmbeddedResource Include="Resources\powerplay.standings.svg" />
     <EmbeddedResource Include="Resources\religion-ankh.svg" />
     <EmbeddedResource Include="Resources\science-atom.svg" />

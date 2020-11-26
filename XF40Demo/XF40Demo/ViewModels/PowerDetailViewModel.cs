@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -44,6 +45,7 @@ namespace XF40Demo.ViewModels
                     _powerStanding = value;
                     OnPropertyChanged(nameof(PowerStanding));
                     OnPropertyChanged(nameof(CommsLogoFilename));
+                    OnPropertyChanged(nameof(PowerComms));
                 }
             }
         }
@@ -59,6 +61,34 @@ namespace XF40Demo.ViewModels
                     _powerDetails = value;
                     HasHQEffect = !string.IsNullOrEmpty(_powerDetails.HQSystemEffect);
                     OnPropertyChanged(nameof(PowerDetails));
+                }
+            }
+        }
+
+        private PowerComms _powerComms;
+        public PowerComms PowerComms
+        {
+            get { return _powerComms; }
+            private set
+            {
+                if (_powerComms != value)
+                {
+                    _powerComms = value;
+                    OnPropertyChanged(nameof(PowerComms));
+                }
+            }
+        }
+
+        private bool _commsEnabled;
+        public bool CommsEnabled
+        {
+            get { return _commsEnabled; }
+            private set
+            {
+                if (_commsEnabled != value)
+                {
+                    _commsEnabled = value;
+                    OnPropertyChanged(nameof(CommsEnabled));
                 }
             }
         }
@@ -169,99 +199,64 @@ namespace XF40Demo.ViewModels
             {
                 ToastHelper.Toast(String.Format("Error getting Power details: {0}", ex.Message));
             }
+            await Task.Run(() => GetPowerCommsAsync()).ConfigureAwait(false);
+        }
+
+        private async Task GetPowerCommsAsync()
+        {
+            CommsEnabled = false;
+            if (PowerComms == null || PowerComms.ShortName != PowerStanding.ShortName)
+            {
+                try
+                {
+                    PowerDetailsService powerService = PowerDetailsService.Instance();
+                    PowerComms = await powerService.GetPowerCommsAsync(PowerStanding.ShortName, 3).ConfigureAwait(false);
+                }
+                catch (HttpRequestException ex)
+                {
+                    string errorMessage = ex.Message;
+                    int start = errorMessage.IndexOf("OPENSSL_internal:", StringComparison.OrdinalIgnoreCase);
+                    if (start > 0)
+                    {
+                        start += 17;
+                        int end = errorMessage.IndexOf(" ", start, StringComparison.OrdinalIgnoreCase);
+                        errorMessage = String.Format("SSL Error ({0})", errorMessage.Substring(start, end - start).Trim());
+                    }
+                    else if (errorMessage.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) > 0)
+                    {
+                        errorMessage = errorMessage.Substring(errorMessage.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) + 6).Trim();
+                    }
+                    ToastHelper.Toast("Network Error: Unable to download Power comms links");
+                }
+                catch (Exception)
+                {
+                    ToastHelper.Toast("Error: Unable to download Power comms links");
+                }
+            }
+            CommsEnabled = PowerComms != null;
         }
 
         private void JoinDiscord()
         {
-            string URL = String.Empty;
-            switch (_powerStanding.ShortName.Trim().ToLower())
+            if (PowerComms != null && !string.IsNullOrWhiteSpace(PowerComms.Comms))
             {
-                case "aisling":
-                    URL = "https://dinusty.typeform.com/to/ewQU8A";
-                    break;
-                case "delaine":
-                    URL = "https://discord.gg/K5azNaB";
-                    break;
-                case "ald":
-                    URL = "https://discord.gg/h28SG5H";
-                    break;
-                case "patreus":
-                    URL = "https://discord.gg/RjWn3qv";
-                    break;
-                case "mahon":
-                    URL = "https://discord.gg/TXYBjgw";
-                    break;
-                case "winters":
-                    URL = "https://discord.gg/8QjHwMF";
-                    break;
-                case "lyr":
-                    URL = "https://discord.gg/0g95XxxKRcw7ypJZ";
-                    break;
-                case "antal":
-                    URL = "https://discord.me/antal";
-                    break;
-                case "grom":
-                    URL = "https://discord.gg/9Uatz63";
-                    break;
-                case "hudson":
-                    URL = "https://discord.gg/YDHTRUM";
-                    break;
-                case "torval":
-                    URL = "https://discord.gg/cj2DgwQ";
-                    break;
-                default:
-                    break;
+                Browser.OpenAsync(new Uri(PowerComms.Comms), BrowserLaunchMode.External);
             }
-            if (!string.IsNullOrEmpty(URL))
+            else
             {
-                Browser.OpenAsync(new Uri(URL), BrowserLaunchMode.External);
+                ToastHelper.Toast($"Unable to find Power comms for {PowerStanding.ShortName}");
             }
         }
 
         private void OpenReddit()
         {
-            string URL = String.Empty;
-            switch (_powerStanding.ShortName.Trim().ToLower())
+            if (PowerComms != null && !string.IsNullOrEmpty(PowerComms.Reddit))
             {
-                case "aisling":
-                    URL = "https://www.reddit.com/r/aislingduval";
-                    break;
-                case "delaine":
-                    URL = "https://www.reddit.com/r/kumocrew";
-                    break;
-                case "ald":
-                    URL = "https://www.reddit.com/r/elitelavigny/";
-                    break;
-                case "patreus":
-                    URL = "https://www.reddit.com/r/ElitePatreus";
-                    break;
-                case "mahon":
-                    URL = "https://www.reddit.com/r/EliteMahon";
-                    break;
-                case "winters":
-                    URL = "https://www.reddit.com/r/EliteWinters";
-                    break;
-                case "lyr":
-                    URL = "https://www.reddit.com/r/EliteSirius";
-                    break;
-                case "antal":
-                    URL = "https://www.reddit.com/r/EliteAntal";
-                    break;
-                case "grom":
-                    URL = "https://www.reddit.com/r/EliteGrom";
-                    break;
-                case "hudson":
-                    URL = "https://www.reddit.com/r/EliteHudson";
-                    break;
-                case "torval":
-                    URL = "https://www.reddit.com/r/EliteTorval";
-                    break;
-                default:
-                    break;
+                Browser.OpenAsync(new Uri(PowerComms.Reddit), BrowserLaunchMode.External);
             }
-            if (!string.IsNullOrEmpty(URL))
+            else
             {
-                Browser.OpenAsync(new Uri(URL), BrowserLaunchMode.External);
+                ToastHelper.Toast($"Unable to find Reddit link for {PowerStanding.ShortName}");
             }
         }
 
