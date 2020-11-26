@@ -14,6 +14,7 @@
         <ResourceDictionary>
 
             <c:PowerToColour x:Key="powerColour"/>
+            <c:PowerToAltColour x:Key="powerAltColour"/>
 
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -35,7 +36,7 @@
                    FontSize="Medium"
                    HorizontalOptions="Fill"
                    HorizontalTextAlignment="Start"
-                   TextColor="{StaticResource altTextColor}"
+                   TextColor="{Binding Path=PowerStanding.ShortName, Converter={StaticResource powerAltColour}, Mode=OneWay}"
                    Margin="15, 0"/>
         </ContentView>
 
