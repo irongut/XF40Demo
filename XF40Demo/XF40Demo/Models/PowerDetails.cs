@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace XF40Demo.Models
+﻿namespace XF40Demo.Models
 {
     public class PowerDetails
     {
@@ -31,7 +29,32 @@ namespace XF40Demo.Models
         public string Rating4 { get; }
         public string Rating5 { get; }
 
-        public PowerDetails(int id, string shortName, string hq, int yearOfBirth, string allegiance, string preparationEthos, string preparationText, string expansionEthos, string expansionText, string expansionStrongGovernment, string expansionWeakGovernment, string controlEthos, string controlText, string controlStrongGovernment, string controlWeakGovernment, string hqSystemEffect, string controlSystemEffect, string allianceExploitedEffect, string empireExploitedEffect, string federationExploitedEffect, string independentExploitedEffect, string rating1, string rating2, string rating3, string rating4, string rating5)
+        public PowerDetails(int id,
+                            string shortName,
+                            string hq,
+                            int yearOfBirth,
+                            string allegiance,
+                            string preparationEthos,
+                            string preparationText,
+                            string expansionEthos,
+                            string expansionText,
+                            string expansionStrongGovernment,
+                            string expansionWeakGovernment,
+                            string controlEthos,
+                            string controlText,
+                            string controlStrongGovernment,
+                            string controlWeakGovernment,
+                            string hqSystemEffect,
+                            string controlSystemEffect,
+                            string allianceExploitedEffect,
+                            string empireExploitedEffect,
+                            string federationExploitedEffect,
+                            string independentExploitedEffect,
+                            string rating1,
+                            string rating2,
+                            string rating3,
+                            string rating4,
+                            string rating5)
         {
             Id = id;
             ShortName = shortName;
@@ -63,7 +86,7 @@ namespace XF40Demo.Models
 
         public override string ToString()
         {
-            return String.Format("{0} ({1}) - {2}", ShortName, Allegiance, HQ);
+            return $"{ShortName} ({Allegiance}) - {HQ}";
         }
     }
 }

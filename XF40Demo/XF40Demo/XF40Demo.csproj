@@ -65,7 +65,7 @@
     <None Remove="Resources\patreus.logo.svg" />
     <None Remove="Resources\pedestal.svg" />
     <None Remove="Resources\politics.svg" />
-    <None Remove="Resources\PowerDetails.csv" />
+    <None Remove="Resources\PowerDetails.json" />
     <None Remove="Resources\powerplay.standings.svg" />
     <None Remove="Resources\religion-ankh.svg" />
     <None Remove="Resources\science-atom.svg" />
@@ -135,7 +135,7 @@
     <EmbeddedResource Include="Resources\patreus.logo.svg" />
     <EmbeddedResource Include="Resources\pedestal.svg" />
     <EmbeddedResource Include="Resources\politics.svg" />
-    <EmbeddedResource Include="Resources\PowerDetails.csv" />
+    <EmbeddedResource Include="Resources\PowerDetails.json" />
     <EmbeddedResource Include="Resources\powerplay.standings.svg" />
     <EmbeddedResource Include="Resources\religion-ankh.svg" />
     <EmbeddedResource Include="Resources\science-atom.svg" />
@@ -151,10 +151,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.462" />
-    <PackageReference Include="CsvHelper" Version="15.0.8" />
-    <PackageReference Include="Microcharts" Version="0.9.5.7" />
-    <PackageReference Include="Microcharts.Forms" Version="0.9.5.7" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.463" />
+    <PackageReference Include="CsvHelper" Version="16.0.0" />
+    <PackageReference Include="Microcharts" Version="0.9.5" />
+    <PackageReference Include="Microcharts.Forms" Version="0.9.5" />
     <PackageReference Include="MonkeyCache.FileStore" Version="1.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.6" />

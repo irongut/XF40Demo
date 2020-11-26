@@ -60,18 +60,21 @@ namespace XF40Demo.Services
 
                             // get air temp, pressure + wind speed
                             TemperatureSensorData airTemp = solData.TryGetValue("AT", out object at) ? JsonConvert.DeserializeObject<TemperatureSensorData>(at.ToString()) : null;
-                            airTemp.Scale = TemperatureScale.Celsius;
+                            if (at != null)
+                            {
+                                airTemp.Scale = TemperatureScale.Celsius;
+                            }
                             SensorData airPressure = solData.TryGetValue("PRE", out object pre) ? JsonConvert.DeserializeObject<SensorData>(pre.ToString()) : null;
                             SensorData windSpeed = solData.TryGetValue("HWS", out object hws) ? JsonConvert.DeserializeObject<SensorData>(hws.ToString()) : null;
 
                             // get wind direction
                             WindDirectionSensorData windDirection = new WindDirectionSensorData();
-                            if (solData.TryGetValue("WD", out object wd))
+                            if (solData.TryGetValue("WD", out object wd) && wd != null)
                             {
                                 Dictionary<string, object> windData = JsonConvert.DeserializeObject<Dictionary<string, object>>(wd.ToString());
                                 foreach (string pointName in windData.Keys)
                                 {
-                                    if (windData.TryGetValue(pointName, out object cp))
+                                    if (windData.TryGetValue(pointName, out object cp) && cp != null)
                                     {
                                         CompassPoint compassPoint = JsonConvert.DeserializeObject<CompassPoint>(cp.ToString());
                                         if (pointName != "most_common")
