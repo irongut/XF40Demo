@@ -34,6 +34,7 @@ Experiments with new & preview features in Xamarin Forms 4.x and Azure DevOps Pi
 * [Forms 4.7 - Simplified Grid, Multi-Bindings, Preview: Shapes & Paths, Light / Dark Mode](https://devblogs.microsoft.com/xamarin/xamarin-forms-4-7/)
 * [Forms 4.8 – Gradients & Brushes, Drag & Drop, Flyout Backdrop](https://devblogs.microsoft.com/xamarin/xamarinforms-4-8-gradients-brushes/)
 * [Forms 5.0 Preview](https://devblogs.microsoft.com/xamarin/xamarin-forms-5-preview/)
+* [Forms 5.0](https://devblogs.microsoft.com/xamarin/xamarin-forms-5-0-is-here/)
 
 ### Relevant Visual Studio Release Blogs
 * [VS 2019 v16.4 - HotReload, Android App Bundle & AndroidX](https://devblogs.microsoft.com/xamarin/visual-studio-2019-version-16-4/)
