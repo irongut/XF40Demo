@@ -1,8 +1,6 @@
-﻿using CsvHelper;
-using CsvHelper.Configuration;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Reflection;
 
@@ -34,24 +32,8 @@ namespace XF40Demo.Models
                 {
                     using (StreamReader reader = new StreamReader(stream))
                     {
-                        CsvConfiguration csvConfig = new CsvConfiguration(CultureInfo.InvariantCulture)
-                        {
-                            Delimiter = ",",
-                            IgnoreQuotes = true
-                        };
-                        using (CsvReader csv = new CsvReader(reader, csvConfig))
-                        {
-                            while (csv.Read())
-                            {
-                                string name = csv.GetField<string>(0);
-                                List<string> terms = new List<string>();
-                                for (int i = 1; csv.TryGetField<string>(i, out string value); i++)
-                                {
-                                    terms.Add(value);
-                                }
-                                Topics.Add(new Topic(name, terms));
-                            }
-                        }
+                        JsonSerializer serializer = new JsonSerializer();
+                        Topics = (List<Topic>)serializer.Deserialize(reader, typeof(List<Topic>));
                     }
                 }
             }

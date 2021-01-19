@@ -91,11 +91,11 @@ namespace XF40Demo.Models
             List<string> sentences = SplitSentences();
 
             // analyse article using Bag of Words technique
-            TopicsList topicsList = new TopicsList("XF40Demo.Resources.NewsBoW.csv");
+            TopicsList topicsList = new TopicsList("XF40Demo.Resources.NewsBoW.json");
             AnalyseSentences(sentences, topicsList);
 
             // analyse article again to identify false positives
-            TopicsList falseTopicsList = new TopicsList("XF40Demo.Resources.NewsFalseBoW.csv");
+            TopicsList falseTopicsList = new TopicsList("XF40Demo.Resources.NewsFalseBoW.json");
             AnalyseSentences(sentences, falseTopicsList);
 
             // subtract false positives from topics list

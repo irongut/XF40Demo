@@ -59,8 +59,8 @@
     <None Remove="Resources\Mars\PIA23249.jpg" />
     <None Remove="Resources\mining-pick.svg" />
     <None Remove="Resources\mystery.svg" />
-    <None Remove="Resources\NewsBoW.csv" />
-    <None Remove="Resources\NewsFalseBoW.csv" />
+    <None Remove="Resources\NewsBoW.json" />
+    <None Remove="Resources\NewsFalseBoW.json" />
     <None Remove="Resources\patreus.headshot.webp" />
     <None Remove="Resources\patreus.logo.svg" />
     <None Remove="Resources\pedestal.svg" />
@@ -129,8 +129,8 @@
     <EmbeddedResource Include="Resources\Mars\PIA23249-1440.webp" />
     <EmbeddedResource Include="Resources\mining-pick.svg" />
     <EmbeddedResource Include="Resources\mystery.svg" />
-    <EmbeddedResource Include="Resources\NewsBoW.csv" />
-    <EmbeddedResource Include="Resources\NewsFalseBoW.csv" />
+    <EmbeddedResource Include="Resources\NewsBoW.json" />
+    <EmbeddedResource Include="Resources\NewsFalseBoW.json" />
     <EmbeddedResource Include="Resources\patreus.headshot.webp" />
     <EmbeddedResource Include="Resources\patreus.logo.svg" />
     <EmbeddedResource Include="Resources\pedestal.svg" />
@@ -152,7 +152,6 @@
 
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.1.0.468" />
-    <PackageReference Include="CsvHelper" Version="19.0.0" />
     <PackageReference Include="Microcharts" Version="0.9.5" />
     <PackageReference Include="Microcharts.Forms" Version="0.9.5" />
     <PackageReference Include="MonkeyCache.FileStore" Version="1.3.0" />
