@@ -1,7 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.taranissoftware.xf40demo" android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          android:versionCode="1"
+          android:versionName="1.0"
+          package="com.taranissoftware.xf40demo"
+          android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="21"
+              android:targetSdkVersion="30" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
-	<application android:label="XF40Demo.Android" android:icon="@mipmap/icon"></application>
+	<application android:label="XF40Demo.Android"
+                 android:icon="@mipmap/icon">
+	</application>
+	<queries>
+		<intent>
+			<action android:name="android.intent.action.VIEW" />
+			<data android:scheme="http"/>
+		</intent>
+		<intent>
+			<action android:name="android.intent.action.VIEW" />
+			<data android:scheme="https"/>
+		</intent>
+	</queries>
 </manifest>
