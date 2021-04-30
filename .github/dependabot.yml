@@ -1,0 +1,17 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: Microcharts
+    versions:
+    - "> 0.9.5"
+  - dependency-name: Microcharts.Forms
+    versions:
+    - "> 0.9.5"
+  - dependency-name: Rg.Plugins.Popup
+    versions:
+    - 2.0.0.10
