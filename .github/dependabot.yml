@@ -9,39 +9,9 @@ updates:
   - dependency-name: Microcharts
     versions:
     - "> 0.9.5"
-  - dependency-name: Microcharts
-    versions:
-    - "> 0.9.5.7"
-  - dependency-name: Microcharts
-    versions:
-    - "> 0.9.5.8"
   - dependency-name: Microcharts.Forms
     versions:
     - "> 0.9.5"
-  - dependency-name: Microcharts.Forms
-    versions:
-    - "> 0.9.5.7"
-  - dependency-name: Microcharts.Forms
-    versions:
-    - "> 0.9.5.8"
-  - dependency-name: Xamarin.AndroidX.Browser
-    versions:
-    - 1.3.0.5
-  - dependency-name: Xamarin.AndroidX.MediaRouter
-    versions:
-    - 1.2.2
-    - 1.2.2.1
-  - dependency-name: MSTest.TestFramework
-    versions:
-    - 2.2.1
-    - 2.2.2
-  - dependency-name: MSTest.TestAdapter
-    versions:
-    - 2.2.1
-    - 2.2.2
-  - dependency-name: Xamarin.AndroidX.Lifecycle.LiveData
-    versions:
-    - 2.3.0
   - dependency-name: Rg.Plugins.Popup
     versions:
     - 2.0.0.10
