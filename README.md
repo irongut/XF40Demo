@@ -17,8 +17,6 @@ Experiments with new & preview features in Xamarin Forms 4.x and Azure DevOps Pi
 &nbsp;
 [![Trufflehog Scan](https://github.com/irongut/XF40Demo/workflows/Trufflehog%20Scan/badge.svg)](https://github.com/irongut/XF40Demo/actions?query=workflow%3A%22Trufflehog+Scan%22)
 &nbsp;
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=irongut/XF40Demo)](https://dependabot.com)
-&nbsp;
 [![License](https://img.shields.io/github/license/irongut/xf40demo?logo=github)](https://github.com/irongut/XF40Demo/blob/master/LICENSE)
 
 </div>
