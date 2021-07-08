@@ -85,7 +85,7 @@
     <PackageReference Include="MonkeyCache.FileStore" Version="1.5.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Plugin.CurrentActivity" Version="2.1.0.4" />
-    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.7" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.11" />
     <PackageReference Include="SecurityCodeScan.VS2019">
       <Version>5.1.0</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
