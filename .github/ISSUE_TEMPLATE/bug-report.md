@@ -3,29 +3,31 @@ name: Bug Report
 about: Please report any bugs here.
 title: ''
 labels: bug
+projects: Bug Hunt
 assignees: irongut
 
 ---
+## Bug Report
 
-**Insert error message here**
+Describe the bug with any error message.
 
-#### Stack Trace
+### Stack Trace
 ```c#
-**Insert stack trace here (calls only, not namespaces)**
+Add a stack trace if available.
 ```
 
-**Describe the bug**
-A clear and concise description of the bug.
-
-**To Reproduce**
-Steps to reproduce the behavior:
+### To Reproduce
+Steps to reproduce the bug:
 1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
+2. Scroll down to '....'
+3. Click on '....'
 4. See error
 
-**Expected behavior**
+### Expected Behavior
 A clear and concise description of what you expected to happen.
 
-**Additional context**
+### Additional Context
 Add any other context about the problem here.
+
+### Linked To
+List any issues linked to this bug.
