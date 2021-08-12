@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XF40Demo.Android", "XF40Dem
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XF40Demo", "XF40Demo\XF40Demo\XF40Demo.csproj", "{CF52515E-60AD-49DA-B476-87DE62CA20CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "XF40Demo\UnitTests\UnitTests.csproj", "{961A3B44-B7FB-4663-9B08-73726C11F51C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "XF40Demo\UnitTests\UnitTests.csproj", "{961A3B44-B7FB-4663-9B08-73726C11F51C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
