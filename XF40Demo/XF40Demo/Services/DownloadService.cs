@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using XF40Demo.Models;
 
 namespace XF40Demo.Services
 {
@@ -30,6 +31,12 @@ namespace XF40Demo.Services
         public static DownloadService Instance()
         {
             return instance;
+        }
+
+        public async Task<(string data, DateTime updated)> GetData(string url, DownloadOptions options)
+        {
+            string urlHash = Sha256Helper.GenerateHash(url);
+            return await GetData(url, $"{urlHash}-Data", $"{urlHash}-Updated", options.Expiry, options.CancelToken, options.IgnoreCache).ConfigureAwait(false);
         }
 
         public async Task<(string data, DateTime updated)> GetData(string url, string dataKey, string lastUpdatedKey, TimeSpan expiry, bool ignoreCache = false)
