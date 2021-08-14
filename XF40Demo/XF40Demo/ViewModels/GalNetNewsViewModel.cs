@@ -60,49 +60,53 @@ namespace XF40Demo.ViewModels
 
         private async void GetGalNetNewsAsync(CancellationTokenSource cancelToken, bool ignoreCache = false)
         {
-            if (GalNetNewsList?.Any() == false)
+            using (UserDialogs.Instance.Loading("Loading", () => cancelToken.Cancel(), null, true, MaskType.Clear))
             {
-                using (UserDialogs.Instance.Loading("Loading", () => cancelToken.Cancel(), null, true, MaskType.Clear))
+                try
                 {
-                    try
-                    {
-                        List<NewsArticle> newsList = new List<NewsArticle>();
-                        GalNetService news = GalNetService.Instance();
-                        (newsList, LastUpdated) = await news.GetData(12, settings.NewsCacheTime, cancelToken, ignoreCache: ignoreCache).ConfigureAwait(false);
+                    List<NewsArticle> newsList = new List<NewsArticle>();
+                    GalNetService news = GalNetService.Instance();
+                    (newsList, LastUpdated) = await news.GetData(12, settings.NewsCacheTime, cancelToken, ignoreCache: ignoreCache).ConfigureAwait(false);
 
-                        GalNetNewsList.Clear();
+                    GalNetNewsList.Clear();
+                    if (newsList?.Any() == false)
+                    {
+                        SetMessage("No GalNet articles found.", false);
+                    }
+                    else
+                    {
                         foreach (NewsArticle item in newsList)
                         {
                             GalNetNewsList.Add(item);
                         }
                     }
-                    catch (OperationCanceledException)
+                }
+                catch (OperationCanceledException)
+                {
+                    SetMessage("GalNet News download was cancelled or timed out.", true);
+                }
+                catch (HttpRequestException ex)
+                {
+                    string errorMessage = ex.Message;
+                    if (errorMessage.IndexOf("OPENSSL_internal:", StringComparison.OrdinalIgnoreCase) > 0)
                     {
-                        SetMessage("GalNet News download was cancelled or timed out.", true);
+                        errorMessage = "A secure connection could not be established.";
                     }
-                    catch (HttpRequestException ex)
+                    else if (errorMessage.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) > 0)
                     {
-                        string errorMessage = ex.Message;
-                        if (errorMessage.IndexOf("OPENSSL_internal:", StringComparison.OrdinalIgnoreCase) > 0)
-                        {
-                            errorMessage = "A secure connection could not be established.";
-                        }
-                        else if (errorMessage.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) > 0)
-                        {
-                            errorMessage = errorMessage.Substring(errorMessage.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) + 6).Trim();
-                        }
-                        SetMessage($"Network Error: {errorMessage}", true);
+                        errorMessage = errorMessage.Substring(errorMessage.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) + 6).Trim();
                     }
-                    catch (Exception ex)
+                    SetMessage($"Network Error: {errorMessage}", true);
+                }
+                catch (Exception ex)
+                {
+                    if (ex.Message.Contains("unexpected end of stream"))
                     {
-                        if (ex.Message.Contains("unexpected end of stream"))
-                        {
-                            SetMessage("GalNet News download was cancelled.", true);
-                        }
-                        else
-                        {
-                            SetMessage($"Error: {ex.Message}", true);
-                        }
+                        SetMessage("GalNet News download was cancelled.", true);
+                    }
+                    else
+                    {
+                        SetMessage($"Error: {ex.Message}", true);
                     }
                 }
             }
