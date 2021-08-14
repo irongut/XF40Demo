@@ -29,7 +29,7 @@
             </Frame>
         </DataTemplate>
 
-        <DataTemplate x:Key="galnetTemplate" x:DataType="m:NewsItem">
+        <DataTemplate x:Key="galnetTemplate" x:DataType="m:NewsArticle">
             <ContentView>
 
                 <VisualStateManager.VisualStateGroups>

@@ -119,7 +119,7 @@ namespace XF40Demo.ViewModels
                     Device.BeginInvokeOnMainThread(() =>
                     {
                         SolWeather = weatherService.Weather.Find(x => x.Sol.Equals(Sol));
-                        SolDate = String.Format("Sol {0} - {1:M}", Sol, SolWeather.FirstUTC);
+                        SolDate = $"Sol {Sol} - {SolWeather.FirstUTC:M}";
                         LastUpdated = weatherService.LastUpdated;
                         BuildWindChart();
                     });
@@ -127,7 +127,7 @@ namespace XF40Demo.ViewModels
             }
             catch (Exception ex)
             {
-                SetMessages(String.Format("Error: {0}", ex.Message));
+                SetMessages($"Error: {ex.Message}");
             }
         }
 

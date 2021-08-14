@@ -181,13 +181,13 @@ namespace XF40Demo.ViewModels
                     {
                         start += 17;
                         int end = err.IndexOf(" ", start, StringComparison.OrdinalIgnoreCase);
-                        err = String.Format("SSL Error ({0})", err.Substring(start, end - start).Trim());
+                        err = $"SSL Error ({err.Substring(start, end - start).Trim()})";
                     }
                     else if (err.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) > 0)
                     {
                         err = err.Substring(err.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) + 6).Trim();
                     }
-                    SetMessages(String.Format("Network Error: {0}", err), true);
+                    SetMessages($"Network Error: {err}", true);
                 }
                 catch (Exception ex)
                 {
@@ -197,17 +197,17 @@ namespace XF40Demo.ViewModels
                     }
                     else
                     {
-                        SetMessages(String.Format("Error: {0}", ex.Message), true);
+                        SetMessages($"Error: {ex.Message}", true);
                     }
                 }
             }
         }
 
-        private void SetMessages(string message, Boolean isError)
+        private void SetMessages(string message, bool isError)
         {
             if (isError)
             {
-                message = "Error: " + message;
+                message = $"Error: {message}";
             }
             ToastHelper.Toast(message);
         }
