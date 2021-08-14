@@ -1,5 +1,4 @@
 ﻿using Acr.UserDialogs;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,7 +8,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using XF40Demo.Convertors;
 using XF40Demo.Helpers;
 using XF40Demo.Models;
 using XF40Demo.Services;
@@ -22,7 +20,7 @@ namespace XF40Demo.ViewModels
 
         public ICommand RetryDownloadCommand { get; }
 
-        public ObservableCollection<NewsItem> GalNetNewsList { get; set; }
+        public ObservableCollection<NewsArticle> GalNetNewsList { get; set; }
 
         private DateTime _lastUpdated;
         public DateTime LastUpdated
@@ -57,7 +55,7 @@ namespace XF40Demo.ViewModels
         public GalNetNewsViewModel()
         {
             RetryDownloadCommand = new Command(() => RetryGalNetNewsAsync());
-            GalNetNewsList = new ObservableCollection<NewsItem>();
+            GalNetNewsList = new ObservableCollection<NewsArticle>();
         }
 
         private async void GetGalNetNewsAsync(CancellationTokenSource cancelToken, bool ignoreCache = false)
@@ -66,22 +64,22 @@ namespace XF40Demo.ViewModels
             {
                 try
                 {
-                    // get the news feed
-                    string json = String.Empty;
-                    GalNetService news = new GalNetService();
-                    (json, LastUpdated) = await news.GetData(cancelToken, ignoreCache).ConfigureAwait(false);
+                    List<NewsArticle> newsList = new List<NewsArticle>();
+                    GalNetService news = GalNetService.Instance();
+                    (newsList, LastUpdated) = await news.GetData(12, settings.NewsCacheTime, cancelToken, ignoreCache: ignoreCache).ConfigureAwait(false);
 
-                    // parse the json data
                     GalNetNewsList.Clear();
-                    await Task.Run(() =>
+                    if (newsList?.Any() == false)
                     {
-                        List<NewsItem> fullNews = JsonConvert.DeserializeObject<List<NewsItem>>(json, NewsItemConverter.Instance);
-                        foreach (NewsItem item in fullNews.Where(o => !String.IsNullOrEmpty(o.Body)).OrderByDescending(o => o.PublishDateTime).Take(15))
+                        SetMessage("No GalNet articles found.", false);
+                    }
+                    else
+                    {
+                        foreach (NewsArticle item in newsList)
                         {
-                            item.ClassifyArticle();
-                            Device.BeginInvokeOnMainThread(() => GalNetNewsList.Add(item));
+                            GalNetNewsList.Add(item);
                         }
-                    }).ConfigureAwait(false);
+                    }
                 }
                 catch (OperationCanceledException)
                 {
@@ -89,19 +87,16 @@ namespace XF40Demo.ViewModels
                 }
                 catch (HttpRequestException ex)
                 {
-                    string err = ex.Message;
-                    int start = err.IndexOf("OPENSSL_internal:", StringComparison.OrdinalIgnoreCase);
-                    if (start > 0)
+                    string errorMessage = ex.Message;
+                    if (errorMessage.IndexOf("OPENSSL_internal:", StringComparison.OrdinalIgnoreCase) > 0)
                     {
-                        start += 17;
-                        int end = err.IndexOf(" ", start, StringComparison.OrdinalIgnoreCase);
-                        err = String.Format("SSL Error ({0})", err.Substring(start, end - start).Trim());
+                        errorMessage = "A secure connection could not be established.";
                     }
-                    else if (err.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) > 0)
+                    else if (errorMessage.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) > 0)
                     {
-                        err = err.Substring(err.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) + 6).Trim();
+                        errorMessage = errorMessage.Substring(errorMessage.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) + 6).Trim();
                     }
-                    SetMessage(String.Format("Network Error: {0}", err), true);
+                    SetMessage($"Network Error: {errorMessage}", true);
                 }
                 catch (Exception ex)
                 {
@@ -111,13 +106,13 @@ namespace XF40Demo.ViewModels
                     }
                     else
                     {
-                        SetMessage(String.Format("Error: {0}", ex.Message), true);
+                        SetMessage($"Error: {ex.Message}", true);
                     }
                 }
             }
         }
 
-        private void SetMessage(string message, Boolean isError)
+        private void SetMessage(string message, bool isError)
         {
             Message = message;
             if (isError)

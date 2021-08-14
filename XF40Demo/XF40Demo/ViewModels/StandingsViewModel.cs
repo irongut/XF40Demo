@@ -220,7 +220,7 @@ namespace XF40Demo.ViewModels
                         {
                             start += 17;
                             int end = err.IndexOf(" ", start, StringComparison.OrdinalIgnoreCase);
-                            err = String.Format("SSL Error ({0})", err.Substring(start, end - start).Trim());
+                            err = $"SSL Error ({err.Substring(start, end - start).Trim()})";
                         }
                         else if (err.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) > 0)
                         {
@@ -267,7 +267,7 @@ namespace XF40Demo.ViewModels
             }
         }
 
-        private void SetMessages(string message, Boolean isError)
+        private void SetMessages(string message, bool isError)
         {
             Message = message;
             ShowMessage = true;

@@ -275,7 +275,7 @@ namespace XF40Demo.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    SetMessages(String.Format("Error: {0}", ex.Message));
+                    SetMessages($"Error: {ex.Message}");
                 }
                 finally
                 {
@@ -299,8 +299,8 @@ namespace XF40Demo.ViewModels
                     {
                         MartianDay firstDay = weatherService.Weather.OrderBy(d => d.Sol).First<MartianDay>();
                         MartianDay lastDay = weatherService.Weather.OrderBy(d => d.Sol).Last<MartianDay>();
-                        MarsDates = string.Format("Sol {0} - Sol {1}", firstDay.Sol, lastDay.Sol);
-                        EarthDates = string.Format("{0:M} - {1:M}", firstDay.FirstUTC, lastDay.FirstUTC);
+                        MarsDates = $"Sol {firstDay.Sol} - Sol {lastDay.Sol}";
+                        EarthDates = $"{firstDay.FirstUTC:M} - {lastDay.FirstUTC:M}";
                         LastUpdated = weatherService.LastUpdated;
                         Season = lastDay.Season;
 
@@ -319,7 +319,7 @@ namespace XF40Demo.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    SetMessages(String.Format("Error: {0}", ex.Message));
+                    SetMessages($"Error: {ex.Message}");
                 }
                 finally
                 {
@@ -494,22 +494,22 @@ namespace XF40Demo.ViewModels
             {
                 averageTempEntries.Add(new ChartEntry((float)sol.AtmosphericTemp.Average)
                 {
-                    Label = string.Format("{0}", sol.Sol),
-                    ValueLabel = string.Format("{0:N1}{1}", sol.AtmosphericTemp.Average, tempScale),
+                    Label = $"{sol.Sol}",
+                    ValueLabel = $"{sol.AtmosphericTemp.Average:N1}{tempScale}",
                     Color = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex()),
                     TextColor = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex())
                 });
 
                 minTempEntries.Add(new ChartEntry((float)sol.AtmosphericTemp.Min)
                 {
-                    Label = string.Format("{0}", sol.Sol),
+                    Label = $"{sol.Sol}",
                     ValueLabel = string.Empty,
                     Color = SKColor.Parse(Color.LightBlue.ToHex())
                 });
 
                 maxTempEntries.Add(new ChartEntry((float)sol.AtmosphericTemp.Max)
                 {
-                    Label = string.Format("{0}", sol.Sol),
+                    Label = $"{sol.Sol}",
                     ValueLabel = string.Empty,
                     Color = SKColor.Parse(Color.Red.ToHex())
                 });
@@ -522,22 +522,22 @@ namespace XF40Demo.ViewModels
             {
                 averageWindSpeedEntries.Add(new ChartEntry((float)sol.HorizontalWindSpeed.Average)
                 {
-                    Label = string.Format("{0}", sol.Sol),
-                    ValueLabel = string.Format("{0:N1} m/s", sol.HorizontalWindSpeed.Average),
+                    Label = $"{sol.Sol}",
+                    ValueLabel = $"{sol.HorizontalWindSpeed.Average:N1} m/s",
                     Color = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex()),
                     TextColor = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex())
                 });
 
                 minWindSpeedEntries.Add(new ChartEntry((float)sol.HorizontalWindSpeed.Min)
                 {
-                    Label = string.Format("{0}", sol.Sol),
+                    Label = $"{sol.Sol}",
                     ValueLabel = string.Empty,
                     Color = SKColor.Parse(Color.DarkGreen.ToHex())
                 });
 
                 maxWindSpeedEntries.Add(new ChartEntry((float)sol.HorizontalWindSpeed.Max)
                 {
-                    Label = string.Format("{0}", sol.Sol),
+                    Label = $"{sol.Sol}",
                     ValueLabel = string.Empty,
                     Color = SKColor.Parse(Color.DarkGoldenrod.ToHex())
                 });
@@ -550,22 +550,22 @@ namespace XF40Demo.ViewModels
             {
                 averagePressureEntries.Add(new ChartEntry((float)sol.AtmosphericPressure.Average)
                 {
-                    Label = string.Format("{0}", sol.Sol),
-                    ValueLabel = string.Format("{0:N0} Pa", sol.AtmosphericPressure.Average),
+                    Label = $"{sol.Sol}",
+                    ValueLabel = $"{sol.AtmosphericPressure.Average:N0} Pa",
                     Color = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex()),
                     TextColor = SKColor.Parse(ThemeHelper.GetThemeColor("textColor").ToHex())
                 });
 
                 minPressureEntries.Add(new ChartEntry((float)sol.AtmosphericPressure.Min)
                 {
-                    Label = string.Format("{0}", sol.Sol),
+                    Label = $"{sol.Sol}",
                     ValueLabel = string.Empty,
                     Color = SKColor.Parse(Color.MediumPurple.ToHex())
                 });
 
                 maxPressureEntries.Add(new ChartEntry((float)sol.AtmosphericPressure.Max)
                 {
-                    Label = string.Format("{0}", sol.Sol),
+                    Label = $"{sol.Sol}",
                     ValueLabel = string.Empty,
                     Color = SKColor.Parse(Color.DarkBlue.ToHex())
                 });

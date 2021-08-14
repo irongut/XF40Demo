@@ -185,11 +185,11 @@ namespace XF40Demo.ViewModels
                     PowerStanding = await gsService.GetPowerAsync(PowerDetails.ShortName, cancelToken).ConfigureAwait(false);
                     Cycle = PowerStanding.Cycle;
                     LastUpdated = PowerStanding.LastUpdated;
-                    ExpandText = String.Format("<p>{0}</p>&nbsp;<ul><li>Strong Against: {1}</li><li>Weak Against: {2}</li></ul>",
+                    ExpandText = string.Format("<p>{0}</p>&nbsp;<ul><li>Strong Against: {1}</li><li>Weak Against: {2}</li></ul>",
                                     PowerDetails.ExpansionText,
                                     PowerDetails.ExpansionStrongGovernment,
                                     PowerDetails.ExpansionWeakGovernment);
-                    ControlText = String.Format("<p>{0}</p>&nbsp;<ul><li>Strong Against: {1}</li><li>Weak Against: {2}</li></ul>",
+                    ControlText = string.Format("<p>{0}</p>&nbsp;<ul><li>Strong Against: {1}</li><li>Weak Against: {2}</li></ul>",
                                     PowerDetails.ControlText,
                                     PowerDetails.ControlStrongGovernment,
                                     PowerDetails.ControlWeakGovernment);
@@ -197,7 +197,7 @@ namespace XF40Demo.ViewModels
             }
             catch (Exception ex)
             {
-                ToastHelper.Toast(String.Format("Error getting Power details: {0}", ex.Message));
+                ToastHelper.Toast($"Error getting Power details: {ex.Message}");
             }
             await Task.Run(() => GetPowerCommsAsync()).ConfigureAwait(false);
         }
@@ -220,7 +220,7 @@ namespace XF40Demo.ViewModels
                     {
                         start += 17;
                         int end = errorMessage.IndexOf(" ", start, StringComparison.OrdinalIgnoreCase);
-                        errorMessage = String.Format("SSL Error ({0})", errorMessage.Substring(start, end - start).Trim());
+                        errorMessage = $"SSL Error ({errorMessage.Substring(start, end - start).Trim()})";
                     }
                     else if (errorMessage.IndexOf("Error:", StringComparison.OrdinalIgnoreCase) > 0)
                     {

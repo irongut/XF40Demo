@@ -1,22 +1,27 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace XF40Demo.Models
 {
-    public class NewsItem
+    [JsonObject(MemberSerialization.OptIn)]
+    public class NewsArticle
     {
         #region Properties
+
+        [JsonProperty(PropertyName = "uid")]
+        public string Id { get; set; }
 
         private string _title;
         [JsonProperty(PropertyName = "title")]
         public string Title
         {
             get { return _title; }
-            internal set
+            set
             {
                 if (_title != value)
                 {
@@ -30,7 +35,7 @@ namespace XF40Demo.Models
         public string Body
         {
             get { return _body; }
-            internal set
+            set
             {
                 if (_body != value)
                 {
@@ -40,75 +45,48 @@ namespace XF40Demo.Models
         }
 
         [JsonProperty(PropertyName = "date")]
-        public DateTime PublishDateTime { get; internal set; }
+        public DateTime PublishDateTime { get; set; }
 
-        [JsonProperty(PropertyName = "nid")]
-        public int Id { get; internal set; }
-
-        [JsonProperty(PropertyName = "image")]
-        public string FDImageName { get; internal set; }
-
-        [JsonProperty(PropertyName = "slug")]
-        public string Slug { get; internal set; }
+        [JsonProperty(PropertyName = "link")]
+        public string Link { get; set; }
 
         public string Topic { get; private set; }
+
         public List<string> Tags { get; private set; }
 
         public string PublishDate
         {
             get
             {
-                // return the date part of PublishDateTime
-                string date = PublishDateTime.ToString();
+                string date = PublishDateTime.ToString(new CultureInfo("en-GB"));
                 return date.Substring(0, date.IndexOf(" "));
             }
         }
 
         #endregion
 
-        public override string ToString()
-        {
-            return String.Format("{0}: {1}", Title, Body);
-        }
-
-        private List<string> SplitSentences()
-        {
-            List<string> sentences = new List<string>
-            {
-                Title.Trim().ToLower(),
-                Slug.Replace("-", " ").Trim().ToLower()
-            };
-            foreach (string sentence in Regex.Split(Body, @"(?<=[\w\s](?:[\.\!\? ]+[\x20]*[\x22\xBB]*))(?:\s+(?![\x22\xBB](?!\w)))"))
-            {
-                sentences.Add(sentence.Trim().ToLower());
-            }
-            return sentences;
-        }
-
-        public void ClassifyArticle()
+        protected internal void ClassifyArticle(List<Topic> topics, List<Topic> ignoreTopics)
         {
             Tags = new List<string>();
             List<string> sentences = SplitSentences();
 
             // analyse article using Bag of Words technique
-            TopicsList topicsList = new TopicsList("XF40Demo.Resources.NewsBoW.json");
-            AnalyseSentences(sentences, topicsList);
+            AnalyseSentences(sentences, topics);
 
             // analyse article again to identify false positives
-            TopicsList falseTopicsList = new TopicsList("XF40Demo.Resources.NewsFalseBoW.json");
-            AnalyseSentences(sentences, falseTopicsList);
+            AnalyseSentences(sentences, ignoreTopics);
 
             // subtract false positives from topics list
-            foreach (Topic falseTopic in falseTopicsList.Topics)
+            foreach (Topic falseTopic in ignoreTopics)
             {
-                Topic topic = topicsList.Topics.Find(x => x.Name.Equals(falseTopic.Name));
+                Topic topic = topics.Find(x => x.Name.Equals(falseTopic.Name));
                 topic.Count -= falseTopic.Count;
             }
 
             // select topic + tags
-            Topic tempTopic = topicsList.Topics.OrderByDescending(o => o.Count).First();
+            Topic tempTopic = topics.OrderByDescending(o => o.Count).First();
             Topic = (tempTopic.Count < 2 || string.Equals(Title, "week in review", StringComparison.OrdinalIgnoreCase)) ? "Unclassified" : tempTopic.Name;
-            foreach (Topic topic in topicsList.Topics.OrderByDescending(o => o.Count).Take(4))
+            foreach (Topic topic in topics.OrderByDescending(o => o.Count).Take(4))
             {
                 if (topic.Count > 0)
                 {
@@ -117,11 +95,11 @@ namespace XF40Demo.Models
             }
         }
 
-        public void AnalyseSentences(List<string> sentences, TopicsList topicsList)
+        private void AnalyseSentences(List<string> sentences, List<Topic> topicsList)
         {
             foreach (string sentence in sentences)
             {
-                Parallel.ForEach(topicsList.Topics, topic =>
+                Parallel.ForEach(topicsList, topic =>
                 {
                     foreach (string term in topic.Terms)
                     {
@@ -132,6 +110,25 @@ namespace XF40Demo.Models
                     }
                 });
             }
+        }
+
+        private List<string> SplitSentences()
+        {
+            List<string> sentences = new List<string>
+            {
+                Title.Trim().ToLower(),
+                Title.Trim().ToLower()
+            };
+            foreach (string sentence in Regex.Split(Body, @"(?<=[\w\s](?:[\.\!\? ]+[\x20]*[\x22\xBB]*))(?:\s+(?![\x22\xBB](?!\w)))"))
+            {
+                sentences.Add(sentence.Trim().ToLower());
+            }
+            return sentences;
+        }
+
+        public override string ToString()
+        {
+            return $"{Title}: {Body}";
         }
     }
 }
