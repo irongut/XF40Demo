@@ -76,7 +76,7 @@ namespace XF40Demo.Services
                 HttpResponseMessage response = await client.GetAsync(uri).ConfigureAwait(false);
                 if (!response.IsSuccessStatusCode)
                 {
-                    throw new APIException(String.Format("{0} - {1}", response.StatusCode, response.ReasonPhrase), (int)response.StatusCode);
+                    throw new APIException($"{response.StatusCode} - {response.ReasonPhrase}", (int)response.StatusCode);
                 }
                 else
                 {
@@ -127,7 +127,7 @@ namespace XF40Demo.Services
                 HttpResponseMessage response = await client.GetAsync(uri, cancelToken.Token).ConfigureAwait(false);
                 if (!response.IsSuccessStatusCode)
                 {
-                    throw new APIException(String.Format("{0} - {1}", response.StatusCode, response.ReasonPhrase), (int)response.StatusCode);
+                    throw new APIException($"{response.StatusCode} - {response.ReasonPhrase}", (int)response.StatusCode);
                 }
                 else
                 {
