@@ -128,7 +128,7 @@ namespace XF40Demo.Models
 
         public override string ToString()
         {
-            return String.Format("{0}: {1}", Title, Body);
+            return $"{Title}: {Body}";
         }
     }
 }
