@@ -7,7 +7,9 @@ namespace XF40Demo.Models
         #region Properties
 
         public string Name { get; }
+
         public List<string> Terms { get; }
+
         public int Count { get; set; }
 
         #endregion

@@ -1,31 +1,39 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using XF40Demo.Models;
 
 namespace XF40Demo.Convertors
 {
-    public class NewsItemConverter : JsonConverter
+    internal sealed class NewsArticleConverter : JsonConverter
     {
-        public static readonly NewsItemConverter Instance = new NewsItemConverter();
+        private static readonly NewsArticleConverter instance = new NewsArticleConverter();
 
-        private static readonly Type NewsItemType = typeof(ICollection<NewsItem>);
+        private static readonly Type NewsArticleType = typeof(ICollection<NewsArticle>);
+
+        private NewsArticleConverter() { }
+
+        public static NewsArticleConverter Instance()
+        {
+            return instance;
+        }
 
         public override bool CanConvert(Type objectType)
         {
-            return NewsItemType.IsAssignableFrom(objectType);
+            return NewsArticleType.IsAssignableFrom(objectType);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var collection = new List<NewsItem>();
-            NewsItem item = null;
+            var collection = new List<NewsArticle>();
+            NewsArticle item = null;
             while (reader.Read())
             {
                 switch (reader.TokenType)
                 {
                     case JsonToken.StartObject:
-                        item = new NewsItem();
+                        item = new NewsArticle();
                         collection.Add(item);
                         break;
                     case JsonToken.PropertyName:
@@ -43,12 +51,15 @@ namespace XF40Demo.Convertors
             throw new NotImplementedException();
         }
 
-        private static void SetProperty(JsonReader reader, NewsItem item)
+        private static void SetProperty(JsonReader reader, NewsArticle item)
         {
             var name = (string)reader.Value;
             reader.Read();
             switch (name)
             {
+                case "uid":
+                    item.Id = (string)reader.Value;
+                    break;
                 case "title":
                     item.Title = (string)reader.Value;
                     break;
@@ -56,16 +67,10 @@ namespace XF40Demo.Convertors
                     item.Body = (string)reader.Value;
                     break;
                 case "date":
-                    item.PublishDateTime = Convert.ToDateTime(reader.Value);
+                    item.PublishDateTime = Convert.ToDateTime(reader.Value, new CultureInfo("en-GB"));
                     break;
-                case "nid":
-                    item.Id = Convert.ToInt32(reader.Value);
-                    break;
-                case "image":
-                    item.FDImageName = (string)reader.Value;
-                    break;
-                case "slug":
-                    item.Slug = (string)reader.Value;
+                case "link":
+                    item.Link = (string)reader.Value;
                     break;
             }
         }
