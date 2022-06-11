@@ -1,4 +1,7 @@
 # XF40Demo
+
+**NOTE: This project is now archived and read only.**
+
 Experiments with new & preview features in Xamarin Forms 4.x and Azure DevOps Pipelines.
 
 <div align="center">
